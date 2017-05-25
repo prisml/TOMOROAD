@@ -1,2 +1,8 @@
 /target/
+
+##
+
+*.properties
+##
+
 /TomoRoad/target/
