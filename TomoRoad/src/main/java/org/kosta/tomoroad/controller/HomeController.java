@@ -12,5 +12,5 @@ public class HomeController {
 	@RequestMapping("home.do")
 	public ModelAndView home(){
 		return new ModelAndView("home.tiles");
-	}
+	}//
 }
