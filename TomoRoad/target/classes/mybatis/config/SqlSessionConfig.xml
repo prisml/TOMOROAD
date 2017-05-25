@@ -13,7 +13,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="org.kosta.tomoroad.model"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/config/member.xml"/>	
+		<mapper resource="mybatis/config/member.xml"/>		
+		<mapper resource="mybatis/config/burn.xml"/>	
 	</mappers>
 </configuration>
 
