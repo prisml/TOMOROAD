@@ -2,14 +2,21 @@
     pageEncoding="UTF-8"%>
     <br><br><br><br>
 <script type="text/javascript">
+var v;
 function layer_open(test){
+	
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
+
+v = document.getElementById(test.getAttribute('id')).getAttribute('id');
+
 var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('id')).offset();
+
 var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
+
 var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
 
-
 var divTop = obj.top -40; //상단 좌표
+
 var divLeft = obj.left + 40; //좌측 좌표
 
 /* $('#layer1').css({
@@ -35,6 +42,10 @@ temp.find('a.cbtn').click(function(e){
 	}
 	e.prthisDefault(); 
 });
+}
+
+function move(){
+	alert(v);
 }
 </script>
 <style type="text/css">
@@ -106,14 +117,14 @@ float:left;
 <!--content //-->
     <div>
     <p style= "font-size: 40" align = "center" id = "station"></p>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png"></a>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.jpg"></a>
-    <a href = "#"><img src = "${pageContext.request.contextPath}/resources/img/3-1.png"></a>
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.jpg" onclick="return move()">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move()">
     </div>
     <div>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png"></a>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg"></a>
-    <a class = "cbtn" href = "#"><img src = "${pageContext.request.contextPath}/resources/img/6-1.png"></a>
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg" onclick="return move()">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move()">
     </div>
 <!--// content-->
 </div>
