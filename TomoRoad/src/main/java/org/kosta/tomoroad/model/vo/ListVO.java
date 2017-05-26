@@ -4,26 +4,25 @@ import java.util.List;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
 
-
-public class BurnListVO {
-	private List<BurnVO> list;
+public class ListVO<T> {
+	private List<T> list;
 	private PagingBean pagingBean;
-	
-	public BurnListVO() {
+
+	public ListVO() {
 		super();
 	}
 
-	public BurnListVO(List<BurnVO> list, PagingBean pagingBean) {
+	public ListVO(List<T> list, PagingBean pagingBean) {
 		super();
 		this.list = list;
 		this.pagingBean = pagingBean;
 	}
 
-	public List<BurnVO> getList() {
+	public List<T> getList() {
 		return list;
 	}
 
-	public void setList(List<BurnVO> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 
@@ -39,6 +38,5 @@ public class BurnListVO {
 	public String toString() {
 		return "BurnListVO [list=" + list + ", pagingBean=" + pagingBean + "]";
 	}
-	
-	
+
 }

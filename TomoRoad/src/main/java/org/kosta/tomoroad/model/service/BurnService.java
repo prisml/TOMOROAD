@@ -1,12 +1,12 @@
 package org.kosta.tomoroad.model.service;
 
-import org.kosta.tomoroad.model.vo.BurnListVO;
+import org.kosta.tomoroad.model.vo.ListVO;
 
 public interface BurnService {	
 
-	BurnListVO getBurnList();	
+	ListVO getBurnList();	
 
-	BurnListVO getBurnList(String pageNo);
+	ListVO getBurnList(String pageNo);
 
 
 }
