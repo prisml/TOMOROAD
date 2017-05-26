@@ -1,5 +1,7 @@
 drop table member;
 drop sequence place_seq;
+drop table burn_comment;
+drop table burn_board;
 
 create table member(
 	id varchar2(100) primary key,
@@ -60,6 +62,7 @@ create table station(
 	stayed_time number default 0
 );
 
+
 create table burn_board(
 	no number primary key,
 	title varchar2(100) not null,
@@ -67,10 +70,12 @@ create table burn_board(
 	content clob not null,
 	station_name varchar2(100) not null,
 	member_id varchar2(100) not null,
+	hits number default 0,
 	constraint fk_burn_board_no foreign key(station_name) references station,
 	constraint fk_burn_board_id foreign key(member_id) references member	
 );
 create sequence burn_board_seq nocache;
+
 
 create table burn_comment(
 	no number primary key,
@@ -134,7 +139,7 @@ create table station_connect(
 
 insert into member values('java','1234','아이유','여자','112');
 
-insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java');
+insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java',0);
 
 insert into station values('서울역','서울에 있어염',10);
 
@@ -142,8 +147,8 @@ select * from member;
 select * from BURN_BOARD;
 select * from STATION;
 		
-select A.* from(select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time
-from BURN_BOARD) A
+
+select A.* from(select row_number() 
+over(order by no desc) rnum, no, title, station_name, member_id, 
+to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
 where rnum between 1 and 5;
-
-

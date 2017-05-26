@@ -15,9 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getBurnList" parameterType="pagingBean" resultType="burnVO" resultMap="burnRM">		
-		select A.* from(select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time
-		from BURN_BOARD) A
-		where rnum between #{startRowNumber} and #{endRowNumber};	
+		select A.* from(select row_number() 
+		over(order by no desc) rnum, no, title, station_name, member_id, 
+		to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
+		where rnum between #{startRowNumber} and #{endRowNumber}	
 	</select>
 	
 </mapper>

@@ -1,13 +1,10 @@
 package org.kosta.tomoroad.model.burn;
 
-import java.util.ArrayList;
+public interface BurnService {	
 
-import org.kosta.tomoroad.model.pagingbean.PagingBean;
+	BurnListVO getBurnList();	
 
-public interface BurnService {
+	BurnListVO getBurnList(String pageNo);
 
-	int getTotalCount();
-
-	ArrayList<BurnVO> getBurnList(PagingBean pagingBean);
 
 }
