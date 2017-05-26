@@ -1,4 +1,6 @@
-package org.kosta.tomoroad.model.member;
+package org.kosta.tomoroad.model.dao;
+
+import org.kosta.tomoroad.model.vo.MemberVO;
 
 public interface MemberDAO {
 	public MemberVO findMemberById(String id);

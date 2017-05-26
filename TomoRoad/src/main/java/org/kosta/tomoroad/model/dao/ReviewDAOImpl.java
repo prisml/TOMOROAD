@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.kosta.tomoroad.model.vo.PagingBean;
+import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

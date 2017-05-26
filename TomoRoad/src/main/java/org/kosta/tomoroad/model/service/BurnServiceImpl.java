@@ -1,13 +1,15 @@
-package org.kosta.tomoroad.model.burn;
+package org.kosta.tomoroad.model.service;
 
 import javax.annotation.Resource;
 
-import org.kosta.tomoroad.model.pagingbean.PagingBean;
+import org.kosta.tomoroad.model.dao.BurnDAO;
+import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnListVO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BurnServiceImpl implements BurnService{
-	@Resource(name="burnDAOImpl")
+	@Resource
 	private BurnDAO burnDAO;	
 	
 	@Override

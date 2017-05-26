@@ -1,7 +1,8 @@
-package org.kosta.tomoroad.model.member;
+package org.kosta.tomoroad.model.dao;
 
 import javax.annotation.Resource;
 
+import org.kosta.tomoroad.model.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 @Repository

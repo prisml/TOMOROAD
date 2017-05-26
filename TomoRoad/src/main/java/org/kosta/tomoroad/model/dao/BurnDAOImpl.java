@@ -1,10 +1,11 @@
-package org.kosta.tomoroad.model.burn;
+package org.kosta.tomoroad.model.dao;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.kosta.tomoroad.model.pagingbean.PagingBean;
+import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 

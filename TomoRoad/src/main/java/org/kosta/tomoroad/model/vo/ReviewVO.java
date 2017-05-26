@@ -1,7 +1,5 @@
 package org.kosta.tomoroad.model.vo;
 
-import org.kosta.tomoroad.model.member.MemberVO;
-
 public class ReviewVO {
 	private String title;
 	private String content;

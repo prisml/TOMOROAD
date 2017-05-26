@@ -1,12 +1,14 @@
-package org.kosta.tomoroad.model.member;
+package org.kosta.tomoroad.model.service;
 
 import javax.annotation.Resource;
 
+import org.kosta.tomoroad.model.dao.MemberDAO;
+import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService{
-	@Resource(name="memberDAOImpl")
+	@Resource
 	private MemberDAO memberDAO;
 	@Override
 	public MemberVO findMemberById(String id) {		

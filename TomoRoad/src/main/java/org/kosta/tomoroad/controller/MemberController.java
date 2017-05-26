@@ -1,11 +1,11 @@
-package org.kosta.tomoroad.controller.member;
+package org.kosta.tomoroad.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.tomoroad.model.member.MemberService;
-import org.kosta.tomoroad.model.member.MemberVO;
+import org.kosta.tomoroad.model.service.MemberService;
+import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
-	@Resource(name="memberServiceImpl")
+	@Resource
 	private MemberService memberService;
-	
 	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);

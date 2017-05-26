@@ -1,8 +1,9 @@
-package org.kosta.tomoroad.model.burn;
+package org.kosta.tomoroad.model.dao;
 
 import java.util.List;
 
-import org.kosta.tomoroad.model.pagingbean.PagingBean;
+import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnVO;
 
 public interface BurnDAO {
 
