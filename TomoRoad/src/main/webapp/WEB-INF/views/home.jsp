@@ -9,7 +9,7 @@ var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('i
 var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
 var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
 
-var divTop = obj.top - 50; //상단 좌표
+var divTop = obj.top - 100; //상단 좌표
 var divLeft = obj.left - 80; //좌측 좌표
 
 
