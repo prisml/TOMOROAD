@@ -3,6 +3,8 @@ drop sequence place_seq;
 drop table burn_comment;
 drop table burn_board;
 
+select * from member;
+
 create table member(
 	id varchar2(100) primary key,
 	password varchar2(100) not null,
@@ -137,7 +139,17 @@ create table station_connect(
 	primary key (depart,arrived)	
 );
 
+
 insert into member values('java','1234','아이유','여자','112');
+
+insert into STATION(name,detail)
+values('서울역','주소 : 서울특별시 용산구 한강대로 405 서울역
+							지번-서울특별시 용산구 동자동 43-205 서울역
+				전화번호 : 1544-7788
+				관련정보 : 승차권 예매, 승차권 이용안내, 기차시간 및 운임표
+				부가정보 : 기차역 검색, 고객센터, 유실물 찾기');
+
+
 
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java',0);
 
