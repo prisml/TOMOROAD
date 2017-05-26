@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService{
-	@Resource
+	@Resource(name="memberDAOImpl")
 	private MemberDAO memberDAO;
 	@Override
 	public MemberVO findMemberById(String id) {		

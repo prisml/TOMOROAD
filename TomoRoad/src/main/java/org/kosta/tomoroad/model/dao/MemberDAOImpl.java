@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 public class MemberDAOImpl implements MemberDAO{
 	@Resource
 	private SqlSessionTemplate template;
+	
 	@Override
 	public MemberVO findMemberById(String id) {
 		return template.selectOne("member.findMemberById", id);
