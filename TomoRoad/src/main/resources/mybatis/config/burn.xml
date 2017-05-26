@@ -3,5 +3,21 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="burn"> 	
+<mapper namespace="burn"> 
+	<resultMap type="burnVO" id="burnRM">
+		<result property="postedTime" column="posted_time" />
+		<result property="stationName" column="station_name" />
+		<result property="memberId" column="member_id" />
+	</resultMap>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from burn_board 
+	</select>
+
+	<select id="getBurnList" parameterType="pagingBean" resultType="burnVO" resultMap="burnRM">		
+		select A.* from(select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time
+		from BURN_BOARD) A
+		where rnum between #{startRowNumber} and #{endRowNumber};	
+	</select>
+	
 </mapper>

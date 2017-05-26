@@ -132,7 +132,18 @@ create table station_connect(
 	primary key (depart,arrived)	
 );
 
+insert into member values('java','1234','아이유','여자','112');
 
+insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java');
 
+insert into station values('서울역','서울에 있어염',10);
+
+select * from member;
+select * from BURN_BOARD;
+select * from STATION;
+		
+select A.* from(select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time
+from BURN_BOARD) A
+where rnum between 1 and 5;
 
 
