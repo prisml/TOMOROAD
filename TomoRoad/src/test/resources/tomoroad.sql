@@ -132,6 +132,13 @@ create table station_connect(
 	primary key (depart,arrived)	
 );
 
+insert into STATION(name,detail)
+values('서울역','주소 : 서울특별시 용산구 한강대로 405 서울역
+							지번-서울특별시 용산구 동자동 43-205 서울역
+				전화번호 : 1544-7788
+				관련정보 : 승차권 예매, 승차권 이용안내, 기차시간 및 운임표
+				부가정보 : 기차역 검색, 고객센터, 유실물 찾기');
+
 
 
 
