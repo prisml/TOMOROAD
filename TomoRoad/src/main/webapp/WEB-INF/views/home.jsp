@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="//code.jquery.com/jquery.min.js"></script>
-
 <script type="text/javascript">
 function layer_open(test){
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
@@ -48,8 +41,6 @@ display:block;
 float:left; 
 }
 </style>
-</head>
-<body>
 <div>
      <div style="position: absolute;">
         <img src="map2.png" >
@@ -108,5 +99,3 @@ float:left;
 </div>
 </div>
 </div>
-</body>
-</html>
