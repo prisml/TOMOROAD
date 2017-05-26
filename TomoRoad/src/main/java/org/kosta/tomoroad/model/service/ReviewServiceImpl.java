@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-	@Resource
+	@Resource(name="reviewDAOImpl")
 	private ReviewDAO dao;
 
 	@Override

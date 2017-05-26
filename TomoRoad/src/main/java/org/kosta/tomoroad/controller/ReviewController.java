@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReviewController {
-	@Resource
+	@Resource(name="reviewServiceImpl")
 	private ReviewService service;
 	
 	@RequestMapping("review/showList.do")
