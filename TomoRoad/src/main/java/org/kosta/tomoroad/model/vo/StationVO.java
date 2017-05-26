@@ -1,4 +1,4 @@
-package org.kosta.tomoroad.model;
+package org.kosta.tomoroad.model.vo;
 
 public class StationVO {
 	private String name;

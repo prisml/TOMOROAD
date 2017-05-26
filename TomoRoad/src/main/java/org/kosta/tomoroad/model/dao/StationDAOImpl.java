@@ -1,9 +1,10 @@
-package org.kosta.tomoroad.model;
+package org.kosta.tomoroad.model.dao;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,6 @@ public class StationDAOImpl implements StationDAO {
 
 	@Override
 	public List<StationVO> getStationInfo() {
-		return template.selectList("");
+		return template.selectList("station.getStationInfo");
 	}
 }

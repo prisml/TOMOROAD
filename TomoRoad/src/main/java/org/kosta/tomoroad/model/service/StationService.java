@@ -1,6 +1,8 @@
-package org.kosta.tomoroad.model;
+package org.kosta.tomoroad.model.service;
 
 import java.util.List;
+
+import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface StationService {
 
