@@ -3,5 +3,16 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member"> 	
+<mapper namespace="review">
+	<resultMap type="reviewVO" id="reviewRM">
+		<result property="postedTime" column="posted_time" />
+		<result property="place.no" column="place_no" />
+		<result property="member.id" column="member_id" />
+	</resultMap>
+	<select id="getTotalContents" resultType="int">
+		select count(*) from review
+	</select>
+	<select id="getList" resultType="reviewVO">
+		select title, content, 
+	</select>
 </mapper>
