@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BurnController {
-	@Resource
+	@Resource(name="burnServiceImpl")
 	private BurnService burnService;
 	
 	@RequestMapping("getBurnList.do")

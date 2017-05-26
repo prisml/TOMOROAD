@@ -15,8 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
-	@Resource
+	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
+	
 	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);

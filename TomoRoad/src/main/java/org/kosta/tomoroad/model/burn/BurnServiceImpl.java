@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BurnServiceImpl implements BurnService{
-	@Resource
+	@Resource(name="burnDAOImpl")
 	private BurnDAO burnDAO;	
 	
 	@Override
