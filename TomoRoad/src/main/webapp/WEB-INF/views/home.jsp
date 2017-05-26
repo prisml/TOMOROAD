@@ -1,33 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 
+<script type="text/javascript">
+function layer_open(test){
+$("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
+var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
+var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
+if(bg){
+$('.layer').fadeIn();
+}else{
+temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
+}
+// 화면의 중앙에 레이어를 띄운다.
+if (temp.outerHeight() < $(document).height() ) temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
+else temp.css('top', '0px');
+if (temp.outerWidth() < $(document).width() ) temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
+else temp.css('left', '0px');
+temp.find('a.cbtn').click(function(e){
+if(bg){
+$('.layer').fadeOut();
+}else{
+temp.fadeOut();     //'닫기'버튼을 클릭하면 레이어가 사라진다.
+}
+e.preventDefault();
+});
+$('.layer .bg').click(function(e){
+$('.layer').fadeOut();
+e.preventDefault();
+});
+}               
+</script>
 <style type="text/css">
-.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 410px; height:auto; /*  background-color:#fff; */ /* border: 5px solid #3571B5; */ z-index: 10;}  
-/* .pop-layer .pop-container {padding: 20px 25px;}
-.pop-layer p.ctxt {color: #666; line-height: 25px;} */
+.pop-layer {display:none; position: absolute; top: 50%; left: 50%; height:auto;z-index: 10;}  
+
 .pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
-a.cbtn {display:inline-block; /* height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px; */} 
-/* a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;} */
+a.cbtn {display:inline-block;} 
+
 
 #exam{
 display:block;
 float:left; 
 }
 </style>
-
- <script type="text/javascript">
- 	function change(test){
-	/* alert(document.getElementById(test.getAttribute('id')).getAttribute('id')); */
-	/* var img = document.getElementById(document.getElementById(test.getAttribute('id')).getAttribute('id')); */
-	alert(document.getElementById(test.getAttribute('id')).getAttribute('id'));
-/* 	if(img.src == "http://localhost:8888/test/1.png"){
-		img.src = "2.png";
-	}else{
-		img.src = "1.png";
-	} */
- }
-</script>
+</head>
+<body>
 <div>
      <div style="position: absolute;">
         <img src="map2.png" >
@@ -68,3 +90,23 @@ float:left;
         <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="1.png" onclick="layer_open(this);return false;" id="대구"></div>
 </div>
 </div>
+<div class="pop-layer" id="layer1">
+<div class="pop-container">
+<div class="pop-conts">
+<!--content //-->
+    <div>
+    <h2 align="center"><p id = "station"></h2>
+    <a href = "#"><img id = "exam" src = "1-1.png"></a>
+    <a href = "#"><img id = "exam" src = "2.jpg"></a>
+    <a href = "#"><img src = "3-1.png"></a>
+    </div>
+    <div>
+    <a href = "#"><img id = "exam" src = "4-1.png"></a>
+    <a href = "#"><img id = "exam" src = "5.jpg"></a>
+    <a class = "cbtn" href = "#"><img src = "6-1.png"></a>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
