@@ -1,6 +1,8 @@
 drop table member;
 drop sequence place_seq;
 
+select * from member;
+
 create table member(
 	id varchar2(100) primary key,
 	password varchar2(100) not null,
