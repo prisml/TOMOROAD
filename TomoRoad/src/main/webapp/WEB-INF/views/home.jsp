@@ -1,39 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <br><br><br><br>
 <script type="text/javascript">
 function layer_open(test){
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
-
 var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('id')).offset();
-
 var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
 var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
-
 var divTop = obj.top - 100; //상단 좌표
 var divLeft = obj.left - 80; //좌측 좌표
-
-
 $('#layer1').css({
     "top": divTop
     ,"left": divLeft
     , "position": "absolute"
 }).show();
 }
-
-
 /* if(bg){
 $('.layer').fadeIn();
 }else{
 temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
 }
-
 // 화면의 중앙에 레이어를 띄운다.
 if (temp.outerHeight() < $(document).height() ) temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
 else temp.css('top', '0px');
 if (temp.outerWidth() < $(document).width() ) temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
 else temp.css('left', '0px');
 */
-
 temp.find('a.cbtn').click(function(e){
 	if(bg){
 		$('.layer').fadeOut();
@@ -42,7 +34,6 @@ temp.find('a.cbtn').click(function(e){
 	}
 	e.prthisDefault();
 });
-
 $('.layer .bg').click(function(e){
 	$('.layer').fadeOut();
 	e.prthisDefault();
@@ -55,7 +46,6 @@ $('.layer .bg').click(function(e){
 .pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
 a.cbtn {display:inline-block; /* height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px; */} 
 /* a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;} */
-
 #exam{
 display:block;
 float:left; 
@@ -75,10 +65,9 @@ float:left;
  }
 </script>
 <div>
-     <div style="position: absolute;">
+		<center>
         <img src="${pageContext.request.contextPath}/resources/img/map.png" >
-    </div>
-    <div style="position: absolute;">
+		</center>
         <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
         <div style="position: absolute; top: 305px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
         <div style="position: absolute; top: 398px; left: 250px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
@@ -112,7 +101,6 @@ float:left;
         <div style="position: absolute; top: 722px; left: 360px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대전"></div>
         <div style="position: absolute; top: 1132px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
         <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
-</div>
 </div>
 <div class="pop-layer" id="layer1">
 <div class="pop-container">
