@@ -1,4 +1,6 @@
-package org.kosta.tomoroad.model.burn;
+package org.kosta.tomoroad.model.service;
+
+import org.kosta.tomoroad.model.vo.BurnListVO;
 
 public interface BurnService {	
 

@@ -2,7 +2,7 @@ package org.kosta.tomoroad.controller;
 
 import javax.annotation.Resource;
 
-import org.kosta.tomoroad.model.burn.BurnService;
+import org.kosta.tomoroad.model.service.BurnService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

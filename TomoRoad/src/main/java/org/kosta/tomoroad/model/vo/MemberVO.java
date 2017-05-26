@@ -1,4 +1,4 @@
-package org.kosta.tomoroad.model.member;
+package org.kosta.tomoroad.model.vo;
 
 public class MemberVO {
 	private String id;

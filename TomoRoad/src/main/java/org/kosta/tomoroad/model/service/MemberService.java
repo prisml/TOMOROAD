@@ -1,4 +1,6 @@
-package org.kosta.tomoroad.model.member;
+package org.kosta.tomoroad.model.service;
+
+import org.kosta.tomoroad.model.vo.MemberVO;
 
 public interface MemberService {
 

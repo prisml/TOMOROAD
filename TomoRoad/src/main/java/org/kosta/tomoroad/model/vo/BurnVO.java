@@ -1,4 +1,4 @@
-package org.kosta.tomoroad.model.burn;
+package org.kosta.tomoroad.model.vo;
 
 public class BurnVO {
 	private int no;

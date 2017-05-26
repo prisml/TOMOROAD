@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.ReviewDAO;
-import org.kosta.tomoroad.model.vo.PagingBean;
+import org.kosta.tomoroad.model.utils.PagingBean;
 import org.springframework.stereotype.Service;
 
 @Service
