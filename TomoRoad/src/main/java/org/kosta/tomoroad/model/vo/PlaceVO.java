@@ -5,6 +5,7 @@ public class PlaceVO {
 	private String name;
 	private String station_name;
 	private String area;
+	
 	public int getNo() {
 		return no;
 	}
