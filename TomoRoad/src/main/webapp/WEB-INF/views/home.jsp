@@ -50,6 +50,9 @@ a.cbtn {display:inline-block; /* height:25px; padding:0 14px 0; border:1px solid
 display:block;
 float:left; 
 }
+.poptotheup{
+	z-index: 10000;
+}
 </style>
 
  <script type="text/javascript">
@@ -68,6 +71,7 @@ float:left;
 		<center>
         <img src="${pageContext.request.contextPath}/resources/img/map.png" >
 		</center>
+        <div class="poptotheup">
         <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
         <div style="position: absolute; top: 305px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
         <div style="position: absolute; top: 398px; left: 250px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
@@ -101,6 +105,7 @@ float:left;
         <div style="position: absolute; top: 722px; left: 360px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대전"></div>
         <div style="position: absolute; top: 1132px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
         <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
+</div>
 </div>
 <div class="pop-layer" id="layer1">
 <div class="pop-container">
