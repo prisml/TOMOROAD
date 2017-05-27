@@ -16,8 +16,9 @@ public class StationController {
 	private StationService service;
 	
 	@RequestMapping("getStationInfo.do")
-	public String getStationInfo(Model model){
-		List<StationVO> stationInfolist = service.getStationInfo();
+	public String getStationInfo(Model model,String id){
+		List<StationVO> stationInfolist = service.getStationInfo(id);
+		System.out.println("역 정보 : "+stationInfolist);
 		model.addAttribute("stationInfolist",stationInfolist);
 		return "station/getStationInfo.tiles";
 	}
