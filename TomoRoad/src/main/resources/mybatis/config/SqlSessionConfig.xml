@@ -10,12 +10,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 -->
 <configuration>	
 	<typeAliases>		
-		<package name="org.kosta.tomoroad.model"/>
+		<package name="org.kosta.tomoroad.model.dao"/>
+		<package name="org.kosta.tomoroad.model.vo"/>
+		<package name="org.kosta.tomoroad.model.utils"/>
+		<package name="org.kosta.tomoroad.model.service"/>		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/member.xml"/>		
 		<mapper resource="mybatis/config/burn.xml"/>	
 		<mapper resource="mybatis/config/station.xml"/>	
+		<mapper resource="mybatis/config/review.xml"/>
 	</mappers>
 </configuration>
 
