@@ -16,7 +16,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/imagesloaded.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/classie.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/AnimOnScroll.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/other.js"></script>
 
 <script>
 $('#myCarousel').carousel({
