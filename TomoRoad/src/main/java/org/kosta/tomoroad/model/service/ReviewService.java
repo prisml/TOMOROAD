@@ -11,4 +11,6 @@ public interface ReviewService {
 
 	ReviewVO getDetail(String no);
 
+	void update(ReviewVO vo);
+
 }

@@ -15,4 +15,6 @@ public interface ReviewDAO {
 
 	ReviewVO getDetail(String no);
 
+	void update(ReviewVO vo);
+
 }

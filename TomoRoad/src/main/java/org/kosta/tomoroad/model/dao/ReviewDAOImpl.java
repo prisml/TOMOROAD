@@ -33,4 +33,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public ReviewVO getDetail(String no) {
 		return template.selectOne("detail", no);
 	}
+
+	@Override
+	public void update(ReviewVO vo) {
+		template.update("update", vo);
+	}
 }

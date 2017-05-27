@@ -32,4 +32,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getDetail(no);
 	}
 
+	@Override
+	public void update(ReviewVO vo) {
+		dao.update(vo);
+	}
+
 }
