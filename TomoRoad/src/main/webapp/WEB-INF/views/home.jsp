@@ -3,6 +3,30 @@
     <br><br><br><br>
 <script type="text/javascript">
 var v;
+
+$(document).ready(function(){
+	 $(document).mousedown(function(e){
+	$('#layer1').each(function(){
+	        if( $(this).css('display') == 'block' )
+	        {
+	            var l_position = $(this).offset();
+	            l_position.right = parseInt(l_position.left) + ($(this).width());
+	            l_position.bottom = parseInt(l_position.top) + parseInt($(this).height());
+
+
+	            if( ( l_position.left <= e.pageX && e.pageX <= l_position.right )
+	                && ( l_position.top <= e.pageY && e.pageY <= l_position.bottom ) )
+	            {
+	            }
+	            else
+	            {
+	                $(this).fadeOut("fast");
+	            }
+	        }
+	    });
+	 }); 
+	 })
+
 function layer_open(test){
 	
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
@@ -26,12 +50,6 @@ if(obj.left > 850){
 	divLeft = obj.left-90;
 }
 
-/* $('#layer1').css({
-    "top": divTop
-    ,"left": divLeft
-    , "position": "absolute"
-}).fadeIn(); */
-
 if(bg){
 	$('.layer').fadeIn();
 	}else{
@@ -52,8 +70,12 @@ temp.find('a.cbtn').click(function(e){
 });
 }
 
-function move(){
-	alert(v);
+function move(flag){
+	if(flag == "out"){
+		$("#layer1").fadeOut();
+	}else{
+		alert(v);
+	}
 }
 </script>
 <style type="text/css">
@@ -68,23 +90,13 @@ display:block;
 float:left; 
 }
 </style>
-
- <script type="text/javascript">
- 	function change(test){
-	/* alert(document.getElementById(test.getAttribute('id')).getAttribute('id')); */
-	/* var img = document.getElementById(document.getElementById(test.getAttribute('id')).getAttribute('id')); */
-	alert(document.getElementById(test.getAttribute('id')).getAttribute('id'));
-/* 	if(img.src == "http://localhost:8888/test/${pageContext.request.contextPath}/resources/img/1.png"){
-		img.src = "2.png";
-	}else{
-		img.src = "${pageContext.request.contextPath}/resources/img/1.png";
-	} */
- }
-</script>
 <div>
+		<!-- 메인지도 -->
 		<center>
         <img src="${pageContext.request.contextPath}/resources/img/map.png" >
 		</center>
+		
+		<!-- 해당 역 아이콘 -->
         <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
         <div style="position: absolute; top: 305px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
         <div style="position: absolute; top: 398px; left: 250px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
@@ -119,20 +131,28 @@ float:left;
         <div style="position: absolute; top: 1132px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
         <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
 </div>
+
+<!-- 레이어팝업 -->
 <div class="pop-layer" id="layer1">
 <div class="pop-container">
 <div class="pop-conts">
-<!--content //-->
     <div>
+    <!-- 역이름 -->
     <p style= "font-size: 40" align = "center" id = "station"></p>
+    
     <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move()">
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.jpg" onclick="return move()">
+    
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.png" onclick="return move()">
+    
     <input type="image" src = "${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move()">
     </div>
     <div>
+    
     <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png" onclick="return move()">
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg" onclick="return move()">
-    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move()">
+    
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.png" onclick="return move()">
+    
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move('out')">
     </div>
 </div>
 </div>
