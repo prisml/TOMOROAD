@@ -15,9 +15,16 @@ var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
 
 var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
 
-var divTop = obj.top -40; //상단 좌표
+var divTop = obj.top-110; //상단 좌표
 
-var divLeft = obj.left + 40; //좌측 좌표
+var divLeft; // 좌측 좌표
+
+// 좌측 좌표가 일정수치를 넘으면 레이어팝업이 깨지므로 일정수치가 넘을 경우 레이어팝업이 우측이 아닌 좌측에 뜨도록
+if(obj.left > 850){
+	divLeft = obj.left-290;
+}else{
+	divLeft = obj.left-90;
+}
 
 /* $('#layer1').css({
     "top": divTop
@@ -28,11 +35,12 @@ var divLeft = obj.left + 40; //좌측 좌표
 if(bg){
 	$('.layer').fadeIn();
 	}else{
-	temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
+		temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
 	}
 
-	temp.css("left",divLeft+'px');
-	temp.css("top",divTop+'px');
+	temp.css("left",divLeft+"px");
+	temp.css("top",divTop+"px");
+	
 
 temp.find('a.cbtn').click(function(e){
  	if(bg){
@@ -126,7 +134,6 @@ float:left;
     <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg" onclick="return move()">
     <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move()">
     </div>
-<!--// content-->
 </div>
 </div>
 </div>
