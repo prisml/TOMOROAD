@@ -11,4 +11,8 @@ public interface ReviewDAO {
 
 	List<ReviewVO> getList(PagingBean pb);
 
+	void register(ReviewVO vo);
+
+	ReviewVO getDetail(String no);
+
 }

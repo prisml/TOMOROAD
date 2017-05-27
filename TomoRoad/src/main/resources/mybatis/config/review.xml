@@ -10,12 +10,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="member.id" column="member_id" />
 	</resultMap>
 	<select id="getTotalContents" resultType="int">
-		select count(*) from review
+		select count(*) from
+		review
 	</select>
 	<select id="getList" resultType="reviewVO" resultMap="reviewRM">
-		select A.* from(select row_number() 
-		over(order by no desc) rnum, no, title, member_id, 
-		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time from review) A 
-		where rnum between #{startRowNumber} and #{endRowNumber}	
+		select A.*
+		from(select row_number()
+		over(order by no desc) rnum, no, title, member_id,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time from review)
+		A
+		where rnum between #{startRowNumber} and #{endRowNumber}
+	</select>
+	<insert id="register">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			review_seq.nextval from dual
+		</selectKey>
+		insert into
+		review(no,title,content,posted_time,star,place_no,member_id)
+		values(#{no},#{title},#{content},sysdate,#{star},#{place.no},#{member.id})
+	</insert>
+	<select id="detail" resultMap="reviewRM">
+		select
+		no,title,content,posted_time,star,place_no,member_id from review where
+		no=#{value}
 	</select>
 </mapper>
