@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.BurnDAO;
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class BurnServiceImpl implements BurnService{
 		}
 		
 		return new ListVO(burnDAO.getBurnList(pagingBean), pagingBean);
+	}
+	@Override
+	public BurnVO findBurnByNo(String no) {		
+		return burnDAO.findBurnByNo(no);
 	}
 	
 }

@@ -21,4 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rnum between #{startRowNumber} and #{endRowNumber}	
 	</select>
 	
+	<select id="findBurnByNo" resultType="burnVO" resultMap="burnRM">
+		select no, title, station_name, member_id, content, hits,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
+		from BURN_BOARD where no = #{value}
+	</select>
+	
 </mapper>
