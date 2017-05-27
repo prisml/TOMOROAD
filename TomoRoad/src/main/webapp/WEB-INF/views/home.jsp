@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
     <br><br><br><br>
 <script type="text/javascript">
-var stationInfo;
-var img;
+var stationInfo; // 역이름 정보
+
+var img; // 역 아이콘 이미지경로
 
 // 레이어팝업 영역 이외 클릭시 레이어팝업 닫기
 $(document).ready(function(){
