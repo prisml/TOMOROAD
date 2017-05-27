@@ -11,4 +11,6 @@ public interface BurnDAO {
 
 	List<BurnVO> getBurnList(PagingBean pagingBean);
 
+	BurnVO findBurnByNo(String no);
+
 }

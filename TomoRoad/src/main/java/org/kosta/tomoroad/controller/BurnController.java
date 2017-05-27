@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.BurnService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,8 +13,13 @@ public class BurnController {
 	private BurnService burnService;
 	
 	@RequestMapping("getBurnList.do")
-	public ModelAndView getBurnList(Model model, String pageNo){
+	public ModelAndView getBurnList(String pageNo){
 		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnList(pageNo));			
+	}
+	
+	@RequestMapping("showBurnDetail.do")
+	public ModelAndView showBurnDetail(String no){
+		return new ModelAndView("burn/burn_detail.tiles","bvo",burnService.findBurnByNo(no));
 	}
 	
 }
