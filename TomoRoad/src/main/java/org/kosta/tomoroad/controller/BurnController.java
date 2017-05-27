@@ -17,4 +17,9 @@ public class BurnController {
 		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnList(pageNo));			
 	}
 	
+	@RequestMapping("showBurnDetail.do")
+	public ModelAndView showBurnDetail(String no){
+		return new ModelAndView("burn/burn_detail.tiles","bvo",burnService.findBurnByNo(no));
+	}
+	
 }

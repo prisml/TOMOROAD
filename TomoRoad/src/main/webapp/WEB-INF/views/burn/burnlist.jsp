@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <center>
-<br><br><br><br>
+<br><br>
+
+<input type="button" value="글쓰기">
+
+<br><br>
 <table border="1" cellpadding="15">
   <tr>
     <th>번호</th>
@@ -14,7 +18,7 @@
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
 	<td>${burn.no}</td>
-	<td>${burn.title}</td>
+	<td><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
 	<td>${burn.stationName}</td>
 	<td>${burn.memberId}</td>
 	<td>${burn.postedTime}</td>

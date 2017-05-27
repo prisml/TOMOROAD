@@ -24,4 +24,9 @@ public class BurnDAOImpl implements BurnDAO{
 		return template.selectList("burn.getBurnList",pagingBean);
 	}
 	
+	@Override
+	public BurnVO findBurnByNo(String no){
+		return template.selectOne("burn.findBurnByNo",no);
+	}
+	
 }
