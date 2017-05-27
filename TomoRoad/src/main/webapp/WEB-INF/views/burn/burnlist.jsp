@@ -2,9 +2,18 @@
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <center>
-<br><br>
+<br><br><br><br>
 
-<input type="button" value="글쓰기">
+<script>
+	$(document).ready(function(){
+		$("#write").click(function(){
+			location.href="${pageContext.request.contextPath}/burn/register_form.do";
+		});
+	});
+</script>
+
+
+<input type="button" value="글쓰기" id="write">
 
 <br><br>
 <table border="1" cellpadding="15">
