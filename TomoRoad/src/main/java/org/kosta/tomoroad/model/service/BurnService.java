@@ -11,5 +11,9 @@ public interface BurnService {
 
 	BurnVO findBurnByNo(String no);
 
+	void writeBurn(BurnVO bvo);
+
+	void updateHits(String no);
+
 
 }

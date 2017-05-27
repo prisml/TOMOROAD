@@ -13,4 +13,8 @@ public interface BurnDAO {
 
 	BurnVO findBurnByNo(String no);
 
+	void writeBurn(BurnVO bvo);
+
+	void updateHits(String no);
+
 }
