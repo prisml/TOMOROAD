@@ -11,7 +11,7 @@
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">☰</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <li><a href="home.do">HOME</a></li>
+                                <li><a href="${pageContext.request.contextPath}/home.do">HOME</a></li>
                                 <li><a href="#">INTRODUCTION</a></li>
                                 <li>
                                     <div class="site-name">
@@ -40,10 +40,10 @@
 <script>
 	$(document).ready(function(){
 		$(".logo").click(function(){
-			location.href="home.do";
+			location.href="${pageContext.request.contextPath}/home.do";
 		});
 		$(".site-name").click(function(){
-			location.href="home.do";
+			location.href="${pageContext.request.contextPath}/home.do";
 		});
 		
 		$("#login").click(function(){
