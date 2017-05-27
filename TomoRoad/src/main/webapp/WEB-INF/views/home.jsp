@@ -109,7 +109,7 @@ float:left;
 </style>
 <div>
 		<!-- 메인지도 -->
-       <center><img src="${pageContext.request.contextPath}/resources/img/map.png" ></center>
+       <img align="center" src="${pageContext.request.contextPath}/resources/img/map.png" >
 		
 		<!-- 해당 역 아이콘 -->
         <%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
