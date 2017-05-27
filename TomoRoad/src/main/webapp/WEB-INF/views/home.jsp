@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
     <br><br><br><br>
 <script type="text/javascript">
-var v;
+var stationInfo;
 
+// 레이어팝업 영역 이외 클릭시 레이어팝업 닫기
 $(document).ready(function(){
 	 $(document).mousedown(function(e){
-	$('#layer1').each(function(){
+		$('#layer1').each(function(){
 	        if( $(this).css('display') == 'block' )
 	        {
 	            var l_position = $(this).offset();
 	            l_position.right = parseInt(l_position.left) + ($(this).width());
 	            l_position.bottom = parseInt(l_position.top) + parseInt($(this).height());
-
 
 	            if( ( l_position.left <= e.pageX && e.pageX <= l_position.right )
 	                && ( l_position.top <= e.pageY && e.pageY <= l_position.bottom ) )
@@ -25,15 +25,16 @@ $(document).ready(function(){
 	        }
 	    });
 	 }); 
-	 })
+})
 
+// 레이어팝업 열기
 function layer_open(test){
 	
-$("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
+$("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역"); // 레이어팝업 역이름
 
-v = document.getElementById(test.getAttribute('id')).getAttribute('id');
+stationInfo = document.getElementById(test.getAttribute('id')).getAttribute('id'); // 역이름 정보
 
-var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('id')).offset();
+var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('id')).offset(); // 클릭한 아이콘 좌표정보
 
 var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
 
@@ -59,7 +60,7 @@ if(bg){
 	temp.css("left",divLeft+"px");
 	temp.css("top",divTop+"px");
 	
-
+// 닫기버튼 클릭시
 temp.find('a.cbtn').click(function(e){
  	if(bg){
 		$('.layer').fadeOut();
@@ -70,11 +71,12 @@ temp.find('a.cbtn').click(function(e){
 });
 }
 
+// 레이어팝업 기능
 function move(flag){
 	if(flag == "out"){
 		$("#layer1").fadeOut();
 	}else{
-		alert(v);
+		alert(stationInfo);
 	}
 }
 </script>
