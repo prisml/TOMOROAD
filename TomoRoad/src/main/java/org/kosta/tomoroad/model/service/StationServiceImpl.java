@@ -14,7 +14,8 @@ public class StationServiceImpl implements StationService {
 	private StationDAO dao;
 
 	@Override
-	public List<StationVO> getStationInfo() {
-		return dao.getStationInfo();
+	public List<StationVO> getStationInfo(String id) {
+		System.out.println("서비스다");
+		return dao.getStationInfo(id);
 	}
 }

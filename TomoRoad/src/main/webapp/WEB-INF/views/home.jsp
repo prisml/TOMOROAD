@@ -87,6 +87,8 @@ function move(flag){
 			img.src = "${pageContext.request.contextPath}/resources/img/1.png";
 			$("#layer1").fadeOut();
 		}
+	}else if(flag == "b"){
+		location.href = "getStationInfo.do?id="+stationInfo;
 	}else{
 		alert(stationInfo);
 	}
@@ -103,14 +105,11 @@ a.cbtn {display:inline-block; /* height:25px; padding:0 14px 0; border:1px solid
 display:block;
 float:left; 
 }
-#map{
-margin:0 auto;
-position: absolute;
-}
+
 </style>
-<div id ="map">
+<div>
 		<!-- 메인지도 -->
-       <img src="${pageContext.request.contextPath}/resources/img/map.png" >
+       <center><img src="${pageContext.request.contextPath}/resources/img/map.png" ></center>
 		
 		<!-- 해당 역 아이콘 -->
         <%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
