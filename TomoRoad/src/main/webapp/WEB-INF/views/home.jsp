@@ -3,6 +3,7 @@
     <br><br><br><br>
 <script type="text/javascript">
 var stationInfo;
+var img;
 
 // 레이어팝업 영역 이외 클릭시 레이어팝업 닫기
 $(document).ready(function(){
@@ -29,6 +30,8 @@ $(document).ready(function(){
 
 // 레이어팝업 열기
 function layer_open(test){
+
+img = document.getElementById(document.getElementById(test.getAttribute('id')).getAttribute('id'));
 	
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역"); // 레이어팝업 역이름
 
@@ -73,8 +76,16 @@ temp.find('a.cbtn').click(function(e){
 
 // 레이어팝업 기능
 function move(flag){
-	if(flag == "out"){
+	if(flag == "f"){
 		$("#layer1").fadeOut();
+	}else if(flag == "a"){
+		if(img.src == "http://localhost:8888/tomoroad/resources/img/1.png"){
+			img.src = "${pageContext.request.contextPath}/resources/img/22.png";
+			$("#layer1").fadeOut();
+		}else{
+			img.src = "${pageContext.request.contextPath}/resources/img/1.png";
+			$("#layer1").fadeOut();
+		}
 	}else{
 		alert(stationInfo);
 	}
@@ -99,39 +110,40 @@ float:left;
 		</center>
 		
 		<!-- 해당 역 아이콘 -->
-        <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
-        <div style="position: absolute; top: 305px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
-        <div style="position: absolute; top: 398px; left: 250px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
-        <div style="position: absolute; top: 215px; left: 377px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="가평"></div>
-        <div style="position: absolute; top: 184px; left: 176px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="도라산"></div>
-        <div style="position: absolute; top: 497px; left: 605px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="단양"></div>
-        <div style="position: absolute; top: 447px; left: 575px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="제천"></div>
-        <div style="position: absolute; top: 762px; left: 268px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="논산"></div>
-        <div style="position: absolute; top: 887px; left: 295px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="전주"></div>
-        <div style="position: absolute; top: 837px; left: 187px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="군산"></div>
-        <div style="position: absolute; top: 851px; left: 230px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="익산"></div>
-        <div style="position: absolute; top: 1189px; left: 384px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="순천"></div>
-        <div style="position: absolute; top: 1254px; left: 456px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="여수"></div>
-        <div style="position: absolute; top: 1236px; left: 75px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="목포"></div>
-        <div style="position: absolute; top: 1152px; left: 166px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="나주"></div>
-        <div style="position: absolute; top: 1246px; left: 269px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="보성"></div>
-        <div style="position: absolute; top: 1076px; left: 334px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="곡성"></div>
-        <div style="position: absolute; top: 186px; left: 437px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="춘천"></div>
-        <div style="position: absolute; top: 251px; left: 792px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정동진"></div>
-        <div style="position: absolute; top: 311px; left: 819px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="동해"></div>
-        <div style="position: absolute; top: 361px; left: 697px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정선"></div>
-        <div style="position: absolute; top: 429px; left: 779px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="태백"></div>
-        <div style="position: absolute; top: 211px; left: 759px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="강릉"></div>
-        <div style="position: absolute; top: 637px; left: 714px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="안동"></div>
-        <div style="position: absolute; top: 808px; left: 881px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="포항"></div>
-        <div style="position: absolute; top: 884px; left: 861px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="경주"></div>
-        <div style="position: absolute; top: 995px; left: 730px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="밀양"></div>
-        <div style="position: absolute; top: 1086px; left: 675px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="마산"></div>
-        <div style="position: absolute; top: 1108px; left: 546px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="진주"></div>
-        <div style="position: absolute; top: 1109px; left: 232px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="광주"></div>
-        <div style="position: absolute; top: 722px; left: 360px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대전"></div>
-        <div style="position: absolute; top: 1132px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
-        <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
+        <%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
+        <div style="position: absolute; top: 370px; left: 267px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
+        <div style="position: absolute; top: 386px; left: 267px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
+        <div style="position: absolute; top: 479px; left: 279px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
+        <div style="position: absolute; top: 296px; left: 406px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="가평"></div>
+        <div style="position: absolute; top: 265px; left: 205px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="도라산"></div>
+        <div style="position: absolute; top: 578px; left: 634px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="단양"></div>
+        <div style="position: absolute; top: 528px; left: 604px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="제천"></div>
+        <div style="position: absolute; top: 843px; left: 297px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="논산"></div>
+        <div style="position: absolute; top: 968px; left: 324px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="전주"></div>
+        <div style="position: absolute; top: 918px; left: 216px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="군산"></div>
+        <div style="position: absolute; top: 932px; left: 259px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="익산"></div>
+        <div style="position: absolute; top: 1270px; left: 413px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="순천"></div>
+        <div style="position: absolute; top: 1335px; left: 485px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="여수"></div>
+        <div style="position: absolute; top: 1317px; left: 104px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="목포"></div>
+        <div style="position: absolute; top: 1233px; left: 195px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="나주"></div>
+        <div style="position: absolute; top: 1327px; left: 298px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="보성"></div>
+        <div style="position: absolute; top: 1157px; left: 363px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="곡성"></div>
+        <div style="position: absolute; top: 267px; left: 466px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="춘천"></div>
+        <div style="position: absolute; top: 332px; left: 821px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정동진"></div>
+        <div style="position: absolute; top: 392px; left: 848px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="동해"></div>
+        <div style="position: absolute; top: 442px; left: 726px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정선"></div>
+        <div style="position: absolute; top: 510px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="태백"></div>
+        <div style="position: absolute; top: 310px; left: 788px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="강릉"></div>
+        <div style="position: absolute; top: 718px; left: 743px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="안동"></div>
+        <div style="position: absolute; top: 889px; left: 910px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="포항"></div>
+        <div style="position: absolute; top: 965px; left: 890px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="경주"></div>
+        <div style="position: absolute; top: 1076px; left: 759px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="밀양"></div>
+        <div style="position: absolute; top: 1167px; left: 704px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="마산"></div>
+        <div style="position: absolute; top: 1189px; left: 575px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="진주"></div>
+        <div style="position: absolute; top: 1190px; left: 261px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="광주"></div>
+        <div style="position: absolute; top: 803px; left: 389px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대전"></div>
+        <div style="position: absolute; top: 1213px; left: 837px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
+        <div style="position: absolute; top: 944px; left: 700px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
 </div>
 
 <!-- 레이어팝업 -->
@@ -142,19 +154,19 @@ float:left;
     <!-- 역이름 -->
     <p style= "font-size: 40" align = "center" id = "station"></p>
     
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move('a')">
     
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.png" onclick="return move('b')">
     
-    <input type="image" src = "${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move()">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move('c')">
     </div>
     <div>
     
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png" onclick="return move('d')">
     
-    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.png" onclick="return move('e')">
     
-    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move('out')">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move('f')">
     </div>
 </div>
 </div>
