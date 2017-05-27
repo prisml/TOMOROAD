@@ -14,7 +14,8 @@ public class StationDAOImpl implements StationDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<StationVO> getStationInfo() {
-		return template.selectList("station.getStationInfo");
+	public List<StationVO> getStationInfo(String id) {
+		System.out.println("dao다");
+		return template.selectList("station.getStationInfo",id);
 	}
 }
