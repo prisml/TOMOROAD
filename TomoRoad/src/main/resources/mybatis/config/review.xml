@@ -12,7 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalContents" resultType="int">
 		select count(*) from review
 	</select>
-	<select id="getList" resultType="reviewVO">
-		select title, content, posted_time,hits,star, place_no, member_id from review
+	<select id="getList" resultType="reviewVO" resultMap="reviewRM">
+		select A.* from(select row_number() 
+		over(order by no desc) rnum, no, title, member_id, 
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time from review) A 
+		where rnum between #{startRowNumber} and #{endRowNumber}	
 	</select>
 </mapper>
