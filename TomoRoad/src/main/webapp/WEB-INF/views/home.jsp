@@ -87,6 +87,8 @@ function move(flag){
 			img.src = "${pageContext.request.contextPath}/resources/img/1.png";
 			$("#layer1").fadeOut();
 		}
+	}else if(flag == "b"){
+		location.href = "getStationInfo.do?id="+stationInfo;
 	}else{
 		alert(stationInfo);
 	}
@@ -104,7 +106,6 @@ display:block;
 float:left; 
 }
 #map{
-margin:0 auto;
 position: absolute;
 }
 </style>

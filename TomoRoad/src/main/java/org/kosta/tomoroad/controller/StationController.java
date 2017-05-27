@@ -20,6 +20,6 @@ public class StationController {
 		List<StationVO> stationInfolist = service.getStationInfo(id);
 		System.out.println("역 정보 : "+stationInfolist);
 		model.addAttribute("stationInfolist",stationInfolist);
-		return "station/getStationInfo.tiles";
+		return "station/GetStationInfo.tiles";
 	}
 }
