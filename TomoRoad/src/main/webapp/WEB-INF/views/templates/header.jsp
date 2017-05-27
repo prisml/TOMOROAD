@@ -17,7 +17,7 @@
                                         <h1>TOMOROAD</h1>
                                     </div>
                                 </li>
-                                <li><a href="#">BURNING</a></li>
+                                <li><a href="${pageContext.request.contextPath}/getBurnList.do">BURNING</a></li>
                                 <li><a href="#">REVIEW</a></li>
                                 <li><a href="#">MYPAGE</a></li>
                             </ul>

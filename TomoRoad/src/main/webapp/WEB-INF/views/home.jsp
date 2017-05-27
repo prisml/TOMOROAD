@@ -2,42 +2,51 @@
     pageEncoding="UTF-8"%>
     <br><br><br><br>
 <script type="text/javascript">
+var v;
 function layer_open(test){
+	
 $("#station").text(document.getElementById(test.getAttribute('id')).getAttribute('id')+"역");
+
+v = document.getElementById(test.getAttribute('id')).getAttribute('id');
+
 var obj = $("#"+document.getElementById(test.getAttribute('id')).getAttribute('id')).offset();
+
 var temp = $('#layer1');     //레이어의 id를 temp변수에 저장
+
 var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
-var divTop = obj.top - 100; //상단 좌표
-var divLeft = obj.left - 80; //좌측 좌표
-$('#layer1').css({
+
+var divTop = obj.top -40; //상단 좌표
+
+var divLeft = obj.left + 40; //좌측 좌표
+
+/* $('#layer1').css({
     "top": divTop
     ,"left": divLeft
     , "position": "absolute"
-}).show();
-}
-/* if(bg){
-$('.layer').fadeIn();
-}else{
-temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
-}
-// 화면의 중앙에 레이어를 띄운다.
-if (temp.outerHeight() < $(document).height() ) temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
-else temp.css('top', '0px');
-if (temp.outerWidth() < $(document).width() ) temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
-else temp.css('left', '0px');
-*/
+}).fadeIn(); */
+
+if(bg){
+	$('.layer').fadeIn();
+	}else{
+	temp.fadeIn();  //bg 클래스가 없으면 일반레이어로 실행한다.
+	}
+
+	temp.css("left",divLeft+'px');
+	temp.css("top",divTop+'px');
+
 temp.find('a.cbtn').click(function(e){
-	if(bg){
+ 	if(bg){
 		$('.layer').fadeOut();
 	}else{
 		temp.fadeOut();     //'닫기'버튼을 클릭하면 레이어가 사라진다.
 	}
-	e.prthisDefault();
+	e.prthisDefault(); 
 });
-$('.layer .bg').click(function(e){
-	$('.layer').fadeOut();
-	e.prthisDefault();
-});
+}
+
+function move(){
+	alert(v);
+}
 </script>
 <style type="text/css">
 .pop-layer {display:none; position: absolute; top: 50%; left: 50%; height:auto; /*  background-color:#fff; */ /* border: 5px solid #3571B5; */ z-index: 10;}  
@@ -49,9 +58,6 @@ a.cbtn {display:inline-block; /* height:25px; padding:0 14px 0; border:1px solid
 #exam{
 display:block;
 float:left; 
-}
-.poptotheup{
-	z-index: 10000;
 }
 </style>
 
@@ -71,8 +77,7 @@ float:left;
 		<center>
         <img src="${pageContext.request.contextPath}/resources/img/map.png" >
 		</center>
-        <div class="poptotheup">
-        <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
+        <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div>
         <div style="position: absolute; top: 305px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산"></div>
         <div style="position: absolute; top: 398px; left: 250px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원"></div>
         <div style="position: absolute; top: 215px; left: 377px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="가평"></div>
@@ -106,21 +111,20 @@ float:left;
         <div style="position: absolute; top: 1132px; left: 808px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산"></div>
         <div style="position: absolute; top: 863px; left: 671px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구"></div>
 </div>
-</div>
 <div class="pop-layer" id="layer1">
 <div class="pop-container">
 <div class="pop-conts">
 <!--content //-->
     <div>
     <p style= "font-size: 40" align = "center" id = "station"></p>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png"></a>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.jpg"></a>
-    <a href = "#"><img src = "${pageContext.request.contextPath}/resources/img/3-1.png"></a>
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/2.jpg" onclick="return move()">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move()">
     </div>
     <div>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png"></a>
-    <a href = "#"><img id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg"></a>
-    <a class = "cbtn" href = "#"><img src = "${pageContext.request.contextPath}/resources/img/6-1.png"></a>
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/4-1.png" onclick="return move()">
+    <input type="image" id = "exam" src = "${pageContext.request.contextPath}/resources/img/5.jpg" onclick="return move()">
+    <input type="image" src = "${pageContext.request.contextPath}/resources/img/6-1.png" onclick="return move()">
     </div>
 <!--// content-->
 </div>
