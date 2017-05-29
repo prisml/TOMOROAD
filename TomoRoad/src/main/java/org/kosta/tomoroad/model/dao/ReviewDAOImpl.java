@@ -21,6 +21,21 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public List<ReviewVO> getList(PagingBean pb) {
-		return template.selectList("getList",pb);
+		return template.selectList("getList", pb);
+	}
+
+	@Override
+	public void register(ReviewVO vo) {
+		template.insert("register", vo);
+	}
+
+	@Override
+	public ReviewVO getDetail(String no) {
+		return template.selectOne("detail", no);
+	}
+
+	@Override
+	public void update(ReviewVO vo) {
+		template.update("update", vo);
 	}
 }

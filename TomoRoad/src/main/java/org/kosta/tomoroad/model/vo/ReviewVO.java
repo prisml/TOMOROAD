@@ -1,6 +1,7 @@
 package org.kosta.tomoroad.model.vo;
 
 public class ReviewVO {
+	private int no;
 	private String title;
 	private String content;
 	private String postedTime;
@@ -15,18 +16,10 @@ public class ReviewVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewVO(String title, String content, double star, PlaceVO place, MemberVO member) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.star = star;
-		this.place = place;
-		this.member = member;
-	}
-
-	public ReviewVO(String title, String content, String postedTime, int recommend, int hits, double star,
+	public ReviewVO(int no, String title, String content, String postedTime, int recommend, int hits, double star,
 			PlaceVO place, MemberVO member) {
 		super();
+		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.postedTime = postedTime;
@@ -35,6 +28,14 @@ public class ReviewVO {
 		this.star = star;
 		this.place = place;
 		this.member = member;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getTitle() {
@@ -103,8 +104,9 @@ public class ReviewVO {
 
 	@Override
 	public String toString() {
-		return "ReviewVO [title=" + title + ", content=" + content + ", postedTime=" + postedTime + ", recommend="
-				+ recommend + ", hits=" + hits + ", star=" + star + "]";
+		return "ReviewVO [no=" + no + ", title=" + title + ", content=" + content + ", postedTime=" + postedTime
+				+ ", recommend=" + recommend + ", hits=" + hits + ", star=" + star + ", place=" + place + ", member="
+				+ member + "]";
 	}
 
 }
