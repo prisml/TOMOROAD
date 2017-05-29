@@ -27,7 +27,8 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.idcheck(id);
 	}
 	@Override
-	public void friend(String senderID, String receiverID) {
-		memberDAO.friend(senderID, receiverID);
+	public void updateMember(MemberVO vo) {
+		memberDAO.updateMember(vo);
+		
 	}
 }

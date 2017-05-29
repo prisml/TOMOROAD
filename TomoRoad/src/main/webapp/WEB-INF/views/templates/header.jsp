@@ -20,7 +20,7 @@
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/getBurnList.do">BURNING</a></li>
                                 <li><a href="#">REVIEW</a></li>
-                                <li><a href="#">MYPAGE</a></li>
+                                <li><a href="${pageContext.request.contextPath}/member/myPage.do">MYPAGE</a></li>
                               	
                               	<c:choose>
                               		<c:when test="${empty mvo}">
@@ -51,7 +51,6 @@
 		});
 		$("#logout").click(function(){
 			location.href="${pageContext.request.contextPath}/logout.do";
-		});	
-		
+		});			
 	});
 </script>

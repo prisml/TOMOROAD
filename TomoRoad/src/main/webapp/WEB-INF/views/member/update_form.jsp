@@ -1,5 +1,7 @@
+<%@page import="org.kosta.tomoroad.model.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,23 +101,26 @@
 </head>
 
   <body class="login-img3-body">
-
+<% MemberVO vo=(MemberVO)session.getAttribute("mvo"); 
+	System.out.println(vo);
+	if(vo!=null){
+%>
     <div class="container">
 	
-      <form class="login-form" method="post" action="${pageContext.request.contextPath}/registerMember.do" id="regForm">      
-      <span class="pull-right"> 회원가입</span>  
+      <form class="login-form" method="post" action="${pageContext.request.contextPath}/updateMember.do" id="regForm">      
+      <span class="pull-right"></span>  
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" name="id"  placeholder="ID" required="required" autofocus>
+              <input type="text" class="form-control" name="id"  value="<%=vo.getId() %>" readonly required="required">
               <span id="idCheckView"></span>
             </div>
             
             <br>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required" >
+                <input type="password" class="form-control" name="password" id="password" value="<%=vo.getPassword() %>" required="required" >
             </div>
             
             <br>
@@ -128,7 +133,7 @@
 			<br>
 		    <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control" name="name"  placeholder="Name" required="required" >
+                <input type="text" class="form-control" name="name"  value="<%=vo.getName() %>" required="required" >
             </div>
             
             <br>
@@ -136,6 +141,8 @@
                     <label>Gender</label>
 					<br>
                                 <label>
+                                <input type="text"   class="form-control"  value="<%=vo.getSex() %>" readonly>  
+                                <br>
                                     <input type="radio" name="sex"  id="femaleRadio" value="Female" placeholder="Female">Female
                                 </label>
                                 <label>
@@ -146,7 +153,7 @@
             <br>
 			<div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control" name="tel"  placeholder="Phone Number" required="required" >
+                <input type="text" class="form-control" name="tel"  value="<%=vo.getTel() %>" required="required" >
             </div>
             
             <br>
@@ -157,12 +164,20 @@
                 </div> 
                 
             <br><br>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Sign-up</button>
-            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do">Home</a>
+            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Update</button>
+            <br>
+            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
+            <br>
+            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Resign</button>
         </div>
       </form>
     </div>
-
+<%}else{ %>
+		<script type="text/javascript">
+			alert("로그인하세요!");
+			location.href="${pageContext.request.contextPath}/login.do";
+		</script>
+<%} %>
 
   </body>
 </html>
