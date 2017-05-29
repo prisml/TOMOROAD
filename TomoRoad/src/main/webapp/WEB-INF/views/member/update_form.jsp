@@ -27,7 +27,7 @@
    return true;
   }); //#chpass.keyup
  });
-
+ 
  /* 
  <script type="text/javascript">
  function checkPassword(password){
@@ -61,7 +61,7 @@
 	   return false;
 	}
  */
- 
+
  $(document).ready(function(){
 		var checkResultId="";		
 		$("#regForm").submit(function(){				
