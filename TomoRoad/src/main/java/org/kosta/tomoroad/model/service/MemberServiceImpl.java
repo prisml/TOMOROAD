@@ -31,4 +31,9 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.updateMember(vo);
 		
 	}
+	@Override
+	public void deleteMember(MemberVO vo) {
+		memberDAO.deleteMember(vo);
+		
+	}
 }
