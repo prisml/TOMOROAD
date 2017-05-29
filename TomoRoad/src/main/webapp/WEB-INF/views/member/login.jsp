@@ -48,6 +48,7 @@
             </div>
             <label  style="margin: 0 auto;">
                 <input type="checkbox" value="remember-me"> Remember me
+                <br>
                 				<span > <a href="#"> Forgot id?</a></span>
 				<br>
                 <span > <a href="#"> Forgot Password?</a></span>
