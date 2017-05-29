@@ -59,6 +59,7 @@ public class MemberController {
 		int count=memberService.idcheck(id);
 		return (count==0) ? "ok":"fail"; 		
 	}
+	
 }
 
 

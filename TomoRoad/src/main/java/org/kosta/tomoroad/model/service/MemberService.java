@@ -11,5 +11,7 @@ public interface MemberService {
 	void registerMember(MemberVO vo);
 
 	int idcheck(String id);
+	
+	void friend(String senderID,String receiverID);
 
 }
