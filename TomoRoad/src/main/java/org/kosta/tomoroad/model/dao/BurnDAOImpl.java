@@ -28,5 +28,18 @@ public class BurnDAOImpl implements BurnDAO{
 	public BurnVO findBurnByNo(String no){
 		return template.selectOne("burn.findBurnByNo",no);
 	}
+
+	@Override
+	public void writeBurn(BurnVO bvo) {
+		System.out.println(bvo);
+		template.insert("burn.writeBurn",bvo);		
+	}
+
+	@Override
+	public void updateHits(String no) {
+		template.update("burn.updateHits",no);		
+	}
+	
+	
 	
 }
