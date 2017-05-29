@@ -10,4 +10,6 @@ public interface MemberDAO {
 	void registerMember(MemberVO vo);
 
 	int idcheck(String id);
+
+	void updateMember(MemberVO vo);
 }

@@ -12,4 +12,6 @@ public interface MemberService {
 
 	int idcheck(String id);
 
+	void updateMember(MemberVO vo);
+
 }

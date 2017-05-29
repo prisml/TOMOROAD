@@ -48,17 +48,31 @@ public class MemberController {
 		memberService.registerMember(vo);		
 		return "redirect:registerResultView.do?id=" + vo.getId();
 	}
+	@RequestMapping(value="updateMember.do",method=RequestMethod.POST)
+	public String update(MemberVO vo) {
+		memberService.updateMember(vo);	
+				return "redirect:updateResultView.do?id=" + vo.getId();	
+	}
 	@RequestMapping("registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/register_result.tiles", "memberVO", vo);
 	}
+	@RequestMapping("updateResultView.do")
+	public ModelAndView updateMember(String id){		
+		MemberVO vo = memberService.findMemberById(id);
+		return new ModelAndView("member/update_result.tiles", "memberVO", vo);
+	}	
 	@RequestMapping("idcheckAjax.do")
 	@ResponseBody
 	public String idcheckAjax(String id) {		
 		int count=memberService.idcheck(id);
 		return (count==0) ? "ok":"fail"; 		
 	}
+	@RequestMapping("myPage.do")
+	public String myPage(){
+		return "redirect:myPage.tiles";
+}
 }
 
 
