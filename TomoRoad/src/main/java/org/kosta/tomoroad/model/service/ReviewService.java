@@ -13,4 +13,6 @@ public interface ReviewService {
 
 	void update(ReviewVO vo);
 
+	ReviewVO getDetailHit(String no);
+
 }
