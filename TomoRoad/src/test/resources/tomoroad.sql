@@ -1,3 +1,4 @@
+---------- drop table ------------
 drop table station_connect;
 drop table review_comment;
 drop table advertisement;
@@ -12,8 +13,16 @@ drop table place;
 drop table station;
 drop table member;
 drop table manager;
+---------- drop sequence -----------
+drop sequence place_seq;
+drop sequence review_seq;
+drop sequence review_comment_seq;
+drop sequence hashtag_seq;
+drop sequence burn_board_seq;
+drop sequence burn_comment_seq;
+drop sequence advertisement_seq;
 
-
+------------ create ------------
 create table member(
 	id varchar2(100) primary key,
 	password varchar2(100) not null,
@@ -36,7 +45,6 @@ create table place(
 	area varchar2(100) not null
 );
  
-drop sequence place_seq;
 create sequence place_seq nocache;
 
 
@@ -54,7 +62,6 @@ create table review(
 	constraint fk_member_id foreign key(member_id) references member(id)	
 );
 
-drop sequence review_seq;
 create sequence review_seq nocache;
 
 create table review_comment(
@@ -67,7 +74,6 @@ create table review_comment(
 	constraint fk_review_comment_no foreign key(review_no) references review(no),
 	constraint fk_review_comment_member_id foreign key(member_id) references member(id)	
 );
-drop sequence review_comment_seq;
 create sequence review_comment_seq nocache;
 
 create table hashtag(
@@ -76,7 +82,6 @@ create table hashtag(
 	review_no number not null,
 	constraint fk_hashtag_review_no foreign key(review_no) references review(no)
 );
-drop sequence hashtag_seq;
 create sequence hashtag_seq nocache;
 
 create table burn_board(
@@ -91,7 +96,6 @@ create table burn_board(
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
  
-drop sequence burn_board_seq;
 create sequence burn_board_seq nocache;
 
 
@@ -105,7 +109,6 @@ create table burn_comment(
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
-drop sequence burn_comment_seq;
 create sequence burn_comment_seq nocache;
 
 
@@ -113,7 +116,6 @@ create table advertisement(
 	no number primary key,
 	link varchar2(1000) not null
 );
-drop sequence advertisement_seq;
 create sequence advertisement_seq nocache;
 
 
@@ -179,6 +181,7 @@ insert into station values('서울역','서울에 있어염',10);
 select * from member;
 select * from BURN_BOARD;
 select * from STATION;
+select * from place;
 		
 
 select A.* from(select row_number() 
@@ -191,6 +194,11 @@ insert into station(name,detail) values('전주','주소 : 전라북도 전주�
 												전화번호 : 1544-7788
 												관련정보 : 승차권 예매, 승차권 이용안내, 기차시간 및 운임표
 												부가정보 : 기차역 검색, 고객센터, 유실물 찾기');
-insert into place values(place_seq.nextval,'한옥마올','전주','전라도');
+insert into place values(place_seq.nextval,'동대문','서울역','서울');
 
 select sysdate from dual
+
+insert into review(no,title,content,posted_time,star,place_no,member_id)
+values(review_seq.nextval,'test','test',sysdate,5,1,'java');
+
+select * from REVIEW 
