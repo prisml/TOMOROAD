@@ -32,4 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
+	<insert id="friend" parameterType="map">
+		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
+	</insert>
 </mapper>

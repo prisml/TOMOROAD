@@ -32,8 +32,13 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	@Override
+
 	public void deleteMember(MemberVO vo) {
 		memberDAO.deleteMember(vo);
 		
+
+	public void friend(String senderID, String receiverID) {
+		memberDAO.friend(senderID, receiverID);
+
 	}
 }

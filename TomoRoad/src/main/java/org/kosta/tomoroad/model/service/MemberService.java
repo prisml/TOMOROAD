@@ -14,6 +14,10 @@ public interface MemberService {
 
 	void updateMember(MemberVO vo);
 
+
 	void deleteMember(MemberVO vo);
+
+
+	void friend(String senderID,String receiverID);
 
 }
