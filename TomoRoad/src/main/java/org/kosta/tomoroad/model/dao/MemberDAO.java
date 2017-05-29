@@ -12,4 +12,6 @@ public interface MemberDAO {
 	int idcheck(String id);
 
 	void updateMember(MemberVO vo);
+	
+	void friend(String senderID,String receiverID);
 }

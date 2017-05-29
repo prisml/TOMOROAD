@@ -31,4 +31,8 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.updateMember(vo);
 		
 	}
+	@Override
+	public void friend(String senderID, String receiverID) {
+		memberDAO.friend(senderID, receiverID);
+	}
 }
