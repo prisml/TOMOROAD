@@ -7,9 +7,9 @@ import org.kosta.tomoroad.model.vo.ListVO;
 
 public interface BurnService {	
 
-	ListVO getBurnList();	
+	ListVO<BurnVO> getBurnList();	
 
-	ListVO getBurnList(String pageNo);
+	ListVO<BurnVO> getBurnList(String pageNo);
 
 	BurnVO findBurnByNo(String no);
 

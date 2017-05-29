@@ -14,12 +14,12 @@ public class BurnServiceImpl implements BurnService {
 	private BurnDAO burnDAO;
 
 	@Override
-	public ListVO getBurnList() {
+	public ListVO<BurnVO> getBurnList(){
 		return getBurnList("1");
 	}
 
 	@Override
-	public ListVO getBurnList(String pageNo) {
+	public ListVO<BurnVO> getBurnList(String pageNo) {
 		int totalCount = burnDAO.getTotalCount();
 
 		PagingBean pagingBean = null;
@@ -30,6 +30,7 @@ public class BurnServiceImpl implements BurnService {
 		}
 
 		return new ListVO(burnDAO.getBurnList(pagingBean), pagingBean);
+
 	}
 
 	@Override

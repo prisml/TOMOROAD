@@ -11,4 +11,16 @@ public interface ReviewDAO {
 
 	List<ReviewVO> getList(PagingBean pb);
 
+	void register(ReviewVO vo);
+
+	ReviewVO getDetail(String no);
+
+	void update(ReviewVO vo);
+
+	List<ReviewVO> getListByMember(PagingBean pb, String id);
+
+	List<ReviewVO> getListByPlace(PagingBean pb, String place);
+
+	void delete(String no);
+
 }

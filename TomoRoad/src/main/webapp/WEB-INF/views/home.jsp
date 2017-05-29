@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <br>
 <br>
 <br>
@@ -35,8 +35,7 @@
 						'id')
 						+ "역"); // 레이어팝업 역이름
 
-		stationInfo = document.getElementById(test.getAttribute('id'))
-				.getAttribute('id'); // 역이름 정보
+		stationInfo = document.getElementById(test.getAttribute('id')).getAttribute('id'); // 역이름 정보
 
 		var obj = $(
 				"#"
@@ -134,7 +133,7 @@ a.cbtn {
 	<div style="position: absolute; top: 379px; left: 262px;">
 		<input type="image"
 			src="${pageContext.request.contextPath}/resources/img/1.png"
-			onclick="layer_open(this);return false;" id="서울">
+			onclick="layer_open(this);return false;" id="1서울">
 	</div>
 	
 	<div style="position: absolute; top: 395px; left: 262px;">

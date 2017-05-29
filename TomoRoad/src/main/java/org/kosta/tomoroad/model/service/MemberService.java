@@ -12,4 +12,12 @@ public interface MemberService {
 
 	int idcheck(String id);
 
+	void updateMember(MemberVO vo);
+
+
+	void deleteMember(MemberVO vo);
+
+
+	void friend(String senderID,String receiverID);
+
 }
