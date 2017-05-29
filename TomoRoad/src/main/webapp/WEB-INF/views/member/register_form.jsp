@@ -1,5 +1,7 @@
+<%@page import="org.kosta.tomoroad.model.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +105,7 @@
     <div class="container">
 	
       <form class="login-form" method="post" action="${pageContext.request.contextPath}/registerMember.do" id="regForm">      
-      <span class="pull-right"> 회원가입</span>  
+      <span class="pull-right"></span>  
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
@@ -157,8 +159,9 @@
                 </div> 
                 
             <br><br>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Sign-up</button>
-            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do">Home</a>
+            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Sign-up</button>
+            <br>
+            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
         </div>
       </form>
     </div>
