@@ -142,6 +142,7 @@
 					<br>
                                 <label>
                                 <input type="text"   class="form-control"  value="<%=vo.getSex() %>" readonly>  
+                                <br>
                                     <input type="radio" name="sex"  id="femaleRadio" value="Female" placeholder="Female">Female
                                 </label>
                                 <label>
@@ -167,7 +168,7 @@
             <br>
             <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
             <br>
-            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Delete</button>
+            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Resign</button>
         </div>
       </form>
     </div>
