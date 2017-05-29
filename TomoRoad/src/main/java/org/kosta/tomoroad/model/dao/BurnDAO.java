@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.BurnVO;
+import org.kosta.tomoroad.model.vo.ListVO;
 
 public interface BurnDAO {
 
@@ -16,5 +17,15 @@ public interface BurnDAO {
 	void writeBurn(BurnVO bvo);
 
 	void updateHits(String no);
+
+	void updateBurn(BurnVO bvo);
+
+	void deleteBurn(String no);
+
+	List<BurnVO>  getBurnListByStation(PagingBean pagingBean, String stationName);
+
+	int getTotalCountByStation(String stationName);
+
+	
 
 }
