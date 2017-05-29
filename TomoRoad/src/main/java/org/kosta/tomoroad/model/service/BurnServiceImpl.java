@@ -34,5 +34,13 @@ public class BurnServiceImpl implements BurnService{
 	public BurnVO findBurnByNo(String no) {		
 		return burnDAO.findBurnByNo(no);
 	}
+	@Override
+	public void writeBurn(BurnVO bvo) {
+		burnDAO.writeBurn(bvo);
+	}
+	@Override
+	public void updateHits(String no) {
+		burnDAO.updateHits(no);	
+	}
 	
 }
