@@ -38,5 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
-	
+	<select id="findBurnCommentByNo" resultType="burnCommentVO">
+		select * from burn_comment where burn_no=#{value} order by no asc	
+	</select>
+	<select id="findParentCommentMemberId" resultType="String">
+		select member_id from burn_comment where no=#{value}
+	</select>
 </mapper>

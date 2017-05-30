@@ -194,3 +194,8 @@ insert into station(name,detail) values('전주','주소 : 전라북도 전주�
 insert into place values(place_seq.nextval,'한옥마올','전주','전라도');
 
 select sysdate from dual
+
+select * from BURN_COMMENT where recomment!=0;
+
+select * from BURN_COMMENT where recomment=1;
+
