@@ -15,7 +15,9 @@
             <a  class="btn btn-primary btn-lg btn-block" type="button" href="${pageContext.request.contextPath}/member/update_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" >UPDATE</a>
             <br>
             <a  class="btn btn-primary btn-lg btn-block" type="button" href="${pageContext.request.contextPath}/deleteMember.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" >RESIGN</a>
-
+            <br>
+            <a  class="btn btn-primary btn-lg btn-block" type="button" href="${pageContext.request.contextPath} " style="width: 500px; height: 50px; margin: 0 auto; align:center;" >FRIENDS SEARCH</a>
+            <br>
     </div>
     </c:when>
 <c:otherwise>
