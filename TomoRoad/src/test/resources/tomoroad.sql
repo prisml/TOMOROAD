@@ -200,7 +200,6 @@ insert into place values(place_seq.nextval,'동대문','서울역','서울');
 
 select sysdate from dual
 
-
 insert into friend values('java','goni','수락',sysdate);
 
 
@@ -215,4 +214,27 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 select * from REVIEW 
 
 select distinct station distinct station_name;  
+
+select A.*
+		from(select row_number()
+		over(order by no desc)
+		rnum, no, title, member_id, place_no, content,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM')
+		as posted_time from review r)
+		A
+		where rnum between 1 and 5
+		
+		
+
+select row_number() over(order by re.no desc) rnum, 
+		re.no, re.title, re.member_id, p.name, p.no, re.content, to_char(posted_time,'YYYY/MM/DD HH24:MM')
+		as posted_time 
+		from review re, place p
+		where re.place_no=p.no
+		
+		
+update review set hits=hits+1 where no=4;
+select * from review;
+select * from REVIEW 
+
 

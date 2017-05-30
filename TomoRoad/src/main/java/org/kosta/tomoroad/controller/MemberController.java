@@ -69,19 +69,38 @@ public class MemberController {
 		int count=memberService.idcheck(id);
 		return (count==0) ? "ok":"fail"; 		
 	}
-	@RequestMapping("myPage.do")
+	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "redirect:myPage.tiles";
+		return "redirect:mypage.tiles";
 }
 	@RequestMapping(value="member/deleteMember.do",method=RequestMethod.POST)
 	public String delete(MemberVO vo) {
 		memberService.deleteMember(vo);	
-				return "redirect:deleteResultView.do?id=" + vo.getId();	
+		return "redirect:deleteResultView.do?id=" + vo.getId();	
 	}
 	@RequestMapping("member/deleteResultView.do")
 	public ModelAndView deleteResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/delete_result.tiles", "memberVO", vo);
+	}
+	@RequestMapping("findIdByPwNameTel.do")
+	public String findIdByPwNameTel(MemberVO memberVO,Model model){
+		MemberVO vo=memberService.findIdByPwNameTel(memberVO);
+		if(vo!=null)
+			model.addAttribute("result", vo);
+		return "member/findid.tiles";
+	}
+	@RequestMapping("findPwByIdNameTel.do")
+	public String findPwByIdNameTel(MemberVO memberVO,Model model){
+		MemberVO vo=memberService.findPwByIdNameTel(memberVO);
+		if(vo!=null)
+			model.addAttribute("result", vo);
+		return "member/findpw.tiles";
+	}
+	@RequestMapping("friend_Request.do")
+	public String friend_Request(String SenderId,String ReceiverId){
+		memberService.friend_Request(SenderId, ReceiverId);
+		return null;
 	}
 }
 

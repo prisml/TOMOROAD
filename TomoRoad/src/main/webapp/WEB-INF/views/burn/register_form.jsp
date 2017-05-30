@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <center>
+
 <br><br><br>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -14,6 +15,7 @@
 		});
 	});
 </script>
+
 
 <form method="post" action="${pageContext.request.contextPath}/writeBurn.do" id="registerForm">
 <table border="1" cellpadding="10">

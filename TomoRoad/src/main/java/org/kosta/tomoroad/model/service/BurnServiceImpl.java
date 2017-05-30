@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.BurnDAO;
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,17 @@ public class BurnServiceImpl implements BurnService {
 	public void updateHits(String no) {
 		burnDAO.updateHits(no);
 	}
-
+	@Override
+	public List<BurnCommentVO> findBurnCommentByNo(String no) {
+		// TODO Auto-generated method stub
+		return burnDAO.findBurnCommentByNo(no);
+	}
+	@Override
+	public Object findParentCommentMemberId(int no) {
+		// TODO Auto-generated method stub
+		return burnDAO.findParentCommentMemberId(no);
+	}
+	
 	@Override
 	public void updateBurn(BurnVO bvo) {
 		burnDAO.updateBurn(bvo);
