@@ -97,6 +97,11 @@ public class MemberController {
 			model.addAttribute("result", vo);
 		return "member/findpw.tiles";
 	}
+	@RequestMapping("friend_Request.do")
+	public String friend_Request(String SenderId,String ReceiverId){
+		memberService.friend_Request(SenderId, ReceiverId);
+		return null;
+	}
 }
 
 
