@@ -19,9 +19,8 @@
                                     </div>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/getBurnList.do">BURNING</a></li>
-                                <li><a href="#">REVIEW</a></li>
+                                <li><a href="${pageContext.request.contextPath}/review/showList.do">REVIEW</a></li>
                                 <li><a href="${pageContext.request.contextPath}/member/myPage.do">MYPAGE</a></li>
-                              	
                               	<c:choose>
                               		<c:when test="${empty mvo}">
                                 		<li><a id="login">LogIn</a></li>

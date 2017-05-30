@@ -44,4 +44,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}
 		where no=#{no}
 	</update>
+	<select id="getListByMember" resultType="reviewVO" resultMap="reviewRM">
+		select A.*
+		from(select row_number()
+		over(order by no desc)
+		rnum, no,
+		title, member_id,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM')
+		as
+		posted_time from review)
+		A
+		where member_id={id} and rnum between
+		#{pb.startRowNumber} and
+		#{pb.endRowNumber}
+	</select>
+	<select id="getListByPlace" resultType="reviewVO" resultMap="reviewRM">
+		select A.*
+		from(select row_number()
+		over(order by no desc)
+		rnum, no,
+		title, member_id,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM')
+		as
+		posted_time from review)
+		A
+		where place_no={place} and rnum between
+		#{startRowNumber} and
+		#{endRowNumber}
+	</select>
+	<delete id="delete">
+		delete from review where no=#{no}
+	</delete>
 </mapper>
