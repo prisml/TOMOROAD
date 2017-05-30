@@ -13,10 +13,12 @@ public interface MemberDAO {
 
 	void updateMember(MemberVO vo);
 
-
 	void deleteMember(MemberVO vo);
 
-	
 	void friend(String senderID,String receiverID);
+
+	MemberVO findIdByPwNameTel(MemberVO memberVO);
+
+	MemberVO findPwByIdNameTel(MemberVO memberVO);
 
 }

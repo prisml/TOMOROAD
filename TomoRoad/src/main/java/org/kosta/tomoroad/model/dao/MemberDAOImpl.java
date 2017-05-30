@@ -30,13 +30,11 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public void updateMember(MemberVO vo) {
-		template.update("member.updateMember",vo);	
-		
+		template.update("member.updateMember",vo);		
 	}
 	@Override
 	public void deleteMember(MemberVO vo) {
-		template.delete("member.deleteMember",vo);	
-		
+		template.delete("member.deleteMember",vo);		
 	}
 	@Override
 	public void friend(String senderID, String receiverID) {
@@ -44,5 +42,13 @@ public class MemberDAOImpl implements MemberDAO{
 		friend.put("senderID", senderID);
 		friend.put("receiverID",receiverID);
 		template.insert("member.friend",friend);
+	}
+	@Override
+	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
+		return template.selectOne("member.findIdByPwNameTel", memberVO);
+	}
+	@Override
+	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
+		return template.selectOne("member.findPwByIdNameTel", memberVO);
 	}	
 }

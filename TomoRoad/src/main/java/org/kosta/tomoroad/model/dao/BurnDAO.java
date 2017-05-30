@@ -3,6 +3,7 @@ package org.kosta.tomoroad.model.dao;
 import java.util.List;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
 
 public interface BurnDAO {
@@ -16,5 +17,18 @@ public interface BurnDAO {
 	void writeBurn(BurnVO bvo);
 
 	void updateHits(String no);
+
+	List<BurnCommentVO> findBurnCommentByNo(String no);
+
+	Object findParentCommentMemberId(int no);
+	void updateBurn(BurnVO bvo);
+
+	void deleteBurn(String no);
+
+	List<BurnVO>  getBurnListByStation(PagingBean pagingBean, String stationName);
+
+	int getTotalCountByStation(String stationName);
+
+	
 
 }

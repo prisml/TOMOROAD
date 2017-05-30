@@ -161,7 +161,9 @@ create table station_connect(
 
 --------------연습장-------------
 
+
 insert into member values('java','1234','아이유','여자','112');
+
 
 insert into STATION(name,detail)
 values('서울역','주소 : 서울특별시 용산구 한강대로 405 서울역
@@ -176,7 +178,7 @@ insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연
 delete from BURN_BOARD where no='2'
 
 
-insert into station values('서울역','서울에 있어염',10);
+insert into station values('밀양역','미르피아',10);
 
 select * from member;
 select * from BURN_BOARD;
@@ -197,6 +199,14 @@ insert into station(name,detail) values('전주','주소 : 전라북도 전주�
 insert into place values(place_seq.nextval,'동대문','서울역','서울');
 
 select sysdate from dual
+
+insert into friend values('java','goni','수락',sysdate);
+
+
+		
+select * from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits
+from (select * from BURN_BOARD where station_name = '서울역')) where rnum between 1 and 5
+
 
 insert into review(no,title,content,posted_time,star,place_no,member_id)
 values(review_seq.nextval,'test','test',sysdate,5,1,'java');
@@ -224,3 +234,5 @@ select row_number() over(order by re.no desc) rnum,
 		
 update review set hits=hits+1 where no=4;
 select * from review;
+select * from REVIEW 
+

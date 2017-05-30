@@ -40,4 +40,12 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.friend(senderID, receiverID);
 
 	}
+	@Override
+	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
+		return memberDAO.findIdByPwNameTel(memberVO);
+	}
+	@Override
+	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
+		return memberDAO.findPwByIdNameTel(memberVO);
+	}
 }

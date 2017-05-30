@@ -23,6 +23,7 @@
     <th>역이름</th>
     <th>작성자</th>
     <th>작성시간</th>
+    <th>조회수</th>
   </tr>
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
@@ -31,6 +32,7 @@
 	<td>${burn.stationName}</td>
 	<td>${burn.memberId}</td>
 	<td>${burn.postedTime}</td>
+	<td>${burn.hits}</td>
 	</tr>
 	</c:forEach>  
 </table>

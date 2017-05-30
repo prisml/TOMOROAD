@@ -87,7 +87,11 @@
 			}
 		} else if (flag == "b") {
 			location.href = "getStationInfo.do?id=" + stationInfo;
-		} else {
+		} else if(flag == "d"){
+			location.href = "${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=" + stationInfo+"역";
+		}
+			
+			else {
 			alert(stationInfo);
 		}
 	}
@@ -129,7 +133,7 @@ a.cbtn {
 	<div style="position: absolute; top: 379px; left: 262px;">
 		<input type="image"
 			src="${pageContext.request.contextPath}/resources/img/1.png"
-			onclick="layer_open(this);return false;" id="1서울">
+			onclick="layer_open(this);return false;" id="서울">
 	</div>
 	
 	<div style="position: absolute; top: 395px; left: 262px;">

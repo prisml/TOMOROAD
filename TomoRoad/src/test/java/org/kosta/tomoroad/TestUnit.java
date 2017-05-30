@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.StationService;
 import org.kosta.tomoroad.model.vo.PlaceVO;
@@ -23,6 +24,9 @@ public class TestUnit {
 	
 	@Resource(name="placeServiceImpl")
 	private PlaceService placeService;
+	
+	@Resource(name="burnServiceImpl")
+	private BurnService burnService;
 
 	@Test
 	public void test(){
@@ -34,5 +38,7 @@ public class TestUnit {
 		List<PlaceVO> placeInfolist= placeService.getPlaceInfo("전주");
 		System.out.println("역주변정보:"+placeInfolist);
 		
+		System.out.println(burnService.getBurnListByStation("서울역","1"));
+		System.out.println(burnService.getBurnList());
 	}
 }
