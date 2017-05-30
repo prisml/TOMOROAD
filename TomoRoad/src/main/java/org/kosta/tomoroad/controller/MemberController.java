@@ -88,14 +88,14 @@ public class MemberController {
 		MemberVO vo=memberService.findIdByPwNameTel(memberVO);
 		if(vo!=null)
 			model.addAttribute("result", vo);
-		return "member/findidbypwnametel_result.tiles";
+		return "member/findid.tiles";
 	}
 	@RequestMapping("findPwByIdNameTel.do")
 	public String findPwByIdNameTel(MemberVO memberVO,Model model){
 		MemberVO vo=memberService.findPwByIdNameTel(memberVO);
 		if(vo!=null)
 			model.addAttribute("result", vo);
-		return "member/findpwbyidnametel_result.tiles";
+		return "member/findpw.tiles";
 	}
 }
 
