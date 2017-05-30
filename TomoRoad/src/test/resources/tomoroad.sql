@@ -220,3 +220,7 @@ select row_number() over(order by re.no desc) rnum,
 		as posted_time 
 		from review re, place p
 		where re.place_no=p.no
+		
+		
+update review set hits=hits+1 where no=4;
+select * from review;

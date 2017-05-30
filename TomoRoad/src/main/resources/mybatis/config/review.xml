@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="pagingBean">
 		select A.*
 		from(select row_number() over(order by r.no desc) rnum, 
-			r.no, r.title, r.member_id, r.place_no, p.name, r.content,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.content, r.hits,
 			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
 			from review r, place p where r.place_no = p.no)	A 
 		where rnum between #{startRowNumber} and #{endRowNumber}
@@ -37,13 +37,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id="detail" resultMap="reviewRM">
 		select
-		no,title,content,posted_time,star,place_no,member_id from review where
+		no,title,content,posted_time,star,place_no,member_id,hits from review where
 		no=#{value}
 	</select>
 	<update id="update" parameterType="reviewVO">
 		update review set
-		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}
+		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}, hits=#{hits}
 		where no=#{no}
+	</update>
+	<update id="updateHits">
+		update review set hits=hits+1 where no=#{value}
 	</update>
 	<select id="getListByMember" resultType="reviewVO" resultMap="reviewRM">
 		select A.*

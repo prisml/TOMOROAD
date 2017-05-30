@@ -43,9 +43,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public ReviewVO getDetailHit(String no) {
+		dao.hits(no);
 		ReviewVO vo = dao.getDetail(no);
-		vo.setHits(vo.getHits()+1);
-		dao.update(vo);
+		/*vo.setHits(vo.getHits()+1);
+		dao.update(vo);*/
+		System.out.println(vo);
 		return vo;
 	}
 

@@ -67,4 +67,12 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public List<PlaceVO> getStationList() {
 		return template.selectList("place.getList");
 	}
+
+	@Override
+	public void hits(String no) {
+		System.out.println(no);
+		template.update("review.updateHits", Integer.parseInt(no));
+		//template.commit();
+		System.out.println("안되냐");
+	}
 }

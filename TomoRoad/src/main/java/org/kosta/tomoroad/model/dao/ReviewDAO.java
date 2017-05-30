@@ -26,4 +26,6 @@ public interface ReviewDAO {
 
 	List<PlaceVO> getStationList();
 
+	void hits(String no);
+
 }
