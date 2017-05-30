@@ -1,6 +1,7 @@
 package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -37,18 +38,45 @@ public class MemberDAOImpl implements MemberDAO{
 		template.delete("member.deleteMember",vo);		
 	}
 	@Override
-	public void friend(String senderID, String receiverID) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("senderID", senderID);
-		friend.put("receiverID",receiverID);
-		template.insert("member.friend",friend);
-	}
-	@Override
 	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
 		return template.selectOne("member.findIdByPwNameTel", memberVO);
 	}
 	@Override
 	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
 		return template.selectOne("member.findPwByIdNameTel", memberVO);
+	}	
+	@Override
+	public void friend_Request(String senderID, String receiverID) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		template.insert("member.friend_Request",friend);
+	}
+	@Override
+	public void friend_Accept(String senderID, String receiverID) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		template.update("member.friend_Accept",friend);
+	}
+	@Override
+	public void friend_Refuse(String senderID, String receiverID) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		template.update("member.friend_Refuse",friend);
+	}
+	@Override
+	public List<String> friend_RequestList(String receiverID) {
+		return template.selectList("member.friend_RequestList", receiverID);
+	}
+	@Override
+	public List<String> friendList(String id) {
+		List<String> list = template.selectList("member.friendListByReceiverId", id);
+		List<String> list2 = template.selectList("member.friendListBySenderId", id);
+		for(int i = 0;i<list2.size();i++)
+			list.add(list2.get(i));
+		System.out.println(list);
+		return list;
 	}	
 }
