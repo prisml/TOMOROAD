@@ -15,4 +15,10 @@ public interface ReviewService {
 
 	ReviewVO getDetailHit(String no);
 
+	ListVO<ReviewVO> getListByMember(String page, String id);
+
+	ListVO<ReviewVO> getListByPlace(String page, String place);
+
+	void delete(String no);
+
 }

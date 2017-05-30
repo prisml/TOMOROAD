@@ -64,39 +64,6 @@
 	}
  */
 
- $(document).ready(function(){
-		var checkResultId="";		
-		$("#regForm").submit(function(){				
-			if(checkResultId==""){
-				alert("아이디 중복확인을 하세요");
-				return false;
-			}		
-		});
-		$(":input[name=id]").keyup(function(){
-			var id=$(this).val().trim();
-			if(id.length<4 || id.length>10){
-				$("#idCheckView").html("아이디는 4자이상 10자 이하여야 함!").css(
-						"background","pink");
-				checkResultId="";
-				return;
-			}			
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/idcheckAjax.do",				
-				data:"id="+id,	
-				success:function(data){						
-					if(data=="fail"){
-					$("#idCheckView").html(id+" 사용불가!").css("background","red");
-						checkResultId="";
-					}else{						
-						$("#idCheckView").html(id+" 사용가능!").css(
-								"background","yellow");		
-						checkResultId=id;
-					}					
-				}//callback			
-			});//ajax
-		});//keyup
-	});//ready
  </script>
 </head>
 
@@ -142,6 +109,7 @@
 					<br>
                                 <label>
                                 <input type="text"   class="form-control"  value="<%=vo.getSex() %>" readonly>  
+                                <br>
                                     <input type="radio" name="sex"  id="femaleRadio" value="Female" placeholder="Female">Female
                                 </label>
                                 <label>
@@ -167,7 +135,7 @@
             <br>
             <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
             <br>
-            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Delete</button>
+            <button class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Resign</button>
         </div>
       </form>
     </div>

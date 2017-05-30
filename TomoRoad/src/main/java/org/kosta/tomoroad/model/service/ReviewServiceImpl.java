@@ -16,7 +16,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public ListVO<ReviewVO> getList(String page) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
-		PagingBean pb = new PagingBean(1, 9, 5, dao.getTotalContents());
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
 		lvo.setPagingBean(pb);
 		lvo.setList(dao.getList(pb));
 		return lvo;
@@ -43,6 +43,29 @@ public class ReviewServiceImpl implements ReviewService {
 		vo.setHits(vo.getHits()+1);
 		dao.update(vo);
 		return vo;
+	}
+
+	@Override
+	public ListVO<ReviewVO> getListByMember(String page, String id) {
+		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
+		lvo.setPagingBean(pb);
+		lvo.setList(dao.getListByMember(pb, id));
+		return lvo;
+	}
+
+	@Override
+	public ListVO<ReviewVO> getListByPlace(String page, String place) {
+		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
+		lvo.setPagingBean(pb);
+		lvo.setList(dao.getListByPlace(pb, place));
+		return lvo;
+	}
+
+	@Override
+	public void delete(String no) {
+		dao.delete(no);
 	}
 
 }

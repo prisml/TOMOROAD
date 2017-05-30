@@ -21,5 +21,14 @@ public interface BurnDAO {
 	List<BurnCommentVO> findBurnCommentByNo(String no);
 
 	Object findParentCommentMemberId(int no);
+	void updateBurn(BurnVO bvo);
+
+	void deleteBurn(String no);
+
+	List<BurnVO>  getBurnListByStation(PagingBean pagingBean, String stationName);
+
+	int getTotalCountByStation(String stationName);
+
+	
 
 }
