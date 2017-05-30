@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
-	<jsp:include page="/resources/boot.jsp"/>  
+	<jsp:include page="/resources/boot.jsp"/>
 </head>
 <body>
 	<div id="container">		
@@ -23,7 +23,7 @@
 			</div>
 			</div>
 			<div class="col-sm-9">
-			<div id="main">
+			<div id="main" class="mainContent">
 				<tiles:insertAttribute name="main" />
 			</div>
 			</div>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <center>
-<br><br><br>
+
 
 <form method="post" action="${pageContext.request.contextPath}/writeBurn.do">
 <table border="1" cellpadding="10">

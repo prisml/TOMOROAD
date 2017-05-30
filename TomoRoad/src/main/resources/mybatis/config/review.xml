@@ -9,21 +9,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="place.no" column="place_no" />
 		<result property="member.id" column="member_id" />
 	</resultMap>
+	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
+		<result column="name" property="place.name"/>
+		<result column="station_name" property="place.station_name"/>
+	</resultMap>
 	<select id="getTotalContents" resultType="int">
 		select count(*) from
 		review
 	</select>
-	<select id="getList" resultType="reviewVO" resultMap="reviewRM"
+	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
 		select A.*
-		from(select row_number()
-		over(order by no desc)
-		rnum, no, title, member_id,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM')
-		as posted_time from review)
-		A
-		where rnum between #{startRowNumber} and
-		#{endRowNumber}
+		from(select row_number() over(order by r.no desc) rnum, 
+			r.no, r.title, r.member_id, r.place_no, p.name, r.content,
+			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
+			from review r, place p where r.place_no = p.no)	A 
+		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	<insert id="register" parameterType="reviewVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
@@ -64,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		over(order by no desc)
 		rnum, no,
 		title, member_id,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM')
+		to_char(posted_0time,'YYYY/MM/DD HH24:MM')
 		as
 		posted_time from review)
 		A
