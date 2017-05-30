@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.BurnDAO;
@@ -69,6 +71,11 @@ public class BurnServiceImpl implements BurnService {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
 		return new ListVO(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+	}
+
+	@Override
+	public List<String> getStationNameList() {		
+		return burnDAO.getStationNameList();
 	}
 
 }

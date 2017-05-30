@@ -214,3 +214,5 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
 
+select distinct station distinct station_name;  
+

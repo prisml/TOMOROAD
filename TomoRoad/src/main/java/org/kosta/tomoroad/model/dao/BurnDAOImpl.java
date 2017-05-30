@@ -63,6 +63,11 @@ public class BurnDAOImpl implements BurnDAO{
 	public int getTotalCountByStation(String stationName) {		
 		return template.selectOne("burn.getTotalCountByStation",stationName);
 	}
+
+	@Override
+	public List<String> getStationNameList() {
+		return template.selectList("burn.getStationNameList");
+	}
 	
 	
 	
