@@ -34,4 +34,6 @@ public interface MemberService {
 	
 	void deleteFriend(String id,String deleteId);
 
+	String getFriendId(String id, String selectId);
+
 }
