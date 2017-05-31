@@ -133,6 +133,7 @@ public class MemberController {
 		return memberService.friend_RequestList(receiverID);
 	}
 	@RequestMapping("getFriendId.do")
+	@ResponseBody
 	public String getFriendId(String id,String selectId){
 		return memberService.getFriendId(id, selectId);
 	}
