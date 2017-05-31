@@ -28,12 +28,7 @@ public class BurnController {
 	public ModelAndView showBurnDetail(String no,Model model){
 		burnService.updateHits(no);
 		List<BurnCommentVO> list=burnService.findBurnCommentByNo(no);
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).getRecomment()!=0){
-				burnService.findParentCommentMemberId(list.get(i).getRecomment());
-			}
-		}
-		model.addAttribute("comment",burnService.findBurnCommentByNo(no));
+		model.addAttribute("comment",list);
 		return new ModelAndView("burn/burn_detail.tiles","bvo",burnService.findBurnByNo(no));
 	}
 	
@@ -47,13 +42,36 @@ public class BurnController {
 	public ModelAndView writeBurnResult(String no){		
 		return new ModelAndView("burn/register_result.tiles","bvo",burnService.findBurnByNo(no));		
 	}
+	//댓글
 	@RequestMapping("showBurnComment.do")
 	@ResponseBody
 	public Object showBurnComment(String no,Model model){
 		List<BurnCommentVO> list=burnService.findBurnCommentByNo(no);
 		return list;
 	}
-	
+	@RequestMapping("deleteComment.do")
+	public String deleteComment(BurnCommentVO vo){
+		vo.setState("delete");
+		burnService.deleteComment(vo);
+		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
+	}
+	@RequestMapping("updateComment.do")
+	public String updateComment(BurnCommentVO vo){
+		burnService.updateComment(vo);
+		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
+	}
+	@RequestMapping("registeComment.do")
+	public String registeComment(BurnCommentVO vo){
+		burnService.registeComment(vo);
+		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
+	}
+	@RequestMapping("replyComment.do")
+	public String replyComment(BurnCommentVO vo){
+		burnService.replyComment(vo);
+		System.out.println(vo.getBurn_no());
+		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
+	}
+	//댓글끝
 	@RequestMapping("updateBurnView.do")
 	public ModelAndView updateBurnView(String no){		
 		return new ModelAndView("burn/update_form.tiles","bvo",burnService.findBurnByNo(no));		
