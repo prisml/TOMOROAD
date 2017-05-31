@@ -61,6 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
 	</select>
+	<select id="deleteFriend" parameterType="map">
+		delete from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId})
+	</select>
 </mapper>
 
 

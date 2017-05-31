@@ -126,6 +126,11 @@ public class MemberController {
 	public String getFriendId(String id,String selectId){
 		return memberService.getFriendId(id, selectId);
 	}
+	@RequestMapping("deleteFriend.do")
+	public String deleteFriend(String id,String deleteId){
+		memberService.deleteFriend(id, deleteId);
+		return null;
+	}
 }
 
 

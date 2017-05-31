@@ -72,4 +72,8 @@ public class MemberServiceImpl implements MemberService{
 	public String getFriendId(String id, String selectId) {
 		return memberDAO.getFriendId(id, selectId);
 	}
+	@Override
+	public void deleteFriend(String id, String deleteId) {
+		memberDAO.deleteFriend(id, deleteId);
+	}
 }

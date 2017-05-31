@@ -32,4 +32,6 @@ public interface MemberDAO {
 	List<String> friendList(String id);
 	
 	String getFriendId(String id,String selectId);
+	
+	void deleteFriend(String id,String deleteId);
 }

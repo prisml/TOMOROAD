@@ -85,5 +85,12 @@ public class MemberDAOImpl implements MemberDAO{
 		friend.put("id", id);
 		friend.put("selectId",selectId);
 		return template.selectOne("member.getFriendId", friend);
+	}
+	@Override
+	public void deleteFriend(String id, String deleteId) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("selectId",deleteId);
+		template.delete("deleteFriend",friend);
 	}	
 }
