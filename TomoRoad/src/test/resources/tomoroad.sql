@@ -213,6 +213,12 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
 
+<<<<<<< HEAD
+select * from REVIEW 
+
+select * from member
+select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
+=======
 select distinct station distinct station_name;  
 
 select A.*
@@ -235,6 +241,11 @@ select row_number() over(order by re.no desc) rnum,
 		
 update review set hits=hits+1 where no=4;
 select * from review;
+select * from place; 
+
+select r.no, r.title, r.content, r.posted_time, r.star, r.place_no, r.member_id, r.hits, p.name 
+from review r, place p
+where   r.no=4 and r.place_no=p.no
 select * from REVIEW 
 
-
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git

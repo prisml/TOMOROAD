@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="pagingBean">
 		select A.*
 		from(select row_number() over(order by r.no desc) rnum, 
-			r.no, r.title, r.member_id, r.place_no, p.name, r.content, r.hits,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
 			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
 			from review r, place p where r.place_no = p.no)	A 
 		where rnum between #{startRowNumber} and #{endRowNumber}
@@ -35,14 +35,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		review(no,title,content,posted_time,star,place_no,member_id)
 		values(#{no},#{title},#{content},sysdate,#{star},#{place.no},#{member.id})
 	</insert>
-	<select id="detail" resultMap="reviewRM">
+	<select id="detail" resultMap="detailReviewRM">
 		select
-		no,title,content,posted_time,star,place_no,member_id,hits from review where
-		no=#{value}
+		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name from review r, place p where
+		r.no=#{value} and r.place_no=p.no
 	</select>
 	<update id="update" parameterType="reviewVO">
 		update review set
-		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}, hits=#{hits}
+		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}
 		where no=#{no}
 	</update>
 	<update id="updateHits">
@@ -50,31 +50,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<select id="getListByMember" resultType="reviewVO" resultMap="reviewRM">
 		select A.*
-		from(select row_number()
-		over(order by no desc)
-		rnum, no,
-		title, member_id,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM')
-		as
-		posted_time from review)
-		A
-		where member_id={id} and rnum between
-		#{pb.startRowNumber} and
-		#{pb.endRowNumber}
+		from(select row_number() over(order by r.no desc) rnum, 
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
+			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
+			from review r, place p where r.place_no = p.no)	A 
+		where rnum between #{startRowNumber} and #{endRowNumber} and member_id={id}
 	</select>
-	<select id="getListByPlace" resultType="reviewVO" resultMap="reviewRM">
+	<select id="getListByPlace" resultType="reviewVO" resultMap="reviewRM">		
 		select A.*
-		from(select row_number()
-		over(order by no desc)
-		rnum, no,
-		title, member_id,
-		to_char(posted_0time,'YYYY/MM/DD HH24:MM')
-		as
-		posted_time from review)
-		A
-		where place_no={place} and rnum between
-		#{startRowNumber} and
-		#{endRowNumber}
+		from(select row_number() over(order by r.no desc) rnum, 
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
+			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time 
+			from review r, place p where r.place_no = p.no)	A 
+		where rnum between #{startRowNumber} and #{endRowNumber} and place_no={place}
 	</select>
 	<delete id="delete">
 		delete from review where no=#{no}

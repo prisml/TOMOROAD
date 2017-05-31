@@ -5,6 +5,9 @@
 
 <c:set var="rlist" value="${reviewList.list }" />
 <c:set var="size" value="${fn:length(rlist)}"/>
+
+
+
 <c:forEach begin="0" end="2" var="i">
 	<div class="featured-blocks">
 		<div class="container">
@@ -17,7 +20,6 @@
 									<i class="fw-icon-user"></i>
 								</div>
 								<h1>${rlist[i*3+j].title }</h1>
-								<p>${rlist[i*3+j].content }</p>
 								<p>${rlist[i*3+j].place.name }</p>
 								<p>${rlist[i*3+j].hits }</p>
 								<a href="${pageContext.request.contextPath}/review/detailHit.do?no=${rlist[i*3+j].no}" role="button" class="btn">detail</a>

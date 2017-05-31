@@ -18,9 +18,9 @@ public interface MemberService {
 
 	void deleteMember(MemberVO vo);
 
-	MemberVO findIdByPwNameTel(MemberVO memberVO);
+	MemberVO findId(MemberVO memberVO);
 
-	MemberVO findPwByIdNameTel(MemberVO memberVO);
+	MemberVO findPw(MemberVO memberVO);
 	
 	void friend_Request(String senderID,String receiverID);
 	
@@ -32,4 +32,6 @@ public interface MemberService {
 
 	List<String> friendList(String id);
 	
+	void deleteFriend(String id,String deleteId);
+
 }

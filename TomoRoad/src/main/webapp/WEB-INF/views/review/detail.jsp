@@ -20,6 +20,6 @@
 			</li>
 
 		</ul>
-		<a href="${pageContext.request.contextPath}/review/update_form.do?no=${rvo.no}"></a>
+		<a href="${pageContext.request.contextPath}/review/update_form.do?no=${rvo.no}" role="button" class="btn">update</a>
 	</div>
 </div>
