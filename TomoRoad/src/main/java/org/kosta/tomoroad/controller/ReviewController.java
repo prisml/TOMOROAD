@@ -53,13 +53,15 @@ public class ReviewController {
 	
 	@RequestMapping("review/update_form.do")
 	public ModelAndView updateForm(String no){
+		System.out.println("updateForm no="+no);
+		System.out.println("rvo="+service.getDetail(no));
 		return new ModelAndView("review/update_form.tiles", "rvo", service.getDetail(no));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
-	public ModelAndView update(ReviewVO vo, int place, HttpServletRequest req) {
+	public ModelAndView update(ReviewVO vo, int placeNo, HttpServletRequest req) {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
-		vo.setPlace(new PlaceVO(place));
+		vo.setPlace(new PlaceVO(placeNo));
 		service.update(vo);
 		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
 	}
