@@ -32,7 +32,7 @@ public class BurnServiceImpl implements BurnService {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
 
-		return new ListVO(burnDAO.getBurnList(pagingBean), pagingBean);
+		return new ListVO<BurnVO>(burnDAO.getBurnList(pagingBean), pagingBean);
 
 	}
 
@@ -72,7 +72,7 @@ public class BurnServiceImpl implements BurnService {
 	}
 
 	@Override
-	public ListVO getBurnListByStation(String stationName, String pageNo) {
+	public ListVO<BurnVO> getBurnListByStation(String stationName, String pageNo) {
 		int totalCount = burnDAO.getTotalCountByStation(stationName);		
 
 		PagingBean pagingBean = null;
@@ -81,7 +81,7 @@ public class BurnServiceImpl implements BurnService {
 		} else {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
-		return new ListVO(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+		return new ListVO<BurnVO>(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
 	}
 
 }
