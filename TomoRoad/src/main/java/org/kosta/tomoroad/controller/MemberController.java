@@ -122,6 +122,10 @@ public class MemberController {
 	public List<String> friend_RequestList(String receiverID){
 		return memberService.friend_RequestList(receiverID);
 	}
+	@RequestMapping("getFriendId.do")
+	public String getFriendId(String id,String selectId){
+		return memberService.getFriendId(id, selectId);
+	}
 }
 
 

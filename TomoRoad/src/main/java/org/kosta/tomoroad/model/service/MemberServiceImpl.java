@@ -68,4 +68,8 @@ public class MemberServiceImpl implements MemberService{
 	public List<String> friendList(String id) {
 		return memberDAO.friendList(id);
 	}
+	@Override
+	public String getFriendId(String id, String selectId) {
+		return memberDAO.getFriendId(id, selectId);
+	}
 }

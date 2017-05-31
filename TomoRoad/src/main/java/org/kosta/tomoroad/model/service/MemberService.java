@@ -32,4 +32,5 @@ public interface MemberService {
 
 	List<String> friendList(String id);
 	
+	String getFriendId(String id,String selectId);
 }

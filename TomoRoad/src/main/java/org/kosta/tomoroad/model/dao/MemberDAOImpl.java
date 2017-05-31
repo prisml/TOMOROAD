@@ -78,5 +78,12 @@ public class MemberDAOImpl implements MemberDAO{
 			list.add(list2.get(i));
 		System.out.println(list);
 		return list;
+	}
+	@Override
+	public String getFriendId(String id, String selectId) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("selectId",selectId);
+		return template.selectOne("member.getFriendId", friend);
 	}	
 }

@@ -30,4 +30,6 @@ public interface MemberDAO {
 	void friend_Refuse(String senderID,String receiverID);
 
 	List<String> friendList(String id);
+	
+	String getFriendId(String id,String selectId);
 }
