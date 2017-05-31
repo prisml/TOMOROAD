@@ -29,6 +29,8 @@ public interface BurnDAO {
 
 	int getTotalCountByStation(String stationName);
 
+	List<String> getStationNameList();
+
 	
 
 }

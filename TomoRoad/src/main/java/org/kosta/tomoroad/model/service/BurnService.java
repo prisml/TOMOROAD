@@ -29,4 +29,6 @@ public interface BurnService {
 
 	ListVO<BurnVO> getBurnListByStation(String stationName, String pageNo);
 
+	List<String> getStationNameList();
+
 }

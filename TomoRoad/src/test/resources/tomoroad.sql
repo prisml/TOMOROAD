@@ -213,6 +213,7 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
 
+select distinct station distinct station_name;  
 
 select A.*
 		from(select row_number()
@@ -239,3 +240,5 @@ select * from place;
 select r.no, r.title, r.content, r.posted_time, r.star, r.place_no, r.member_id, r.hits, p.name 
 from review r, place p
 where   r.no=4 and r.place_no=p.no
+select * from REVIEW 
+
