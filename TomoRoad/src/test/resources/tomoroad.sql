@@ -214,3 +214,5 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
 
+select * from member
+select id from member where password='aaaa' and name='aaaa' and tel='aaaa'

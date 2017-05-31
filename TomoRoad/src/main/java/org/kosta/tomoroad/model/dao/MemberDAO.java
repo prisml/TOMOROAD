@@ -17,8 +17,8 @@ public interface MemberDAO {
 
 	void friend(String senderID,String receiverID);
 
-	MemberVO findIdByPwNameTel(MemberVO memberVO);
+	MemberVO findId(MemberVO memberVO);
 
-	MemberVO findPwByIdNameTel(MemberVO memberVO);
+	MemberVO findPw(MemberVO memberVO);
 
 }

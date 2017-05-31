@@ -35,13 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="friend" parameterType="map">
 		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 	</insert>
-	<select id="findIdByPwNameTel" resultType="memberVO" parameterType="memberVO">
-		<include refid="selectMember"></include>
-		where password=#{value},name=#{value},tel=#{value}
+	<select id="findId" resultType="memberVO" parameterType="memberVO">
+		select id from member
+		where password=#{password} and name=#{name} and tel=#{tel}
 	</select>
-	<select id="findPwByIdNameTel" resultType="memberVO" parameterType="memberVO">
-		<include refid="selectMember"></include>
-		where id=#{value},name=#{value},tel=#{value}
+	<select id="findPw" resultType="memberVO" parameterType="memberVO">
+		select password from member
+		where id=#{id} and name=#{name} and tel=#{tel}
 	</select>
 </mapper>
 

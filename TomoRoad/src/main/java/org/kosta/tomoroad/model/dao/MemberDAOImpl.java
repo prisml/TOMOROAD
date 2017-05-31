@@ -44,11 +44,12 @@ public class MemberDAOImpl implements MemberDAO{
 		template.insert("member.friend",friend);
 	}
 	@Override
-	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
-		return template.selectOne("member.findIdByPwNameTel", memberVO);
+	public MemberVO findId(MemberVO memberVO) {
+		System.out.println(memberVO);
+		return template.selectOne("member.findId", memberVO);
 	}
 	@Override
-	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
-		return template.selectOne("member.findPwByIdNameTel", memberVO);
+	public MemberVO findPw(MemberVO memberVO) {
+		return template.selectOne("member.findPw", memberVO);
 	}	
 }

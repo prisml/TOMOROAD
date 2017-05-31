@@ -41,11 +41,11 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 	@Override
-	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
-		return memberDAO.findIdByPwNameTel(memberVO);
+	public MemberVO findId(MemberVO memberVO) {
+		return memberDAO.findId(memberVO);
 	}
 	@Override
-	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
-		return memberDAO.findPwByIdNameTel(memberVO);
+	public MemberVO findPw(MemberVO memberVO) {
+		return memberDAO.findPw(memberVO);
 	}
 }
