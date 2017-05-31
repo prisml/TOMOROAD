@@ -15,7 +15,18 @@
 		});
 		
 		$(".show").click(function(){
-			$(".pop").toggle();
+			/* $.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/friendList.do",				
+				data:"id=${mvo.id}",
+				dataType:"json",   
+				success:function(result){
+					for(var i=0; i<result.length; i++){
+						
+					}
+				}
+			}) */
+			$(this).next().toggle();
 		});
 	});
 </script>
@@ -38,13 +49,14 @@
 	<td>${burn.no}</td>
 	<td><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
 	<td>${burn.stationName}</td>
-	<td><a href="#" class="show">${burn.memberId}</a></td>
-	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; top: 216px; left: 510px;">
+	<td style="position: relative;"><a href="#" class="show">${burn.memberId}</a>
+	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; bottom:-30px; right:30;">
     <ul>
       <li><a href="#">리뷰 모아보기</a></li>
       <li><a href="#">친구신청</a></li>      
     </ul>
   	</span>
+  	</td>
 	
 	<td>${burn.postedTime}</td>
 	<td>${burn.hits}</td>

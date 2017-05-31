@@ -68,7 +68,7 @@ public class BurnController {
 	}
 	
 	@RequestMapping("showBurnDetailNohit.do")
-	public ModelAndView showContentNoHit(String no) {			
+	public ModelAndView showBurnDetailNohit(String no) {			
 		return new ModelAndView("burn/burn_detail.tiles","bvo",burnService.findBurnByNo(no));
 	}	
 	
