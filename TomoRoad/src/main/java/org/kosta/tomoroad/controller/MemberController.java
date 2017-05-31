@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,6 +107,10 @@ public class MemberController {
 	@RequestMapping("friendList.do")
 	public ModelAndView friendList(String id){
 		return new ModelAndView("member/friendList.tiles","friendList",memberService.friendList(id));
+	}
+	@RequestMapping("friend_RequestList.do")
+	public List<String> friend_RequestList(String receiverID){
+		return memberService.friend_RequestList(receiverID);
 	}
 }
 
