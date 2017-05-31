@@ -107,6 +107,7 @@ public class MemberController {
 			session.setAttribute("result", vo);
 		return "member/findpw_result.tiles";
 	}
+	}
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String SenderId,String ReceiverId){
 		memberService.friend_Request(SenderId, ReceiverId);
@@ -135,7 +136,7 @@ public class MemberController {
 		return memberService.getFriendId(id, selectId);
 	}
 }
-}
+
 
 
 

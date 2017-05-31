@@ -20,11 +20,7 @@ public interface MemberService {
 
 	MemberVO findId(MemberVO memberVO);
 
-<<<<<<< HEAD
 	MemberVO findPw(MemberVO memberVO);
-
-=======
-	MemberVO findPwByIdNameTel(MemberVO memberVO);
 	
 	void friend_Request(String senderID,String receiverID);
 	
@@ -37,5 +33,5 @@ public interface MemberService {
 	List<String> friendList(String id);
 	
 	String getFriendId(String id,String selectId);
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+
 }

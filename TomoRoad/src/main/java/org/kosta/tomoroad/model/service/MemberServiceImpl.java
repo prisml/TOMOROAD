@@ -30,13 +30,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void updateMember(MemberVO vo) {
-		memberDAO.updateMember(vo);
-		
+		memberDAO.updateMember(vo);	
 	}
 	@Override
 	public void deleteMember(MemberVO vo) {
-		memberDAO.deleteMember(vo);
-		
+		memberDAO.deleteMember(vo);	
 	}
 	@Override
 	public MemberVO findId(MemberVO memberVO) {
@@ -46,19 +44,17 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO findPw(MemberVO memberVO) {
 		return memberDAO.findPw(memberVO);
 	}
+	@Override
 	public void friend_Request(String senderID, String receiverID) {
 		memberDAO.friend_Request(senderID, receiverID);
-
 	}
 	@Override
 	public List<String> friend_RequestList(String receiverID) {
-		return memberDAO.friend_RequestList(receiverID);
-		
+		return memberDAO.friend_RequestList(receiverID);		
 	}
 	@Override
 	public void friend_Accept(String senderID, String receiverID) {
-		memberDAO.friend_Accept(senderID, receiverID);
-		
+		memberDAO.friend_Accept(senderID, receiverID);		
 	}
 	@Override
 	public void friend_Refuse(String senderID, String receiverID) {

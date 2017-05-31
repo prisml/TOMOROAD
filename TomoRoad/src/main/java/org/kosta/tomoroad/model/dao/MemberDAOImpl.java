@@ -38,7 +38,7 @@ public class MemberDAOImpl implements MemberDAO{
 		template.delete("member.deleteMember",vo);		
 	}
 	@Override
-<<<<<<< HEAD
+
 	public void friend(String senderID, String receiverID) {
 		HashMap<String,String> friend = new HashMap<String,String>();
 		friend.put("senderID", senderID);
@@ -47,12 +47,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public MemberVO findId(MemberVO memberVO) {
-		System.out.println(memberVO);
 		return template.selectOne("member.findId", memberVO);
-=======
-	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
-		return template.selectOne("member.findIdByPwNameTel", memberVO);
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 	}
 	@Override
 	public MemberVO findPw(MemberVO memberVO) {

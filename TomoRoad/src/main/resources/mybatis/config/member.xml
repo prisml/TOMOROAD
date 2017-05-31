@@ -2,7 +2,6 @@
 <!-- Sql Mapper -->
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member"> 	
 	<sql id="selectMember">
@@ -32,24 +31,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
-<<<<<<< HEAD
 	<insert id="friend" parameterType="map">
 		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 	</insert>
 	<select id="findId" resultType="memberVO" parameterType="memberVO">
 		select id from member
 		where password=#{password} and name=#{name} and tel=#{tel}
-=======
+	</select>
 	<select id="findIdByPwNameTel" resultType="memberVO" parameterType="memberVO">
 		<include refid="selectMember"></include>
 		where password=#{value},name=#{value},tel=#{value}
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 	</select>
-<<<<<<< HEAD
 	<select id="findPw" resultType="memberVO" parameterType="memberVO">
 		select password from member
 		where id=#{id} and name=#{name} and tel=#{tel}
-=======
+	</select>
 	<select id="findPwByIdNameTel" resultType="memberVO" parameterType="memberVO">
 		<include refid="selectMember"></include>
 		where id=#{value},name=#{value},tel=#{value}
@@ -74,10 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 	</select>
 </mapper>
-
 
 
 
