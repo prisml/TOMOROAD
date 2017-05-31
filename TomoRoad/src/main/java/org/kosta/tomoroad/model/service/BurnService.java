@@ -22,11 +22,12 @@ public interface BurnService {
 	List<BurnCommentVO> findBurnCommentByNo(String no);
 
 	String findCommentMemberId(int no);
+
 	void updateBurn(BurnVO bvo);
 
 	void deleteBurn(String no);
 
-	ListVO getBurnListByStation(String stationName, String pageNo);
+	ListVO<BurnVO> getBurnListByStation(String stationName, String pageNo);
 	
 	List<String> getStationNameList();
 	

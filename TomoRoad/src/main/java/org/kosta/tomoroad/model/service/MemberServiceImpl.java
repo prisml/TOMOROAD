@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.MemberDAO;
@@ -28,24 +30,46 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void updateMember(MemberVO vo) {
-		memberDAO.updateMember(vo);
-		
+		memberDAO.updateMember(vo);	
 	}
 	@Override
 	public void deleteMember(MemberVO vo) {
-		memberDAO.deleteMember(vo);
-		
-	}
-	public void friend(String senderID, String receiverID) {
-		memberDAO.friend(senderID, receiverID);
-
+		memberDAO.deleteMember(vo);	
 	}
 	@Override
-	public MemberVO findIdByPwNameTel(MemberVO memberVO) {
-		return memberDAO.findIdByPwNameTel(memberVO);
+	public MemberVO findId(MemberVO memberVO) {
+		return memberDAO.findId(memberVO);
 	}
 	@Override
-	public MemberVO findPwByIdNameTel(MemberVO memberVO) {
-		return memberDAO.findPwByIdNameTel(memberVO);
+	public MemberVO findPw(MemberVO memberVO) {
+		return memberDAO.findPw(memberVO);
+	}
+	@Override
+	public void friend_Request(String senderID, String receiverID) {
+		memberDAO.friend_Request(senderID, receiverID);
+	}
+	@Override
+	public List<String> friend_RequestList(String receiverID) {
+		return memberDAO.friend_RequestList(receiverID);		
+	}
+	@Override
+	public void friend_Accept(String senderID, String receiverID) {
+		memberDAO.friend_Accept(senderID, receiverID);		
+	}
+	@Override
+	public void friend_Refuse(String senderID, String receiverID) {
+		memberDAO.friend_Refuse(senderID, receiverID);
+	}
+	@Override
+	public List<String> friendList(String id) {
+		return memberDAO.friendList(id);
+	}
+	@Override
+	public String getFriendId(String id, String selectId) {
+		return memberDAO.getFriendId(id, selectId);
+	}
+	@Override
+	public void deleteFriend(String id, String deleteId) {
+		memberDAO.deleteFriend(id, deleteId);
 	}
 }

@@ -8,11 +8,13 @@
 		select name,detail from station
 	</sql>
 	
-	<select id="getStationInfo" resultType="stationVO">
+	<select id="getInfo" resultType="stationVO">
 		<include refid="selectStation"/>
 		where name=#{value}
 	</select>
 	
-
+	<select id="getList" resultType="stationVO">
+		<include refid="selectStation"/>
+	</select>
 	
 </mapper>

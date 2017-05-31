@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -60,5 +61,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 	@Override
 	public void delete(String no) {
 		template.delete("review.delete", no);
+	}
+
+	@Override
+	public List<PlaceVO> getStationList() {
+		return template.selectList("place.getList");
+	}
+
+	@Override
+	public void hits(String no) {
+		template.update("review.updateHits", Integer.parseInt(no));
 	}
 }

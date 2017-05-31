@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kosta.tomoroad.model.service.BurnService;
+import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.StationService;
 import org.kosta.tomoroad.model.vo.PlaceVO;
@@ -25,20 +25,19 @@ public class TestUnit {
 	@Resource(name="placeServiceImpl")
 	private PlaceService placeService;
 	
-	@Resource(name="burnServiceImpl")
-	private BurnService burnService;
+	@Resource(name="memberServiceImpl")
+	private MemberService memberService;
 
 	@Test
 	public void test(){
 		// 역 정보 얻어오기
-		List<StationVO> stationInfoList= stationService.getStationInfo("전주");
+		StationVO stationInfoList= stationService.getInfo("전주");
 		System.out.println("역정보:"+stationInfoList);
 		
 		// 역 주면 관광지 정보 얻어오기
 		List<PlaceVO> placeInfolist= placeService.getPlaceInfo("전주");
 		System.out.println("역주변정보:"+placeInfolist);
+		System.out.println(memberService.friendList("java"));
 		
-		System.out.println(burnService.getBurnListByStation("서울역","1"));
-		System.out.println(burnService.getBurnList());
 	}
 }

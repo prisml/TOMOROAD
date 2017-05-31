@@ -3,6 +3,7 @@ package org.kosta.tomoroad.model.dao;
 import java.util.List;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 
 public interface ReviewDAO {
@@ -22,5 +23,9 @@ public interface ReviewDAO {
 	List<ReviewVO> getListByPlace(PagingBean pb, String place);
 
 	void delete(String no);
+
+	List<PlaceVO> getStationList();
+
+	void hits(String no);
 
 }

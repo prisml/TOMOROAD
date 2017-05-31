@@ -16,7 +16,11 @@
 <script src="${pageContext.request.contextPath}/resources/js/imagesloaded.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/classie.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/AnimOnScroll.js"></script>
-
+<style type="text/css" >
+.mainContent{
+	padding-top: 80px;
+}
+</style>
 <script>
 $('#myCarousel').carousel({
     interval: 1800

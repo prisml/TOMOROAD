@@ -39,24 +39,42 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "review/register.do", method = RequestMethod.POST)
-	public ModelAndView register(ReviewVO vo, int place, HttpServletRequest req) {
+	public ModelAndView register(ReviewVO vo, int placeNo, HttpServletRequest req) {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
-		vo.setPlace(new PlaceVO(place));
+		vo.setPlace(new PlaceVO(placeNo));
 		service.register(vo);
-		return new ModelAndView("redirect:review/detail.do?no=" + vo.getNo());
+		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
+	}
+	
+	@RequestMapping("review/register_form.do")
+	public ModelAndView registerForm() {
+		return new ModelAndView("review/register_form.tiles", "placeList", service.getStationList());
+	}
+	
+	@RequestMapping("review/update_form.do")
+	public ModelAndView updateForm(String no){
+		System.out.println("updateForm no="+no);
+		System.out.println("rvo="+service.getDetail(no));
+		return new ModelAndView("review/update_form.tiles", "rvo", service.getDetail(no));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
-	public ModelAndView update(ReviewVO vo, int place, HttpServletRequest req) {
+	public ModelAndView update(ReviewVO vo, int placeNo, HttpServletRequest req) {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
-		vo.setPlace(new PlaceVO(place));
+		vo.setPlace(new PlaceVO(placeNo));
 		service.update(vo);
-		return new ModelAndView("redirect:review/detail.do?no=" + vo.getNo());
+		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
 	}
 
 	@RequestMapping("review/detail.do")
 	public ModelAndView detail(String no) {
 		return new ModelAndView("review/detail.tiles", "rvo", service.getDetail(no));
+	}
+	
+	@RequestMapping("review/detailHit.do")
+	public ModelAndView detailHit(String no){
+		service.getDetailHit(no);
+		return new ModelAndView("redirect:detail.do?no="+no);
 	}
 	
 	@RequestMapping("review/delete.do")

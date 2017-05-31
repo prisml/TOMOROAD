@@ -2,7 +2,6 @@
 <!-- Sql Mapper -->
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member"> 	
 	<sql id="selectMember">
@@ -35,16 +34,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="friend" parameterType="map">
 		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 	</insert>
+	<select id="findId" resultType="memberVO" parameterType="memberVO">
+		select id from member
+		where password=#{password} and name=#{name} and tel=#{tel}
+	</select>
 	<select id="findIdByPwNameTel" resultType="memberVO" parameterType="memberVO">
 		<include refid="selectMember"></include>
 		where password=#{value},name=#{value},tel=#{value}
+	</select>
+	<select id="findPw" resultType="memberVO" parameterType="memberVO">
+		select password from member
+		where id=#{id} and name=#{name} and tel=#{tel}
 	</select>
 	<select id="findPwByIdNameTel" resultType="memberVO" parameterType="memberVO">
 		<include refid="selectMember"></include>
 		where id=#{value},name=#{value},tel=#{value}
 	</select>
+		<insert id="friend_Request" parameterType="map">
+		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
+	</insert>
+	<update id="friend_Accept" parameterType = "map">
+		update friend set state = '수락' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+	</update>
+	<update id = "friend_Refuse" parameterType="map">
+		update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+	</update>
+	<select id="friend_RequestList" resultType="string">
+		select sender_id from friend where receiver_id = #{value} and state = '대기'
+	</select>
+	<select id="friendListBySenderId" resultType="string">
+		select receiver_id as friend from friend where sender_id = #{value} and state = '수락'
+	</select>
+	<select id="friendListByReceiverId" resultType="string">
+		select sender_id as friend from friend where receiver_id = #{value} and state = '수락'
+	</select>
+	<select id="getFriendId" parameterType="map" resultType="string">
+		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
+	</select>
+	<select id="deleteFriend" parameterType="map">
+		delete from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId})
+	</select>
 </mapper>
-
 
 
 

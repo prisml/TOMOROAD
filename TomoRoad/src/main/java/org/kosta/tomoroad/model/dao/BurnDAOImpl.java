@@ -74,6 +74,7 @@ public class BurnDAOImpl implements BurnDAO{
 	public int getTotalCountByStation(String stationName) {		
 		return template.selectOne("burn.getTotalCountByStation",stationName);
 	}
+
 	@Override
 	public void registeComment(BurnCommentVO vo){
 		template.insert("burn.registeComment",vo);
@@ -94,4 +95,6 @@ public class BurnDAOImpl implements BurnDAO{
 	public List<String> getStationNameList() {
 		return template.selectList("burn.getStationNameList");
 	}
+	
+	
 }
