@@ -46,24 +46,25 @@ public class MemberController {
 		return "home.tiles";
 	}
 	@RequestMapping(value="member/registerMember.do", method = RequestMethod.POST)
-	public String register(MemberVO vo) {
+	public String registerMember(MemberVO vo) {
 		memberService.registerMember(vo);		
 		return "redirect:registerResultView.do?id=" + vo.getId();
 	}
 	@RequestMapping("member/registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result.tiles", "memberVO", vo);
+		return new ModelAndView("member/register_result.tiles", "mvo", vo);
 	}
 	@RequestMapping(value="member/updateMember.do",method=RequestMethod.POST)
-	public String update(MemberVO vo) {
+	public String updateMember(MemberVO vo) {
 		memberService.updateMember(vo);	
 		return "redirect:updateResultView.do?id=" + vo.getId();	
 	}
 	@RequestMapping("member/updateResultView.do")
-	public ModelAndView updateMember(String id){		
+	public ModelAndView updateMember(String id){	
+		System.out.println("아이디 : " +  id);
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/update_result.tiles", "memberVO", vo);
+		return new ModelAndView("member/update_result.tiles", "mvo", vo);
 	}	
 	@RequestMapping("idcheckAjax.do")
 	@ResponseBody
@@ -83,21 +84,29 @@ public class MemberController {
 	@RequestMapping("member/deleteResultView.do")
 	public ModelAndView deleteResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/delete_result.tiles", "memberVO", vo);
+		return new ModelAndView("member/delete_result.tiles", "mvo", vo);
 	}
-	@RequestMapping("findIdByPwNameTel.do")
-	public String findIdByPwNameTel(MemberVO memberVO,Model model){
-		MemberVO vo=memberService.findIdByPwNameTel(memberVO);
-		if(vo!=null)
-			model.addAttribute("result", vo);
-		return "member/findid.tiles";
+	@RequestMapping(value="findId.do",method=RequestMethod.POST)
+	public String findId(MemberVO memberVO,HttpServletRequest request){
+		MemberVO vo=memberService.findId(memberVO);
+		if(vo==null)
+			return "member/findid_fail";
+		else{
+			HttpSession session=request.getSession();
+			session.setAttribute("result", vo);
+		return "member/findid_result.tiles";
 	}
-	@RequestMapping("findPwByIdNameTel.do")
-	public String findPwByIdNameTel(MemberVO memberVO,Model model){
-		MemberVO vo=memberService.findPwByIdNameTel(memberVO);
-		if(vo!=null)
-			model.addAttribute("result", vo);
-		return "member/findpw.tiles";
+}
+	@RequestMapping(value="findPw.do",method=RequestMethod.POST)
+	public String findPw(MemberVO memberVO,HttpServletRequest request){
+		MemberVO vo=memberService.findPw(memberVO);
+		if(vo==null)
+			return "member/findpw_fail";
+		else{
+			HttpSession session=request.getSession();
+			session.setAttribute("result", vo);
+		return "member/findpw_result.tiles";
+	}
 	}
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String SenderId,String ReceiverId){
@@ -132,6 +141,7 @@ public class MemberController {
 		return null;
 	}
 }
+
 
 
 
