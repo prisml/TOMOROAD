@@ -69,8 +69,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select sender_id as friend from friend where receiver_id = #{value} and state = '수락'
 	</select>
 	<select id="getFriendId" parameterType="map" resultType="string">
+<<<<<<< HEAD
 		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
 	</select>
+=======
+		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
+	</select>
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 </mapper>
 
 
