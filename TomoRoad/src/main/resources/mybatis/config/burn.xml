@@ -38,7 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
-	
+	<select id="findBurnCommentByNo" resultType="burnCommentVO">
+		select * from burn_comment where burn_no=#{value} order by no asc	
+	</select>
+	<select id="findParentCommentMemberId" resultType="String">
+		select member_id from burn_comment where no=#{value}
+	</select>
 	<update id="updateBurn" parameterType="burnVO">
 		update burn_board
 		set	title = #{title}, content = #{content}, station_name = #{stationName}
@@ -58,6 +63,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits 
 			  from (select * from BURN_BOARD where station_name = #{stationName})) 
 		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
+	</select>
+	
+	<select id="getStationNameList" resultType="string">
+		select distinct name from station
 	</select>
 	
 	

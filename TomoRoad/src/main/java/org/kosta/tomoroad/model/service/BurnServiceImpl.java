@@ -1,9 +1,12 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.BurnDAO;
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.springframework.stereotype.Service;
@@ -29,7 +32,7 @@ public class BurnServiceImpl implements BurnService {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
 
-		return new ListVO(burnDAO.getBurnList(pagingBean), pagingBean);
+		return new ListVO<BurnVO>(burnDAO.getBurnList(pagingBean), pagingBean);
 
 	}
 
@@ -47,7 +50,17 @@ public class BurnServiceImpl implements BurnService {
 	public void updateHits(String no) {
 		burnDAO.updateHits(no);
 	}
-
+	@Override
+	public List<BurnCommentVO> findBurnCommentByNo(String no) {
+		// TODO Auto-generated method stub
+		return burnDAO.findBurnCommentByNo(no);
+	}
+	@Override
+	public Object findParentCommentMemberId(int no) {
+		// TODO Auto-generated method stub
+		return burnDAO.findParentCommentMemberId(no);
+	}
+	
 	@Override
 	public void updateBurn(BurnVO bvo) {
 		burnDAO.updateBurn(bvo);
@@ -59,7 +72,7 @@ public class BurnServiceImpl implements BurnService {
 	}
 
 	@Override
-	public ListVO getBurnListByStation(String stationName, String pageNo) {
+	public ListVO<BurnVO> getBurnListByStation(String stationName, String pageNo) {
 		int totalCount = burnDAO.getTotalCountByStation(stationName);		
 
 		PagingBean pagingBean = null;
@@ -68,7 +81,12 @@ public class BurnServiceImpl implements BurnService {
 		} else {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
-		return new ListVO(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+		return new ListVO<BurnVO>(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+	}
+
+	@Override
+	public List<String> getStationNameList() {		
+		return burnDAO.getStationNameList();
 	}
 
 }

@@ -1,10 +1,13 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.ReviewDAO;
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.ListVO;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void register(ReviewVO vo) {
+		System.out.println(vo);
 		dao.register(vo);
 	}
 
@@ -39,9 +43,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public ReviewVO getDetailHit(String no) {
+		dao.hits(no);
 		ReviewVO vo = dao.getDetail(no);
-		vo.setHits(vo.getHits()+1);
-		dao.update(vo);
+		/*vo.setHits(vo.getHits()+1);
+		dao.update(vo);*/
+		System.out.println(vo);
 		return vo;
 	}
 
@@ -66,6 +72,11 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void delete(String no) {
 		dao.delete(no);
+	}
+
+	@Override
+	public List<PlaceVO> getStationList() {
+		return dao.getStationList();
 	}
 
 }

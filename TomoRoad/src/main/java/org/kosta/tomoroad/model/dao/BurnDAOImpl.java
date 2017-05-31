@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -42,6 +43,16 @@ public class BurnDAOImpl implements BurnDAO{
 	}
 
 	@Override
+	public List<BurnCommentVO> findBurnCommentByNo(String no) {
+		// TODO Auto-generated method stub
+		return template.selectList("burn.findBurnCommentByNo",no);
+	}
+
+	@Override
+	public Object findParentCommentMemberId(int no) {
+		// TODO Auto-generated method stub
+		return template.selectOne("burn.findParentCommentMemberId",no);
+	}
 	public void updateBurn(BurnVO bvo) {
 		template.update("burn.updateBurn",bvo);		
 	}
@@ -62,6 +73,11 @@ public class BurnDAOImpl implements BurnDAO{
 	@Override
 	public int getTotalCountByStation(String stationName) {		
 		return template.selectOne("burn.getTotalCountByStation",stationName);
+	}
+
+	@Override
+	public List<String> getStationNameList() {
+		return template.selectList("burn.getStationNameList");
 	}
 	
 	

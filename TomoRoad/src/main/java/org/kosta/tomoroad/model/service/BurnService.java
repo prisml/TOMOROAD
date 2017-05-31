@@ -1,13 +1,15 @@
 package org.kosta.tomoroad.model.service;
 
-import java.util.Map;
+import java.util.List;
+
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
 
-public interface BurnService {	
+public interface BurnService {
 
-	ListVO<BurnVO> getBurnList();	
+	ListVO<BurnVO> getBurnList();
 
 	ListVO<BurnVO> getBurnList(String pageNo);
 
@@ -17,11 +19,16 @@ public interface BurnService {
 
 	void updateHits(String no);
 
+	List<BurnCommentVO> findBurnCommentByNo(String no);
+
+	Object findParentCommentMemberId(int no);
+
 	void updateBurn(BurnVO bvo);
 
 	void deleteBurn(String no);
 
-	ListVO getBurnListByStation(String stationName, String pageNo);
+	ListVO<BurnVO> getBurnListByStation(String stationName, String pageNo);
 
+	List<String> getStationNameList();
 
 }

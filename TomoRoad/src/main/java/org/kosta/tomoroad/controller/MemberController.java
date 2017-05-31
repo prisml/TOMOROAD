@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -104,6 +106,33 @@ public class MemberController {
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
 		return "member/findpw_result.tiles";
+	}
+	@RequestMapping("friend_Request.do")
+	public String friend_Request(String SenderId,String ReceiverId){
+		memberService.friend_Request(SenderId, ReceiverId);
+		return null;
+	}
+	@RequestMapping("friend_Accept.do")
+	public String friend_Accept(String senderID,String receiverID){
+		memberService.friend_Accept(senderID, receiverID);
+		return null;
+	}
+	@RequestMapping("friend_Refuse.do")
+	public String friend_Refuse(String senderID,String receiverID){
+		memberService.friend_Refuse(senderID, receiverID);
+		return null;
+	}
+	@RequestMapping("friendList.do")
+	public ModelAndView friendList(String id){
+		return new ModelAndView("member/friendList.tiles","friendList",memberService.friendList(id));
+	}
+	@RequestMapping("friend_RequestList.do")
+	public List<String> friend_RequestList(String receiverID){
+		return memberService.friend_RequestList(receiverID);
+	}
+	@RequestMapping("getFriendId.do")
+	public String getFriendId(String id,String selectId){
+		return memberService.getFriendId(id, selectId);
 	}
 }
 }
