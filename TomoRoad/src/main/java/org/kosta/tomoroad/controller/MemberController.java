@@ -102,6 +102,10 @@ public class MemberController {
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;
 	}
+	@RequestMapping("friendList.do")
+	public ModelAndView friendList(String id){
+		return new ModelAndView("member/friendList.tiles","friendList",memberService.friendList(id));
+	}
 }
 
 
