@@ -104,6 +104,16 @@ public class MemberController {
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;
 	}
+	@RequestMapping("friend_Accept.do")
+	public String friend_Accept(String senderID,String receiverID){
+		memberService.friend_Accept(senderID, receiverID);
+		return null;
+	}
+	@RequestMapping("friend_Refuse.do")
+	public String friend_Refuse(String senderID,String receiverID){
+		memberService.friend_Refuse(senderID, receiverID);
+		return null;
+	}
 	@RequestMapping("friendList.do")
 	public ModelAndView friendList(String id){
 		return new ModelAndView("member/friendList.tiles","friendList",memberService.friendList(id));
