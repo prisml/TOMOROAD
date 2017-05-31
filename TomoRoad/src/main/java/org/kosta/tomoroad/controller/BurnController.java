@@ -73,8 +73,10 @@ public class BurnController {
 	}
 	//댓글끝
 	@RequestMapping("updateBurnView.do")
-	public ModelAndView updateBurnView(String no){		
-		return new ModelAndView("burn/update_form.tiles","bvo",burnService.findBurnByNo(no));		
+	public String updateBurnView(String no, Model model){
+		model.addAttribute("bvo", burnService.findBurnByNo(no));
+		model.addAttribute("station", burnService.getStationNameList());
+		return "burn/update_form.tiles";		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="updateBurn.do")
@@ -84,7 +86,7 @@ public class BurnController {
 	}
 	
 	@RequestMapping("showBurnDetailNohit.do")
-	public ModelAndView showContentNoHit(String no) {			
+	public ModelAndView showBurnDetailNohit(String no) {			
 		return new ModelAndView("burn/burn_detail.tiles","bvo",burnService.findBurnByNo(no));
 	}	
 	
@@ -97,6 +99,11 @@ public class BurnController {
 	@RequestMapping("getBurnListByStation.do")
 	public ModelAndView getBurnListByStation(String stationName, String pageNo){
 		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnListByStation(stationName, pageNo));
+	}
+	
+	@RequestMapping("writeBurnForm.do")
+	public ModelAndView writeBurnForm(){
+		return new ModelAndView("burn/register_form.tiles","station",burnService.getStationNameList());
 	}
 }
 

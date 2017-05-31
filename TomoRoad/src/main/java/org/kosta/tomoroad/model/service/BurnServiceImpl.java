@@ -81,7 +81,12 @@ public class BurnServiceImpl implements BurnService {
 		} else {
 			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
-		return new ListVO(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+		return new ListVO<BurnVO>(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
+	}
+
+	@Override
+	public List<String> getStationNameList() {		
+		return burnDAO.getStationNameList();
 	}
 
 	@Override

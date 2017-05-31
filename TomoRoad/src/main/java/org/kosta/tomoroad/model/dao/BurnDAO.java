@@ -37,6 +37,6 @@ public interface BurnDAO {
 
 	void replyComment(BurnCommentVO vo);
 
-	
+	List<String> getStationNameList();
 
 }

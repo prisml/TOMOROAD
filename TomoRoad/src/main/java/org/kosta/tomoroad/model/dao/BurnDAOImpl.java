@@ -90,5 +90,8 @@ public class BurnDAOImpl implements BurnDAO{
 	public void replyComment(BurnCommentVO vo){
 		template.insert("burn.replyComment",vo);
 	}
-	
+	@Override
+	public List<String> getStationNameList() {
+		return template.selectList("burn.getStationNameList");
+	}
 }
