@@ -140,7 +140,7 @@ public class MemberController {
 	@RequestMapping("deleteFriend.do")
 	public String deleteFriend(String id,String deleteId){
 		memberService.deleteFriend(id, deleteId);
-		return null;
+		return "redirect:friendList.do?id="+id;
 
 	}
 }
