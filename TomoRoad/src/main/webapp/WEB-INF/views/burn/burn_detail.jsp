@@ -71,15 +71,15 @@
 						comments += "<td colspan=3>"+data[z].content+"</td>";
 						}
 						}else if(data[z].state=="delete"){
-							comments +="<td>"+data[z].posted_time+"</td>"
-							comments +="</tr>";
-							comments +="<tr>";
-							comments +="<td colspan=3>삭제된 댓글입니다.</td>";
-							comments +="</tr>";
+						comments +="<td>"+data[z].posted_time+"</td>"
+						comments +="</tr>";
+						comments +="<tr>";
+						comments +="<td colspan=3>삭제된 댓글입니다.</td>";
+						comments +="</tr>";
 						}
 						comments += "</tr>";
 						comments += "</table>";
-						comments += "<div id=ㅇㅇ>";
+						comments += "<div>";
 						comments += "</div>";						
 						comments += "</div>";
 						$("#re"+data[z].recomment).append(comments);
