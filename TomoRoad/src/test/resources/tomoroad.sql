@@ -96,6 +96,14 @@ create table burn_board(
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
  
+create table recommend(
+	member_id varchar2(100),
+	review_no number,
+	primary key(member_id, review_no),
+	constraint fk_recommend_id foreign key(member_id) references member(id),
+	constraint fk_recommend_no foreign key(review_no) references review(no)	
+)
+
 create sequence burn_board_seq nocache;
 
 
