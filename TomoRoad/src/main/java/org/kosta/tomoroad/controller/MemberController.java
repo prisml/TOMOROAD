@@ -35,7 +35,7 @@ public class MemberController {
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo",vo);
-			return "home.tiles";
+			return "redirect:home.do";
 		}
 	}
 	@RequestMapping("logout.do")

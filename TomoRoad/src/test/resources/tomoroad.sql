@@ -96,6 +96,14 @@ create table burn_board(
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
  
+create table recommend(
+	member_id varchar2(100),
+	review_no number,
+	primary key(member_id, review_no),
+	constraint fk_recommend_id foreign key(member_id) references member(id),
+	constraint fk_recommend_no foreign key(review_no) references review(no)	
+)
+
 create sequence burn_board_seq nocache;
 
 
@@ -110,7 +118,7 @@ create table burn_comment(
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
 create sequence burn_comment_seq nocache;
-alter table burn_comment add state varchar2(100) not null; --추가부탁드려요 테이블비우고.
+alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
 
 create table advertisement(
 	no number primary key,
