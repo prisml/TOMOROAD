@@ -100,9 +100,11 @@ create table review_recommend(
 	member_id varchar2(100),
 	review_no number,
 	primary key(member_id, review_no),
-	constraint fk_recommend_id foreign key(member_id) references member(id),
-	constraint fk_recommend_no foreign key(review_no) references review(no)	
+	constraint fk_reivew_recommend_id foreign key(member_id) references member(id),
+	constraint fk_review_recommend_no foreign key(review_no) references review(no)	
 )
+
+drop table review_recommend
 
 create sequence burn_board_seq nocache;
 
@@ -220,6 +222,10 @@ insert into review(no,title,content,posted_time,star,place_no,member_id)
 values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
+
+insert into review_recommend values('java',3)
+
+select * from review_recommend
 
 <<<<<<< HEAD
 select * from REVIEW 
