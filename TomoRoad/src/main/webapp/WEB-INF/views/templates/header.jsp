@@ -33,15 +33,16 @@
 
 			<li><a href="${pageContext.request.contextPath}/station/getList.do">STATION</a>
 			</li>
-
+<li>
 			<c:choose>
 				<c:when test="${empty mvo}">
-					<li><a id="login">LogIn</a></li>
+					<a href="${pageContext.request.contextPath}/member/login.do">LogIn</a>
 				</c:when>
 				<c:otherwise>
-					<li><a id="logout">LogOut</a></li>
+					<a href="${pageContext.request.contextPath}/logout.do">LogOut</a>
 				</c:otherwise>
 			</c:choose>
+			</li>
 		</ul>
 	</div>
 </div>

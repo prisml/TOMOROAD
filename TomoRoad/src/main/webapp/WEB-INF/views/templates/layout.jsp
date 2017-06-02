@@ -35,9 +35,14 @@
 		<header id="header">
 			<tiles:insertAttribute name="header" />
 		</header>
+		<hr>
+		<section class="content about">
+			<div class="row sub_content">
+				<tiles:insertAttribute name="main" />
+			</div>
+		</section>
+		<tiles:insertAttribute name="footer" />
 	</section>
-	<tiles:insertAttribute name="main" />
-	<tiles:insertAttribute name="footer" />
 	<!--start footer-->
 
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
