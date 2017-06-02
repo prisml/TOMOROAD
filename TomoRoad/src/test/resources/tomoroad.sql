@@ -110,7 +110,7 @@ create table burn_comment(
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
 create sequence burn_comment_seq nocache;
-
+alter table burn_comment add state varchar2(100) not null; --추가부탁드려요 테이블비우고.
 
 create table advertisement(
 	no number primary key,

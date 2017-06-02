@@ -56,9 +56,9 @@ public class BurnServiceImpl implements BurnService {
 		return burnDAO.findBurnCommentByNo(no);
 	}
 	@Override
-	public Object findParentCommentMemberId(int no) {
+	public String findCommentMemberId(int no) {
 		// TODO Auto-generated method stub
-		return burnDAO.findParentCommentMemberId(no);
+		return burnDAO.findCommentMemberId(no);
 	}
 	
 	@Override
@@ -87,6 +87,38 @@ public class BurnServiceImpl implements BurnService {
 	@Override
 	public List<String> getStationNameList() {		
 		return burnDAO.getStationNameList();
+	}
+
+	@Override
+	public void registeComment(BurnCommentVO vo) {
+		// TODO Auto-generated method stub
+		burnDAO.registeComment(vo);
+	}
+
+	@Override
+	public void deleteComment(BurnCommentVO vo) {
+		// TODO Auto-generated method stub
+		String member_id=burnDAO.findCommentMemberId(vo.getNo());
+		if(member_id.equals(vo.getMember_id())){
+		burnDAO.deleteComment(vo);
+		}else{
+			System.out.println("비정상적인 삭제시도 발생.");
+		}
+	}
+
+	@Override
+	public void updateComment(BurnCommentVO vo) {
+		String member_id=burnDAO.findCommentMemberId(vo.getNo());
+		if(member_id.equals(vo.getMember_id())){
+			burnDAO.updateComment(vo);
+		}else{
+			System.out.println("비정상적인 댓글 수정 시도발생.");
+		}
+	}
+
+	@Override
+	public void replyComment(BurnCommentVO vo) {
+		burnDAO.replyComment(vo);
 	}
 
 }
