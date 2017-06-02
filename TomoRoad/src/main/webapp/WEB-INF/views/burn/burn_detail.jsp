@@ -55,10 +55,12 @@
 						comments += "<table id=table"+data[z].no+" border=1 cellpadding=15 width=600>";
 						comments += "<tr>";
 						comments += "<td>"+data[z].no+"</td>";
+						if(data[z].state=="comment"){
 						comments += "<td>"+data[z].member_id+"</td>";
-						comments += "<td>"+data[z].posted_time+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button id=recommentBtn value=답글>";
+						comments += "<td id="+data[z].no+">"+data[z].posted_time+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button class=recommentBtn value=답글 id="+data[z].no+">";
 						if("${mvo.id}"=="${bvo.memberId}"){
-						comments += "<input type=button id=deleteCommentBtn value=삭제>";
+						comments += "<input type=button class=deleteCommentBtn value=삭제 id="+data[z].no+">";
+						comments += "<input type=button class=updateCommentBtn value=수정 id="+data[z].no+">";
 						}
 						comments += "</td>";
 						comments += "</tr>"
@@ -68,24 +70,78 @@
 						}else{
 						comments += "<td colspan=3>"+data[z].content+"</td>";
 						}
+						}else if(data[z].state=="delete"){
+						comments +="<td>"+data[z].posted_time+"</td>"
+						comments +="</tr>";
+						comments +="<tr>";
+						comments +="<td colspan=3>삭제된 댓글입니다.</td>";
+						comments +="</tr>";
+						}
 						comments += "</tr>";
 						comments += "</table>";
+						comments += "<div>";
+						comments += "</div>";						
 						comments += "</div>";
 						$("#re"+data[z].recomment).append(comments);
 						}else{
 						var comments =""; 
-						comments += "<table>";
+						comments += "<div>";
 						comments += "<tr>";
 						comments += "<td>";
 						comments += "로그인을 하지 않아 댓글을 볼 수 없습니다."
 						comments += "</td>";
 						comments += "</tr>";
-						comments += "</table>";
+						comments += "</div>";
 						$("#re0").html(comments);							
 						}
 				}//for
 			}//success
 		});//ajax
+		$(document).on("click",".deleteCommentBtn",function(){
+			var no=$(this).attr("id");
+			var result = confirm("댓글을 삭제하시겠습니까?");
+			if(result){
+			location.href="${pageContext.request.contextPath}/deleteComment.do?no="+no+"&burn_no=${bvo.no}&member_id=${mvo.id}";
+			}else{
+				
+			}
+		});//deleteBtn
+		$(document).on("click",".updateCommentBtn",function(){
+			$(this).parent().parent().next().children().html("<input type=text id=content required=required><input type=button class=updateComment value=수정하기><input type=button class=updateCancleBtn value=취소하기>");
+		});//updateCommentBtn
+		$(document).on("click",".updateComment",function(){
+			var content = document.getElementById("content").value; 
+			var no=$(this).parent().parent().prev().children().next().next().attr("id");
+			if(content==""){
+				alert("수정할 내용을 입력해주세요!");
+			}else{
+				var result= confirm("댓글을 수정하시겠습니까?");
+			if(result){
+				location.href="${pageContext.request.contextPath}/updateComment.do?no="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
+			}
+			}
+		});//updateComment
+		$(document).on("click",".updateCancleBtn",function(){
+			location.reload();
+		});//updateCancle
+		$(document).on("click",".recommentBtn",function(){;
+			var no=$(this).attr("id");
+			var commentbox ="<textarea id=commentbox"+no+" name=commentbox rows=3 style=width:530px; word-break: break-all;></textarea>"
+			$("#table"+no).next().html(commentbox+"<br><input type=button value=답글달기 class=replyBtn id="+no+">"+"<input type=button id="+no+" value=취소 class=replyCancleBtn>");
+		}); //답글달기 버튼
+		$(document).on("click",".replyBtn",function(){
+			var no=$(this).attr("id");
+			var content=document.getElementById("commentbox"+no).value;
+			location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
+		}); //답글
+		$(document).on("click",".replyCancleBtn",function(){
+			var no=$(this).attr("id");
+			$("#table"+no).next().html("");
+		}); //답글달기취소
+		$("#commentBtn").click(function(){
+			var content=document.getElementById("commentbox").value;
+			location.href="${pageContext.request.contextPath}/registeComment.do?content="+content+"&member_id=${mvo.id}&burn_no=${bvo.no}";
+		});
 	});//ready 
 </script>
 	<div id="re0">
@@ -94,7 +150,7 @@
 <c:if test="${mvo.id !=null }">
 	<div>
 		<textarea id="commentbox" name="commentbox" rows="3" style="width:600px; word-break: break-all;"></textarea>
-		<br><input type="button" value="등록">
+		<br><input id="commentBtn" type="button" value="등록">
 	</div>
 	<br><br>
 </c:if>	

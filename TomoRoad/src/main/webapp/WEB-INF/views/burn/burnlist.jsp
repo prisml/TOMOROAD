@@ -15,7 +15,27 @@
 		});
 		
 		$(".show").click(function(){
-			$(".pop").toggle();
+			var selectId = $(this).text();
+			var myId = "${sessionScope.mvo.id}";
+			if(selectId==myId){
+				return false;
+			}
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/getFriendId.do",				
+				data:"id=${sessionScope.mvo.id}&selectId="+selectId,				  
+				success:function(result){
+					if(result!=""){
+						$(".popcon").empty();
+						$(".popcon").html("<li><a href='#'>리뷰 모아보기</a></li>");					
+					}else{
+						$(".popcon").empty();
+						$(".popcon").html("<li><a href='#'>리뷰 모아보기</a></li><li><a href='#'>친구신청</a></li>");
+					}
+				}
+			})						
+			
+			$(this).next().toggle();
 		});
 	});
 </script>
@@ -38,13 +58,14 @@
 	<td>${burn.no}</td>
 	<td><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
 	<td>${burn.stationName}</td>
-	<td><a href="#" class="show">${burn.memberId}</a></td>
-	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; top: 216px; left: 510px;">
-    <ul>
+	<td style="position: relative;"><a href="#" class="show">${burn.memberId}</a>
+	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; bottom:-30px; right:30;">
+    <ul class="popcon">
       <li><a href="#">리뷰 모아보기</a></li>
       <li><a href="#">친구신청</a></li>      
     </ul>
   	</span>
+  	</td>
 	
 	<td>${burn.postedTime}</td>
 	<td>${burn.hits}</td>

@@ -20,7 +20,7 @@ public interface BurnDAO {
 
 	List<BurnCommentVO> findBurnCommentByNo(String no);
 
-	Object findParentCommentMemberId(int no);
+	String findCommentMemberId(int no);
 	void updateBurn(BurnVO bvo);
 
 	void deleteBurn(String no);
@@ -29,8 +29,14 @@ public interface BurnDAO {
 
 	int getTotalCountByStation(String stationName);
 
-	List<String> getStationNameList();
+	void registeComment(BurnCommentVO vo);
 
-	
+	void deleteComment(BurnCommentVO vo);
+
+	void updateComment(BurnCommentVO vo);
+
+	void replyComment(BurnCommentVO vo);
+
+	List<String> getStationNameList();
 
 }

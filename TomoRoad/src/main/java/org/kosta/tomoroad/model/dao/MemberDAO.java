@@ -17,9 +17,11 @@ public interface MemberDAO {
 
 	void deleteMember(MemberVO vo);
 
-	MemberVO findIdByPwNameTel(MemberVO memberVO);
+	void friend(String senderID,String receiverID);
 
-	MemberVO findPwByIdNameTel(MemberVO memberVO);
+	MemberVO findId(MemberVO memberVO);
+
+	MemberVO findPw(MemberVO memberVO);
 
 	void friend_Request(String senderID,String receiverID);
 	
@@ -30,4 +32,9 @@ public interface MemberDAO {
 	void friend_Refuse(String senderID,String receiverID);
 
 	List<String> friendList(String id);
+	
+	String getFriendId(String id,String selectId);
+	
+	void deleteFriend(String id,String deleteId);
+
 }
