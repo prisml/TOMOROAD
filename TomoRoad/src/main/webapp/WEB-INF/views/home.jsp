@@ -148,8 +148,6 @@ a.cbtn {
 }
 </style>
 <!-- <div style="width:500px; height:700px;"></div> -->
-<section class="content about">
-	<div class="row sub_content">
 		<!-- 해당 역 아이콘 -->
 		<%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
 		<div style="position: absolute; top: 379px; left: 262px;">
@@ -354,5 +352,3 @@ a.cbtn {
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
