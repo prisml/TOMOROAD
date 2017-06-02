@@ -88,6 +88,6 @@ public class ReviewController {
 	@RequestMapping("review_recommend")
 	public String review_recommend(String member_id,int review_no){
 		service.review_recommend(member_id, review_no);
-		return "redirect:review/detail.do";
+		return "redirect:review/detail.do?no="+review_no;
 	}
 }
