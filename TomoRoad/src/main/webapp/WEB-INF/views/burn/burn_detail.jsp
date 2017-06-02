@@ -21,8 +21,8 @@
 </script>
 
 <center>
-
-<table border="1" cellpadding="15" width="600">
+<div class="container">
+<table class="table table-bordered">
 	<tr>
 		<td>No</td><td>${bvo.no}</td>  <td>제목</td><td colspan="2">${bvo.title}</td> <td>조회수</td><td>${bvo.hits}</td>		
 	</tr>
@@ -34,7 +34,10 @@
 		<td colspan="6">${bvo.content}</td>
 	</tr>
 </table>
+</div>
+
 <br>
+
 <table border="1" cellpading="15" width="600"> 
 	<tr>
 		<td><center>comments</center></td>
