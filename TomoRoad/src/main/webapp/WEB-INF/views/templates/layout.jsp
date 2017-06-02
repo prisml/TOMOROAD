@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<title><tiles:insertAttribute name="title" ignore="true" /></title>
-	<jsp:include page="/resources/boot.jsp"/>
+<title><tiles:insertAttribute name="title" ignore="true" /></title>	
 </head>
 <body>
 	<div id="container">		
