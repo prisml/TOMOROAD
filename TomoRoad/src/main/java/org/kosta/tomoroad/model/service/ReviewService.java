@@ -25,5 +25,9 @@ public interface ReviewService {
 	void delete(String no);
 
 	List<PlaceVO> getStationList();
+	
+	void review_recommend(String member_id,int review_no);
+	
+	int getreview_recommendByreviewNo(int review_no);
 
 }

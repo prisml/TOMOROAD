@@ -72,4 +72,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void hits(String no) {
 		template.update("review.updateHits", Integer.parseInt(no));
 	}
+
+	@Override
+	public void review_recommend(Map<String,Object> map) {
+		template.insert("review_recommend",map);
+	}
+
+	@Override
+	public int getreview_recommendByreviewNo(int review_no) {
+		return template.selectOne("getreview_recommendByreviewNo",review_no);
+	}
 }

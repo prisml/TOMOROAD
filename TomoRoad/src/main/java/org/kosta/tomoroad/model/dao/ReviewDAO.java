@@ -1,6 +1,7 @@
 package org.kosta.tomoroad.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.PlaceVO;
@@ -27,5 +28,8 @@ public interface ReviewDAO {
 	List<PlaceVO> getStationList();
 
 	void hits(String no);
+	
+	int getreview_recommendByreviewNo(int review_no);
 
+	void review_recommend(Map<String, Object> map);
 }

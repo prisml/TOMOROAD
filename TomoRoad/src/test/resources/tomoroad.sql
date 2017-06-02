@@ -225,6 +225,7 @@ select * from REVIEW
 
 insert into review_recommend values('java',3)
 
+select count(*) from review_recommend where review_no = 3
 select * from review_recommend
 
 <<<<<<< HEAD

@@ -1,5 +1,6 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -46,7 +47,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void friend_Request(String senderID, String receiverID) {
-		memberDAO.friend_Request(senderID, receiverID);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		memberDAO.friend_Request(friend);
 	}
 	@Override
 	public List<String> friend_RequestList(String receiverID) {

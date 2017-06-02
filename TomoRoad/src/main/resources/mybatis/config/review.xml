@@ -70,4 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="review_recommend" parameterType="map">
 		insert into review_recommend values(#{member_id},#{review_no})
 	</insert>
+	<select id="getreview_recommendByreviewNo">
+		select count(*) from review_recommend where review_no = #{value}
+	</select>
 </mapper>

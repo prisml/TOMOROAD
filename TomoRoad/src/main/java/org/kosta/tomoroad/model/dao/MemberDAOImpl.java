@@ -54,10 +54,7 @@ public class MemberDAOImpl implements MemberDAO{
 		return template.selectOne("member.findPw", memberVO);
 	}	
 	@Override
-	public void friend_Request(String senderID, String receiverID) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("senderID", senderID);
-		friend.put("receiverID",receiverID);
+	public void friend_Request(HashMap<String,String> friend) {
 		template.insert("member.friend_Request",friend);
 	}
 	@Override
