@@ -49,9 +49,9 @@ public class BurnDAOImpl implements BurnDAO{
 	}
 
 	@Override
-	public Object findParentCommentMemberId(int no) {
+	public String findCommentMemberId(int no) {
 		// TODO Auto-generated method stub
-		return template.selectOne("burn.findParentCommentMemberId",no);
+		return template.selectOne("burn.findCommentMemberId",no);
 	}
 	public void updateBurn(BurnVO bvo) {
 		template.update("burn.updateBurn",bvo);		
@@ -76,10 +76,25 @@ public class BurnDAOImpl implements BurnDAO{
 	}
 
 	@Override
+	public void registeComment(BurnCommentVO vo){
+		template.insert("burn.registeComment",vo);
+	}
+	@Override
+	public void deleteComment(BurnCommentVO vo){
+		template.update("burn.deleteComment",vo);
+	}
+	@Override
+	public void updateComment(BurnCommentVO vo){
+		template.update("burn.updateComment",vo);
+	}
+	@Override
+	public void replyComment(BurnCommentVO vo){
+		template.insert("burn.replyComment",vo);
+	}
+	@Override
 	public List<String> getStationNameList() {
 		return template.selectList("burn.getStationNameList");
 	}
-	
 	
 	
 }

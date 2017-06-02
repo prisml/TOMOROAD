@@ -38,12 +38,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
+	<!-- 댓글 -->
 	<select id="findBurnCommentByNo" resultType="burnCommentVO">
 		select * from burn_comment where burn_no=#{value} order by no asc	
 	</select>
-	<select id="findParentCommentMemberId" resultType="String">
+	<select id="findCommentMemberId" resultType="String">
 		select member_id from burn_comment where no=#{value}
 	</select>
+	<insert id="registeComment" parameterType="burnCommentVO">
+		insert into burn_comment (no,content,posted_time,burn_no,member_id) 
+		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{member_id}) 
+	</insert>
+	<insert id="replyComment" parameterType="burnCommentVO">
+		insert into burn_comment (no,content,posted_time,burn_no,recomment,member_id) 
+		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{recomment},#{member_id}) 
+	</insert>
+	<update id="deleteComment" parameterType="burnCommentVO">
+		update burn_comment set state=#{state} where no=#{no} and member_id =#{member_id}
+	</update>
+	<update id="updateComment" parameterType="burnCommentVO">
+		update burn_comment set content=#{content} where no=#{no} and member_id =#{member_id}
+	</update>
+	<!-- 댓글끝 -->
 	<update id="updateBurn" parameterType="burnVO">
 		update burn_board
 		set	title = #{title}, content = #{content}, station_name = #{stationName}

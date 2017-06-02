@@ -113,6 +113,7 @@ public class MemberController {
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;
 	}
+
 	@RequestMapping("friend_Accept.do")
 	public String friend_Accept(String senderID,String receiverID){
 		memberService.friend_Accept(senderID, receiverID);
@@ -132,13 +133,15 @@ public class MemberController {
 		return memberService.friend_RequestList(receiverID);
 	}
 	@RequestMapping("getFriendId.do")
+	@ResponseBody
 	public String getFriendId(String id,String selectId){
 		return memberService.getFriendId(id, selectId);
 	}
 	@RequestMapping("deleteFriend.do")
 	public String deleteFriend(String id,String deleteId){
 		memberService.deleteFriend(id, deleteId);
-		return null;
+		return "redirect:friendList.do?id="+id;
+
 	}
 }
 

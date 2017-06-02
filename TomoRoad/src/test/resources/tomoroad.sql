@@ -110,7 +110,7 @@ create table burn_comment(
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
 create sequence burn_comment_seq nocache;
-
+alter table burn_comment add state varchar2(100) not null; --추가부탁드려요 테이블비우고.
 
 create table advertisement(
 	no number primary key,
@@ -246,6 +246,8 @@ select * from place;
 select r.no, r.title, r.content, r.posted_time, r.star, r.place_no, r.member_id, r.hits, p.name 
 from review r, place p
 where   r.no=4 and r.place_no=p.no
-select * from REVIEW 
+select * from friend 
+
+select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
 
 >>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
