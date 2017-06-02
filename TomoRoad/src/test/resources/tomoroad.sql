@@ -96,7 +96,7 @@ create table burn_board(
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
  
-create table recommend(
+create table review_recommend(
 	member_id varchar2(100),
 	review_no number,
 	primary key(member_id, review_no),
