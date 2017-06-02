@@ -68,7 +68,9 @@ public class ReviewController {
 
 	@RequestMapping("review/detail.do")
 	public ModelAndView detail(String no) {
-		return new ModelAndView("review/detail.tiles", "rvo", service.getDetail(no));
+		ReviewVO rvo = service.getDetail(no);
+		rvo.setRecommend(service.getreview_recommendByreviewNo(Integer.parseInt(no)));
+		return new ModelAndView("review/detail.tiles", "rvo", rvo);
 	}
 	
 	@RequestMapping("review/detailHit.do")
