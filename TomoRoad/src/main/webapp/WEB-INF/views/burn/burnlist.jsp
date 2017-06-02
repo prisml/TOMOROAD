@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<center>
+
 
 
 <script>
@@ -40,14 +40,14 @@
 	});
 </script>
 
-
-<input type="button" value="글쓰기" id="write">
-
+<right>
+<input type="button" class="btn btn-default btn-lg btn-block" value="글쓰기" id="write">
+</right>
 <br><br>
-<table border="1" cellpadding="15">
+<table class="table table-hover">
   <tr>
     <th>번호</th>
-    <th>제목</th>
+    <th colspan="11">제목</th>
     <th>역이름</th>
     <th>작성자</th>
     <th>작성시간</th>
@@ -56,7 +56,7 @@
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
 	<td>${burn.no}</td>
-	<td><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
+	<td  colspan="11"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
 	<td>${burn.stationName}</td>
 	<td style="position: relative;"><a href="#" class="show">${burn.memberId}</a>
 	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; bottom:-30px; right:30;">
@@ -74,6 +74,8 @@
 </table>
 
 
+<center>
+
 <c:set value="${lvo.pagingBean}" var="pb"/>
 
 <c:if test="${pb.previousPageGroup}">
@@ -81,17 +83,20 @@
 	◀
 	</a>
 </c:if>
-
+<ul class="pagination">
+<li>
 <c:forEach begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}" var="page">
 	<c:choose>
 		<c:when test="${pb.nowPage!=page}">
 			<a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${page}">${page}</a> 
 		</c:when>
 		<c:otherwise>
-			${page}
+			<a href="#">${page}</a>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
+</li>
+</ul>
 
 <c:if test="${pb.nextPageGroup}">
 	<a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.endPageOfPageGroup+1}">
@@ -99,6 +104,6 @@
 	</a>
 </c:if>
 
-
 </center>
+
 
