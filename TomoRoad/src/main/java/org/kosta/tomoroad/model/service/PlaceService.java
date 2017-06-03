@@ -8,4 +8,6 @@ public interface PlaceService {
 
 	List<PlaceVO> getPlaceInfo(String id);
 
+	List<String> getKeyWord(String keyword);
+
 }
