@@ -44,4 +44,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}
 		where no=#{no}
 	</update>
+	
+	<!-- 제목에 따른 검색결과 리턴 -->
+	<select id="getTitle" resultType="reviewVO" resultMap="reviewRM">
+		select no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD') postedTime,hits
+		from review
+		where title like '%' || #{value} || '%'
+	</select>
+	
+	<!-- 제목+내용에 따른 검색결과 리턴 -->
+	<select id="getTitleAndContent" resultType="reviewVO" resultMap="reviewRM">
+		select no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD') postedTime,hits
+		from review
+		where title like '%' || #{value} || '%' or content like '%' || #{value} || '%'
+	</select>
+	
+	
 </mapper>

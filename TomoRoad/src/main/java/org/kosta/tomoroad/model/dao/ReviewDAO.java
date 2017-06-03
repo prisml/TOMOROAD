@@ -17,4 +17,6 @@ public interface ReviewDAO {
 
 	void update(ReviewVO vo);
 
+	List<ReviewVO> getKeyword(String keyword, String reviewFilter);
+
 }

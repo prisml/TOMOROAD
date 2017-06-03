@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.ReviewDAO;
@@ -43,6 +45,13 @@ public class ReviewServiceImpl implements ReviewService {
 		vo.setHits(vo.getHits()+1);
 		dao.update(vo);
 		return vo;
+	}
+
+	@Override
+	public List<ReviewVO> getKeyword(String keyword,String reviewFilter) {
+		System.out.println("service야");
+		System.out.println("서비스에서의"+reviewFilter);
+		return dao.getKeyword(keyword,reviewFilter);
 	}
 
 }
