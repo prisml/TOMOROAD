@@ -36,15 +36,15 @@
 
 		var bg = temp.prev().hasClass('bg'); //dimmed 레이어를 감지하기 위한 boolean 변수
 
-		var divTop = obj.top - 400; //상단 좌표
+		var divTop = obj.top - 480; //상단 좌표
 
 		var divLeft;// 좌측 좌표
 
 		// 좌측 좌표가 일정수치를 넘으면 레이어팝업이 깨지므로 일정수치가 넘을 경우 레이어팝업이 우측이 아닌 좌측에 뜨도록
 		if (obj.left > 900) {
-			divLeft = obj.left - 250;
+			divLeft = obj.left - 265;
 		} else {
-			divLeft = obj.left - 50;
+			divLeft = obj.left - 70;
 		}
 
 		if (bg) {
@@ -125,103 +125,103 @@ a.cbtn {
 			<img src="${pageContext.request.contextPath}/resources/img/map.png">
 		<%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
 		<!-- <div style="position: absolute; top: 379px; left: 262px;"> -->
-		<div style="position: absolute; top: 360px; left: 302px;">
+		<div style="position: absolute; top: 330px; left: 302px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울">
 		</div>
-		<div style="position: absolute; top: 375px; left: 302px;">
+		<div style="position: absolute; top: 345px; left: 302px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="용산">
 		</div>
-		<div style="position: absolute; top: 471px; left: 315px;">
+		<div style="position: absolute; top: 441px; left: 315px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="수원">
 		</div>
-		<div style="position: absolute; top: 283px; left: 446px;">
+		<div style="position: absolute; top: 253px; left: 446px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="가평">
 		</div>
-		<div style="position: absolute; top: 251px; left: 238px;">
+		<div style="position: absolute; top: 221px; left: 238px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="도라산">
 		</div>
-		<div style="position: absolute; top: 571px; left: 684px;">
+		<div style="position: absolute; top: 541px; left: 684px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="단양">
 		</div>
-		<div style="position: absolute; top: 522px; left: 652px;">
+		<div style="position: absolute; top: 492px; left: 652px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="제천">
 		</div>
-		<div style="position: absolute; top: 844px; left: 333px;">
+		<div style="position: absolute; top: 814px; left: 333px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="논산">
 		</div>
-		<div style="position: absolute; top: 974px; left: 360px;">
+		<div style="position: absolute; top: 944px; left: 360px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="전주">
 		</div>
-		<div style="position: absolute; top: 924px; left: 249px;">
+		<div style="position: absolute; top: 894px; left: 249px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="군산">
 		</div>
-		<div style="position: absolute; top: 938px; left: 294px;">
+		<div style="position: absolute; top: 908px; left: 294px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="익산">
 		</div>
-		<div style="position: absolute; top: 1283px; left: 453px;">
+		<div style="position: absolute; top: 1253px; left: 453px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="순천">
 		</div>
-		<div style="position: absolute; top: 1351px; left: 528px;">
+		<div style="position: absolute; top: 1321px; left: 528px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="여수">
 		</div>
-		<div style="position: absolute; top: 1332px; left: 133px;">
+		<div style="position: absolute; top: 1302px; left: 133px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="목포">
 		</div>
-		<div style="position: absolute; top: 1246px; left: 228px;">
+		<div style="position: absolute; top: 1216px; left: 228px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="나주">
 		</div>
-		<div style="position: absolute; top: 1343px; left: 335px;">
+		<div style="position: absolute; top: 1313px; left: 335px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="보성">
 		</div>
-		<div style="position: absolute; top: 1168px; left: 402px;">
+		<div style="position: absolute; top: 1138px; left: 402px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="곡성">
 		</div>
-		<div style="position: absolute; top: 252px; left: 507px;">
+		<div style="position: absolute; top: 222px; left: 507px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="춘천">
 		</div>
-		<div style="position: absolute; top: 320px; left: 875px;">
+		<div style="position: absolute; top: 290px; left: 875px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정동진">
 		</div>
-		<div style="position: absolute; top: 380px; left: 903px;">
+		<div style="position: absolute; top: 350px; left: 903px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="동해">
 		</div>
-		<div style="position: absolute; top: 434px; left: 778px;">
+		<div style="position: absolute; top: 404px; left: 778px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="정선">
 		</div>
-		<div style="position: absolute; top: 503px; left: 863px;">
+		<div style="position: absolute; top: 473px; left: 863px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="태백">
 		</div>
-		<div style="position: absolute; top: 299px; left: 842px;">
+		<div style="position: absolute; top: 269px; left: 842px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="강릉">
 		</div>
-		<div style="position: absolute; top: 716px; left: 795px;">
+		<div style="position: absolute; top: 686px; left: 795px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="안동">
 		</div>
-		<div style="position: absolute; top: 892px; left: 968px;">
+		<div style="position: absolute; top: 862px; left: 968px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="포항">
 		</div>
-		<div style="position: absolute; top: 970px; left: 947px;">
+		<div style="position: absolute; top: 940px; left: 947px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="경주">
 		</div>
-		<div style="position: absolute; top: 1085px; left: 812px;">
+		<div style="position: absolute; top: 1055px; left: 812px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="밀양">
 		</div>
-		<div style="position: absolute; top: 1179px; left: 755px;">
+		<div style="position: absolute; top: 1149px; left: 755px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="마산">
 		</div>
-		<div style="position: absolute; top: 1202px; left: 622px;">
+		<div style="position: absolute; top: 1172px; left: 622px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="진주">
 		</div>
-		<div style="position: absolute; top: 1201px; left: 295px;">
+		<div style="position: absolute; top: 1171px; left: 295px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="광주">
 		</div>
-		<div style="position: absolute; top: 804px; left: 429px;">
+		<div style="position: absolute; top: 774px; left: 429px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대전">
 		</div>
-		<div style="position: absolute; top: 1226px; left: 893px;">
+		<div style="position: absolute; top: 1196px; left: 893px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="부산">
 		</div>
-		<div style="position: absolute; top: 948px; left: 750px;">
+		<div style="position: absolute; top: 918px; left: 750px;">
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구">
 		</div>
 	</div>
@@ -231,7 +231,8 @@ a.cbtn {
 			<div class="pop-conts">
 				<div>
 					<!-- 역이름 -->
-					<p style="font-size: 40" align="center" id="station"></p>
+					<!-- <p style="font-size: 40" align="center" id="station"></p> -->
+					<h2 align ="center" id="station"></h2>
 					<input type="image" id="exam" src="${pageContext.request.contextPath}/resources/img/1-1.png" onclick="return move('a')"> 
 						<input type="image" id="exam" src="${pageContext.request.contextPath}/resources/img/2.png" onclick="return move('b')">
 						<input type="image" src="${pageContext.request.contextPath}/resources/img/3-1.png" onclick="return move('c')">
