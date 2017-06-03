@@ -17,7 +17,7 @@
 					<span class="day">28</span> <span class="month">Nov</span>
 				</div>
 				<figure class="post_img">
-					<a href="#"> <img src="images/blog/blog_medium_1.png"
+					<a href="#"> <img src="${pageContext.request.contextPath}/resources/images/blog/blog_medium_1.png"
 						alt="blog post">
 					</a>
 				</figure>
@@ -29,8 +29,11 @@
 						</h2>
 						<div class="metaInfo">
 							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
-							</span> <span><i class="fa fa-comments"></i> <a href="#">12
-									Comments</a></span>
+							</span>
+							<span><i class="fa fa-map-marker"></i>
+							<a href="#.">${rlist.place.name }</a></span> 
+							<span><i class="fa fa-comments"></i> <a href="#">12
+							Comments</a></span>
 						</div>
 					</div>
 					<p>${rlist.content }</p>
