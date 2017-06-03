@@ -7,14 +7,18 @@
 	<sql id="selectStation">
 		select name,detail from station
 	</sql>
-	
+
 	<select id="getInfo" resultType="stationVO">
-		<include refid="selectStation"/>
+		<include refid="selectStation" />
 		where name=#{value}
 	</select>
-	
-	<select id="getList" resultType="stationVO">
-		<include refid="selectStation"/>
+
+	<select id="getKeyword" resultType="String">
+		select name from station
+		where name like '%' || #{value} || '%'
 	</select>
-	
+
+	<select id="getList" resultType="stationVO">
+		<include refid="selectStation" />
+	</select>
 </mapper>

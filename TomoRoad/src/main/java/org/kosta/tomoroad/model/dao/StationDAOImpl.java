@@ -26,4 +26,10 @@ public class StationDAOImpl implements StationDAO {
 		System.out.println(list);
 		return list;
 	}
+
+	@Override
+	public List<String> getKeyword(String keyword) {
+		return template.selectList("station.getKeyword",keyword);
+	}
+
 }

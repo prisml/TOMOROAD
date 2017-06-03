@@ -44,7 +44,8 @@ create table place(
 	constraint fk_station_name foreign key(station_name) references station(name),
 	area varchar2(100) not null
 );
- 
+alter table place add lat number not null; --추가부탁드려요 테이블비우고.
+alter table place add lng number not null; --추가부탁드려요 테이블비우고.  
 create sequence place_seq nocache;
 
 
@@ -194,7 +195,7 @@ select * from member;
 select * from BURN_BOARD;
 select * from STATION;
 select * from place;
-		
+
 
 select A.* from(select row_number() 
 over(order by no desc) rnum, no, title, station_name, member_id, 
@@ -206,9 +207,45 @@ insert into station(name,detail) values('전주','주소 : 전라북도 전주�
 												전화번호 : 1544-7788
 												관련정보 : 승차권 예매, 승차권 이용안내, 기차시간 및 운임표
 												부가정보 : 기차역 검색, 고객센터, 유실물 찾기');
+												
+insert into place values(place_seq.nextval,'한옥마올','전주','전라도');
 insert into place values(place_seq.nextval,'동대문','서울역','서울');
 
 select sysdate from dual
+	
+insert into MEMBER values('java','123','홍길동','여','01012341234');
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'전주 한옥마을 후기','한번도 가본 적 없음ㅎㅎ',sysdate,3,'1','java');
+
+
+insert into station(name,detail) values('부산','주소 : 부산광역시 동구 중앙대로 206 한국철도공사부산지역본부
+													지번-부산광역시 동구 초량동 1187-1
+												전화번호 : 1544-7788');
+insert into place values(place_seq.nextval,'해운대','부산','영남지방');
+select * from place where name LIKE '%해운대%'; 
+select no,title,member_id,to_char(posted_time,'YYYY/MM/DD'),hits,star from review where title like '%전주%' or content like '%전주%';
+select title from review where title like '%전주%' or content like '%전주%'
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'전주 한옥마을 후기','한번도 가본 적 없음ㅎㅎ',sysdate,3,'1','java');
+
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'부산 해운대 후기입니다','ㅎㅎㅎㅎ재밌어요',sysdate,2,'2','java');
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'얼른 보세요ㅎㅎ','부산재밌어요',sysdate,3,'2','java');
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'재밌어요재밌어!!!!','부산 재밌어요. 재밌는데요 부산이 재밌는데 재밌어요',sysdate,3,'2','java');
+insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(review_seq.nextval,'부산역에 관하여','부산역 갔다왔는데요. 유명한거 부산호떡,부산갈매기,밀면,해운대,좋아좋아졸ㅇ나라ㅓㅈㅋㅋㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ길이테스틍ㅇㅇㅇㅇ길어도 이게 올라갈까?ㅠㅠㅠ지금 잠와죽겠음ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ하ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ안녕나연ㄴㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',sysdate,3,'2','java');
+
+select content from review where content like '%부%';
+
+SELECT      TRIM(REGEXP_SUBSTR(ORG_DATA, '[^,]+', 1, LEVEL)) AS SPLIT_DATA
+FROM        (select content AS ORG_DATA from review where content like '%부%';)
+CONNECT BY  INSTR(ORG_DATA, '부산', 1, LEVEL - 1) > 0;
+
+
+select content from review where content like '%부산%';
+
+select * from review where title like '%부산%' and content like '%부산%';
+select title from review where title like '%부산%';
+select content from review where content like '%부산%';
+select title from review where content like '%부산%';
+
+select 
 
 insert into friend values('java','goni','수락',sysdate);
 
@@ -228,12 +265,10 @@ insert into review_recommend values('java',3)
 select count(*) from review_recommend where review_no = 3
 select * from review_recommend
 
-<<<<<<< HEAD
 select * from REVIEW 
 
 select * from member
 select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
-=======
 select distinct station distinct station_name;  
 
 select A.*
@@ -264,5 +299,3 @@ where   r.no=4 and r.place_no=p.no
 select * from friend 
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
-
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git

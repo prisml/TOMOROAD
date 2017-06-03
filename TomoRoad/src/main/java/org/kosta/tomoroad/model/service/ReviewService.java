@@ -18,6 +18,8 @@ public interface ReviewService {
 
 	ReviewVO getDetailHit(String no);
 
+	List<ReviewVO> getKeyword(String keyword, String reviewFilter);
+
 	ListVO<ReviewVO> getListByMember(String page, String id);
 
 	ListVO<ReviewVO> getListByPlace(String page, String place);

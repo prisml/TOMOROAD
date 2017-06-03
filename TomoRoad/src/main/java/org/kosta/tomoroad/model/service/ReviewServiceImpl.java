@@ -54,6 +54,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<ReviewVO> getKeyword(String keyword,String reviewFilter) {
+		System.out.println("service야");
+		System.out.println("서비스에서의"+reviewFilter);
+		return dao.getKeyword(keyword,reviewFilter);
+	}
+
 	public ListVO<ReviewVO> getListByMember(String page, String id) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
 		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());

@@ -20,20 +20,19 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 	
-	@RequestMapping("findMemberById.do")
+	@RequestMapping("member_findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
 			model.addAttribute("result", vo);
 		return "redirect:home.do";
 	}
-	@RequestMapping(method=RequestMethod.POST,value="login.do")
-	public String login(MemberVO memberVO,HttpServletRequest request){
+	@RequestMapping(method=RequestMethod.POST,value="member_login.do")
+	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
 		MemberVO vo=memberService.login(memberVO);
 		if(vo==null)
 			return "member/login_fail";
 		else{
-			HttpSession session=request.getSession();
 			session.setAttribute("mvo",vo);
 			return "redirect:home.do";
 		}
@@ -45,12 +44,12 @@ public class MemberController {
 			session.invalidate();
 		return "home.tiles";
 	}
-	@RequestMapping(value="member/registerMember.do", method = RequestMethod.POST)
+	@RequestMapping(value="member/member_registerMember.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO vo) {
 		memberService.registerMember(vo);		
 		return "redirect:registerResultView.do?id=" + vo.getId();
 	}
-	@RequestMapping("member/registerResultView.do")
+	@RequestMapping("member/member_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/register_result.tiles", "mvo", vo);
@@ -65,7 +64,7 @@ public class MemberController {
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/update_result.tiles", "mvo", vo);
 	}	
-	@RequestMapping("idcheckAjax.do")
+	@RequestMapping("member_idcheckAjax.do")
 	@ResponseBody
 	public String idcheckAjax(String id) {		
 		int count=memberService.idcheck(id);
@@ -73,14 +72,14 @@ public class MemberController {
 	}
 	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "redirect:mypage.tiles";
+		return "mypage.tiles";
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
 		memberService.deleteMember(id);
 		return "redirect:member/delete_result.do";
 	}
-	@RequestMapping(value="findId.do",method=RequestMethod.POST)
+	@RequestMapping(value="member_findId.do",method=RequestMethod.POST)
 	public String findId(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findId(memberVO);
 		if(vo==null)
@@ -91,7 +90,7 @@ public class MemberController {
 		return "member/findid_result.tiles";
 	}
 }
-	@RequestMapping(value="findPw.do",method=RequestMethod.POST)
+	@RequestMapping(value="member_findPw.do",method=RequestMethod.POST)
 	public String findPw(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findPw(memberVO);
 		if(vo==null)
@@ -102,7 +101,7 @@ public class MemberController {
 		return "member/findpw_result.tiles";
 	}
 	}
-	@RequestMapping("friend_Request.do")
+	@RequestMapping("member_friend_Request.do")
 	public String friend_Request(String SenderId,String ReceiverId){
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;

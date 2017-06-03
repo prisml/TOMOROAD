@@ -6,6 +6,9 @@ import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface StationDAO {
 
+
+	List<String> getKeyword(String keyword);
+
 	StationVO getInfo(String id);
 
 	List<StationVO> getList();

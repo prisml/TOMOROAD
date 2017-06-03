@@ -45,7 +45,7 @@
 
     <div>
 
-      <form method="post" action="${pageContext.request.contextPath}/login.do" style="margin: 0 auto;">        
+      <form method="post" action="${pageContext.request.contextPath}/member_login.do" style="margin: 0 auto;">        
         <div>
                 <br>
                 <br>
