@@ -85,6 +85,7 @@ public class ReviewController {
 		service.delete(no);
 		return new ModelAndView("redirect:review/showListByMember.do?id="+vo.getId());
 	}
+	
 	@RequestMapping("review_recommend")
 	public String review_recommend(String member_id,int review_no){
 		service.review_recommend(member_id, review_no);
