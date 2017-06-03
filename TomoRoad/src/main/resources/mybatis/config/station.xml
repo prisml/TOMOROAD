@@ -13,6 +13,9 @@
 		where name=#{value}
 	</select>
 	
+	<select id="getKeyword" resultType="String">
+		select name from station where name like '%' || #{value} || '%'
+	</select>
 
 	
 </mapper>

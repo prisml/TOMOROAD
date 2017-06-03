@@ -8,4 +8,6 @@ public interface StationService {
 
 	List<StationVO> getStationInfo(String id);
 
+	List<String> getKeyword(String keyword);
+
 }

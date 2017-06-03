@@ -18,4 +18,9 @@ public class StationServiceImpl implements StationService {
 		System.out.println("서비스다");
 		return dao.getStationInfo(id);
 	}
+
+	@Override
+	public List<String> getKeyword(String keyword) {
+		return dao.getKeyword(keyword);
+	}
 }

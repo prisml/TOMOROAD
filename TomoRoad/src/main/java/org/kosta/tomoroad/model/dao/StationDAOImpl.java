@@ -18,4 +18,9 @@ public class StationDAOImpl implements StationDAO {
 		System.out.println("dao다");
 		return template.selectList("station.getStationInfo",id);
 	}
+
+	@Override
+	public List<String> getKeyword(String keyword) {
+		return template.selectList("station.getKeyword",keyword);
+	}
 }
