@@ -1,6 +1,8 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -52,6 +54,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<ReviewVO> getKeyword(String keyword,String reviewFilter) {
+		System.out.println("service야");
+		System.out.println("서비스에서의"+reviewFilter);
+		return dao.getKeyword(keyword,reviewFilter);
+	}
+
 	public ListVO<ReviewVO> getListByMember(String page, String id) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
 		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
@@ -79,4 +87,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getStationList();
 	}
 
+	@Override
+	public void review_recommend(String member_id, int review_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("review_no", review_no);
+		dao.review_recommend(map);
+	}
+
+	@Override
+	public int getreview_recommendByreviewNo(int review_no) {
+		return dao.getreview_recommendByreviewNo(review_no);
+	}
 }

@@ -18,6 +18,8 @@ public interface ReviewService {
 
 	ReviewVO getDetailHit(String no);
 
+	List<ReviewVO> getKeyword(String keyword, String reviewFilter);
+
 	ListVO<ReviewVO> getListByMember(String page, String id);
 
 	ListVO<ReviewVO> getListByPlace(String page, String place);
@@ -25,5 +27,9 @@ public interface ReviewService {
 	void delete(String no);
 
 	List<PlaceVO> getStationList();
+	
+	void review_recommend(String member_id,int review_no);
+	
+	int getreview_recommendByreviewNo(int review_no);
 
 }

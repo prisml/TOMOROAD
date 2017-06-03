@@ -72,4 +72,31 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void hits(String no) {
 		template.update("review.updateHits", Integer.parseInt(no));
 	}
+
+	@Override
+	public void review_recommend(Map<String,Object> map) {
+		template.insert("review_recommend",map);
+	}
+
+	@Override
+	public int getreview_recommendByreviewNo(int review_no) {
+		return template.selectOne("getreview_recommendByreviewNo",review_no);
+	}
+
+	@Override
+	public List<ReviewVO> getKeyword(String keyword,String reviewFilter) {
+		String filter="";
+		System.out.println("dao에서의 filter->"+filter);
+		System.out.println("dao에서의 reviewFilter->"+reviewFilter);
+		if(reviewFilter.equals("제목만")){
+			System.out.println("제목만인 경우 reviewFilter:"+reviewFilter);
+			filter="Title";
+			System.out.println("제목만인 경우 filter:"+filter);
+		}else{
+			System.out.println("제목과 내용인 경우 reviewFilter:"+reviewFilter);
+			filter="TitleAndContent";
+			System.out.println("제목과 내용인 경우 filter:"+filter);
+		}
+		return template.selectList("review.get"+filter,keyword);
+	}
 }
