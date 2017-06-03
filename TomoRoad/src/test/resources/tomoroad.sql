@@ -221,12 +221,9 @@ values(review_seq.nextval,'test','test',sysdate,5,1,'java');
 
 select * from REVIEW 
 
-<<<<<<< HEAD
-select * from REVIEW 
-
 select * from member
 select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
-=======
+
 select distinct station distinct station_name;  
 
 select A.*
@@ -258,4 +255,3 @@ select * from friend
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
 
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
