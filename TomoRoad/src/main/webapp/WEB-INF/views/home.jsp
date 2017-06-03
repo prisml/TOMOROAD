@@ -42,7 +42,7 @@
 
 		// 좌측 좌표가 일정수치를 넘으면 레이어팝업이 깨지므로 일정수치가 넘을 경우 레이어팝업이 우측이 아닌 좌측에 뜨도록
 		if (obj.left > 900) {
-			divLeft = obj.left - 260;
+			divLeft = obj.left - 250;
 		} else {
 			divLeft = obj.left - 50;
 		}

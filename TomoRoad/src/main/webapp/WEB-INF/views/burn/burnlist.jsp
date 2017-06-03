@@ -40,9 +40,17 @@
 	});
 </script>
 
-<right>
-<input type="button" class="btn btn-default btn-lg btn-block" value="글쓰기" id="write">
-</right>
+<style>
+th {
+	text-align : center;
+}
+input {
+	margin: 10px;
+	
+}
+</style>
+
+<input type="button" class="btn btn-default" value="글쓰기" id="write">
 <br><br>
 <table class="table table-hover">
   <tr>

@@ -17,4 +17,10 @@ public class PlaceServiceImpl implements PlaceService {
 	public List<PlaceVO> getPlaceInfo(String id) {
 		return dao.getPlaceInfo(id);
 	}
+
+	@Override
+	public List<String> getKeyWord(String keyword) {
+		System.out.println("service다");
+		return dao.getKeyWord(keyword);
+	}
 }

@@ -25,4 +25,9 @@ public class StationServiceImpl implements StationService {
 		List<StationVO> list = dao.getList();
 		return list;
 	}
+
+	@Override
+	public List<String> getKeyword(String keyword) {
+		return dao.getKeyword(keyword);
+	}
 }

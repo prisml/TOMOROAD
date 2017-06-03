@@ -10,4 +10,6 @@ public interface StationService {
 
 	List<StationVO> getList();
 
+	List<String> getKeyword(String keyword);
+
 }

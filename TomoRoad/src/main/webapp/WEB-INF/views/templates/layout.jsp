@@ -11,6 +11,9 @@
 
 <!-- CSS FILES -->
 <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- jQuery ui style sheet -->
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
@@ -30,17 +33,12 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
-
-
 </head>
 <body>
 	<section class="wrapper container">
-		<header id="header">
-			<tiles:insertAttribute name="header" />
-		</header>
-		<hr>
-		<section class="content about">
-			<div class="row sub_content">
+		<tiles:insertAttribute name="header" />
+		<section class="content">
+			<div class="row">
 				<tiles:insertAttribute name="main" />
 			</div>
 		</section>
@@ -48,38 +46,72 @@
 	</section>
 	<!--start footer-->
 
-	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/retina-1.1.0.min.js"></script>
-	<script type="text/javascript" src="js/jquery.cookie.js"></script>
-	<!-- jQuery cookie -->
-	<script type="text/javascript" src="js/styleswitch.js"></script>
-	<!-- Style Colors Switcher -->
-	<script src="js/jquery.fractionslider.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script type="text/javascript" src="js/jquery.smartmenus.min.js"></script>
 	<script type="text/javascript"
-		src="js/jquery.smartmenus.bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="js/jflickrfeed.js"></script>
-	<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
-	<script type="text/javascript" src="js/jquery.easypiechart.min.js"></script>
-	<script type="text/javascript" src="js/swipe.js"></script>
-	<script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
-	<script type="text/javascript" src="js/jquery.matchHeight-min.js"></script>
-	<script type="text/javascript" src="js/wow.min.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/retina-1.1.0.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
+	<!-- jQuery cookie -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/styleswitch.js"></script>
+	<!-- Style Colors Switcher -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.fractionslider.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.smartmenus.min.js"></script>
 
-	<script src="js/main.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/retina-1.1.0.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
+	<!-- jQuery cookie -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/styleswitch.js"></script>
+	<!-- Style Colors Switcher -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.fractionslider.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.smartmenus.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.smartmenus.bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jflickrfeed.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.isotope.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.easypiechart.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/swipe.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery-scrolltofixed-min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- jQuery ui library -->
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 	<!-- Start Style Switcher -->
 	<div class="switcher"></div>
 	<!-- End Style Switcher -->
-	<script>
-		// WOW Animation
-		new WOW().init();
-	</script>
 </body>
 </html>
 
