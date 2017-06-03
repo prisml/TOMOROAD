@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where p.station_name=s.name and p.station_name=#{value} <!-- 역 이름에 해당되는 주변 관광지 정보 가져옴 -->
 	</select>
 	
-	<select id="getKeyWord" resultType="String">
+	<select id="getKeyword" resultType="String">
 		select name from place where name like '%' || #{value} || '%'
 	</select>
 	
