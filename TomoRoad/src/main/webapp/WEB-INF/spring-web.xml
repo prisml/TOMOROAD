@@ -41,4 +41,15 @@
 	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1"></property>
 	</bean> -->
+	<!--핸들러 인텁셉터  설정-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<mvc:mapping path="/*.do"/>
+		<mvc:exclude-mapping path="/member_*.do"/>
+		<mvc:exclude-mapping path="/place_*.do"/>
+		<mvc:exclude-mapping path="/list_*.do"/>
+		<mvc:exclude-mapping path="/home.do"/>
+		<bean class="org.kosta.tomorad.controller.interceptor.LoginCheckInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

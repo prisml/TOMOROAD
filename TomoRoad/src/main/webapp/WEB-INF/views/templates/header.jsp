@@ -34,9 +34,9 @@
 				<li></li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/member/mypage.do">
-						MYPAGE </a></li>
-				<li></li>
+					href="${pageContext.request.contextPath}/mypage.do">　MYPAGE　</a>
+				</li>
+			<li>　</li>
 
 				<li><a
 					href="${pageContext.request.contextPath}/station/tourinfo.do">
