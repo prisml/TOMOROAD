@@ -39,8 +39,8 @@
 				<li></li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/station/getList.do">
-						STATION </a></li>
+					href="${pageContext.request.contextPath}/station/tourinfo.do">
+						TourInfo </a></li>
 				<li></li>
 				<li><c:choose>
 						<c:when test="${empty mvo}">
