@@ -73,7 +73,7 @@ public class MemberController {
 	}
 	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "redirect:mypage.tiles";
+		return "mypage.tiles";
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
