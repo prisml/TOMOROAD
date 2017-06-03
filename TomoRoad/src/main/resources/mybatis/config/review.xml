@@ -94,13 +94,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		review_recommend values(#{member_id},#{review_no})
 	</insert>
-<<<<<<< HEAD
-	<select id="getreview_recommendByreviewNo">
-		select count(*) from review_recommend where review_no
-		= #{value}
-=======
+
 	<select id="getreview_recommendByreviewNo" resultType="int">
 		select count(*) from review_recommend where review_no = #{value}
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 	</select>
 </mapper>
