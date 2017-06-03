@@ -44,7 +44,8 @@ create table place(
 	constraint fk_station_name foreign key(station_name) references station(name),
 	area varchar2(100) not null
 );
- 
+alter table place add lat number not null; --추가부탁드려요 테이블비우고.
+alter table place add lng number not null; --추가부탁드려요 테이블비우고.  
 create sequence place_seq nocache;
 
 
@@ -194,7 +195,7 @@ select * from member;
 select * from BURN_BOARD;
 select * from STATION;
 select * from place;
-		
+
 
 select A.* from(select row_number() 
 over(order by no desc) rnum, no, title, station_name, member_id, 

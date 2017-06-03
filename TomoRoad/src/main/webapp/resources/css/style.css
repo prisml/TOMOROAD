@@ -5484,3 +5484,16 @@ nav.tm_navbar li.active > a {
         margin: 20px 0;
     }
 }
+#my-navbar {
+	width: 460px;
+	margin-left: auto;
+	margin-right: auto;
+  text-align: center;
+}
+#my-navbar > ul {
+  display: inline-block;
+  text-align: center;
+}
+#my-navbar > ul > li {
+  display: inline-block;
+}
