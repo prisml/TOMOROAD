@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery ui style sheet -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>   <!-- jQuery library -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>   <!-- jQuery ui library -->
 <script type="text/javascript">
 	var stationInfo; // 역이름 정보
 
@@ -252,8 +249,8 @@ a.cbtn {
 		<!-- 리뷰 선택 시에만 나타나는 폼. -->
 		<span id="form">
 			<select name=reviewForm style="width:101px; height: 30px;">
-				<option id=title>제목만</option>
-				<option id=idAndContent>제목+내용</option>
+				<option id="title">제목만</option>
+				<option id="idAndContent">제목+내용</option>
 			</select>
 		</span>
 		<input id="searchkeyword" type="text">
