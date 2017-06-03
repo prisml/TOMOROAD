@@ -18,30 +18,29 @@
 	<div class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="align:center">
-				<li></li>
+			<ul class="nav navbar-nav" style="align: center">
+				<li>　</li>
 				<li><a href="${pageContext.request.contextPath}/home.do">
 						HOME </a></li>
-				<li></li>
+				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
 						BURNING </a></li>
-				<li></li>
+				<li>　</li>
 
 				<li><a
 					href="${pageContext.request.contextPath}/review/showList.do">
 						REVIEW </a></li>
-				<li></li>
+				<li>　</li>
 
-				<li><a
-					href="${pageContext.request.contextPath}/mypage.do">　MYPAGE　</a>
-				</li>
-			<li>　</li>
+				<li><a href="${pageContext.request.contextPath}/mypage.do">
+						MYPAGE </a></li>
+				<li>　</li>
 
 				<li><a
 					href="${pageContext.request.contextPath}/station/tourinfo.do">
 						TourInfo </a></li>
-				<li></li>
+				<li>　</li>
 				<li><c:choose>
 						<c:when test="${empty mvo}">
 							<a href="${pageContext.request.contextPath}/member/login.do">
@@ -52,7 +51,7 @@
 								LogOut </a>
 						</c:otherwise>
 					</c:choose></li>
-				<li></li>
+				<li>　</li>
 			</ul>
 		</div>
 	</div>
