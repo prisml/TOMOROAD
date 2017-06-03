@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="blog_single">
-	<p>${rvo }</p>
 		<article class="post">
 			<figure class="post_img">
 				<a href="#"> <img src="images/blog/blog_1.png" alt="blog post">
@@ -19,12 +17,12 @@
 					<div class="metaInfo">
 						<span><i class="fa fa-calendar"></i> <a href="#">${rvo.postedTime }</a>
 						</span> <span><i class="fa fa-user"></i> By <a href="#">${mvo.name }</a>
-						</span> <span><i class="fa fa-tag"></i> <a href="#">${mvo.place.name }</a>
-						</span> <span><i class="fa fa-comments"></i> <a href="#">${commentCount }
+						</span> <span><i class="fa fa-tag"></i> <a href="#">${rvo.place.name }</a>
+						</span> <span><i class="fa fa-comments"></i> <a href="#"><%-- ${commentCount } --%>
 								Comments</a></span>
 					</div>
 				</div>
-				<p>${mvo.content }</p>
+				<p>${rvo.content }</p>
 			</div>
 			<ul class="shares">
 				<li class="shareslabel"><h3>Share This Story</h3></li>
@@ -111,4 +109,3 @@
 
 		<a class="btn btn-lg btn-default" href="#">Post Comment</a>
 	</div>
-</div>

@@ -17,8 +17,8 @@
 
 	<div class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
-		<div class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav">
+		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
+			<ul class="nav navbar-nav" style="align:center">
 				<li></li>
 				<li><a href="${pageContext.request.contextPath}/home.do">
 						HOME </a></li>
