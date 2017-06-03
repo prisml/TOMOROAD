@@ -25,7 +25,7 @@ public class MemberController {
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
 			model.addAttribute("result", vo);
-		return "member/findbyid_result.tiles";
+		return "redirect:home.do";
 	}
 	@RequestMapping(method=RequestMethod.POST,value="login.do")
 	public String login(MemberVO memberVO,HttpServletRequest request){
@@ -35,7 +35,7 @@ public class MemberController {
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo",vo);
-			return "home.tiles";
+			return "redirect:home.do";
 		}
 	}
 	@RequestMapping("logout.do")
@@ -62,7 +62,6 @@ public class MemberController {
 	}
 	@RequestMapping("member/updateResultView.do")
 	public ModelAndView updateMember(String id){	
-		System.out.println("아이디 : " +  id);
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/update_result.tiles", "mvo", vo);
 	}	
@@ -76,15 +75,10 @@ public class MemberController {
 	public String myPage(){
 		return "redirect:mypage.tiles";
 }
-	@RequestMapping(value="member/deleteMember.do",method=RequestMethod.POST)
-	public String delete(MemberVO vo) {
-		memberService.deleteMember(vo);	
-		return "redirect:deleteResultView.do?id=" + vo.getId();	
-	}
-	@RequestMapping("member/deleteResultView.do")
-	public ModelAndView deleteResultView(String id) {		
-		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/delete_result.tiles", "mvo", vo);
+	@RequestMapping("deleteMember.do")
+	public String deleteMember(String id){
+		memberService.deleteMember(id);
+		return "redirect:member/delete_result.do";
 	}
 	@RequestMapping(value="findId.do",method=RequestMethod.POST)
 	public String findId(MemberVO memberVO,HttpServletRequest request){

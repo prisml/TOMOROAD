@@ -24,9 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		password=#{password}, name=#{name}, sex=#{sex}, tel=#{tel}
 		where id=#{id}		
 	</update>
-	<delete id="deleteMember" parameterType="memberVO">
-		update member set deleted=#{yes}
-		where id=#{id}	
+	<delete id="deleteMember">
+		delete from member where id=#{id}	
 	</delete>
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
@@ -38,17 +37,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from member
 		where password=#{password} and name=#{name} and tel=#{tel}
 	</select>
-	<select id="findIdByPwNameTel" resultType="memberVO" parameterType="memberVO">
-		<include refid="selectMember"></include>
-		where password=#{value},name=#{value},tel=#{value}
-	</select>
 	<select id="findPw" resultType="memberVO" parameterType="memberVO">
 		select password from member
 		where id=#{id} and name=#{name} and tel=#{tel}
-	</select>
-	<select id="findPwByIdNameTel" resultType="memberVO" parameterType="memberVO">
-		<include refid="selectMember"></include>
-		where id=#{value},name=#{value},tel=#{value}
 	</select>
 		<insert id="friend_Request" parameterType="map">
 		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)

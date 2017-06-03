@@ -81,13 +81,13 @@
                 <br>
                 <br>
             <div>
-             id:  <input type="text" class="form-control" name="id"  value="<%=vo.getId() %>" readonly required="required">
+             id:  <input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required">
               <span id="idCheckView"></span>
             </div>
             
             <br>
             <div>
-              password:  <input type="password" class="form-control" name="password" id="password" value="<%=vo.getPassword() %>" required="required" >
+              password:  <input type="password" class="form-control" name="password" id="password" value="${mvo.password}"required="required" >
             </div>
             
             <br>
@@ -98,7 +98,7 @@
             
 			<br>
 		    <div>
-               name: <input type="text" class="form-control" name="name"  id="name" value="${sessionScope.mvo.name}" required="required" >
+               name: <input type="text" class="form-control" name="name"  id="name" value="${mvo.name}" required="required" >
             </div>  
             
             <br>
@@ -106,7 +106,7 @@
                     <label>Gender</label>
 					<br>
                                 <label>
-                                <input type="text"   class="form-control"  value="<%=vo.getSex() %>" readonly>  
+                                <input type="text"   class="form-control"  value="${mvo.sex}" readonly>  
                                 <br>
                                     <input type="radio" name="sex"  id="sex" value="Female" placeholder="Female" required="required">Female
                                 </label>
@@ -117,7 +117,7 @@
                 
             <br>
 			<div>
-                <input type="text" class="form-control" name="tel"  id="tel" value="<%=vo.getTel() %>" required="required" >
+                <input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" >
             </div>            
             <br> 
             <br><br>

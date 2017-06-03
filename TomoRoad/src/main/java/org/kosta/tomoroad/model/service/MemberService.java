@@ -16,7 +16,7 @@ public interface MemberService {
 
 	void updateMember(MemberVO vo);
 
-	void deleteMember(MemberVO vo);
+	void deleteMember(String id);
 
 	MemberVO findId(MemberVO memberVO);
 
@@ -35,5 +35,7 @@ public interface MemberService {
 	void deleteFriend(String id,String deleteId);
 
 	String getFriendId(String id, String selectId);
+
+	
 
 }

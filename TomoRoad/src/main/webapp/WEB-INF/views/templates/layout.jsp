@@ -7,6 +7,8 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
+
+
 <!-- CSS FILES -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
