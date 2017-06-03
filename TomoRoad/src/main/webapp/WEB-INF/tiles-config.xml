@@ -5,6 +5,7 @@
 <tiles-definitions>
 	<definition name="*.tiles" template="/WEB-INF/views/templates/layout.jsp">
 		<put-attribute name="title" value="{1}" />
+		<put-attribute name="subtitle" value="{1}" />
 		<put-attribute name="header"
 			value="/WEB-INF/views/templates/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
@@ -12,6 +13,7 @@
 	</definition>
 	<definition name="*/*.tiles" extends="home.tiles">
 		<put-attribute name="title" value="{2}" />
+		<put-attribute name="subtitle" value="{1}" />
 		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 </tiles-definitions>   

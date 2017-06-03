@@ -57,18 +57,3 @@
 		</div>
 	</div>
 </header>
-<section id="page_head" class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12">
-		<div class="page_title">
-			<h2>(to do : board name)</h2>
-			<span class="sub_heading">We are here for you 24/7</span>
-		</div>
-		<nav id="breadcrumbs">
-			<ul>
-				<li>Explain :</li>
-				<li><a href="${pageContext.request.contextPath}/home.do">(to
-						do / board explain)</a></li>
-			</ul>
-		</nav>
-	</div>
-</section>

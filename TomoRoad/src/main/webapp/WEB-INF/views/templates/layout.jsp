@@ -37,6 +37,23 @@
 <body>
 	<section class="wrapper container">
 		<tiles:insertAttribute name="header" />
+		<section id="page_head" class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="page_title">
+					<h2>
+						<tiles:insertAttribute name="subtitle" ignore="true" />
+					</h2>
+					<span class="sub_heading">We are here for you 24/7</span>
+				</div>
+				<nav id="breadcrumbs">
+					<ul>
+						<li>Explain :</li>
+						<li><a href="${pageContext.request.contextPath}/home.do"><tiles:insertAttribute
+									name="title" ignore="true" /></a></li>
+					</ul>
+				</nav>
+			</div>
+		</section>
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -114,7 +131,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 	<!-- Start Style Switcher -->
-	<div class="switcher"></div>
+	<!-- <div class="switcher"></div> -->
 	<!-- End Style Switcher -->
 </body>
 </html>
