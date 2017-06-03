@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
 		<result column="name" property="place.name" />
+		<result column="name" property="member.name" />
 		<result column="station_name" property="place.station_name" />
 	</resultMap>
 	<select id="getTotalContents" resultType="int">
@@ -38,9 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id="detail" resultMap="detailReviewRM">
 		select
-		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name
-		from review r, place p where
-		r.no=#{value} and r.place_no=p.no
+		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name, m.name
+		from review r, place p, member m where
+		r.no=#{value} and r.place_no=p.no and m.id=r.member_id
 	</select>
 	<update id="update" parameterType="reviewVO">
 		update review set

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="blog_single">
+	<p>${rvo }</p>
 		<article class="post">
 			<figure class="post_img">
 				<a href="#"> <img src="images/blog/blog_1.png" alt="blog post">

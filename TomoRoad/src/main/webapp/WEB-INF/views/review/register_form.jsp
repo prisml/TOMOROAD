@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<form method="post" action="">
-	제목 : <input type="text" name="title"><br> 장소 :<br> 내용
-	:
-	<textarea rows="10" cols="50" name="content"></textarea>
-	<br> <input type="submit" value="등록">
-</form>
-
 <div class="col-lg-8 col-md-8 col-sm-8">
 	<div class="dividerHeading">
 		<h4>
