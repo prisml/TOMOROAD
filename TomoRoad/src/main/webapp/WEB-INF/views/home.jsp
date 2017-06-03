@@ -120,6 +120,134 @@ a.cbtn {
 	float: left;
 }
 </style>
+
+<!-- 검색 자동완성 -->
+<script>
+  $( function() {
+    var criterion=""; //검색 기준
+    var keyword=""; //검색 키워드
+    var reviewFilter="제목만"; //리뷰검색 기준-제목이냐 제목+내용이냐
+    
+    
+ // DB 연동 없이 사용 할 때,
+/* 	var availableTags = [
+      "전주",
+      "대구",
+      "한옥마을",
+      "전주한옥마을",
+      "젤라또",
+      "전주초코파이",
+      "삼진어묵",
+      "부산",
+      "군산",
+      "새콤달콤",
+      "군산오징어",
+      "왜케많아",
+      "강원도",
+      "원주",
+      "서울",
+      "대전",
+      "곡성",
+      "와따시와아쿠마",
+      "ㅎㅎㅎ초코라뗴",
+      "하",
+      "ㅋㅋ",
+      "화이팅"
+    ]; 
+
+	$( "#tags" ).autocomplete({ // autocomplete : 자동완성기능
+      source: availableTags //source : 검색될 배열
+    }); */
+
+
+/* 
+ * 이건 모름...맵으로 해야하는데
+ $(function(){
+	$( "#autocompleteText" ).autocomplete({
+		source : function( request, response ) { //많이 봤죠? jquery Ajax로 비동기 통신한 후 //json객체를 서버에서 내려받아서 리스트 뽑는 작업
+				$.ajax({
+					//호출할 URL
+					 url: "search.jsp",
+					 //우선 jsontype json으로
+					 dataType: "json",
+					 // parameter 값이다. 여러개를 줄수도 있다.
+					 data: {
+						 //request.term >> 이거 자체가 text박스내에 입력된 값이다.
+						 searchValue: request.term},
+					 success: function( result ) { //return 된놈을 response() 함수내에 다음과 같이 정의해서 뽑아온다.
+						 response(
+								 $.map( result, function( item ) {
+									 return { //label : 화면에 보여지는 텍스트 //value : 실제 text태그에 들어갈 값 //본인은 둘다 똑같이 줬음 //화면에 보여지는 text가 즉, value가 되기때문
+										 label: item.data, 
+										 value: item.data
+										 }
+									 })
+									 );
+					 }
+						 });
+		}, //최소 몇자 이상되면 통신을 시작하겠다라는 옵션
+		minLength: 2, //자동완성 목록에서 특정 값 선택시 처리하는 동작 구현 //구현없으면 단순 text태그내에 값이 들어간다.
+		select: function( event, ui ) {}
+		});
+	}) */
+
+	 //리뷰 선택 시 나타나는 검색기준 셀렉트박스
+	 $(":input[name=reviewForm]").change(function(){
+	 	reviewFilter=$(":input[name=reviewForm] option:selected").val();
+	  });//리뷰검색 기준 셀렉트박스
+	//한번더 
+    //자동완성
+     $( "#searchkeyword" ).autocomplete({
+    	source : function( request, response){
+    		//alert(reviewFilter);
+    		$.ajax({
+    			url: criterion+"/getKeyword.do",
+    			dataType:"json",
+    			data:"keyword="+request.term+"&reviewFilter="+reviewFilter, //사용자가 최근 입력한 단어를 보냄
+    			success: function(data){
+    				response(data);
+    			}//success
+    		});//ajax
+    	}//source:function
+    }); //autocomplete
+    
+	$("#form").hide(); //검색기준이 리뷰가 아닐 땐 숨겨놓음.
+	
+    $(":input[name=searchForm]").change(function(){ //선택상자 폼에서 변했을 때,
+		 criterion=$(this).val();  // 검색기준을 정하고
+		 keyword=$("#searchkeyword").val(); // 키워드를 담음. 어쨌든 내가 선택을 해도 어쨌뜬 최종 검색어가 정해지는거니까
+		
+		//리뷰 선택 시 나타나게만 함.
+		if(criterion=="review"){
+			$("#form").show();
+		}else{
+			$("#form").hide();
+		}
+	});//form change
+		
+  }); //function 
+  </script>
+  
+<!-- //검색자동완성-->
+<select name="searchForm">
+	<option id="all">전체</option>
+	<option id="hash">해시태그</option>
+	<option id="local">station</option>
+	<option id="place">place</option>
+	<option id="review">review</option>
+</select>
+<div class="ui-widget">
+		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
+		<!-- 리뷰 선택 시에만 나타나는 폼. -->
+		<span id="form">
+			<select name=reviewForm style="width:101px; height: 30px;">
+				<option id="title">제목만</option>
+				<option id="idAndContent">제목+내용</option>
+			</select>
+		</span>
+		<input id="searchkeyword" type="text">
+</div>
+
 		<!-- 해당 역 아이콘 -->
 		<div align="center">
 			<img src="${pageContext.request.contextPath}/resources/img/map.png">

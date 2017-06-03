@@ -25,7 +25,7 @@
 	 <div class="comment_form">
     	 <div class="row">
         	 <div class="col-sm-4">
-             	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30"> 
+             	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30" placeholder="제목을 입력해주세요" required> 
              </div>
              <div class="col-sm-4">
                	작성자<input class="col-lg-4 col-md-4 form-control" name="memberId" type="text" size="30" value="${mvo.id}" readonly>
