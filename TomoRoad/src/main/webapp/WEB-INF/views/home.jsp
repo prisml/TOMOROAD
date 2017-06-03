@@ -237,7 +237,7 @@ a.cbtn {
 	<option id="review">review</option>
 </select>
 <div class="ui-widget">
-		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/img/SearchIcon.png" style="width:20px; height:20px;"></label>
+		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
 		<!-- 리뷰 선택 시에만 나타나는 폼. -->
 		<span id="form">
 			<select name=reviewForm style="width:101px; height: 30px;">

@@ -10,9 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="member.id" column="member_id" />
 	</resultMap>
 	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
-		<result column="name" property="place.name" />
+		<result column="place_name" property="place.name" />
+		<result column="member_name" property="member.name" />
 		<result column="station_name" property="place.station_name" />
 	</resultMap>
+	<select id="detail" resultMap="detailReviewRM">
+		select
+		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name
+		from review r, place p, member m where
+		r.no=#{value} and r.place_no=p.no and m.id=r.member_id
+	</select>
 	<select id="getTotalContents" resultType="int">
 		select count(*) from
 		review
@@ -36,12 +43,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		review(no,title,content,posted_time,star,place_no,member_id)
 		values(#{no},#{title},#{content},sysdate,#{star},#{place.no},#{member.id})
 	</insert>
-	<select id="detail" resultMap="detailReviewRM">
-		select
-		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name
-		from review r, place p where
-		r.no=#{value} and r.place_no=p.no
-	</select>
 	<update id="update" parameterType="reviewVO">
 		update review set
 		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}

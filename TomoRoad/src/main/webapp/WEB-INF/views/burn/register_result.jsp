@@ -3,7 +3,7 @@
 
 <script>
 	$(document).ready(function(){
-		$("#list").click(function(){
+		$("#golist").click(function(){
 			location.href="${pageContext.request.contextPath}/getBurnList.do";
 		});
 	});
@@ -64,5 +64,5 @@
 
 <center>
 <br>
-<input type="button" value="리스트로 가기" id="list">
+<a href="#" id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">LIST</a>
 </center>
