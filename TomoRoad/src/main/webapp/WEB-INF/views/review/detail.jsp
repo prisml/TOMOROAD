@@ -24,7 +24,7 @@
 				</div>
 				<p>${rvo.content }</p>
 			</div>
-			<ul class="shares">
+			<!-- <ul class="shares">
 				<li class="shareslabel"><h3>Share This Story</h3></li>
 				<li><a class="twitter" href="#" data-placement="bottom"
 					data-toggle="tooltip" title="Twitter"></a></li>
@@ -38,7 +38,7 @@
 					data-toggle="tooltip" title="Yahoo"></a></li>
 				<li><a class="linkedin" href="#" data-placement="bottom"
 					data-toggle="tooltip" title="LinkedIn"></a></li>
-			</ul>
+			</ul> -->
 		</article>
 		<div class="about_author">
 			<div class="author_desc">
