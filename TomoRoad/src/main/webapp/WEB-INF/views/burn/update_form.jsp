@@ -13,21 +13,35 @@
 		});
 	});
 </script>
-<h3>수정하기</h3><br>
 
-<form method="post" action="${pageContext.request.contextPath}/updateBurn.do" id="updateForm">
-<table border="1">
-<tr>
-	<td>번호 </td><td><input type="text" name="no" value="${bvo.no}" readonly></td>
-	<td>제목</td><td><input type="text" name="title" value="${bvo.title}" required></td> 
-	<td>역이름</td><td><select name=stationName id="st"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach></select></td>
-</tr>
-<tr>
-	<td colspan="5"><textarea name="content" required>${bvo.content}</textarea></td>
-</tr>
-</table>
-<%-- <input type="hidden" name="memberId" value="${bvo.memberId}">
-<input type="hidden" name="postedTime" value="${bvo.postedTime}">
-<input type="hidden" name="hits" value="${bvo.hits}"> --%>
-<input type="submit" value="수정하기">
-</form>
+
+<div class="container">
+ <div class="dividerHeading">
+ 	<h4><span> Update Burn </span></h4>
+ </div>
+ <form method="post" action="${pageContext.request.contextPath}/updateBurn.do" id="updateForm">
+ 
+	 <div class="comment_form">
+    	 <div class="row">
+        	 <div class="col-sm-4">
+             	글번호<input class="col-lg-4 col-md-4 form-control" name="no" type="text" size="30" value="${bvo.no}" readonly> 
+             </div>
+             <div class="col-sm-4">
+               	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30" value="${bvo.title}" required>
+             </div>
+             <div class="col-sm-4">
+               	 역이름<select class="col-lg-4 col-md-4 form-control" name=st id="st"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach></select>
+             </div>
+         </div>
+     </div>
+     <div class="comment-box row">
+       <div class="col-sm-12">
+         <p>
+           <textarea name="content" style="height:300px;" required>${bvo.content}</textarea>
+         </p>
+      </div>
+     </div>
+
+     <input type="submit" value="수정하기" class="btn btn-lg btn-default">     
+  </form>
+  </div>
