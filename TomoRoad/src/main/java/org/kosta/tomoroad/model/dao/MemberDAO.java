@@ -16,7 +16,7 @@ public interface MemberDAO {
 
 	void updateMember(MemberVO vo);
 
-	void deleteMember(MemberVO vo);
+	public void deleteMember(String id);
 
 	void friend(String senderID,String receiverID);
 
@@ -37,5 +37,7 @@ public interface MemberDAO {
 	String getFriendId(String id,String selectId);
 	
 	void deleteFriend(String id,String deleteId);
+
+	
 
 }

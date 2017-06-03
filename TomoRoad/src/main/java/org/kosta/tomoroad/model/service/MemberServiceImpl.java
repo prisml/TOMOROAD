@@ -34,8 +34,8 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.updateMember(vo);	
 	}
 	@Override
-	public void deleteMember(MemberVO vo) {
-		memberDAO.deleteMember(vo);	
+	public void deleteMember(String id) {
+		memberDAO.deleteMember(id);	
 	}
 	@Override
 	public MemberVO findId(MemberVO memberVO) {
@@ -76,4 +76,5 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteFriend(String id, String deleteId) {
 		memberDAO.deleteFriend(id, deleteId);
 	}
+
 }
