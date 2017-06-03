@@ -6,9 +6,11 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.service.StationService;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -26,6 +28,9 @@ public class TestUnit {
 	@Resource(name="reviewServiceImpl")
 	private ReviewService reviewService;
 	
+	@Resource(name="memberServiceImpl")
+	private MemberService memberService;
+
 	@Test
 	public void test(){
 		// 역 정보 얻어오기
@@ -33,6 +38,8 @@ public class TestUnit {
 		List<StationVO> stationInfoList= stationService.getStationInfo("전주");
 		System.out.println("TestUnit>역정보:"+stationInfoList);
 		*/
+		StationVO stationInfoList= stationService.getInfo("전주");
+		System.out.println("역정보:"+stationInfoList);
 		
 		// 역 주면 관광지 정보 얻어오기
 		/*
@@ -58,6 +65,7 @@ public class TestUnit {
 		//리뷰 키워드 가져오기
 /*		List<ReviewVO> list=reviewService.getKeyword("전","제목+내용");
 		System.out.println(list);*/
+		System.out.println(memberService.friendList("java"));
 		
 	}
 }

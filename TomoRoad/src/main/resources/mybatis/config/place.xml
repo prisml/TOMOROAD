@@ -3,19 +3,26 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="place"> 
-	
+<mapper namespace="place">
+
 	<sql id="selectPlace">
 		select no,name,station_name,area from place
 	</sql>
-	
+
 	<select id="getPlaceInfo" resultType="placeVO">
 		select p.no,p.name,p.station_name,p.area from place p,station s
-		where p.station_name=s.name and p.station_name=#{value} <!-- 역 이름에 해당되는 주변 관광지 정보 가져옴 -->
+		where
+		p.station_name=s.name and p.station_name=#{value} <!-- 역 이름에 해당되는 주변 관광지 
+			정보 가져옴 -->
 	</select>
-	
+
 	<select id="getKeyword" resultType="String">
-		select name from place where name like '%' || #{value} || '%'
+		select name from place where
+		name like '%' || #{value} || '%'
 	</select>
-	
+
+	<select id="getList" resultType="placeVO">
+		select no,name,station_name,area
+		from place
+	</select>
 </mapper>

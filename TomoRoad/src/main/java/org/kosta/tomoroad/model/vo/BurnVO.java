@@ -8,7 +8,7 @@ public class BurnVO {
 	private String stationName;
 	private String memberId;
 	private int hits;
-	
+
 	public BurnVO() {
 		super();
 	}

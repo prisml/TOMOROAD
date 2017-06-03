@@ -9,21 +9,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="place.no" column="place_no" />
 		<result property="member.id" column="member_id" />
 	</resultMap>
+	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
+		<result column="name" property="place.name" />
+		<result column="station_name" property="place.station_name" />
+	</resultMap>
 	<select id="getTotalContents" resultType="int">
 		select count(*) from
 		review
 	</select>
-	<select id="getList" resultType="reviewVO" resultMap="reviewRM"
+	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
 		select A.*
-		from(select row_number()
-		over(order by no desc)
-		rnum, no, title, member_id,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM')
-		as posted_time from review)
-		A
-		where rnum between #{startRowNumber} and
-		#{endRowNumber}
+		from(select row_number() over(order by r.no
+		desc) rnum,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+		from review r, place p where r.place_no = p.no) A
+		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	<insert id="register" parameterType="reviewVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
@@ -34,30 +36,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		review(no,title,content,posted_time,star,place_no,member_id)
 		values(#{no},#{title},#{content},sysdate,#{star},#{place.no},#{member.id})
 	</insert>
-	<select id="detail" resultMap="reviewRM">
+	<select id="detail" resultMap="detailReviewRM">
 		select
-		no,title,content,posted_time,star,place_no,member_id from review where
-		no=#{value}
+		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name
+		from review r, place p where
+		r.no=#{value} and r.place_no=p.no
 	</select>
 	<update id="update" parameterType="reviewVO">
 		update review set
 		title=#{title}, content=#{content}, star=#{star}, place_no=#{place.no}
 		where no=#{no}
 	</update>
-	
+
 	<!-- 제목에 따른 검색결과 리턴 -->
 	<select id="getTitle" resultType="reviewVO" resultMap="reviewRM">
-		select no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD') postedTime,hits
+		select
+		no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD')
+		postedTime,hits
 		from review
 		where title like '%' || #{value} || '%'
 	</select>
-	
+
 	<!-- 제목+내용에 따른 검색결과 리턴 -->
 	<select id="getTitleAndContent" resultType="reviewVO" resultMap="reviewRM">
-		select no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD') postedTime,hits
+		select no,title,content,member_id,to_char(posted_time,'YYYY.MM.DD')
+		postedTime,hits
 		from review
-		where title like '%' || #{value} || '%' or content like '%' || #{value} || '%'
+		where title like '%' || #{value} || '%' or
+		content like '%' || #{value} || '%'
 	</select>
-	
-	
+
+
+	<update id="updateHits">
+		update review set hits=hits+1 where no=#{value}
+	</update>
+	<select id="getListByMember" resultType="reviewVO" resultMap="reviewRM">
+		select A.*
+		from(select row_number() over(order by r.no desc) rnum,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+		from review r, place p where r.place_no = p.no) A
+		where rnum between #{startRowNumber} and #{endRowNumber} and member_id={id}
+	</select>
+	<select id="getListByPlace" resultType="reviewVO" resultMap="reviewRM">
+		select A.*
+		from(select row_number() over(order by r.no desc) rnum,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+		from review r, place p where r.place_no = p.no) A
+		where rnum between #{startRowNumber} and #{endRowNumber} and
+		place_no={place}
+	</select>
+	<delete id="delete">
+		delete from review where no=#{no}
+	</delete>
+	<insert id="review_recommend" parameterType="map">
+		insert into
+		review_recommend values(#{member_id},#{review_no})
+	</insert>
+	<select id="getreview_recommendByreviewNo">
+		select count(*) from review_recommend where review_no
+		= #{value}
+	</select>
 </mapper>

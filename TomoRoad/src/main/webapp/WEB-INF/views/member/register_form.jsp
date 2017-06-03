@@ -1,5 +1,7 @@
+<%@page import="org.kosta.tomoroad.model.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,67 +100,64 @@
  </script>
 </head>
 
-  <body class="login-img3-body">
+  <body>
 
     <div class="container">
 	
-      <form class="login-form" method="post" action="${pageContext.request.contextPath}/registerMember.do" id="regForm">      
-      <span class="pull-right"> 회원가입</span>  
-        <div class="login-wrap">
-            <p class="login-img"><i class="icon_lock_alt"></i></p>
-            <div class="input-group">
-              <span class="input-group-addon"><i class="icon_profile"></i></span>
+      <form method="post" action="${pageContext.request.contextPath}/member/registerMember.do" id="regForm">      
+        <div>
+                        <br>
+                <br>
+                <br>
+            <div>
               <input type="text" class="form-control" name="id"  placeholder="ID" required="required" autofocus>
               <span id="idCheckView"></span>
             </div>
             
             <br>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+            <div>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required" >
             </div>
             
             <br>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+            <div>
                 <input type="password" class="form-control" name="chpass" id="chpass" placeholder="Re-Password" required="required" >
                 <font id="check" size="2" color="red"></font> 
             </div>
             
 			<br>
-		    <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="text" class="form-control" name="name"  placeholder="Name" required="required" >
+		    <div>
+                <input type="text" class="form-control" name="name"  id="name" placeholder="Name" required="required" >
             </div>
             
             <br>
-            <div class="input-group">
+            <div>
                     <label>Gender</label>
 					<br>
                                 <label>
-                                    <input type="radio" name="sex"  id="femaleRadio" value="Female" placeholder="Female">Female
+                                    <input type="radio" name="sex"  id="sex" value="Female" placeholder="Female">Female
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex"  id="maleRadio" value="Male" placeholder="Male">Male
+                                    <input type="radio" name="sex"  id="sex" value="Male" placeholder="Male">Male
                                 </label>
                 </div> 
                 
             <br>
-			<div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="text" class="form-control" name="tel"  placeholder="Phone Number" required="required" >
+			<div>
+                <input type="text" class="form-control" name="tel"  id="tel" placeholder="Phone Number" required="required" >
             </div>
             
             <br>
-                            <div class="input-group">
+                            <div >
                             <label>
-                                <input type="checkbox">동의합니다 I agree to <a href="#">terms</a>
+                                <input type="checkbox" required="required" >동의합니다 I agree to <a href="#">terms</a>
                             </label>
                 </div> 
                 
             <br><br>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Sign-up</button>
-            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do">Home</a>
+            <input class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Sign-up">
+            <br>
+            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
         </div>
       </form>
     </div>

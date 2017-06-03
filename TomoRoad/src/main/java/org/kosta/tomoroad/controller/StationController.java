@@ -18,10 +18,10 @@ public class StationController {
 	
 	@RequestMapping("getStationInfo.do")
 	public String getStationInfo(Model model,String id){
-		List<StationVO> stationInfolist = service.getStationInfo(id);
-		System.out.println("역 정보 : "+stationInfolist);
-		model.addAttribute("stationInfolist",stationInfolist);
-		return "station/GetStationInfo.tiles";
+		StationVO stationInfo = service.getInfo(id);
+		System.out.println("역 정보 : "+stationInfo);
+		model.addAttribute("stationInfolist",stationInfo);
+		return "station/info.tiles";
 	}
 	
 	@RequestMapping("station/getKeyword.do")

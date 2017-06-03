@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import org.kosta.tomoroad.model.vo.MemberVO;
 
 public interface MemberService {
@@ -11,5 +13,29 @@ public interface MemberService {
 	void registerMember(MemberVO vo);
 
 	int idcheck(String id);
+
+	void updateMember(MemberVO vo);
+
+	void deleteMember(String id);
+
+	MemberVO findId(MemberVO memberVO);
+
+	MemberVO findPw(MemberVO memberVO);
+	
+	void friend_Request(String senderID,String receiverID);
+	
+	List<String> friend_RequestList(String receiverID);
+	
+	void friend_Accept(String senderID,String receiverID);
+	
+	void friend_Refuse(String senderID,String receiverID);
+
+	List<String> friendList(String id);
+	
+	void deleteFriend(String id,String deleteId);
+
+	String getFriendId(String id, String selectId);
+
+	
 
 }
