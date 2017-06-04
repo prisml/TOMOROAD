@@ -53,7 +53,7 @@
 	<li><label>ID:</label><input type="text" id="id" name="id" required="required" autofocus></li>
 	<li><label>Name:</label><input type="text" id="name" name="name" required="required"></li>
 	<li><label>Phone Number:</label><input type="text" id="tel" name="tel" required="required"></li>
-	<li><input type="submit" name="btnFindUid" id="btnFindUid" value="Find Password" ></li>
+	<li>Find Password<input type="submit" name="btnFindUid" id="btnFindUid" value="Find Password" ></li>
 
 	</ul>
 	</fieldset>

@@ -16,7 +16,7 @@
 </script>
 
 
-<div class="container">
+
  <div class="dividerHeading">
  	<h4><span> Write Burn </span></h4>
  </div>
@@ -45,4 +45,3 @@
 
      <input type="submit" value="작성하기" class="btn btn-lg btn-default">     
   </form>
-  </div>
