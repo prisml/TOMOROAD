@@ -31,22 +31,16 @@
 	$(document)
 			.ready(
 					function() {
-						$
-								.ajax({
+						$.ajax({
 									type : "GET",
 									url : "showBurnComment.do",
 									data : "no=${bvo.no}",
 									success : function(data) {
-										if(${empty mvo}){
-											$("#re0").html("로그인 후 댓글 확인이 가능합니다");
-											return false;
-										}
 										if(data.length==0){
 											$("#re0").html("등록된 댓글이 없습니다");
 											return false;
 										}
 										for (var z = 0; z < data.length; z++) {
-											if ("${mvo.id}" != "") { // 로그인 되있으면
 												var comments = "";//여기서 초기화해줌.
 												comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>"
 												comments += "<div class='comment-container'>";
@@ -95,14 +89,7 @@
 												}
 
 												$("#re" + data[z].recomment)
-														.append(comments);
-											} else {	
-												var comments = "";
-												comments += "<div>";												
-												comments += "로그인을 하지 않아 댓글을 볼 수 없습니다."												
-												comments += "</div>";
-												$("#re0").html(comments);
-											}
+														.append(comments);											
 										}//for
 									}//success
 								});//ajax
