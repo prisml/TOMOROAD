@@ -20,7 +20,7 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 	
-	@RequestMapping("noauth_findMemberById.do")
+	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
@@ -31,7 +31,7 @@ public class MemberController {
 	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
 		MemberVO vo=memberService.login(memberVO);
 		if(vo==null)
-			return "member/login_fail";
+			return "member/noauth_login_fail";
 		else{
 			session.setAttribute("mvo",vo);
 			return "redirect:home.do";
@@ -52,7 +52,7 @@ public class MemberController {
 	@RequestMapping("member/noauth_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result.tiles", "mvo", vo);
+		return new ModelAndView("member/noauth_register_result.tiles", "mvo", vo);
 	}
 	@RequestMapping(value="member/updateMember.do",method=RequestMethod.POST)
 	public String updateMember(MemberVO vo) {
@@ -72,7 +72,7 @@ public class MemberController {
 	}
 	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "mypage.tiles";
+		return "mypageLayout.tiles";
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
@@ -83,22 +83,22 @@ public class MemberController {
 	public String findId(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findId(memberVO);
 		if(vo==null)
-			return "member/findid_fail";
+			return "member/noauth_findid_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findid_result.tiles";
+		return "member/noauth_findid_result.tiles";
 	}
 }
 	@RequestMapping(value="noauth_findPw.do",method=RequestMethod.POST)
 	public String findPw(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findPw(memberVO);
 		if(vo==null)
-			return "member/findpw_fail";
+			return "member/noauth_findpw_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findpw_result.tiles";
+		return "member/noauth_findpw_result.tiles";
 	}
 	}
 	@RequestMapping("friend_Request.do")
@@ -137,7 +137,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("noauth_weather.do")
+	@RequestMapping("weather.do")
 	public String weather(){
 		return "weather3.tiles";
 }
