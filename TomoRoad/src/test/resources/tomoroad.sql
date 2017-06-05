@@ -1,6 +1,6 @@
 -- member 테이블 프로필경로 컬럼 추가
 alter table member add(profile varchar2(100))
-update member set profile = '${pageContext.request.contextPath}/resources/profile/java_profile'
+update member set profile = '${pageContext.request.contextPath}/resources/profile/kakao.jpg'
 
 ---------- drop table ------------
 drop table station_connect;
