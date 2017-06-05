@@ -136,6 +136,11 @@ public class MemberController {
 		return "redirect:friendList.do?id="+id;
 
 	}
+	
+	@RequestMapping("weather.do")
+	public String weather(){
+		return "weather3.tiles";
+}
 }
 
 
