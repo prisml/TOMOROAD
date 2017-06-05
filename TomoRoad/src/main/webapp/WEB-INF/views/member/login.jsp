@@ -67,7 +67,7 @@
             </label>
             <input class="btn btn-info btn-lg btn-block"  type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Login">
             <br>
-            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" >Sign-up</a>
+            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">Sign-up</a>
         </div>
       </form>
 

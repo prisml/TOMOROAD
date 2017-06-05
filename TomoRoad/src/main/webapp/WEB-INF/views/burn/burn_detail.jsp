@@ -31,22 +31,16 @@
 	$(document)
 			.ready(
 					function() {
-						$
-								.ajax({
+						$.ajax({
 									type : "GET",
 									url : "showBurnComment.do",
 									data : "no=${bvo.no}",
 									success : function(data) {
-										if(${empty mvo}){
-											$("#re0").html("로그인 후 댓글 확인이 가능합니다");
-											return false;
-										}
 										if(data.length==0){
 											$("#re0").html("등록된 댓글이 없습니다");
 											return false;
 										}
 										for (var z = 0; z < data.length; z++) {
-											if ("${mvo.id}" != "") { // 로그인 되있으면
 												var comments = "";//여기서 초기화해줌.
 												comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>"
 												comments += "<div class='comment-container'>";
@@ -73,12 +67,24 @@
 														comments += "<a href='#' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn'>수정</a></span></div> </div></div>";
 													}
 													if (data[z].recomment != 0) {
-														comments += "<td colspan=3>"
+														/* comments += "<td colspan=3>"
 																+ data[z].recomment
 																+ "에게"
 																+ "<br>"
 																+ data[z].content
-																+ "</td>";
+																+ "</td>"; */
+														    comments += "<ul class='childern'>";
+															comments += "<div class='comment-container'>";
+															comments += "<h4 class='comment-author'>"
+																	+ data[z].member_id
+																	+ "</a></span></h4>";
+															comments += "<div class='comment-meta'><class='comment-date link-style1'>"
+																	+ data[z].posted_time
+																	+ "</a> </div>";
+															comments += "<div class='comment-body'><p>"
+																	+ data[z].content
+																	+ "</p></div><div><br><span><a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'>답글</a> </ul></div></div>";		
+														
 													} else {/* 
 														comments += "<td colspan=3>"
 																+ data[z].content
@@ -95,14 +101,7 @@
 												}
 
 												$("#re" + data[z].recomment)
-														.append(comments);
-											} else {	
-												var comments = "";
-												comments += "<div>";												
-												comments += "로그인을 하지 않아 댓글을 볼 수 없습니다."												
-												comments += "</div>";
-												$("#re0").html(comments);
-											}
+														.append(comments);											
 										}//for
 									}//success
 								});//ajax
@@ -164,10 +163,9 @@
 							location.reload();
 						});//updateCancle
 						$(document).on("click", "#recommentBtn", function() {
-							alert();
-							/* var no=$(this).attr("id");
+							var no=$(this).attr("id");
 							var commentbox ="<textarea id=commentbox"+no+" name=commentbox rows=3 style=width:530px; word-break: break-all;></textarea>"
-							$("#table"+no).next().html(commentbox+"<br><input type=button value=답글달기 class=replyBtn id="+no+">"+"<input type=button id="+no+" value=취소 class=replyCancleBtn>"); */
+							$("#table"+no).next().html(commentbox+"<br><input type=button value=답글달기 class=replyBtn id="+no+">"+"<input type=button id="+no+" value=취소 class=replyCancleBtn>");
 						}); //답글달기 버튼
 						$(document)
 								.on(
@@ -226,7 +224,7 @@
                 </nav>
             </div>
         </section> -->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
 	<div class="blog_single">
 		<article class="post">
 			<div class="post_date">
@@ -314,6 +312,6 @@
 				Comment</a>
 		</c:if>
 	</div>
-</div>
+
 
 
