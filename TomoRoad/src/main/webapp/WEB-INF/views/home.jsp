@@ -201,7 +201,7 @@ a.cbtn {
     	source : function( request, response){
     		//alert(reviewFilter);
     		$.ajax({
-    			url: criterion+"/getKeyword.do",
+    			url: criterion+"/noauth_getKeyword.do",
     			dataType:"json",
     			data:"keyword="+request.term+"&reviewFilter="+reviewFilter, //사용자가 최근 입력한 단어를 보냄
     			success: function(data){
