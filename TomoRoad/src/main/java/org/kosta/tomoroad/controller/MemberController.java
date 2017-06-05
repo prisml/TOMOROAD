@@ -47,7 +47,7 @@ public class MemberController {
 	@RequestMapping(value="member/noauth_registerMember.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO vo) {
 		memberService.registerMember(vo);		
-		return "redirect:registerResultView.do?id=" + vo.getId();
+		return "redirect:noauth_registerResultView.do?id=" + vo.getId();
 	}
 	@RequestMapping("member/noauth_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
@@ -137,7 +137,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("weather.do")
+	@RequestMapping("noauth_weather.do")
 	public String weather(){
 		return "weather3.tiles";
 }

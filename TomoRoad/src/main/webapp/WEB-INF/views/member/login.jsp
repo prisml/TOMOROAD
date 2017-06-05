@@ -61,9 +61,9 @@
                 <br>
                 <br>
                 <br>
-                <span > <a href="${pageContext.request.contextPath}/member/findid.do"> Forgot id?</a></span>
+                <span > <a href="${pageContext.request.contextPath}/member/noauth_findid.do"> Forgot id?</a></span>
 				<br>
-                <span > <a href="${pageContext.request.contextPath}/member/findpw.do"> Forgot Password?</a></span>
+                <span > <a href="${pageContext.request.contextPath}/member/noauth_findpw.do"> Forgot Password?</a></span>
             </label>
             <input class="btn btn-info btn-lg btn-block"  type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Login">
             <br>
