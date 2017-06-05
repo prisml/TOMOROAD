@@ -21,7 +21,7 @@
 				<img src="${pageContext.request.contextPath}/resources/images/symbol/seoul.png" alt="">
 
 				<div class="option">
-					<a href="portfolio_single.html" class="fa fa-link"></a>
+					<a href="${pageContext.request.contextPath}/station/info.do" class="fa fa-link"></a>
 					<a href="${pageContext.request.contextPath}/resources/images/symbol/seoul.png"	class="fa fa-search mfp-image"></a>
 				</div>
 				
