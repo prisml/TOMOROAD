@@ -20,7 +20,7 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 	
-	@RequestMapping("noauth_findMemberById.do")
+	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
@@ -83,22 +83,22 @@ public class MemberController {
 	public String findId(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findId(memberVO);
 		if(vo==null)
-			return "member/findid_fail";
+			return "member/noauth_findid_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findid_result.tiles";
+		return "member/noauth_findid_result.tiles";
 	}
 }
 	@RequestMapping(value="noauth_findPw.do",method=RequestMethod.POST)
 	public String findPw(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findPw(memberVO);
 		if(vo==null)
-			return "member/findpw_fail";
+			return "member/noauth_findpw_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findpw_result.tiles";
+		return "member/noauth_findpw_result.tiles";
 	}
 	}
 	@RequestMapping("friend_Request.do")
