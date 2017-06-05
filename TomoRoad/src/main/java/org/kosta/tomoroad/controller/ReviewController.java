@@ -21,21 +21,21 @@ public class ReviewController {
 	@Resource(name = "reviewServiceImpl")
 	private ReviewService service;
 
-	@RequestMapping("review/list_showList.do")
+	@RequestMapping("review/noauth_showList.do")
 	public ModelAndView showList(String page) {
 		if (page == null)
 			page = "1";
 		return new ModelAndView("review/showList.tiles", "reviewList", service.getList(page));
 	}
 
-	@RequestMapping("review/list_showListByMember.do")
+	@RequestMapping("review/noauth_showListByMember.do")
 	public ModelAndView showListByMember(String page, String id) {
 		if (page == null)
 			page = "1";
 		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByMember(page,id));
 	}
 
-	@RequestMapping("review/list_showListByPlace.do")
+	@RequestMapping("review/noauth_showListByPlace.do")
 	public ModelAndView showListByPlace(String page, String place) {
 		if (page == null)
 			page = "1";
@@ -70,14 +70,14 @@ public class ReviewController {
 		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
 	}
 
-	@RequestMapping("review/list_detail.do")
+	@RequestMapping("review/noauth_detail.do")
 	public ModelAndView detail(String no) {
 		ReviewVO rvo = service.getDetail(no);
 		rvo.setRecommend(service.getreview_recommendByreviewNo(Integer.parseInt(no)));
 		return new ModelAndView("review/detail.tiles", "rvo", rvo);
 	}
 	
-	@RequestMapping("review/list_detailHit.do")
+	@RequestMapping("review/noauth_detailHit.do")
 	public ModelAndView detailHit(String no){
 		service.getDetailHit(no);
 		return new ModelAndView("redirect:detail.do?no="+no);
@@ -96,7 +96,7 @@ public class ReviewController {
 		return "redirect:review/detail.do?no="+review_no;
 	}
 	
-	@RequestMapping("review/list_getKeyword.do")
+	@RequestMapping("review/noauth_getKeyword.do")
 	@ResponseBody
 	//검색창에 입력한 단어가 들어가는 키워드를 가져옴
 	public ArrayList<String> getKeyword(String keyword,String reviewFilter){

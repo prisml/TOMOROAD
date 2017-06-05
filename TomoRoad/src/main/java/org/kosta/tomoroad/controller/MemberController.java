@@ -20,14 +20,14 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 	
-	@RequestMapping("member_findMemberById.do")
+	@RequestMapping("noauth_findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
 			model.addAttribute("result", vo);
 		return "redirect:home.do";
 	}
-	@RequestMapping(method=RequestMethod.POST,value="member_login.do")
+	@RequestMapping(method=RequestMethod.POST,value="noauth_login.do")
 	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
 		MemberVO vo=memberService.login(memberVO);
 		if(vo==null)
@@ -44,12 +44,12 @@ public class MemberController {
 			session.invalidate();
 		return "home.tiles";
 	}
-	@RequestMapping(value="member/member_registerMember.do", method = RequestMethod.POST)
+	@RequestMapping(value="member/noauth_registerMember.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO vo) {
 		memberService.registerMember(vo);		
 		return "redirect:registerResultView.do?id=" + vo.getId();
 	}
-	@RequestMapping("member/member_registerResultView.do")
+	@RequestMapping("member/noauth_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/register_result.tiles", "mvo", vo);
@@ -79,7 +79,7 @@ public class MemberController {
 		memberService.deleteMember(id);
 		return "redirect:member/delete_result.do";
 	}
-	@RequestMapping(value="member_findId.do",method=RequestMethod.POST)
+	@RequestMapping(value="noauth_findId.do",method=RequestMethod.POST)
 	public String findId(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findId(memberVO);
 		if(vo==null)
@@ -90,7 +90,7 @@ public class MemberController {
 		return "member/findid_result.tiles";
 	}
 }
-	@RequestMapping(value="member_findPw.do",method=RequestMethod.POST)
+	@RequestMapping(value="noauth_findPw.do",method=RequestMethod.POST)
 	public String findPw(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findPw(memberVO);
 		if(vo==null)
@@ -101,7 +101,7 @@ public class MemberController {
 		return "member/findpw_result.tiles";
 	}
 	}
-	@RequestMapping("member_friend_Request.do")
+	@RequestMapping("friend_Request.do")
 	public String friend_Request(String SenderId,String ReceiverId){
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;

@@ -169,13 +169,14 @@
             /* ---- Filtering ----- */
             jQuery('#filter li').click(function(){
                 var $this = jQuery(this);
-                if ( $this.hasClass('selected') ) {
-                    return false;
-                } else {
-                    jQuery('#filter .selected').removeClass('selected');
-                    var selector = $this.attr('data-filter');
+              //hasClass: 클래스 속성에 해당 값이 존재하는지를 확인 후 Boolean값을 반환
+                if ( $this.hasClass('selected') ) { 
+                    return false; //선택된 값이 없으면
+                } else { //선택된 값이 있으면
+                    jQuery('#filter .selected').removeClass('selected'); //선택된 값의 클래스의 이름에서 selected를 삭제한다는 것
+                    var selector = $this.attr('data-filter'); //선택된 것의 태그를 찾아서 data-filter의 속성값을 알아냄
                     $this.parent().next().isotope({ filter: selector });
-                    $this.addClass('selected');
+                    $this.addClass('selected'); //선택된 클래스의 이름이 클래스+seleceted가 되도록 추가한다는 것.
                     return false;
                 }
             });
