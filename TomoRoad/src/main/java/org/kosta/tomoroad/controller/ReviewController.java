@@ -73,7 +73,6 @@ public class ReviewController {
 	@RequestMapping("review/noauth_detail.do")
 	public ModelAndView detail(String no) {
 		ReviewVO rvo = service.getDetail(no);
-		rvo.setRecommend(service.getreview_recommendByreviewNo(Integer.parseInt(no)));
 		return new ModelAndView("review/detail.tiles", "rvo", rvo);
 	}
 	
@@ -90,9 +89,9 @@ public class ReviewController {
 		return new ModelAndView("redirect:review/showListByMember.do?id="+vo.getId());
 	}
 	
-	@RequestMapping("review_recommend")
-	public String review_recommend(String member_id,int review_no){
-		service.review_recommend(member_id, review_no);
+	@RequestMapping("recommend")
+	public String recommend(String member_id,int review_no){
+		service.recommend(member_id, review_no);
 		return "redirect:review/detail.do?no="+review_no;
 	}
 	

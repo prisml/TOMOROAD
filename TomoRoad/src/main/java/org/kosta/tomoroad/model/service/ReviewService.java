@@ -28,8 +28,8 @@ public interface ReviewService {
 
 	List<PlaceVO> getStationList();
 	
-	void review_recommend(String member_id,int review_no);
+	void recommend(String member_id,int review_no);
 	
-	int getreview_recommendByreviewNo(int review_no);
+	int getRecommendByNo(int review_no);
 
 }

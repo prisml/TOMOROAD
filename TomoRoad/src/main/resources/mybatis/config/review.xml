@@ -91,12 +91,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from review where no=#{no}
 	</delete>
-	<insert id="review_recommend" parameterType="map">
+	<insert id="recommend" parameterType="map">
 		insert into
 		review_recommend values(#{member_id},#{review_no})
 	</insert>
 
-	<select id="getreview_recommendByreviewNo" resultType="int">
+	<select id="getRecommendByNo" resultType="int">
 		select count(*) from review_recommend where review_no = #{value}
 	</select>
 </mapper>

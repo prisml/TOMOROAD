@@ -24,21 +24,6 @@
 				</div>
 				<p>${rvo.content }</p>
 			</div>
-			<!-- <ul class="shares">
-				<li class="shareslabel"><h3>Share This Story</h3></li>
-				<li><a class="twitter" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Twitter"></a></li>
-				<li><a class="facebook" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Facebook"></a></li>
-				<li><a class="gplus" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Google Plus"></a></li>
-				<li><a class="pinterest" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Pinterest"></a></li>
-				<li><a class="yahoo" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Yahoo"></a></li>
-				<li><a class="linkedin" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="LinkedIn"></a></li>
-			</ul> -->
 		</article>
 		<div class="about_author">
 			<div class="author_desc">

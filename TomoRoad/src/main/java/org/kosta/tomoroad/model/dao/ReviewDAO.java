@@ -32,7 +32,7 @@ public interface ReviewDAO {
 
 	void hits(String no);
 	
-	int getreview_recommendByreviewNo(int review_no);
+	int getRecommendByNo(int review_no);
 
-	void review_recommend(Map<String, Object> map);
+	void recommend(Map<String, Object> map);
 }

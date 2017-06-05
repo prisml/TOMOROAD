@@ -74,13 +74,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public void review_recommend(Map<String,Object> map) {
-		template.insert("review_recommend",map);
+	public void recommend(Map<String,Object> map) {
+		template.insert("recommend",map);
 	}
 
 	@Override
-	public int getreview_recommendByreviewNo(int review_no) {
-		return template.selectOne("getreview_recommendByreviewNo",review_no);
+	public int getRecommendByNo(int review_no) {
+		return template.selectOne("getRecommendByNo",review_no);
 	}
 
 	@Override
