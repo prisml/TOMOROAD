@@ -31,7 +31,7 @@ public class MemberController {
 	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
 		MemberVO vo=memberService.login(memberVO);
 		if(vo==null)
-			return "member/login_fail";
+			return "member/noauth_login_fail";
 		else{
 			session.setAttribute("mvo",vo);
 			return "redirect:home.do";
@@ -52,7 +52,7 @@ public class MemberController {
 	@RequestMapping("member/noauth_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result.tiles", "mvo", vo);
+		return new ModelAndView("member/noauth_register_result.tiles", "mvo", vo);
 	}
 	@RequestMapping(value="member/updateMember.do",method=RequestMethod.POST)
 	public String updateMember(MemberVO vo) {
@@ -72,7 +72,7 @@ public class MemberController {
 	}
 	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "mypage.tiles";
+		return "mypageLayout.tiles";
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
@@ -137,7 +137,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("noauth_weather.do")
+	@RequestMapping("weather.do")
 	public String weather(){
 		return "weather3.tiles";
 }
