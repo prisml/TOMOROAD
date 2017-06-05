@@ -44,11 +44,10 @@
 	<!--핸들러 인텁셉터  설정-->
 	<mvc:interceptors>
 		<mvc:interceptor>
-		<mvc:mapping path="/*.do"/>
-		<mvc:exclude-mapping path="/member_*.do"/>
-		<mvc:exclude-mapping path="/place_*.do"/>
-		<mvc:exclude-mapping path="/list_*.do"/>
-		<mvc:exclude-mapping path="/home.do"/>
+		<mvc:mapping path="/**/*.do"/>
+		<mvc:exclude-mapping path="/**/noauth_*.do"/>
+		<mvc:exclude-mapping path="/**/home.do"/>
+		<mvc:exclude-mapping path="/**/loginalert.do"/>		
 		<bean class="org.kosta.tomorad.controller.interceptor.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
