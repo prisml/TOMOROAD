@@ -80,7 +80,7 @@
 				$("#layer1").fadeOut();
 			}
 		} else if (flag == "b") {
-			location.href = "getStationInfo.do?id=" + stationInfo;
+			location.href = "noauth_getStationInfo.do?id=" + stationInfo;
 		} else if (flag == "d") {
 			location.href = "${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName="
 					+ stationInfo + "역";

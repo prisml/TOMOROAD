@@ -104,7 +104,7 @@
 
     <div class="container">
 	
-      <form method="post" action="${pageContext.request.contextPath}/member/registerMember.do" id="regForm">      
+      <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm">      
         <div>
                         <br>
                 <br>
