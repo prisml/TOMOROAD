@@ -21,7 +21,7 @@ public class PlaceDAOImpl implements PlaceDAO {
 	@Override
 	public List<String> getKeyWord(String keyword) {
 		System.out.println("dao다");
-		return template.selectList("place.getKeyWord",keyword);
+		return template.selectList("place.getKeyword",keyword);
 	}
 	
 }
