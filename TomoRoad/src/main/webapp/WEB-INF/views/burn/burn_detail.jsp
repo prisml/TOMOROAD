@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -47,168 +49,118 @@
 										}
 										for (var z = 0; z < data.length; z++) {
 											if ("${mvo.id}" != "") { // 로그인 되있으면
-												var comments = "";//여기서 초기화해줌.
-												comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>"
-												comments += "<div class='comment-container'>";
-												comments += "<h4 class='comment-author'>"
-														+ data[z].member_id
-														+ "</a></span></h4>";
-												comments += "<div class='comment-meta'><class='comment-date link-style1'>"
-														+ data[z].posted_time
-														+ "</a> </div>";
-												comments += "<div class='comment-body'><p>"
-														+ data[z].content
-														+ "</p></div><div><br><span><a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'>답글</a>";
+												var comments = "";//여기서 초기화해줌.															
+												
 												if (data[z].state == "comment") { 
-													/* comments += "<td>"
-															+ data[z].member_id
-															+ "</td>";
-													comments += "<td id="+data[z].no+">"
-															+ data[z].posted_time
-															+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button class='recommentBtn' value=답글 id="+data[z].no+">"; */
-													if ("${mvo.id}" == "${bvo.memberId}") { // 자기 댓글일 경우
-														/* comments += "<a class=deleteCommentBtn value=삭제 id="+data[z].no+">삭제</a>";
-														comments += "<a class=updateCommentBtn value=수정 id="+data[z].no+">수정</a></right> </div></div>"; */
-														comments += "<a href='#' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn'>삭제</a>";
-														comments += "<a href='#' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn'>수정</a></span></div> </div></div>";
-													}
-													if (data[z].recomment != 0) {
-														/* comments += "<td colspan=3>"
-																+ data[z].recomment
-																+ "에게"
-																+ "<br>"
-																+ data[z].content
-																+ "</td>"; */
-														    comments += "<ul class='childern'>";
-															comments += "<div class='comment-container'>";
-															comments += "<h4 class='comment-author'>"
-																	+ data[z].member_id
-																	+ "</a></span></h4>";
-															comments += "<div class='comment-meta'><class='comment-date link-style1'>"
-																	+ data[z].posted_time
-																	+ "</a> </div>";
-															comments += "<div class='comment-body'><p>"
-																	+ data[z].content
-																	+ "</p></div><div><br><span><a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'>답글</a> </ul></div></div>";		
+													
+													if (data[z].recomment != 0) {																									   
+															comments += "<li class='children' id=re"+ data[z].no +">";
+															comments += "<div class='avatar'></div>"
+															comments += "<div class='comment-container'><i class='fa fa-arrow-right'></i>";
+															comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
+															comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
+															comments += "<div class='comment-body'> <p> 대댓글 임네다"+ data[z].content + "</p> </div><br>";																		
 														
-													} else {/* 
-														comments += "<td colspan=3>"
-																+ data[z].content
-																+ "</td>"; */
+													} else {
+														comments += "<li class='comment' id=re"+ data[z].no +">";
+														comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>";
+														comments += "<div class='comment-container'>";
+														comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
+														comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
+														comments += "<div class='comment-body'> <p>"+ data[z].content + "</p> </div>";
+														comments += "<br>";
+														comments += "<a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</a>";
 													}
-												} else if (data[z].state == "delete") {
-													comments += "<td>"
-															+ data[z].posted_time
-															+ "</td>"
-													comments += "</tr>";
-													comments += "<tr>";
-													comments += "<td colspan=3>삭제된 댓글입니다.</td>";
-													comments += "</tr>";
+													
+													//comments += "<br>";
+													//comments += "<a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'>답글</a>";
+													
+													if ("${mvo.id}" == "${bvo.memberId}") { // 자기 댓글일 경우														
+														comments += "<a href='#' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</a>";
+														comments += "<a href='#' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn' name="+ data[z].no +">수정</a>";														
+													}
+													
+													/* comments += "</div>"; //comment-container													
+													comments += "</li>"; // children 또는 comment */
+													
+												
+												} else if(data[z].state=="delete"){
+													comments += "<li class='comment' id=re"+ data[z].no +">";
+													comments += "<div class='comment-container'>";													
+													comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
+													comments += "<div class='comment-body'> <p> 삭제된 댓글입니다 </p> </div>";
 												}
-
-												$("#re" + data[z].recomment)
-														.append(comments);
-											} else {	
-												var comments = "";
-												comments += "<div>";												
-												comments += "로그인을 하지 않아 댓글을 볼 수 없습니다."												
-												comments += "</div>";
-												$("#re0").html(comments);
+												
+												comments += "<div></div>"
+												
+												comments += "</div>"; //comment-container													
+												comments += "</li>"; // children 또는 comment
+												
+												$("#re" + data[z].recomment).append(comments);
 											}
 										}//for
 									}//success
 								});//ajax
-
-						$(document)
-								.on(
-										"click",
-										"#deleteCommentBtn",
-										function() {
-											var no = $(this).attr("id");
-											var result = confirm("댓글을 삭제하시겠습니까?");
-											if (result) {
-												location.href = "${pageContext.request.contextPath}/deleteComment.do?no="
-														+ no
-														+ "&burn_no=${bvo.no}&member_id=${mvo.id}";
-											} else {
-
-											}
-										});//deleteBtn
-						$(document)
-								.on(
-										"click",
-										"#updateCommentBtn",
-										function() {
-											alert();
-											/* 
-											$(this)
-													.parent()
-													.parent()
-													.next()
-													.children()
-													.html(
-															"<input type=text id=content required=required><input type=button class=updateComment value=수정하기><input type=button class=updateCancleBtn value=취소하기>");
-										 */});//updateCommentBtn
-						$(document)
-								.on(
-										"click",
-										".updateComment",
-										function() {
-											var content = document
-													.getElementById("content").value;
-											var no = $(this).parent().parent()
-													.prev().children().next()
-													.next().attr("id");
-											if (content == "") {
-												alert("수정할 내용을 입력해주세요!");
-											} else {
-												var result = confirm("댓글을 수정하시겠습니까?");
-												if (result) {
-													location.href = "${pageContext.request.contextPath}/updateComment.do?no="
-															+ no
-															+ "&burn_no=${bvo.no}&content="
-															+ content
-															+ "&member_id=${mvo.id}";
-												}
-											}
-										});//updateComment
-						$(document).on("click", ".updateCancleBtn", function() {
-							location.reload();
-						});//updateCancle
-						$(document).on("click", "#recommentBtn", function() {
-							var no=$(this).attr("id");
-							var commentbox ="<textarea id=commentbox"+no+" name=commentbox rows=3 style=width:530px; word-break: break-all;></textarea>"
-							$("#table"+no).next().html(commentbox+"<br><input type=button value=답글달기 class=replyBtn id="+no+">"+"<input type=button id="+no+" value=취소 class=replyCancleBtn>");
-						}); //답글달기 버튼
-						$(document)
-								.on(
-										"click",
-										".replyBtn",
-										function() {
-											var no = $(this).attr("id");
-											var content = document
-													.getElementById("commentbox"
-															+ no).value;
-											location.href = "${pageContext.request.contextPath}/replyComment.do?recomment="
-													+ no
-													+ "&burn_no=${bvo.no}&content="
-													+ content
-													+ "&member_id=${mvo.id}";
-										}); //답글
-						$(document).on("click", ".replyCancleBtn", function() {
-							var no = $(this).attr("id");
-							$("#table" + no).next().html("");
-						}); //답글달기취소
-						$("#commentBtn")
-								.click(
-										function() {
-											var content = document
-													.getElementById("commentbox").value;
-											location.href = "${pageContext.request.contextPath}/registeComment.do?content="
-													+ content
-													+ "&member_id=${mvo.id}&burn_no=${bvo.no}";
-										});
+					
+						
+								$(document).on("click","#deleteCommentBtn",function(){
+									var no=$(this).attr("name");
+									var result = confirm("댓글을 삭제하시겠습니까?");
+									if(result){
+									location.href="${pageContext.request.contextPath}/deleteComment.do?no="+no+"&burn_no=${bvo.no}&member_id=${mvo.id}";
+									}else{
+										
+									}
+								});//deleteBtn
+								
+								$(document).on("click","#updateCommentBtn",function(){
+									$(this).parent().parent().next().children().html("<input type=text id=content required=required><input type=button class=updateComment value=수정하기><input type=button class=updateCancleBtn value=취소하기>");
+								});//updateCommentBtn
+								
+								$(document).on("click","#updateComment",function(){
+									var content = document.getElementById("content").value; 
+									var no=$(this).parent().parent().prev().children().next().next().attr("name");
+									if(content==""){
+										alert("수정할 내용을 입력해주세요!");
+									}else{
+										var result= confirm("댓글을 수정하시겠습니까?");
+									if(result){
+										location.href="${pageContext.request.contextPath}/updateComment.do?no="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
+									}
+									}
+								});//updateComment
+								
+								$(document).on("click","#updateCancleBtn",function(){
+									location.reload();
+								});//updateCancle
+								
+								
+								$(document).on("click","#recommentBtn",function(){
+									var no=$(this).attr("name");
+									var commentbox ="<textarea id=commentbox"+no+" name=commentbox rows=3 style=width:400px; word-break: break-all;></textarea>"
+									$(this).next().next().next().html("<div>"+commentbox+"<br><input type=button value=답글달기 class=replyBtn id="+no+">"+"<input type=button id="+no+" value=취소 class=replyCancleBtn></div>");
+								}); //답글달기 버튼
+								
+								$(document).on("click","#replyBtn",function(){
+									var no=$(this).attr("name");
+									var content=document.getElementById("commentbox"+no).value;
+									location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
+								}); //답글
+								
+								$(document).on("click","#replyCancleBtn",function(){
+									var no=$(this).attr("name");
+									$("#table"+no).next().html("");
+								}); //답글달기취소
+								
+								$("#commentBtn").click(function(){
+									var content=document.getElementById("commentbox").value;
+									location.href="${pageContext.request.contextPath}/registeComment.do?content="+content+"&member_id=${mvo.id}&burn_no=${bvo.no}";
+								});
+							
+			
+						
 					});//ready
+					
 </script>
 
 <br>
@@ -247,11 +199,10 @@
 				<div class="post_meta">
 					<h2>${bvo.title}</h2>
 					<div class="metaInfo">
-						<span><i class="fa fa-calendar"></i> <a href="#">
-								${bvo.postedTime} </a> </span> <span><i class="fa fa-user"></i> By <a
-							href="#"> ${bvo.memberId} </a> </span> <span><i class="fa fa-tag"></i>
-							<a href="#"> ${bvo.stationName} </a> </span> <span><i
-							class="fa fa-comments"></i> <a href="#"> ${bvo.hits} </a></span>
+						<span><i class="fa fa-calendar"></i> <a href="#">${bvo.postedTime} </a> </span> 
+						<span><i class="fa fa-user"></i> By <a href="#"> ${bvo.memberId} </a> </span> 
+						<span><i class="fa fa-tag"></i>		<a href="#"> ${bvo.stationName} </a> </span> 
+						<span><i class="fa fa-comments"></i> <a href="#"> ${bvo.hits} </a></span>
 					</div>
 				</div>
 				<p>${bvo.content}</p>
@@ -277,8 +228,8 @@
 			</h4>
 		</div>
 		<div id="comment">
-			<ul id="comment-list">
-				<li class="comment" id="re0">
+			<ul id="re0">
+				
 					<!-- <ul class="children">
                                             <li class="comment">
                                                 <div class="avatar"><img alt="" src="images/blog/avatar_3.png" class="avatar"></div>
@@ -303,7 +254,7 @@
                                                 </ul>
                                             </li>
                                         </ul> -->
-				</li>
+				
 			</ul>
 		</div>
 		<c:if test="${mvo.id !=null }">
