@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public ListVO<ReviewVO> getList(String page) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
-		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 4, 5, dao.getTotalContents());
 		lvo.setPagingBean(pb);
 		lvo.setList(dao.getList(pb));
 		return lvo;
