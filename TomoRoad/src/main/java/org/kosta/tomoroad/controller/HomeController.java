@@ -21,4 +21,8 @@ public class HomeController {
 		System.out.println("@PathVariable:" + dirName + "/" + viewName);
 		return dirName + "/" + viewName + ".tiles";
 	}
+	@RequestMapping("loginalert.do")
+	public String loginAlert(){
+		return "loginalert";
+	}
 }

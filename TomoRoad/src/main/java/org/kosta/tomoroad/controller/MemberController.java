@@ -20,18 +20,18 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 	
-	@RequestMapping("member_findMemberById.do")
+	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id,Model model){
 		MemberVO vo=memberService.findMemberById(id);
 		if(vo!=null)
 			model.addAttribute("result", vo);
 		return "redirect:home.do";
 	}
-	@RequestMapping(method=RequestMethod.POST,value="member_login.do")
+	@RequestMapping(method=RequestMethod.POST,value="noauth_login.do")
 	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
 		MemberVO vo=memberService.login(memberVO);
 		if(vo==null)
-			return "member/login_fail";
+			return "member/noauth_login_fail";
 		else{
 			session.setAttribute("mvo",vo);
 			return "redirect:home.do";
@@ -44,15 +44,15 @@ public class MemberController {
 			session.invalidate();
 		return "home.tiles";
 	}
-	@RequestMapping(value="member/member_registerMember.do", method = RequestMethod.POST)
+	@RequestMapping(value="member/noauth_registerMember.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO vo) {
 		memberService.registerMember(vo);		
-		return "redirect:registerResultView.do?id=" + vo.getId();
+		return "redirect:noauth_registerResultView.do?id=" + vo.getId();
 	}
-	@RequestMapping("member/member_registerResultView.do")
+	@RequestMapping("member/noauth_registerResultView.do")
 	public ModelAndView registerResultView(String id) {		
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result.tiles", "mvo", vo);
+		return new ModelAndView("member/noauth_register_result.tiles", "mvo", vo);
 	}
 	@RequestMapping(value="member/updateMember.do",method=RequestMethod.POST)
 	public String updateMember(MemberVO vo) {
@@ -72,36 +72,36 @@ public class MemberController {
 	}
 	@RequestMapping("mypage.do")
 	public String myPage(){
-		return "mypage.tiles";
+		return "mypageLayout.tiles";
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
 		memberService.deleteMember(id);
 		return "redirect:member/delete_result.do";
 	}
-	@RequestMapping(value="member_findId.do",method=RequestMethod.POST)
+	@RequestMapping(value="noauth_findId.do",method=RequestMethod.POST)
 	public String findId(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findId(memberVO);
 		if(vo==null)
-			return "member/findid_fail";
+			return "member/noauth_findid_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findid_result.tiles";
+		return "member/noauth_findid_result.tiles";
 	}
 }
-	@RequestMapping(value="member_findPw.do",method=RequestMethod.POST)
+	@RequestMapping(value="noauth_findPw.do",method=RequestMethod.POST)
 	public String findPw(MemberVO memberVO,HttpServletRequest request){
 		MemberVO vo=memberService.findPw(memberVO);
 		if(vo==null)
-			return "member/findpw_fail";
+			return "member/noauth_findpw_fail";
 		else{
 			HttpSession session=request.getSession();
 			session.setAttribute("result", vo);
-		return "member/findpw_result.tiles";
+		return "member/noauth_findpw_result.tiles";
 	}
 	}
-	@RequestMapping("member_friend_Request.do")
+	@RequestMapping("friend_Request.do")
 	public String friend_Request(String SenderId,String ReceiverId){
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;
@@ -136,6 +136,11 @@ public class MemberController {
 		return "redirect:friendList.do?id="+id;
 
 	}
+	
+	@RequestMapping("weather.do")
+	public String weather(){
+		return "weather3.tiles";
+}
 }
 
 

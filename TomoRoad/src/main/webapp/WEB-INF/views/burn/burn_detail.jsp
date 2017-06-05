@@ -33,24 +33,34 @@
 	$(document)
 			.ready(
 					function() {
-						$
-								.ajax({
+						$.ajax({
 									type : "GET",
 									url : "showBurnComment.do",
 									data : "no=${bvo.no}",
 									success : function(data) {
-										if(${empty mvo}){
-											$("#re0").html("로그인 후 댓글 확인이 가능합니다");
-											return false;
-										}
 										if(data.length==0){
 											$("#re0").html("등록된 댓글이 없습니다");
 											return false;
 										}
 										for (var z = 0; z < data.length; z++) {
+<<<<<<< HEAD
 											if ("${mvo.id}" != "") { // 로그인 되있으면
 												var comments = "";//여기서 초기화해줌.															
 												
+=======
+												var comments = "";//여기서 초기화해줌.
+												comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>"
+												comments += "<div class='comment-container'>";
+												comments += "<h4 class='comment-author'>"
+														+ data[z].member_id
+														+ "</a></span></h4>";
+												comments += "<div class='comment-meta'><class='comment-date link-style1'>"
+														+ data[z].posted_time
+														+ "</a> </div>";
+												comments += "<div class='comment-body'><p>"
+														+ data[z].content
+														+ "</p></div><div><br><span><a href='#' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'>답글</a>";
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 												if (data[z].state == "comment") { 
 													
 													if (data[z].recomment != 0) {																									   
@@ -90,6 +100,7 @@
 													comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
 													comments += "<div class='comment-body'> <p> 삭제된 댓글입니다 </p> </div>";
 												}
+
 												
 												comments += "<div></div>"
 												
@@ -98,6 +109,7 @@
 												
 												$("#re" + data[z].recomment).append(comments);
 											}
+
 										}//for
 									}//success
 								});//ajax

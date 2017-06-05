@@ -16,7 +16,7 @@ public class StationController {
 	@Resource(name="stationServiceImpl")
 	private StationService service;
 	
-	@RequestMapping("getStationInfo.do")
+	@RequestMapping("noauth_getStationInfo.do")
 	public String getStationInfo(Model model,String id){
 		StationVO stationInfo = service.getInfo(id);
 		System.out.println("역 정보 : "+stationInfo);
@@ -24,7 +24,7 @@ public class StationController {
 		return "station/info.tiles";
 	}
 	
-	@RequestMapping("station/getKeyword.do")
+	@RequestMapping("station/noauth_getKeyword.do")
 	@ResponseBody
 	//검색창에 입력한 단어가 들어가는 키워드를 가져옴
 	public List<String> getKeyword(String keyword){

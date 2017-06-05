@@ -45,7 +45,7 @@
 
     <div>
 
-      <form method="post" action="${pageContext.request.contextPath}/member_login.do" style="margin: 0 auto;">        
+      <form method="post" action="${pageContext.request.contextPath}/noauth_login.do" style="margin: 0 auto;">        
         <div>
                 <br>
                 <br>
@@ -67,8 +67,8 @@
             </label>
             <input class="btn btn-info btn-lg btn-block"  type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Login">
             <br>
-            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">Sign-up</a>
-            <br>
+            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">Sign-up</a>
+                        <br>
             <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/weather3.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">WEATHER</a>
         </div>
       </form>

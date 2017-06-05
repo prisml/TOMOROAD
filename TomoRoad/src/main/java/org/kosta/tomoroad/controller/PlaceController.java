@@ -16,7 +16,7 @@ public class PlaceController {
 	@Resource(name="placeServiceImpl")
 	private PlaceService service;
 	
-	@RequestMapping("place_getPlaceInfo.do")
+	@RequestMapping("noauth_getPlaceInfo.do")
 	public String getPlaceInfo(String id,Model model){
 		List<PlaceVO> placeInfoList=service.getPlaceInfo(id);
 		System.out.println("역 주변 정보 : "+placeInfoList);
@@ -24,7 +24,7 @@ public class PlaceController {
 		return "place/getPlaceInfo.tiles";
 	}
 	
-	@RequestMapping("place/place_getKeyword.do")
+	@RequestMapping("place/noauth_getKeyword.do")
 	@ResponseBody
 	public List<String> getKeyWord(String keyword){
 		List<String> keywordList=service.getKeyWord(keyword);
