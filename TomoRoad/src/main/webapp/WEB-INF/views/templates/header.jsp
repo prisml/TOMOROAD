@@ -20,7 +20,7 @@
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
 			<ul class="nav navbar-nav" style="align: center">
 				<li>　</li>
-				<li><a href="${pageContext.request.contextPath}/home.do">
+				<li><a href="${pageContext.request.contextPath}/noauth_home.do">
 						HOME </a></li>
 				<li>　</li>
 
@@ -29,7 +29,7 @@
 				<li>　</li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/review/showList.do">
+					href="${pageContext.request.contextPath}/review/noauth_showList.do">
 						REVIEW </a></li>
 				<li>　</li>
 
@@ -38,12 +38,12 @@
 				<li>　</li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/station/tourinfo.do">
+					href="${pageContext.request.contextPath}/station/noauth_tourinfo.do">
 						TourInfo </a></li>
 				<li>　</li>
 				<li><c:choose>
 						<c:when test="${empty mvo}">
-							<a href="${pageContext.request.contextPath}/member/login.do">
+							<a href="${pageContext.request.contextPath}/member/noauth_login.do">
 								LogIn </a>
 						</c:when>
 						<c:otherwise>
