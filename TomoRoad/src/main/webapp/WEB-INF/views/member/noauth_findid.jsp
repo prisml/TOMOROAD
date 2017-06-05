@@ -42,7 +42,7 @@
 </head>
 <body>
 <div >	
-	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/findId.do" onSubmit="return idSearch()" >
+	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_findId.do" onSubmit="return idSearch()" >
 	                <br>
                 <br>
                 <br>
