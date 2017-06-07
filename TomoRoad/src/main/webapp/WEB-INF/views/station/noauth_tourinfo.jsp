@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 역 정보 및 역 주변 관광지를 보여주는 페이지
+
 
 <div class="col-lg-12 isotope">
 	<!--begin portfolio filter -->
@@ -21,7 +22,7 @@
 				<img src="${pageContext.request.contextPath}/resources/images/symbol/seoul.png" alt="">
 
 				<div class="option">
-					<a href="portfolio_single.html" class="fa fa-link"></a>
+					<a href="${pageContext.request.contextPath}/station/info.do" class="fa fa-link"></a>
 					<a href="${pageContext.request.contextPath}/resources/images/symbol/seoul.png"	class="fa fa-search mfp-image"></a>
 				</div>
 				

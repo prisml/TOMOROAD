@@ -4435,6 +4435,8 @@ blockquote.default {
     text-align: center;
     line-height: 50px;
 }
+
+/*tourInfo 게시판에 첫 번째 사진위의 화살표*/
 .carousel-pagination li {
     background:rgba(0, 0, 0, 0.5);
     cursor: pointer;

@@ -129,6 +129,9 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- jQuery ui library -->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	
+	<!-- 사진 화살표 버튼 클릭 시 발생하는 이벤트 -->
+	<script src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
 
 	<!-- Start Style Switcher -->
 	<!-- <div class="switcher"></div> -->
