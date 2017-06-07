@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+/* 아직 미완성본 */
 	#mainLayout22{
 		float : left;
 	}
@@ -163,5 +164,3 @@
 	<!-- End Style Switcher -->
 </body>
 </html>
-
-<!--  -->
