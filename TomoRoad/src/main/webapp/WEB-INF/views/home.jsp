@@ -200,7 +200,7 @@ a.cbtn {
 				$("#form").hide();
 			}
 		});//form change
-	}
+	}//else
   }); //function 
   </script>
   
@@ -224,8 +224,8 @@ a.cbtn {
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
 
-		<!-- 해당 역 아이콘 -->
-		<div align="center">
+	<!-- 해당 역 아이콘 -->
+	<div align="center">
 			<img src="${pageContext.request.contextPath}/resources/img/map.png">
 		<%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
 		<!-- <div style="position: absolute; top: 379px; left: 262px;"> -->
@@ -329,6 +329,7 @@ a.cbtn {
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구">
 		</div>
 	</div>
+	
 	<!-- 레이어팝업 -->
 	<div class="pop-layer" id="layer1">
 		<div class="pop-container">
