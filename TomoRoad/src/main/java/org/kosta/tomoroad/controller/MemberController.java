@@ -129,9 +129,14 @@ public class MemberController {
 		return null;
 	}
 
-	@RequestMapping("friendList.do")
-	public ModelAndView friendList(String id) {
-		return new ModelAndView("member/friendList.tiles", "friendList", memberService.friendList(id));
+	@RequestMapping("mypage/friendList.do")
+	public String friendList(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("friendList", memberService.friendList(id));
+		model.addAttribute("profile", memberService.getProfileById(id));
+		return "mypage/friendList.tiles";
 	}
 
 	@RequestMapping("friend_RequestList.do")

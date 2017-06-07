@@ -25,6 +25,6 @@
             <br>
     </div> --%>
     <a href = "${pageContext.request.contextPath}/mypage/a.do">a</a><br>
-    <a href = "${pageContext.request.contextPath}/mypage/b.do">b</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/friendList.do">친구목록</a><br>
     <a href = "${pageContext.request.contextPath}/mypage/c.do">c</a>
 
