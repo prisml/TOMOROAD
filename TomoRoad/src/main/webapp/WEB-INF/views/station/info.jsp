@@ -43,24 +43,6 @@
 			<p>전화번호 : 1544-7788</p>		
 		</div>
 	</div>
-
-	<!-- 이건 뭐여?? 안나오는 부분 -->
-	<div class="col-lg-4 col-md-4 col-sm-4">
-		<div class="project_details">
-			<div class="widget_title">
-				<h4>
-					<span>Project Details</span>
-				</h4>
-			</div>
-			<ul class="details">
-				<li><span>Client :</span>Louis</li>
-				<li><span>Company :</span> Rain Technologies inc.</li>
-				<li><span>Category :</span> Web Design, Photography</li>
-				<li><span>Date :</span> 05 September 2015</li>
-				<li><span>Project URL :</span> <a href="#">www.bestjquery.com</a></li>
-			</ul>
-		</div>
-	</div>
 </div>
 <!-- 끝 -->
 
