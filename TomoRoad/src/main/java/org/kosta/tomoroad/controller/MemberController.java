@@ -19,127 +19,144 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
-	@Resource(name="memberServiceImpl")
+	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
-	
+
 	@RequestMapping("findMemberById.do")
-	public String findMemberById(String id,Model model){
-		MemberVO vo=memberService.findMemberById(id);
-		if(vo!=null)
+	public String findMemberById(String id, Model model) {
+		MemberVO vo = memberService.findMemberById(id);
+		if (vo != null)
 			model.addAttribute("result", vo);
 		return "redirect:home.do";
 	}
-	@RequestMapping(method=RequestMethod.POST,value="noauth_login.do")
-	public String login(MemberVO memberVO,HttpServletRequest request,HttpSession session){
-		MemberVO vo=memberService.login(memberVO);
-		if(vo==null)
+
+	@RequestMapping(method = RequestMethod.POST, value = "noauth_login.do")
+	public String login(MemberVO memberVO, HttpServletRequest request, HttpSession session) {
+		MemberVO vo = memberService.login(memberVO);
+		if (vo == null)
 			return "member/noauth_login_fail";
-		else{
-			session.setAttribute("mvo",vo);
+		else {
+			session.setAttribute("mvo", vo);
 			return "redirect:home.do";
 		}
 	}
+
 	@RequestMapping("logout.do")
-	public String logout(HttpServletRequest request){
-		HttpSession session=request.getSession(false);
-		if(session!=null)
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null)
 			session.invalidate();
 		return "home.tiles";
 	}
-	@RequestMapping(value="member/noauth_registerMember.do", method = RequestMethod.POST)
+
+	@RequestMapping(value = "member/noauth_registerMember.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO vo) {
-		memberService.registerMember(vo);		
+		memberService.registerMember(vo);
 		return "redirect:noauth_registerResultView.do?id=" + vo.getId();
 	}
+
 	@RequestMapping("member/noauth_registerResultView.do")
-	public ModelAndView registerResultView(String id) {		
+	public ModelAndView registerResultView(String id) {
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("member/noauth_register_result.tiles", "mvo", vo);
 	}
-	@RequestMapping(value="member/updateMember.do",method=RequestMethod.POST)
+
+	@RequestMapping(value = "member/updateMember.do", method = RequestMethod.POST)
 	public String updateMember(MemberVO vo) {
-		memberService.updateMember(vo);	
-		return "redirect:updateResultView.do?id=" + vo.getId();	
-	}
-	@RequestMapping("member/updateResultView.do")
-	public ModelAndView updateMember(String id){	
-		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/update_result.tiles", "mvo", vo);
-	}	
-	@RequestMapping("member_idcheckAjax.do")
-	@ResponseBody
-	public String idcheckAjax(String id) {		
-		int count=memberService.idcheck(id);
-		return (count==0) ? "ok":"fail"; 		
+		memberService.updateMember(vo);
+		return "redirect:updateResultView.do?id=" + vo.getId();
 	}
 
+	@RequestMapping("member/updateResultView.do")
+	public ModelAndView updateMember(String id) {
+		MemberVO vo = memberService.findMemberById(id);
+		return new ModelAndView("member/update_result.tiles", "mvo", vo);
+	}
+
+	@RequestMapping("member_idcheckAjax.do")
+	@ResponseBody
+	public String idcheckAjax(String id) {
+		int count = memberService.idcheck(id);
+		return (count == 0) ? "ok" : "fail";
+	}
+
+
 	@RequestMapping("deleteMember.do")
-	public String deleteMember(String id){
+	public String deleteMember(String id) {
 		memberService.deleteMember(id);
 		return "redirect:member/delete_result.do";
 	}
-	@RequestMapping(value="noauth_findId.do",method=RequestMethod.POST)
-	public String findId(MemberVO memberVO,HttpServletRequest request){
-		MemberVO vo=memberService.findId(memberVO);
-		if(vo==null)
+
+	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+	public String findId(MemberVO memberVO, HttpServletRequest request) {
+		MemberVO vo = memberService.findId(memberVO);
+		if (vo == null)
 			return "member/noauth_findid_fail";
-		else{
-			HttpSession session=request.getSession();
+		else {
+			HttpSession session = request.getSession();
 			session.setAttribute("result", vo);
-		return "member/noauth_findid_result.tiles";
+			return "member/noauth_findid_result.tiles";
+		}
 	}
-}
-	@RequestMapping(value="noauth_findPw.do",method=RequestMethod.POST)
-	public String findPw(MemberVO memberVO,HttpServletRequest request){
-		MemberVO vo=memberService.findPw(memberVO);
-		if(vo==null)
+
+	@RequestMapping(value = "noauth_findPw.do", method = RequestMethod.POST)
+	public String findPw(MemberVO memberVO, HttpServletRequest request) {
+		MemberVO vo = memberService.findPw(memberVO);
+		if (vo == null)
 			return "member/noauth_findpw_fail";
-		else{
-			HttpSession session=request.getSession();
+		else {
+			HttpSession session = request.getSession();
 			session.setAttribute("result", vo);
-		return "member/noauth_findpw_result.tiles";
+			return "member/noauth_findpw_result.tiles";
+		}
 	}
-	}
+
 	@RequestMapping("friend_Request.do")
-	public String friend_Request(String SenderId,String ReceiverId){
+	public String friend_Request(String SenderId, String ReceiverId) {
 		memberService.friend_Request(SenderId, ReceiverId);
 		return null;
 	}
 
 	@RequestMapping("friend_Accept.do")
-	public String friend_Accept(String senderID,String receiverID){
+	public String friend_Accept(String senderID, String receiverID) {
 		memberService.friend_Accept(senderID, receiverID);
 		return null;
 	}
+
 	@RequestMapping("friend_Refuse.do")
-	public String friend_Refuse(String senderID,String receiverID){
+	public String friend_Refuse(String senderID, String receiverID) {
 		memberService.friend_Refuse(senderID, receiverID);
 		return null;
 	}
+
 	@RequestMapping("friendList.do")
-	public ModelAndView friendList(String id){
-		return new ModelAndView("member/friendList.tiles","friendList",memberService.friendList(id));
+	public ModelAndView friendList(String id) {
+		return new ModelAndView("member/friendList.tiles", "friendList", memberService.friendList(id));
 	}
+
 	@RequestMapping("friend_RequestList.do")
-	public List<String> friend_RequestList(String receiverID){
+	public List<String> friend_RequestList(String receiverID) {
 		return memberService.friend_RequestList(receiverID);
 	}
+
 	@RequestMapping("getFriendId.do")
 	@ResponseBody
-	public String getFriendId(String id,String selectId){
+	public String getFriendId(String id, String selectId) {
 		return memberService.getFriendId(id, selectId);
 	}
+
 	@RequestMapping("deleteFriend.do")
-	public String deleteFriend(String id,String deleteId){
+	public String deleteFriend(String id, String deleteId) {
 		memberService.deleteFriend(id, deleteId);
-		return "redirect:friendList.do?id="+id;
+		return "redirect:friendList.do?id=" + id;
 
 	}
-	
+
 	@RequestMapping("noauth_weather.do")
-	public String weather(){
+	public String weather() {
 		return "noauth_weather.tiles";
-}
+	}
+
 	@RequestMapping(value="profileUpload.do",method=RequestMethod.POST)
 	public String profileUpload(MultipartFile file){
 		System.out.println(file);
@@ -175,3 +192,5 @@ public class MemberController {
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
