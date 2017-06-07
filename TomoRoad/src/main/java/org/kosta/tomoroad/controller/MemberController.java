@@ -137,9 +137,9 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("weather.do")
+	@RequestMapping("noauth_weather.do")
 	public String weather(){
-		return "weather3.tiles";
+		return "noauth_weather.tiles";
 }
 }
 
