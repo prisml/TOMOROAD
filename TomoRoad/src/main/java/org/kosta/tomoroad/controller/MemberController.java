@@ -10,9 +10,11 @@ import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -78,10 +80,6 @@ public class MemberController {
 		return (count == 0) ? "ok" : "fail";
 	}
 
-	@RequestMapping("mypage.do")
-	public ModelAndView myPage(String id) {
-		return new ModelAndView("mypage.tiles", "profile", memberService.getProfileById(id));
-	}
 
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id) {
@@ -158,4 +156,41 @@ public class MemberController {
 	public String weather() {
 		return "noauth_weather.tiles";
 	}
+
+	@RequestMapping(value="profileUpload.do",method=RequestMethod.POST)
+	public String profileUpload(MultipartFile file){
+		System.out.println(file);
+		return null;
+	}
+	
+	@RequestMapping("mypage/{viewName}.do")
+	public ModelAndView showMypage(@PathVariable String viewName,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git

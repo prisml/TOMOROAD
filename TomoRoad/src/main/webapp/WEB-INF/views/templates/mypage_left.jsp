@@ -24,7 +24,7 @@
             <a  class="btn btn-primary btn-lg btn-block" type="button" href="${pageContext.request.contextPath}/friendList.do?id=${sessionScope.mvo.id}" style="width: 500px; height: 50px; margin: 0 auto; align:center;" >FRIENDS SEARCH</a>
             <br>
     </div> --%>
-    <a href = "#">a</a><br>
-    <a href = "#">b</a><br>
-    <a href = "#">c</a>
+    <a href = "${pageContext.request.contextPath}/mypage/a.do">a</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/b.do">b</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/c.do">c</a>
 
