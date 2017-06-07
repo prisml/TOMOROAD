@@ -223,10 +223,18 @@ select * from place where name LIKE '%해운대%';
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
 delete from BURN_BOARD where no='2'
 
-select A.* from(select row_number() 
-over(order by no desc) rnum, no, title, station_name, member_id, 
-to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
-where rnum between 1 and 5;
+select * from BURN_COMMENT;
+
+
+select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
+from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+where b.no = c.burn_no) A
+where rnum between 1 and 5
+
+
+
+select burn_no,count(*) from burn_comment where state='comment' group by burn_no;
+
 
 select * from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits
 from (select * from BURN_BOARD where station_name = '서울')) where rnum between 1 and 5

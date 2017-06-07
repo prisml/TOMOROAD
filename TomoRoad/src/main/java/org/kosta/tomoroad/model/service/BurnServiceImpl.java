@@ -120,5 +120,10 @@ public class BurnServiceImpl implements BurnService {
 	public void replyComment(BurnCommentVO vo) {
 		burnDAO.replyComment(vo);
 	}
+	
+	@Override
+	public int CountComment(String no){
+		return burnDAO.countComment(no);
+	}
 
 }

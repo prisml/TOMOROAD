@@ -39,4 +39,6 @@ public interface BurnDAO {
 
 	List<String> getStationNameList();
 
+	int countComment(String no);
+
 }
