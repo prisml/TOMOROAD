@@ -32,4 +32,10 @@ public class StationDAOImpl implements StationDAO {
 		return template.selectList("station.getKeyword",keyword);
 	}
 
+	@Override
+	public List<StationVO> getTourInfoData() {
+		System.out.println("dao다");
+		return template.selectList("station.getTourInfoData");
+	}
+
 }

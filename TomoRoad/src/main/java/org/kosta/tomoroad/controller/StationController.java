@@ -35,5 +35,12 @@ public class StationController {
 		return searchResultList;
 	}
 	
+	@RequestMapping("station/noauth_getTourInfoData.do")
+	public String getTourInfoData(Model model){ //역들의 이미지파일 이름,위치(지역구),역이름,역 설명을 가져와야함
+		List<StationVO> getTourInfoList=service.getTourInfoData();
+		System.out.println(getTourInfoList);
+		model.addAttribute("getTourInfoList",getTourInfoList);
+		return "station/noauth_tourinfo.tiles";
+	}
 
 }

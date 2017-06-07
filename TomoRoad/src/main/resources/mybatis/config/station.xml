@@ -8,6 +8,10 @@
 		select name,detail from station
 	</sql>
 
+	<resultMap type="stationVO" id="stationRM">
+		<result property="simpleDetail" column="simple_detail"/>
+	</resultMap>
+	
 	<select id="getInfo" resultType="stationVO">
 		<include refid="selectStation" />
 		where name=#{value}
@@ -20,5 +24,9 @@
 
 	<select id="getList" resultType="stationVO">
 		<include refid="selectStation" />
+	</select>
+	
+	<select id="getTourInfoData" resultMap="stationRM">
+		select name,simple_detail,section,img from station
 	</select>
 </mapper>
