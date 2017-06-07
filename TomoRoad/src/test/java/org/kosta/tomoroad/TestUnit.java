@@ -42,8 +42,8 @@ public class TestUnit {
 		List<StationVO> stationInfoList= stationService.getStationInfo("전주");
 		System.out.println("TestUnit>역정보:"+stationInfoList);
 		*/
-		StationVO stationInfoList= stationService.getInfo("전주");
-		System.out.println("역정보:"+stationInfoList);
+/*		StationVO stationInfoList= stationService.getDetailInfo("전주");
+		System.out.println("역정보:"+stationInfoList);*/
 		
 		// 역 주면 관광지 정보 얻어오기
 		/*
