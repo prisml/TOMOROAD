@@ -30,4 +30,10 @@ public class StationServiceImpl implements StationService {
 	public List<String> getKeyword(String keyword) {
 		return dao.getKeyword(keyword);
 	}
+
+	@Override
+	public List<StationVO> getTourInfoData() {
+		System.out.println("service다");
+		return dao.getTourInfoData();
+	}
 }
