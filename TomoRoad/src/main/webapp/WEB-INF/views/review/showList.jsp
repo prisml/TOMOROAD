@@ -15,7 +15,7 @@
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">
 				<div class="post_date">
-					<span class="day">28</span> <span class="month">Nov</span>
+					<span class="day">${rlist.day }</span> <span class="month">${rlist.month }</span>
 				</div>
 				<figure class="post_img">
 					<a href="#"> <img
@@ -33,6 +33,7 @@
 							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
 							</span> <span><i class="fa fa-map-marker"></i> <a href="#.">${rlist.place.name }</a></span>
 							<span><i class="fa fa-dot-circle-o"></i> <a href="#">${rlist.hits } HITS</a></span>
+							<span><i class="fa fa-heart"></i>${rlist.recommend } Recommend</span>
 						</div>
 					</div>
 					<p>${rlist.content }</p>

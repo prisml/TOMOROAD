@@ -35,4 +35,8 @@ public interface ReviewDAO {
 	int getRecommendByNo(int no);
 
 	void recommend(Map<String, Object> map);
+
+	Map<String, Object> isRecommend(Map<String, Object> temp);
+
+	void deleteRecommend(Map<String, Object> map);
 }

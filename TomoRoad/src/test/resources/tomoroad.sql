@@ -237,6 +237,8 @@ insert into REVIEW(no,title,content,posted_time,star,place_no,member_id) values(
 
 select content from review where content like '%부%';
 
+select * from review_recommend
+
 SELECT      TRIM(REGEXP_SUBSTR(ORG_DATA, '[^,]+', 1, LEVEL)) AS SPLIT_DATA
 FROM        (select content AS ORG_DATA from review where content like '%부%';)
 CONNECT BY  INSTR(ORG_DATA, '부산', 1, LEVEL - 1) > 0;
@@ -303,3 +305,15 @@ where   r.no=4 and r.place_no=p.no
 select * from friend 
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
+
+select member_id id, review_no no from review_recommend where member_id='java' and review_no='16']
+
+
+select A.*, re.recommend
+		from(select row_number() over(order by r.no
+		desc) rnum,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+		from review r, place p, member m where r.place_no = p.no and r.member_id=m.id) A, 
+		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
+		where rnum between 1 and 5 and A.no=re.review_no(+)

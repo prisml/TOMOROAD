@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="detail" resultMap="detailReviewRM">
 		select
-		r.no,r.title,r.content,r.posted_time,r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name
+		r.no,r.title,r.content,to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time,r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name
 		from review r, place p, member m where
 		r.no=#{value} and r.place_no=p.no and m.id=r.member_id
 	</select>
@@ -26,13 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
-		select A.*
+		select A.*, re.recommend
 		from(select row_number() over(order by r.no
 		desc) rnum,
 		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
 		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
-		from review r, place p, member m where r.place_no = p.no and r.member_id=m.id) A
-		where rnum between #{startRowNumber} and #{endRowNumber}
+		from review r, place p, member m where r.place_no = p.no and r.member_id=m.id) A, 
+		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
+		where rnum between #{startRowNumber} and #{endRowNumber} and A.no=re.review_no(+)
 	</select>
 	<insert id="register" parameterType="reviewVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
@@ -99,4 +100,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRecommendByNo" resultType="int">
 		select count(*) from review_recommend where review_no = #{value}
 	</select>
+	
+	<select id="isRecommend" resultType="map" parameterType="map">
+		select member_id, review_no from review_recommend where member_id=#{member_id} and review_no=#{review_no}
+	</select>
+	
+	<delete id="deleteRecommend" parameterType="map">
+		delete from review_recommend where member_id=#{member_id} and review_no=#{review_no}
+	</delete>
 </mapper>

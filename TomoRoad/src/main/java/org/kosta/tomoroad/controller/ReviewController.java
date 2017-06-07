@@ -2,6 +2,7 @@ package org.kosta.tomoroad.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -71,9 +72,14 @@ public class ReviewController {
 	}
 
 	@RequestMapping("review/noauth_detail.do")
-	public ModelAndView detail(String no) {
-		ReviewVO rvo = service.getDetail(no);
-		return new ModelAndView("review/detail.tiles", "rvo", rvo);
+	public ModelAndView detail(String no, HttpServletRequest req) {
+		MemberVO mvo = (MemberVO) req.getSession().getAttribute("mvo");
+		Map<String, Object> dvo;
+		if(mvo!=null)
+			dvo = service.getDetail(no, mvo.getId());
+		else
+			dvo = service.getDetail(no);
+		return new ModelAndView("review/detail.tiles", "dvo", dvo);
 	}
 	
 	@RequestMapping("review/noauth_detailHit.do")
@@ -89,10 +95,10 @@ public class ReviewController {
 		return new ModelAndView("redirect:review/showListByMember.do?id="+vo.getId());
 	}
 	
-	@RequestMapping("recommend")
+	@RequestMapping("review/recommend")
 	public String recommend(String id,int no){
 		service.recommend(id, no);
-		return "redirect:review/noauth_detail.do?no="+no;
+		return "redirect:noauth_detail.do?no="+no;
 	}
 	
 	@RequestMapping("review/noauth_getKeyword.do")
@@ -116,9 +122,5 @@ public class ReviewController {
 			}
 		}
 		return keywordList;
-/*		ArrayList<String> list=new ArrayList<String>();
-		list.add("개발");
-		list.add("개진상");
-		list.add("개주사");*/
 	}
 }

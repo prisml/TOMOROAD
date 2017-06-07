@@ -99,4 +99,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 		return template.selectList("review.get"+filter,keyword);
 	}
+
+	@Override
+	public Map<String, Object> isRecommend(Map<String, Object> map) {
+		return template.selectOne("review.isRecommend", map);
+	}
+
+	@Override
+	public void deleteRecommend(Map<String, Object> map) {
+		template.delete("review.deleteRecommend",map);
+	}
 }

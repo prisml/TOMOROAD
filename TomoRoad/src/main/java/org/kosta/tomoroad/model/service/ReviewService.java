@@ -13,7 +13,7 @@ public interface ReviewService {
 
 	void register(ReviewVO vo);
 
-	ReviewVO getDetail(String no);
+	Map<String, Object> getDetail(String no, String id);
 
 	void update(ReviewVO vo);
 
@@ -34,5 +34,7 @@ public interface ReviewService {
 	int getRecommendByNo(int review_no);
 
 	Map<String, Object> getUpdateDetail(String no);
+
+	Map<String, Object> getDetail(String no);
 
 }

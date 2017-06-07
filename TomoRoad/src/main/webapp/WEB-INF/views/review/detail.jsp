@@ -4,31 +4,44 @@
 	<div class="blog_single">
 		<article class="post">
 			<div class="post_date">
-				<span class="day">28</span> <span class="month">Nov</span>
+				<span class="day">${dvo.rvo.day }</span> <span class="month">${dvo.rvo.month }</span>
 			</div>
 			<div class="post_content">
 				<div class="post_meta">
 					<h2>
-						<a href="#">${rvo.title }</a>
+						<a href="#">${dvo.rvo.title }</a>
 					</h2>
 					<div class="metaInfo">
-						<span><i class="fa fa-calendar"></i> <a href="#">${rvo.postedTime }</a>
-						</span> <span><i class="fa fa-user"></i> By <a href="#">${rvo.member.name }</a>
-						</span> <span><i class="fa fa-tag"></i> <a href="#">${rvo.place.name }</a>
-						</span> <span><i class="fa fa-star"></i> <a href="#">${rvo.star }</a></span>
+						<span><i class="fa fa-calendar"></i> <a href="#">${dvo.rvo.postedTime }</a>
+						</span> <span><i class="fa fa-user"></i> By <a href="#">${dvo.rvo.member.name }</a>
+						</span> <span><i class="fa fa-tag"></i> <a href="#">${dvo.rvo.place.name }</a>
+						</span> <span><i class="fa fa-star"></i> <a href="#">${dvo.rvo.star }</a></span>
+						<span><i class="fa fa-heart"></i> <a href="#">${dvo.rvo.recommend }</a></span>
 					</div>
 				</div>
 				<figure class="post_img">
 					<img src="${pageContext.request.contextPath}/resources/images/blog/blog_1.png" alt="blog post">
 				</figure>
-				<p>${rvo.content }</p>
-				<c:if test="${mvo!=null && mvo.id==rvo.member.id}">
-					<a href="${pageContext.request.contextPath}/review/update_form.do?no=${rvo.no}"
-						role="button" class="btn btn-default">update</a>
-				</c:if>
+				<p>${dvo.rvo.content }</p>
 				<c:if test="${mvo!=null}">
-					<a href="${pageContext.request.contextPath}/review/recommend.do?no=${rvo.no}&id=${mvo.id}"
-						role="button" class="btn btn-default">recommend</a>
+					<div class="serviceBox_2 red">
+						<c:if test="${mvo!=null && mvo.id==dvo.rvo.member.id}">
+							<a href="${pageContext.request.contextPath}/review/update_form.do?no=${dvo.rvo.no}"
+								role="button" class="btn btn-default">update</a>
+						</c:if>
+	                    <div class="service-icon">
+							<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}">
+								<c:choose>
+									<c:when test="${dvo.recommend==null }">
+										<i class="fa fa-heart-o"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart"></i>
+									</c:otherwise>
+								</c:choose>
+							</a>
+	                    </div>
+	                </div>
 				</c:if>
 			</div>
 		</article>

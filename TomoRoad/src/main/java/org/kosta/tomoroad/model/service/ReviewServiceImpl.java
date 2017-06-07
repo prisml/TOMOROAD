@@ -34,10 +34,25 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewVO getDetail(String no) {
+	public Map<String, Object> getDetail(String no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		ReviewVO vo = dao.getDetail(no);
 		vo.setRecommend(getRecommendByNo(Integer.parseInt(no)));
-		return vo;
+		map.put("rvo", vo);
+		Map<String, Object> temp = new HashMap<String, Object>();
+		temp.put("review_no", no);
+		temp.put("member_id", id);
+		map.put("recommend", dao.isRecommend(temp));
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getDetail(String no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ReviewVO vo = dao.getDetail(no);
+		vo.setRecommend(getRecommendByNo(Integer.parseInt(no)));
+		map.put("rvo", vo);
+		return map;
 	}
 
 	@Override
@@ -94,7 +109,10 @@ public class ReviewServiceImpl implements ReviewService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_id", id);
 		map.put("review_no", no);
-		dao.recommend(map);
+		if(dao.isRecommend(map)==null)
+			dao.recommend(map);
+		else
+			dao.deleteRecommend(map);
 	}
 
 	@Override
