@@ -171,26 +171,3 @@ public class MemberController {
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
