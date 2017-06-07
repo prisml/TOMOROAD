@@ -38,6 +38,6 @@ public interface MemberDAO {
 	
 	void deleteFriend(String id,String deleteId);
 
-	
+	String getProfileById(String id);
 
 }

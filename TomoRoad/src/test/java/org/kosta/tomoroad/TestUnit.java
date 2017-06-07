@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kosta.tomoroad.model.dao.MemberDAO;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.ReviewService;
@@ -27,6 +28,9 @@ public class TestUnit {
 	
 	@Resource(name="reviewServiceImpl")
 	private ReviewService reviewService;
+	
+	@Resource
+	private MemberDAO memberdao;
 	
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
@@ -65,7 +69,7 @@ public class TestUnit {
 		//리뷰 키워드 가져오기
 /*		List<ReviewVO> list=reviewService.getKeyword("전","제목+내용");
 		System.out.println(list);*/
-		System.out.println(memberService.friendList("java"));
+		memberdao.getProfileById("java");
 		
 	}
 }

@@ -71,8 +71,8 @@ public class MemberController {
 		return (count==0) ? "ok":"fail"; 		
 	}
 	@RequestMapping("mypage.do")
-	public String myPage(){
-		return "mypage.tiles";
+	public ModelAndView myPage(String id){
+		return new ModelAndView("mypage.tiles", "profile", memberService.getProfileById(id));
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){

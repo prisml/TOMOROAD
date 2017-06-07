@@ -76,5 +76,9 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteFriend(String id, String deleteId) {
 		memberDAO.deleteFriend(id, deleteId);
 	}
+	@Override
+	public String getProfileById(String id) {
+		return memberDAO.getProfileById(id);
+	}
 
 }

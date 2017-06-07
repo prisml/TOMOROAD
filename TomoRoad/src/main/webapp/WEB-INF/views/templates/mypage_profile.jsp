@@ -26,10 +26,10 @@ function readURL(input) {
 		
 	}
 	function resetprile(){
-		 $('#blah').attr('src','${pageContext.request.contextPath}/resources/img/kakao.jpg');
+		 $('#blah').attr('src','${pageContext.request.contextPath}/resources/img/profiles/kakao.jpg');
 	}
 </script>
 <input type = "file" style="display:none" name = "uploadfile" id = "file">
-<input type = "image" width="200" height="200" src = "${pageContext.request.contextPath}/resources/img/kakao.jpg" id = "blah" onclick = "upload()"><br>
+<input type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()"><br>
 <input type = "button" onclick = "fileupload()" value = "변경">
 <input type = "button" onclick = "resetprile()" value = "기본이미지">

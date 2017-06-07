@@ -33,7 +33,7 @@
 						REVIEW </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/mypage.do">
+				<li><a href="${pageContext.request.contextPath}/mypage.do?id=${mvo.id}">
 						MYPAGE </a></li>
 				<li>　</li>
 
