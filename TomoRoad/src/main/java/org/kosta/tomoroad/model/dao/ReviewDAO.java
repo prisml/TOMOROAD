@@ -28,11 +28,15 @@ public interface ReviewDAO {
 
 	void delete(String no);
 
-	List<PlaceVO> getStationList();
+	List<PlaceVO> getPlaceList();
 
 	void hits(String no);
 	
-	int getreview_recommendByreviewNo(int review_no);
+	int getRecommendByNo(int no);
 
-	void review_recommend(Map<String, Object> map);
+	void recommend(Map<String, Object> map);
+
+	Map<String, Object> isRecommend(Map<String, Object> temp);
+
+	void deleteRecommend(Map<String, Object> map);
 }

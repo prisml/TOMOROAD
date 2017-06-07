@@ -12,4 +12,6 @@ public interface StationService {
 
 	List<String> getKeyword(String keyword);
 
+	List<StationVO> getTourInfoData();
+
 }

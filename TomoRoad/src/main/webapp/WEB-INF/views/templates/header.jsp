@@ -20,7 +20,7 @@
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
 			<ul class="nav navbar-nav" style="align: center">
 				<li>　</li>
-				<li><a href="${pageContext.request.contextPath}/noauth_home.do">
+				<li><a href="${pageContext.request.contextPath}/home.do">
 						HOME </a></li>
 				<li>　</li>
 
@@ -33,12 +33,12 @@
 						REVIEW </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/mypage.do">
+				<li><a href="${pageContext.request.contextPath}/mypage.do?id=${mvo.id}">
 						MYPAGE </a></li>
 				<li>　</li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/station/noauth_tourinfo.do">
+					href="${pageContext.request.contextPath}/station/noauth_getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
 				<li><c:choose>

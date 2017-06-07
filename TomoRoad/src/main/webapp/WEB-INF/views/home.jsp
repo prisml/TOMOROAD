@@ -126,7 +126,8 @@ a.cbtn {
   $( function() {
     var criterion=""; //검색 기준
     var keyword=""; //검색 키워드
-    var reviewFilter="제목만"; //리뷰검색 기준-제목이냐 제목+내용이냐
+    
+    $("#form").hide(); //검색기준이 리뷰가 아닐 땐 숨겨놓음.
     
     
  // DB 연동 없이 사용 할 때,
@@ -159,72 +160,47 @@ a.cbtn {
       source: availableTags //source : 검색될 배열
     }); */
 
-
-/* 
- * 이건 모름...맵으로 해야하는데
- $(function(){
-	$( "#autocompleteText" ).autocomplete({
-		source : function( request, response ) { //많이 봤죠? jquery Ajax로 비동기 통신한 후 //json객체를 서버에서 내려받아서 리스트 뽑는 작업
-				$.ajax({
-					//호출할 URL
-					 url: "search.jsp",
-					 //우선 jsontype json으로
-					 dataType: "json",
-					 // parameter 값이다. 여러개를 줄수도 있다.
-					 data: {
-						 //request.term >> 이거 자체가 text박스내에 입력된 값이다.
-						 searchValue: request.term},
-					 success: function( result ) { //return 된놈을 response() 함수내에 다음과 같이 정의해서 뽑아온다.
-						 response(
-								 $.map( result, function( item ) {
-									 return { //label : 화면에 보여지는 텍스트 //value : 실제 text태그에 들어갈 값 //본인은 둘다 똑같이 줬음 //화면에 보여지는 text가 즉, value가 되기때문
-										 label: item.data, 
-										 value: item.data
-										 }
-									 })
-									 );
-					 }
-						 });
-		}, //최소 몇자 이상되면 통신을 시작하겠다라는 옵션
-		minLength: 2, //자동완성 목록에서 특정 값 선택시 처리하는 동작 구현 //구현없으면 단순 text태그내에 값이 들어간다.
-		select: function( event, ui ) {}
-		});
-	}) */
-
-	 //리뷰 선택 시 나타나는 검색기준 셀렉트박스
-	 $(":input[name=reviewForm]").change(function(){
-	 	reviewFilter=$(":input[name=reviewForm] option:selected").val();
-	  });//리뷰검색 기준 셀렉트박스
-	//한번더 
-    //자동완성
-     $( "#searchkeyword" ).autocomplete({
-    	source : function( request, response){
-    		//alert(reviewFilter);
-    		$.ajax({
-    			url: criterion+"/noauth_getKeyword.do",
-    			dataType:"json",
-    			data:"keyword="+request.term+"&reviewFilter="+reviewFilter, //사용자가 최근 입력한 단어를 보냄
-    			success: function(data){
-    				response(data);
-    			}//success
-    		});//ajax
-    	}//source:function
-    }); //autocomplete
     
-	$("#form").hide(); //검색기준이 리뷰가 아닐 땐 숨겨놓음.
-	
-    $(":input[name=searchForm]").change(function(){ //선택상자 폼에서 변했을 때,
-		 criterion=$(this).val();  // 검색기준을 정하고
-		 keyword=$("#searchkeyword").val(); // 키워드를 담음. 어쨌든 내가 선택을 해도 어쨌뜬 최종 검색어가 정해지는거니까
+	if(${sessionScope.mvo==null}){ //세션이 없을 때는 검색기능 사용 불가
+		$("#searchkeyword").val("로그인 후 가능합니다.");
+	}else{
+    
+		var reviewFilter="제목만"; //리뷰검색 기준-제목이냐 제목+내용이냐
+		$("#searchkeyword").removeAttr("readonly");
+	    
+		 //리뷰 선택 시 나타나는 검색기준 셀렉트박스
+		 $(":input[name=reviewForm]").change(function(){
+		 	reviewFilter=$(":input[name=reviewForm] option:selected").val();
+		  });//리뷰검색 기준 셀렉트박스
+		//한번더 
+	    //자동완성
+	     $( "#searchkeyword" ).autocomplete({
+	    	source : function( request, response){
+	    		//alert(reviewFilter);
+	    		$.ajax({
+	    			url: criterion+"/noauth_getKeyword.do",
+	    			dataType:"json",
+	    			data:"keyword="+request.term+"&reviewFilter="+reviewFilter, //사용자가 최근 입력한 단어를 보냄
+	    			success: function(data){
+	    				response(data);
+	    			}//success
+	    		});//ajax
+	    	}//source:function
+	    }); //autocomplete
+	    
 		
-		//리뷰 선택 시 나타나게만 함.
-		if(criterion=="review"){
-			$("#form").show();
-		}else{
-			$("#form").hide();
-		}
-	});//form change
-		
+	    $(":input[name=searchForm]").change(function(){ //선택상자 폼에서 변했을 때,
+			 criterion=$(this).val();  // 검색기준을 정하고
+			 keyword=$("#searchkeyword").val(); // 키워드를 담음. 어쨌든 내가 선택을 해도 어쨌뜬 최종 검색어가 정해지는거니까
+			
+			//리뷰 선택 시 나타나게만 함.
+			if(criterion=="review"){
+				$("#form").show();
+			}else{
+				$("#form").hide();
+			}
+		});//form change
+	}//else
   }); //function 
   </script>
   
@@ -245,11 +221,11 @@ a.cbtn {
 				<option id="idAndContent">제목+내용</option>
 			</select>
 		</span>
-		<input id="searchkeyword" type="text">
+		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
 
-		<!-- 해당 역 아이콘 -->
-		<div align="center">
+	<!-- 해당 역 아이콘 -->
+	<div align="center">
 			<img src="${pageContext.request.contextPath}/resources/img/map.png">
 		<%-- <div style="position: absolute; top: 289px; left: 238px;"><input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="서울"></div> --%>
 		<!-- <div style="position: absolute; top: 379px; left: 262px;"> -->
@@ -353,6 +329,7 @@ a.cbtn {
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png" onclick="layer_open(this);return false;" id="대구">
 		</div>
 	</div>
+	
 	<!-- 레이어팝업 -->
 	<div class="pop-layer" id="layer1">
 		<div class="pop-container">

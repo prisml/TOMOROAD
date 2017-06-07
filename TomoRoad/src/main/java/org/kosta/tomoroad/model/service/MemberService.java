@@ -36,6 +36,6 @@ public interface MemberService {
 
 	String getFriendId(String id, String selectId);
 
-	
+	String getProfileById(String id);
 
 }
