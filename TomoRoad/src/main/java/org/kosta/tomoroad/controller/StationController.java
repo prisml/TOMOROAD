@@ -17,7 +17,7 @@ public class StationController {
 	private StationService service;
 	
 	@RequestMapping("noauth_getStationInfo.do")
-	public String getStationInfo(Model model,String id){
+	public String getStationInfo(Model model,String id){ //id : 역 이름. 특정 역 정보를 가져오는 것. 역이름과 설명
 		StationVO stationInfo = service.getInfo(id);
 		System.out.println("역 정보 : "+stationInfo);
 		model.addAttribute("stationInfolist",stationInfo);
@@ -34,4 +34,6 @@ public class StationController {
 		
 		return searchResultList;
 	}
+	
+
 }
