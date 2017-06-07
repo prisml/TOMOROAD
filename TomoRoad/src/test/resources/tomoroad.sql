@@ -201,10 +201,18 @@ select * from STATION;
 select * from place;
 
 
-select A.* from(select row_number() 
-over(order by no desc) rnum, no, title, station_name, member_id, 
-to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
-where rnum between 1 and 5;
+select * from BURN_COMMENT;
+
+
+select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
+from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+where b.no = c.burn_no) A
+where rnum between 1 and 5
+
+
+
+select burn_no,count(*) from burn_comment where state='comment' group by burn_no;
+
 
 insert into station(name,detail) values('전주','주소 : 전라북도 전주시 덕진구 동부대로 680 전주역
 														지번-전라북도 전주시 덕진구 우아동3가 235
