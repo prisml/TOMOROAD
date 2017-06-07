@@ -8,13 +8,14 @@ public class BurnVO {
 	private String stationName;
 	private String memberId;
 	private int hits;
+	private int commentCount;
 
 	public BurnVO() {
 		super();
 	}
 
 	public BurnVO(int no, String title, String postedTime, String content, String stationName, String memberId,
-			int hits) {
+			int hits, int commentCount) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -23,6 +24,7 @@ public class BurnVO {
 		this.stationName = stationName;
 		this.memberId = memberId;
 		this.hits = hits;
+		this.commentCount = commentCount;
 	}
 
 	public int getNo() {
@@ -81,10 +83,21 @@ public class BurnVO {
 		this.hits = hits;
 	}
 
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
 	@Override
 	public String toString() {
 		return "BurnVO [no=" + no + ", title=" + title + ", postedTime=" + postedTime + ", content=" + content
-				+ ", stationName=" + stationName + ", memberId=" + memberId + ", hits=" + hits + "]";
+				+ ", stationName=" + stationName + ", memberId=" + memberId + ", hits=" + hits + ", commentCount="
+				+ commentCount + "]";
 	}
+
+	
 
 }

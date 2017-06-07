@@ -223,10 +223,18 @@ select * from place where name LIKE '%해운대%';
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
 delete from BURN_BOARD where no='2'
 
-select A.* from(select row_number() 
-over(order by no desc) rnum, no, title, station_name, member_id, 
-to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
-where rnum between 1 and 5;
+select * from BURN_COMMENT;
+
+
+select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
+from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+where b.no = c.burn_no) A
+where rnum between 1 and 5
+
+
+
+select burn_no,count(*) from burn_comment where state='comment' group by burn_no;
+
 
 select * from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits
 from (select * from BURN_BOARD where station_name = '서울')) where rnum between 1 and 5
@@ -245,6 +253,16 @@ update review set hits=hits+1 where no=4;
 select no,title,member_id,to_char(posted_time,'YYYY/MM/DD'),hits,star from review where title like '%전주%' or content like '%전주%';
 select title from review where title like '%전주%' or content like '%전주%'
 select content from review where content like '%부%';
+
+select * from review_recommend
+
+SELECT      TRIM(REGEXP_SUBSTR(ORG_DATA, '[^,]+', 1, LEVEL)) AS SPLIT_DATA
+FROM        (select content AS ORG_DATA from review where content like '%부%';)
+CONNECT BY  INSTR(ORG_DATA, '부산', 1, LEVEL - 1) > 0;
+
+
+select content from review where content like '%부산%';
+
 select * from review where title like '%부산%' and content like '%부산%';
 select content from review where content like '%부산%';
 select title from review where content like '%부산%';
@@ -285,6 +303,19 @@ insert into review_recommend values('java',3)
 select count(*) from review_recommend where review_no = 3
 select * from review_recommend
 
+select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
+
+select member_id id, review_no no from review_recommend where member_id='java' and review_no='16']
+
+
+select A.*, re.recommend
+		from(select row_number() over(order by r.no
+		desc) rnum,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+		from review r, place p, member m where r.place_no = p.no and r.member_id=m.id) A, 
+		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
+		where rnum between 1 and 5 and A.no=re.review_no(+)
 
 
 -----< dual >-----
@@ -294,4 +325,3 @@ select sysdate from dual
 insert into friend values('java','goni','수락',sysdate);
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
-

@@ -64,7 +64,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<PlaceVO> getStationList() {
+	public List<PlaceVO> getPlaceList() {
 		return template.selectList("place.getList");
 	}
 
@@ -74,13 +74,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public void review_recommend(Map<String,Object> map) {
-		template.insert("review_recommend",map);
+	public void recommend(Map<String,Object> map) {
+		template.insert("recommend",map);
 	}
 
 	@Override
-	public int getreview_recommendByreviewNo(int review_no) {
-		return template.selectOne("getreview_recommendByreviewNo",review_no);
+	public int getRecommendByNo(int no) {
+		return template.selectOne("getRecommendByNo",no);
 	}
 
 	@Override
@@ -98,5 +98,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 			System.out.println("제목과 내용인 경우 filter:"+filter);
 		}
 		return template.selectList("review.get"+filter,keyword);
+	}
+
+	@Override
+	public Map<String, Object> isRecommend(Map<String, Object> map) {
+		return template.selectOne("review.isRecommend", map);
+	}
+
+	@Override
+	public void deleteRecommend(Map<String, Object> map) {
+		template.delete("review.deleteRecommend",map);
 	}
 }

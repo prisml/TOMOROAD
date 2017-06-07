@@ -38,4 +38,6 @@ public interface BurnService {
 	void updateComment(BurnCommentVO vo);
 
 	void replyComment(BurnCommentVO vo);
+
+	int CountComment(String no);
 }

@@ -101,6 +101,32 @@ public class ReviewVO {
 	public void setMember(MemberVO member) {
 		this.member = member;
 	}
+	
+	public String getDay(){
+		String date = this.postedTime;
+		String day = date.substring(8, 10);
+		return day;
+	}
+	
+	public String getMonth(){
+		String date = this.postedTime;
+		int month = Integer.parseInt(date.substring(5, 7));
+		switch(month){
+		case 1: return "JAN";
+		case 2: return "FAB";
+		case 3: return "MAR";
+		case 4: return "APR";
+		case 5: return "MAY";
+		case 6: return "JUN";
+		case 7: return "JUL";
+		case 8: return "AUG";
+		case 9: return "SEP";
+		case 10: return "OCT";
+		case 11: return "NOV";
+		case 12: return "DEC";
+		default : return "noresult";
+		}
+	}
 
 	@Override
 	public String toString() {
