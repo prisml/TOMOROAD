@@ -69,7 +69,7 @@
             <br>
             <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">Sign-up</a>
                         <br>
-            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/weather3.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">WEATHER</a>
+            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">WEATHER</a>
         </div>
       </form>
 

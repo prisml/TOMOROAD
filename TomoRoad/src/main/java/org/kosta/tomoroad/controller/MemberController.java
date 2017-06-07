@@ -71,8 +71,8 @@ public class MemberController {
 		return (count==0) ? "ok":"fail"; 		
 	}
 	@RequestMapping("mypage.do")
-	public String myPage(){
-		return "mypageLayout.tiles";
+	public ModelAndView myPage(String id){
+		return new ModelAndView("mypage.tiles", "profile", memberService.getProfileById(id));
 }
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id){
@@ -137,9 +137,9 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("weather.do")
+	@RequestMapping("noauth_weather.do")
 	public String weather(){
-		return "weather3.tiles";
+		return "noauth_weather.tiles";
 }
 }
 

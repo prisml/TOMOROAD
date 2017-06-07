@@ -142,7 +142,6 @@ create table advertisement(
 );
 create sequence advertisement_seq nocache;
 
-
 create table manager(
 	id varchar2(100) primary key,
 	password varchar2(100) not null
@@ -268,6 +267,14 @@ select row_number() over(order by re.no desc) rnum,
 		from review re, place p
 		where re.place_no=p.no
 		
+update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
+
+select * from member
+		
+update review set hits=hits+1 where no=4;
+select * from review;
+select * from place; 
+
 select r.no, r.title, r.content, r.posted_time, r.star, r.place_no, r.member_id, r.hits, p.name 
 from review r, place p
 where   r.no=4 and r.place_no=p.no

@@ -10,7 +10,7 @@
 		}
 	</style>
 	<script>
-		var openWeatherAppId = '2de143494c0b295cca9337e1e96b00e0',
+		var openWeatherAppId = 'c89c5f3e9f18d586e9279e9e218a31de',
 		  openWeatherUrl = 'http://api.openweathermap.org/data/2.5/forecast'
 		var prepareData = function(units) {
 			// Replace loading image
@@ -83,7 +83,6 @@
 
 		<div class="row">
 			<hr/>
-			<p>Azat Mardan (<a href="http://twitter.com/azat_co">@azat_co</a>)</p>
 		</div>
 
 	</div>

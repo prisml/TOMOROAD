@@ -98,5 +98,9 @@ public class MemberDAOImpl implements MemberDAO{
 		friend.put("selectId",deleteId);
 		template.delete("deleteFriend",friend);
 	}
+	@Override
+	public String getProfileById(String id) {
+		return template.selectOne("getProfileById", id);
+	}
 
 }
