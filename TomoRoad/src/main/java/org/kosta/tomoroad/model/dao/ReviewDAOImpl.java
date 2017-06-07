@@ -64,7 +64,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<PlaceVO> getStationList() {
+	public List<PlaceVO> getPlaceList() {
 		return template.selectList("place.getList");
 	}
 
@@ -79,8 +79,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public int getRecommendByNo(int review_no) {
-		return template.selectOne("getRecommendByNo",review_no);
+	public int getRecommendByNo(int no) {
+		return template.selectOne("getRecommendByNo",no);
 	}
 
 	@Override

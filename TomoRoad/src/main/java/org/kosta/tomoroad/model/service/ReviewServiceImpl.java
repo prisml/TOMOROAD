@@ -85,20 +85,28 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<PlaceVO> getStationList() {
-		return dao.getStationList();
+	public List<PlaceVO> getPlaceList() {
+		return dao.getPlaceList();
 	}
 
 	@Override
-	public void recommend(String member_id, int review_no) {
+	public void recommend(String id, int no) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member_id", member_id);
-		map.put("review_no", review_no);
+		map.put("member_id", id);
+		map.put("review_no", no);
 		dao.recommend(map);
 	}
 
 	@Override
-	public int getRecommendByNo(int review_no) {
-		return dao.getRecommendByNo(review_no);
+	public int getRecommendByNo(int no) {
+		return dao.getRecommendByNo(no);
+	}
+
+	@Override
+	public Map<String, Object> getUpdateDetail(String no) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("rvo", getDetail(no));
+		map.put("placeList", getPlaceList());
+		return map;
 	}
 }

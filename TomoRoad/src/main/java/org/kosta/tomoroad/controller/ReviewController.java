@@ -52,14 +52,14 @@ public class ReviewController {
 	
 	@RequestMapping("review/register_form.do")
 	public ModelAndView registerForm() {
-		return new ModelAndView("review/register_form.tiles", "placeList", service.getStationList());
+		return new ModelAndView("review/register_form.tiles", "placeList", service.getPlaceList());
 	}
 	
 	@RequestMapping("review/update_form.do")
 	public ModelAndView updateForm(String no){
 		System.out.println("updateForm no="+no);
 		System.out.println("rvo="+service.getDetail(no));
-		return new ModelAndView("review/update_form.tiles", "rvo", service.getDetail(no));
+		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class ReviewController {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		vo.setPlace(new PlaceVO(placeNo));
 		service.update(vo);
-		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
+		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
 
 	@RequestMapping("review/noauth_detail.do")
@@ -79,7 +79,7 @@ public class ReviewController {
 	@RequestMapping("review/noauth_detailHit.do")
 	public ModelAndView detailHit(String no){
 		service.getDetailHit(no);
-		return new ModelAndView("redirect:detail.do?no="+no);
+		return new ModelAndView("redirect:noauth_detail.do?no="+no);
 	}
 	
 	@RequestMapping("review/delete.do")
@@ -90,9 +90,9 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("recommend")
-	public String recommend(String member_id,int review_no){
-		service.recommend(member_id, review_no);
-		return "redirect:review/detail.do?no="+review_no;
+	public String recommend(String id,int no){
+		service.recommend(id, no);
+		return "redirect:review/noauth_detail.do?no="+no;
 	}
 	
 	@RequestMapping("review/noauth_getKeyword.do")

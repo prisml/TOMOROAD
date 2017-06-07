@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="blog_single">
 		<article class="post">
-			<figure class="post_img">
-				<a href="#"> <img src="images/blog/blog_1.png" alt="blog post">
-				</a>
-			</figure>
 			<div class="post_date">
 				<span class="day">28</span> <span class="month">Nov</span>
 			</div>
@@ -16,18 +13,28 @@
 					</h2>
 					<div class="metaInfo">
 						<span><i class="fa fa-calendar"></i> <a href="#">${rvo.postedTime }</a>
-						</span> <span><i class="fa fa-user"></i> By <a href="#">${mvo.name }</a>
+						</span> <span><i class="fa fa-user"></i> By <a href="#">${rvo.member.name }</a>
 						</span> <span><i class="fa fa-tag"></i> <a href="#">${rvo.place.name }</a>
-						</span> <span><i class="fa fa-comments"></i> <a href="#"><%-- ${commentCount } --%>
-								Comments</a></span>
+						</span> <span><i class="fa fa-star"></i> <a href="#">${rvo.star }</a></span>
 					</div>
 				</div>
+				<figure class="post_img">
+					<img src="${pageContext.request.contextPath}/resources/images/blog/blog_1.png" alt="blog post">
+				</figure>
 				<p>${rvo.content }</p>
+				<c:if test="${mvo!=null && mvo.id==rvo.member.id}">
+					<a href="${pageContext.request.contextPath}/review/update_form.do?no=${rvo.no}"
+						role="button" class="btn btn-default">update</a>
+				</c:if>
+				<c:if test="${mvo!=null}">
+					<a href="${pageContext.request.contextPath}/review/recommend.do?no=${rvo.no}&id=${mvo.id}"
+						role="button" class="btn btn-default">recommend</a>
+				</c:if>
 			</div>
 		</article>
 		<div class="about_author">
 			<div class="author_desc">
-				<img src="images/blog/author.png" alt="about author">
+				<img src="${pageContext.request.contextPath}/resources/images/blog/author.png" alt="about author">
 				<ul class="author_social">
 					<li><a class="fb" href="#." data-placement="top"
 						data-toggle="tooltip" title="Facbook"><i
@@ -40,7 +47,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!--News Comments-->
 	<div class="news_comments">
 		<div class="dividerHeading">
@@ -52,7 +58,7 @@
 			<ul id="comment-list">
 				<li class="comment">
 					<div class="avatar">
-						<img alt="" src="images/blog/avatar_1.png" class="avatar">
+						<img alt="" src="${pageContext.request.contextPath}/resources/images/blog/avatar_1.png" class="avatar">
 					</div>
 					<div class="comment-container">
 						<h4 class="comment-author">

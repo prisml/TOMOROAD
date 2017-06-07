@@ -27,7 +27,7 @@
 					<div class="post_meta">
 						<h2>
 							<a
-								href="${pageContext.request.contextPath}/review/detailHit.do?no=${rlist.no}">${rlist.title }</a>
+								href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">${rlist.title }</a>
 						</h2>
 						<div class="metaInfo">
 							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
@@ -37,7 +37,7 @@
 					</div>
 					<p>${rlist.content }</p>
 					<a class="btn btn-small btn-default"
-						href="${pageContext.request.contextPath}/review/detailHit.do?no=${rlist.no}">Read
+						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
 
 				</div>

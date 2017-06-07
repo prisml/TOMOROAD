@@ -1,6 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
@@ -26,10 +27,12 @@ public interface ReviewService {
 
 	void delete(String no);
 
-	List<PlaceVO> getStationList();
+	List<PlaceVO> getPlaceList();
 	
-	void recommend(String member_id,int review_no);
+	void recommend(String id,int no);
 	
 	int getRecommendByNo(int review_no);
+
+	Map<String, Object> getUpdateDetail(String no);
 
 }

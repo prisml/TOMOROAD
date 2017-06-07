@@ -42,10 +42,15 @@
 		</div>
 		<div class="row">
 			<div class="form-group">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<input id="subject" name="picture" class="form-control"
 						maxlength="100" data-msg-required="Please input your picture."
 						value="" placeholder="사진등록" type="text">
+				</div>
+				<div class="col-md-6">
+					<input id="subject" name="star" class="form-control"
+						maxlength="100"
+						value="5" placeholder="별점" type="number" max="5" min="0">
 				</div>
 			</div>
 		</div>
