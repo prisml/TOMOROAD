@@ -171,21 +171,3 @@ public class MemberController {
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

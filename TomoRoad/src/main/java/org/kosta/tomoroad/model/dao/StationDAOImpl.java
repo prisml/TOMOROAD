@@ -14,20 +14,6 @@ public class StationDAOImpl implements StationDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public StationVO getInfo(String id) {
-		System.out.println("dao다");
-		return template.selectOne("station.getInfo",id);
-	}
-
-	@Override
-	public List<StationVO> getList() {
-		System.out.println("list dao다");
-		List<StationVO> list = template.selectList("station.getList");
-		System.out.println(list);
-		return list;
-	}
-
-	@Override
 	public List<String> getKeyword(String keyword) {
 		return template.selectList("station.getKeyword",keyword);
 	}
@@ -38,4 +24,9 @@ public class StationDAOImpl implements StationDAO {
 		return template.selectList("station.getTourInfoData");
 	}
 
+	@Override
+	public StationVO getDetailInfo(String name) {
+		System.out.println("dao다");
+		return template.selectOne("station.getDetailInfo",name);
+	}
 }

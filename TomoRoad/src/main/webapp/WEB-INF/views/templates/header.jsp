@@ -38,7 +38,7 @@
 				<li>　</li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/station/noauth_getTourInfoData.do">
+					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
 				<li><c:choose>

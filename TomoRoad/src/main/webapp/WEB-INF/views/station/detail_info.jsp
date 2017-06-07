@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- ${param.id}-->
 
-
+<%-- 
 	<!-- 사진영역 -->
 	<div class="col-lg-12 col-md-12 col-sm-12">
 		<div class="porDetCarousel">
@@ -26,7 +27,8 @@
 			
 		</div>
 	</div>
-
+ --%>
+ 
 <!-- 게시판 설명 시작(가로전체)-->
 <div class="row sub_content">
 	<!-- 게시판 글만 딱 써있는 부분 -->
@@ -34,18 +36,18 @@
 		<div class="project_description">
 			<div class="widget_title"><!-- 제목 -->
 				<h4>
-					<span>서울역</span>
+					<span>${detailInfoVO.name}</span>
 				</h4>
 			</div>
 			
 			<!-- 설명 -->
-			<p>주소 : 서울특별시 용산구 한강대로 405 서울역</p>
-			<p>전화번호 : 1544-7788</p>		
+			<p>${detailInfoVO.detail}</p>		
 		</div>
 	</div>
 </div>
 <!-- 끝 -->
 
+<%-- 
 <!-- 사진2 리스트 시작-->
 <section class="latest_work row sub_content">
 	<div class="col-md-12">
@@ -54,7 +56,8 @@
 				<span>Recent Work</span>
 			</h4>
 		</div>
-
+		
+나중에 여긴 반복문
 		<div id="recent-work-slider" class="owl-carousel">
 			<div class="box">
 				<figure class="touching effect-bubba">
@@ -193,3 +196,4 @@
 	</div>
 </section>
 <!-- 사진리스트2 끝 -->
+ --%>
