@@ -106,5 +106,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public void profileFileUpload(String id) {
 		template.update("profileFileUpload", id);
 	}
+	@Override
+	public void profileReset(String id) {
+		System.out.println(id);
+		template.update("profileReset",id);
+	}
 
 }

@@ -190,6 +190,10 @@ public class MemberController {
 	
 	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
 	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
+		System.out.println(uploadfile.getOriginalFilename());
+		if(uploadfile.isEmpty()){
+			return "mypage/mypage_fail";
+		}
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
@@ -198,11 +202,21 @@ public class MemberController {
 		try {
 			uploadfile.transferTo(new File(uploadPath+id+".jpg"));
 			memberService.profileFileUpload(id);
+
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "redirect:mypage/mypage.do?id="+id;
+	}
+	
+	@RequestMapping("profileReset.do")
+	public String profileReset(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		memberService.profileReset(id);
 		return "redirect:mypage/mypage.do?id="+id;
 	}
 }

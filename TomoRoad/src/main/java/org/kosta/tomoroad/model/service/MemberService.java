@@ -39,4 +39,6 @@ public interface MemberService {
 	String getProfileById(String id);
 
 	void profileFileUpload(String id);
+	
+	void profileReset(String id);
 }
