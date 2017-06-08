@@ -141,7 +141,12 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		model.addAttribute("friendList", memberService.friendList(id));
-		model.addAttribute("profile", memberService.getProfileById(id));
+		String profile = memberService.getProfileById(id);
+		if(profile == null){
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
+		}else{
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+id+".jpg");
+		}
 		return "mypage/friendList.tiles";
 	}
 
@@ -159,8 +164,7 @@ public class MemberController {
 	@RequestMapping("deleteFriend.do")
 	public String deleteFriend(String id, String deleteId) {
 		memberService.deleteFriend(id, deleteId);
-		return "redirect:friendList.do?id=" + id;
-
+		return "redirect:mypage/friendList.do";
 	}
 
 	@RequestMapping("noauth_weather.do")
