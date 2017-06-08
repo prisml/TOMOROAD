@@ -39,7 +39,7 @@
 									data : "no=${bvo.no}",
 									success : function(data) {
 										if(data.length==0){
-											$("#re0").html("등록된 댓글이 없습니다");
+											$("#comment-list").html("등록된 댓글이 없습니다");
 											return false;
 										}
 										for (var z = 0; z < data.length; z++) {
@@ -51,16 +51,17 @@
 													
 													if (data[z].recomment != 0) { //대댓글일 경우																									   
 															comments += "<ul class='children'>";
-															comments += "<li class='comment' id=re"+ data[z].no +">";
-															comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>"
-															comments += "<div class='comment-container'><i class='fa fa-arrow-right'></i>";
+															comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
+															comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>";
+															comments += "<div class='comment-container'>";
 															comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
-															comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
-															comments += "<div class='comment-body'> <p> 대댓글 임네다"+ data[z].content + "</p> </div><br>";
+															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
+															comments += "<div class='comment-body'> <p> "+ data[z].content + "</p> </div><br>";
 															comments += "<a href='#.' id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</a>";
+															
 														
-													} else { // 본댓글일 경우
-														comments += "<li class='comment' id=re"+ data[z].no +">";
+													}else { // 본댓글일 경우
+														comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
 														comments += "<div class='avatar'><img alt='' src='images/blog/avatar_2.png' class='avatar'></div>";
 														comments += "<div class='comment-container'>";
 														comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
@@ -95,9 +96,14 @@
 												comments += "</div>"; //comment-container													
 												comments += "</li>"; // comment
 												comments += "</ul>"; // children
-												comments += "</li>"; // comment
 												
-												$("#re" + data[z].recomment).append(comments);
+												if (data[z].recomment != 0) { 
+													$("#re" + data[z].recomment).append(comments);
+												}else{
+													$("#comment-list").append(comments);
+												}
+												
+												comments += "</li>"; // comment
 											}
 
 										}//for
@@ -114,12 +120,13 @@
 								});// 댓글 삭제 버튼 클릭시
 								
 								$(document).on("click","#updateCommentBtn",function(){
-									$(this).parent().parent().next().children().html("<input type=text id=content required=required><input type=button class=updateComment value=수정하기><input type=button class=updatecancelBtn value=취소하기>");
+									var cont = $(this).parent().children(".comment-body").text();
+									$(this).parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><a id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</a><a id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</a>");
 								});// 댓글 수정 버튼 클릭시 
 								
-								$(document).on("click","#updateComment",function(){
-									var content = document.getElementById("content").value; 
-									var no=$(this).parent().parent().prev().children().next().next().attr("name");
+								$(document).on("click","#updateComment",function(){									
+									var content = $(this).parent().children("#updateText").val(); 
+									var no=$(this).parent().parent().parent().attr("name");
 									if(content==""){
 										alert("수정할 내용을 입력해주세요!");
 									}else{
@@ -127,24 +134,24 @@
 									if(result){
 										location.href="${pageContext.request.contextPath}/updateComment.do?no="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
 									}
-									}
-								});//updateComment
+									} 
+								});// 댓글 수정하기 버튼 클릭시
 								
 								$(document).on("click","#updateCancelBtn",function(){
 									location.reload();
-								});//updateCancel
+								});// 댓글 수정 취소 버튼 클릭시
 								
 								
 								$(document).on("click","#recommentBtn",function(){
 									var no=$(this).attr("name");
 									var commentbox ="<textarea id=commentbox"+no+" name=commentbox rows=3 style=width:400px; word-break: break-all;></textarea>"
-									$(this).next().next().next().html("<div>"+commentbox+"<br><a class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;' id=replyBtn name="+no+">답글달기</a>"+"<a class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;' id=replyCancelBtn name="+no+">취소</a></div>");
+									$(this).next().next().next().html(commentbox+"<br><a class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;' id=replyBtn name="+no+">답글달기</a>"+"<a class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;' id=replyCancelBtn name="+no+">취소</a>");
 								}); //답글달기 버튼
 								
 								$(document).on("click","#replyBtn",function(){
 									var no=$(this).attr("name");
-									var content=document.getElementById("commentbox"+no).value;
-									location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}";
+									var content="<strong>To. "+$(this).parent().parent().children(".comment-author").text()+"  </strong>"+document.getElementById("commentbox"+no).value;
+									location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+content+"&member_id=${mvo.id}"; 
 								}); //답글달기-버튼 클릭 시 
 								
 								$(document).on("click","#replyCancelBtn",function(){
@@ -166,31 +173,6 @@
 </script>
 
 <br>
-<%-- <c:if test="${mvo.id !=null }">
-	<div>
-		<textarea id="commentbox" name="commentbox" rows="3" style="width:600px; word-break: break-all;"></textarea>
-		<br><input id="commentBtn" type="button" value="등록">
-	</div>
-	<br><br>
-</c:if>	 --%>
-
-<!-- 
-
-        <section id="page_head" class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="page_title">
-                    <h2> Burn Board </h2>
-                    <span class="sub_heading"> Burn your Passion </span>
-                </div>
-                <nav id="breadcrumbs">
-                    <ul>
-                        <li>You are here:</li>
-                        <li><a href="home.do">Home</a></li>
-                        <li>Burn Board</li>
-                    </ul>
-                </nav>
-            </div>
-        </section> -->
 
 	<div class="blog_single">
 		<article class="post">
@@ -231,33 +213,8 @@
 			</h4>
 		</div>
 		<div id="comment">
-			<ul id="re0">
-				
-					<!-- <ul class="children">
-                                            <li class="comment">
-                                                <div class="avatar"><img alt="" src="images/blog/avatar_3.png" class="avatar"></div>
-                                                <div class="comment-container">
-                                                    <h4 class="comment-author"><a href="#">Thomas Smith</a></span></h4>
-                                                    <div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply &raquo;</a></div>
-                                                    <div class="comment-body">
-                                                        <p>Labores pertinax theophrastus vim an. Error ditas in sea, per no omnis iisque nonumes. Est an dicam option, ad quis iriure saperet nec, ignota causae inciderint ex vix. Iisque qualisque imp duo eu, pro reque consequ untur. No vero laudem legere pri, error denique vis ne, duo iusto bonorum.</p>
-                                                    </div>
-                                                </div>
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="avatar"><img alt="" src="images/blog/avatar_2.png" class="avatar"></div>
-                                                        <div class="comment-container">
-                                                            <h4 class="comment-author"><a href="#">Eva Smith</a></span></h4>
-                                                            <div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply &raquo;</a></div>
-                                                            <div class="comment-body">
-                                                                <p>Dico animal vis cu, sed no aliquam appellantur, et exerci eleifend eos. Vixese eros tiloi novum adtam, mazim inimicus maiestatis ad vim. Ex his unum fuisset reformidans, has iriure ornatus atomorum ut, ad tation feugiat impedit per.</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul> -->
-				
+			<ul id="comment-list">  <!-- 댓글 출력부 -->
+			
 			</ul>
 		</div>
 		<c:if test="${mvo.id !=null }">

@@ -34,7 +34,7 @@ create table member(
 	sex varchar2(100) not null,
 	tel varchar2(100) not null
 );
-
+select * from STATION
 --station 테이블 컬럼추가(0607).
 create table station(
 	name varchar2(100) primary key, --역 이름
@@ -288,6 +288,10 @@ select row_number() over(order by re.no desc) rnum,
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
 
 select * from member
+select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
+		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+		where b.no = c.burn_no) A 
+		where rnum between 1 and 5
 		
 update review set hits=hits+1 where no=4;
 select * from review;
