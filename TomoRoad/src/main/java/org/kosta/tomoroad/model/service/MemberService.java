@@ -38,7 +38,7 @@ public interface MemberService {
 
 	String getProfileById(String id);
 
-	void profileFileUpload(String id);
+	void profileFileUpload(String id,String ext);
 	
 	void profileReset(String id);
 }

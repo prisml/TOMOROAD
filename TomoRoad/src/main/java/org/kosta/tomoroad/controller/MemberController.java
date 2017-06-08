@@ -1,8 +1,11 @@
 package org.kosta.tomoroad.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -141,11 +144,11 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		model.addAttribute("friendList", memberService.friendList(id));
-		String profile = memberService.getProfileById(id);
-		if(profile == null){
+		String getprofile = memberService.getProfileById(id);
+		if(getprofile == null){
 			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
 		}else{
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+id+".jpg");
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+getprofile);
 		}
 		return "mypage/friendList.tiles";
 	}
@@ -156,11 +159,11 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		model.addAttribute("friend_RequestList", memberService.friend_RequestList(id));
-		String profile = memberService.getProfileById(id);
-		if(profile == null){
+		String getprofile = memberService.getProfileById(id);
+		if(getprofile == null){
 			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
 		}else{
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+id+".jpg");
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+getprofile);
 		}
 		return "mypage/friend_RequestList.tiles";
 	}
@@ -181,42 +184,57 @@ public class MemberController {
 	public String weather() {
 		return "noauth_weather.tiles";
 	}
-
-	@RequestMapping(value="profileUpload.do",method=RequestMethod.POST)
-	public String profileUpload(MultipartFile file){
-		System.out.println(file);
-		return null;
-	}
 	
 	@RequestMapping("mypage/{viewName}.do")
 	public ModelAndView showMypage(@PathVariable String viewName,HttpServletRequest request){
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		String profile = memberService.getProfileById(id);
-		if(profile == null){
+		String getprofile = memberService.getProfileById(id);
+		String profile = null;
+		if(getprofile == null){
 			profile = "/tomoroad/resources/img/profiles/kakao.jpg";
 		}else{
-			profile = "/tomoroad/resources/img/profiles/"+id+".jpg";
+			profile = "/tomoroad/resources/img/profiles/"+getprofile;
 		}
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile",profile);
 	}
 	
+	
+	
 	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
 	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
-		System.out.println(uploadfile.getOriginalFilename());
+		String fileName = uploadfile.getOriginalFilename();
+		// 확장자명
+		String ext = fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
 		if(uploadfile.isEmpty()){
 			return "mypage/mypage_fail";
 		}
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
+		memberService.profileFileUpload(id,ext);
+		String getprofile = memberService.getProfileById(id);
 		uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/profiles/");
-		//uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
+		String uploadPath2 = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
+		System.out.println(uploadPath);
 		try {
-			uploadfile.transferTo(new File(uploadPath+id+".jpg"));
-			memberService.profileFileUpload(id);
-
+			uploadfile.transferTo(new File(uploadPath+getprofile));
+			
+			// 프로필파일을 WAS에서 Workspace로 복사하기
+			
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(uploadPath+getprofile));
+			
+			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(uploadPath2+getprofile));
+			
+			int data = bis.read();
+			
+			while(data!=-1){
+				bos.write(data);
+				data = bis.read();
+			}
+			bos.close();
+			bis.close();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

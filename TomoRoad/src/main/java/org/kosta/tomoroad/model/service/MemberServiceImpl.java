@@ -81,8 +81,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.getProfileById(id);
 	}
 	@Override
-	public void profileFileUpload(String id) {
-		memberDAO.profileFileUpload(id);
+	public void profileFileUpload(String id,String ext) {
+		HashMap<String,String> profileName = new HashMap<String,String>();
+		profileName.put("id", id);
+		profileName.put("ext",id+ext);
+		memberDAO.profileFileUpload(profileName);
 	}
 	@Override
 	public void profileReset(String id) {
