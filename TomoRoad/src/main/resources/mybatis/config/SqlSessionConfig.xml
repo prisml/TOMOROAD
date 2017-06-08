@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/station.xml"/>
 		<mapper resource="mybatis/config/place.xml"/>
 		<mapper resource="mybatis/config/review.xml"/>
+		<mapper resource="mybatis/config/ranking.xml"/>
 	</mappers>
 </configuration>
 

@@ -43,37 +43,56 @@
 
   <body>
 
-    <div>
-
-      <form method="post" action="${pageContext.request.contextPath}/noauth_login.do" style="margin: 0 auto;">        
-        <div>
-                <br>
-                <br>
-                <br>
-            <div >
-              <input type="text" name="id"  placeholder="Username" autofocus>
-            </div>
-            <div >
-                <input type="password" name="password"  placeholder="Password">
-            </div>
-            <label  style="margin: 0 auto;">
-                <!-- <input type="checkbox" value="remember-me"> Remember me -->
-                <br>
-                <br>
-                <br>
-                <span > <a href="${pageContext.request.contextPath}/member/noauth_findid.do"> Forgot id?</a></span>
-				<br>
-                <span > <a href="${pageContext.request.contextPath}/member/noauth_findpw.do"> Forgot Password?</a></span>
-            </label>
-            <input class="btn btn-info btn-lg btn-block"  type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Login">
-            <br>
-            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">Sign-up</a>
-                        <br>
-            <a  class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="">WEATHER</a>
+    <div class="col-lg-12 col-sm-12">           
+	
+                
+        <div class="dividerHeading">
+            <h4><span>Please Login</span></h4>
         </div>
-      </form>
+        
+        
+        
+        <form method="post" action="${pageContext.request.contextPath}/noauth_login.do" style="margin: 0 auto;">  
+           	<div class="form-group">
+        		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="id"  placeholder="ID" autofocus>
+            	</div>
+            	<br>
+            	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
 
-    </div>
+            	<div class="form-group">
+                	<div class="col-lg-4 col-sm-4"></div>
+					<div class="checkbox col-lg-5 col-sm-5">
+                        <input type="checkbox"> Remember me
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="/tomoroad/member/noauth_findid.do"> Forgot id?</a>
+						/<a href="/tomoroad/member/noauth_findpw.do"> Forgot Password?</a>
+					</div>
+            	</div>
+            </div>
+            
+            <div class="form-group" align="center">
+                <button type="submit" class="btn btn-default btn-lg button" style="width: 400px; height: 40px; margin: 0 auto; align:center;">Sign in</button>
+            </div>
+      </form>
+    
+        
+        	<div class="form-group" align="center">
+        	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">Sign-up</a>
+     	    </div>
+     	  
+			<div class="form-group" align="center">
+      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/weather3.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">WEATHER</a>
+      	    </div>
+     
+     
+        
+    </div>     
+      
 
 
   </body>

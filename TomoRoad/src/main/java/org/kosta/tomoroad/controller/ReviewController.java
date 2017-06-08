@@ -141,7 +141,7 @@ public class ReviewController {
 		return "redirect:noauth_detail.do?no="+no;
 	}
 	
-	@RequestMapping("review/noauth_getKeyword.do")
+	@RequestMapping("review/getKeyword.do")
 	@ResponseBody
 	//검색창에 입력한 단어가 들어가는 키워드를 가져옴
 	public ArrayList<String> getKeyword(String keyword,String reviewFilter){
