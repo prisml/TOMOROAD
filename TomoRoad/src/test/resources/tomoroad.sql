@@ -346,6 +346,16 @@ select A.*, re.recommend
 select sysdate from dual
 
 -----< friend >-----
-insert into friend values('java','goni','수락',sysdate);
+select * from member
+
+insert into friend values('asdf','java','대기',sysdate);
+
+delete from friend
+
+update friend set state = '대기' where receiver_id = 'java'
+
+select sender_id from friend where receiver_id = 'java' and state = '대기'
+
+select * from friend 
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'

@@ -123,16 +123,16 @@ public class MemberController {
 		return null;
 	}
 
-	@RequestMapping("friend_Accept.do")
+	@RequestMapping("mypage/friend_Accept.do")
 	public String friend_Accept(String senderID, String receiverID) {
-		memberService.friend_Accept(senderID, receiverID);
-		return null;
+		memberService.friend_Accept(senderID.trim(), receiverID);
+		return "redirect:friend_RequestList.do";
 	}
 
-	@RequestMapping("friend_Refuse.do")
+	@RequestMapping("mypage/friend_Refuse.do")
 	public String friend_Refuse(String senderID, String receiverID) {
 		memberService.friend_Refuse(senderID, receiverID);
-		return null;
+		return "redirect:friend_RequestList.do";
 	}
 
 	@RequestMapping("mypage/friendList.do")
@@ -150,9 +150,19 @@ public class MemberController {
 		return "mypage/friendList.tiles";
 	}
 
-	@RequestMapping("friend_RequestList.do")
-	public List<String> friend_RequestList(String receiverID) {
-		return memberService.friend_RequestList(receiverID);
+	@RequestMapping("mypage/friend_RequestList.do")
+	public String friend_RequestList(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("friend_RequestList", memberService.friend_RequestList(id));
+		String profile = memberService.getProfileById(id);
+		if(profile == null){
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
+		}else{
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+id+".jpg");
+		}
+		return "mypage/friend_RequestList.tiles";
 	}
 
 	@RequestMapping("getFriendId.do")
