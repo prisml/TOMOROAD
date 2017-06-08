@@ -103,8 +103,8 @@ public class MemberDAOImpl implements MemberDAO{
 		return template.selectOne("getProfileById", id);
 	}
 	@Override
-	public void profileFileUpload(String id) {
-		template.update("profileFileUpload", id);
+	public void profileFileUpload(HashMap<String,String> profileName) {
+		template.update("profileFileUpload", profileName);
 	}
 	@Override
 	public void profileReset(String id) {

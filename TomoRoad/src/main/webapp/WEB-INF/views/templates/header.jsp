@@ -52,6 +52,9 @@
 						</c:otherwise>
 					</c:choose></li>
 				<li>　</li>
+				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
+				<li> </li>
+				
 			</ul>
 		</div>
 	</div>
