@@ -122,8 +122,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public Map<String, Object> getUpdateDetail(String no) {
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("rvo", getDetail(no));
+		Map<String, Object> map = getDetail(no);
 		map.put("placeList", getPlaceList());
 		return map;
 	}

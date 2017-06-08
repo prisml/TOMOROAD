@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				<figure class="post_img">
-					<img src="${pageContext.request.contextPath}/resources/images/blog/blog_1.png" alt="blog post">
+					<img src="${pageContext.request.contextPath}/resources/upload/review${dvo.rvo.no}_0" alt="blog post">
 				</figure>
 				<p>${dvo.rvo.content }</p>
 				<c:if test="${mvo!=null}">
