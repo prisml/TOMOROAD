@@ -24,7 +24,7 @@
             <a  class="btn btn-primary btn-lg btn-block" type="button" href="${pageContext.request.contextPath}/friendList.do?id=${sessionScope.mvo.id}" style="width: 500px; height: 50px; margin: 0 auto; align:center;" >FRIENDS SEARCH</a>
             <br>
     </div> --%>
-    <a href = "${pageContext.request.contextPath}/mypage/a.do">a</a><br>
-    <a href = "${pageContext.request.contextPath}/mypage/b.do">b</a><br>
-    <a href = "${pageContext.request.contextPath}/mypage/c.do">c</a>
+    <a href = "${pageContext.request.contextPath}/mypage/a.do">작성한 리뷰보기</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/friendList.do">친구 목록</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/c.do">친구요청 목록</a>
 

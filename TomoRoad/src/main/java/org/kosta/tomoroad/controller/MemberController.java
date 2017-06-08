@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
+	
+	// 프로필 파일업로드 경로
+	private String uploadPath;
+	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 
@@ -129,9 +135,19 @@ public class MemberController {
 		return null;
 	}
 
-	@RequestMapping("friendList.do")
-	public ModelAndView friendList(String id) {
-		return new ModelAndView("member/friendList.tiles", "friendList", memberService.friendList(id));
+	@RequestMapping("mypage/friendList.do")
+	public String friendList(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("friendList", memberService.friendList(id));
+		String profile = memberService.getProfileById(id);
+		if(profile == null){
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
+		}else{
+			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+id+".jpg");
+		}
+		return "mypage/friendList.tiles";
 	}
 
 	@RequestMapping("friend_RequestList.do")
@@ -148,8 +164,7 @@ public class MemberController {
 	@RequestMapping("deleteFriend.do")
 	public String deleteFriend(String id, String deleteId) {
 		memberService.deleteFriend(id, deleteId);
-		return "redirect:friendList.do?id=" + id;
-
+		return "redirect:mypage/friendList.do";
 	}
 
 	@RequestMapping("noauth_weather.do")
@@ -168,6 +183,44 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
+		String profile = memberService.getProfileById(id);
+		if(profile == null){
+			profile = "/tomoroad/resources/img/profiles/kakao.jpg";
+		}else{
+			profile = "/tomoroad/resources/img/profiles/"+id+".jpg";
+		}
+		return new ModelAndView("mypage/"+viewName + ".tiles", "profile",profile);
+	}
+	
+	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
+	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
+		System.out.println(uploadfile.getOriginalFilename());
+		if(uploadfile.isEmpty()){
+			return "mypage/mypage_fail";
+		}
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/profiles/");
+		//uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
+		try {
+			uploadfile.transferTo(new File(uploadPath+id+".jpg"));
+			memberService.profileFileUpload(id);
+
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "redirect:mypage/mypage.do?id="+id;
+	}
+	
+	@RequestMapping("profileReset.do")
+	public String profileReset(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		memberService.profileReset(id);
+		return "redirect:mypage/mypage.do?id="+id;
 	}
 }

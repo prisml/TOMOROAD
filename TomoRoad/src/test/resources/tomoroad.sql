@@ -1,7 +1,12 @@
 -- member 테이블 프로필경로 컬럼 추가
 alter table member add(profile varchar2(100))
 update member set profile = '${pageContext.request.contextPath}/resources/images/profile/kakao.jpg'
+select * from member
+update member set profile = 'java' where id = 'java'
 
+update member set profile = null
+
+select * from station
 ---------- drop table ------------
 drop table station_connect;
 drop table review_comment;
@@ -48,7 +53,16 @@ create table station(
 alter table station add simple_detail varchar2(100) not null;
 alter table station add administrative_district varchar2(100) not null;
 alter table station add img varchar2(100) not null;
-alter table station drop column stayed_time;
+
+delete from station
+
+drop table station
+
+select * from station
+
+delete from place
+
+drop table place
 
 create table place(
 	no number primary key,
@@ -61,6 +75,11 @@ alter table place add lat number not null; --추가부탁드려요 테이블비�
 alter table place add lng number not null; --추가부탁드려요 테이블비우고. //경도
 create sequence place_seq nocache;
 
+select * from review_comment
+
+delete from review
+
+delete from hashtag
 
 create table review(
 	no number primary key,
@@ -77,6 +96,8 @@ create table review(
 );
 
 create sequence review_seq nocache;
+
+
 
 create table review_comment(
 	no number primary key,	
@@ -109,6 +130,8 @@ create table burn_board(
 	constraint fk_burn_station_name foreign key(station_name) references station(name),
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
+
+delete from burn_board
  
 create table review_recommend(
 	member_id varchar2(100),
@@ -284,8 +307,9 @@ select row_number() over(order by re.no desc) rnum,
 		as posted_time 
 		from review re, place p
 		where re.place_no=p.no
-		
+
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
+update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg'
 
 select * from member
 		

@@ -80,5 +80,13 @@ public class MemberServiceImpl implements MemberService{
 	public String getProfileById(String id) {
 		return memberDAO.getProfileById(id);
 	}
+	@Override
+	public void profileFileUpload(String id) {
+		memberDAO.profileFileUpload(id);
+	}
+	@Override
+	public void profileReset(String id) {
+		memberDAO.profileReset(id);
+	}
 
 }
