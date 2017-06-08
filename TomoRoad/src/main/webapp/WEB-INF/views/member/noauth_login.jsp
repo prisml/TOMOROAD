@@ -63,22 +63,17 @@
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
-                <div class="form-group">
-                <div class="checkbox">
-                    <div class="col-lg-3 col-sm-3">
+
+            	<div class="form-group">
+                	<div class="col-lg-4 col-sm-4"></div>
+					<div class="checkbox col-lg-5 col-sm-5">
                         <input type="checkbox"> Remember me
-                    </div>
-                    　　　　　　　　　
-                    <div class="col-lg-4 col-sm-4 col-lg-offset-3">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                	
-                		<span > <a href="${pageContext.request.contextPath}/member/noauth_findid.do"> Forgot id?</a></span> / 					
-                		<span > <a href="${pageContext.request.contextPath}/member/noauth_findpw.do"> Forgot Password?</a></span>
-            		</div>
-                </div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="/tomoroad/member/noauth_findid.do"> Forgot id?</a>
+						/<a href="/tomoroad/member/noauth_findpw.do"> Forgot Password?</a>
+					</div>
             	</div>
-            	
             </div>
-            
             
             <div class="form-group" align="center">
                 <button type="submit" class="btn btn-default btn-lg button" style="width: 400px; height: 40px; margin: 0 auto; align:center;">Sign in</button>
