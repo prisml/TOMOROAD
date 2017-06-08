@@ -38,6 +38,9 @@ public interface MemberDAO {
 	
 	void deleteFriend(String id,String deleteId);
 
-	
+	String getProfileById(String id);
 
+	void profileFileUpload(HashMap<String,String> profileName);
+	
+	void profileReset(String id);
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ranking"> 
+	<select id="rankingLocation" resultType="stationVO">
+		<![CDATA[
+			select lat,lng 
+			from (select s.lat,s.lng,RANK() OVER(order by sr.hit desc)as ranking 
+			from station s, station_reported sr  where s.name=sr.name) where ranking <= 5
+			]]>
+		</select>
+		<select id="rankingInfo" resultType="rankingVO">
+			<![CDATA[
+			select name,hit,detail,ranking 
+			from (select s.name,sr.hit,s.detail,RANK() OVER(order by sr.hit desc)as ranking 
+			from station s, station_reported sr  where s.name=sr.name) where ranking <= 5
+			]]>
+		</select>
+		<insert id="insertReport">
+			insert into station_reported (name) values (#{val}); 
+		</insert>
+		<update id="updateReport">
+			update station_reported set hit=hit+1 where name=#{val}
+		</update>
+</mapper>

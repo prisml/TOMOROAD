@@ -98,5 +98,18 @@ public class MemberDAOImpl implements MemberDAO{
 		friend.put("selectId",deleteId);
 		template.delete("deleteFriend",friend);
 	}
+	@Override
+	public String getProfileById(String id) {
+		return template.selectOne("getProfileById", id);
+	}
+	@Override
+	public void profileFileUpload(HashMap<String,String> profileName) {
+		template.update("profileFileUpload", profileName);
+	}
+	@Override
+	public void profileReset(String id) {
+		System.out.println(id);
+		template.update("profileReset",id);
+	}
 
 }

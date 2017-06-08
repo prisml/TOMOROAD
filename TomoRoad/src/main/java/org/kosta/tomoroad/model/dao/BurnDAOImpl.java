@@ -95,6 +95,11 @@ public class BurnDAOImpl implements BurnDAO{
 	public List<String> getStationNameList() {
 		return template.selectList("burn.getStationNameList");
 	}
+
+	@Override
+	public int countComment(String no) {
+		return template.selectOne("burn.countComment");
+	}
 	
 	
 }

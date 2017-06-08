@@ -17,14 +17,14 @@ public class PlaceController {
 	private PlaceService service;
 	
 	@RequestMapping("noauth_getPlaceInfo.do")
-	public String getPlaceInfo(String id,Model model){
+	public String getPlaceInfo(String id,Model model){ //나중에 역정보게시판에서 관광지 가져올 때 쓸거야
 		List<PlaceVO> placeInfoList=service.getPlaceInfo(id);
 		System.out.println("역 주변 정보 : "+placeInfoList);
 		model.addAttribute("placeInfoList",placeInfoList);
 		return "place/getPlaceInfo.tiles";
 	}
 	
-	@RequestMapping("place/noauth_getKeyword.do")
+	@RequestMapping("place/getKeyword.do")
 	@ResponseBody
 	public List<String> getKeyWord(String keyword){
 		List<String> keywordList=service.getKeyWord(keyword);

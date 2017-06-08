@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public ListVO<ReviewVO> getList(String page) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
-		PagingBean pb = new PagingBean(Integer.parseInt(page), 9, 5, dao.getTotalContents());
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 4, 5, dao.getTotalContents());
 		lvo.setPagingBean(pb);
 		lvo.setList(dao.getList(pb));
 		return lvo;
@@ -34,8 +34,25 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewVO getDetail(String no) {
-		return dao.getDetail(no);
+	public Map<String, Object> getDetail(String no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ReviewVO vo = dao.getDetail(no);
+		vo.setRecommend(getRecommendByNo(Integer.parseInt(no)));
+		map.put("rvo", vo);
+		Map<String, Object> temp = new HashMap<String, Object>();
+		temp.put("review_no", no);
+		temp.put("member_id", id);
+		map.put("recommend", dao.isRecommend(temp));
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getDetail(String no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ReviewVO vo = dao.getDetail(no);
+		vo.setRecommend(getRecommendByNo(Integer.parseInt(no)));
+		map.put("rvo", vo);
+		return map;
 	}
 
 	@Override
@@ -83,20 +100,31 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<PlaceVO> getStationList() {
-		return dao.getStationList();
+	public List<PlaceVO> getPlaceList() {
+		return dao.getPlaceList();
 	}
 
 	@Override
-	public void review_recommend(String member_id, int review_no) {
+	public void recommend(String id, int no) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member_id", member_id);
-		map.put("review_no", review_no);
-		dao.review_recommend(map);
+		map.put("member_id", id);
+		map.put("review_no", no);
+		if(dao.isRecommend(map)==null)
+			dao.recommend(map);
+		else
+			dao.deleteRecommend(map);
 	}
 
 	@Override
-	public int getreview_recommendByreviewNo(int review_no) {
-		return dao.getreview_recommendByreviewNo(review_no);
+	public int getRecommendByNo(int no) {
+		return dao.getRecommendByNo(no);
+	}
+
+	@Override
+	public Map<String, Object> getUpdateDetail(String no) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("rvo", getDetail(no));
+		map.put("placeList", getPlaceList());
+		return map;
 	}
 }

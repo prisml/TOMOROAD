@@ -9,8 +9,10 @@ public interface StationDAO {
 
 	List<String> getKeyword(String keyword);
 
-	StationVO getInfo(String id);
+	List<StationVO> getTourInfoData();
 
-	List<StationVO> getList();
+	StationVO getDetailInfo(String name);
+	
+	
 	
 }

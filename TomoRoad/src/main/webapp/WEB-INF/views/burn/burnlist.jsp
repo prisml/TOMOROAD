@@ -65,7 +65,7 @@ input {
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
 	<td>${burn.no}</td>
-	<td  colspan="11"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title}</a></td>
+	<td  colspan="11"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
 	<td>${burn.stationName}</td>
 	<td style="position: relative;"><a href="#" class="show">${burn.memberId}</a>
 	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; bottom:-30px; right:30;">

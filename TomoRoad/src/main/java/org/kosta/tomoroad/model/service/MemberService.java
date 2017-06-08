@@ -36,6 +36,9 @@ public interface MemberService {
 
 	String getFriendId(String id, String selectId);
 
-	
+	String getProfileById(String id);
 
+	void profileFileUpload(String id,String ext);
+	
+	void profileReset(String id);
 }

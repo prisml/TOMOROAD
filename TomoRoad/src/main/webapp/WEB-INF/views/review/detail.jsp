@@ -1,48 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="blog_single">
 		<article class="post">
-			<figure class="post_img">
-				<a href="#"> <img src="images/blog/blog_1.png" alt="blog post">
-				</a>
-			</figure>
 			<div class="post_date">
-				<span class="day">28</span> <span class="month">Nov</span>
+				<span class="day">${dvo.rvo.day }</span> <span class="month">${dvo.rvo.month }</span>
 			</div>
 			<div class="post_content">
 				<div class="post_meta">
 					<h2>
-						<a href="#">${rvo.title }</a>
+						<a href="#">${dvo.rvo.title }</a>
 					</h2>
 					<div class="metaInfo">
-						<span><i class="fa fa-calendar"></i> <a href="#">${rvo.postedTime }</a>
-						</span> <span><i class="fa fa-user"></i> By <a href="#">${mvo.name }</a>
-						</span> <span><i class="fa fa-tag"></i> <a href="#">${rvo.place.name }</a>
-						</span> <span><i class="fa fa-comments"></i> <a href="#"><%-- ${commentCount } --%>
-								Comments</a></span>
+						<span><i class="fa fa-calendar"></i> <a href="#">${dvo.rvo.postedTime }</a>
+						</span> <span><i class="fa fa-user"></i> By <a href="#">${dvo.rvo.member.name }</a>
+						</span> <span><i class="fa fa-tag"></i> <a href="#">${dvo.rvo.place.name }</a>
+						</span> <span><i class="fa fa-star"></i> <a href="#">${dvo.rvo.star }</a></span>
+						<span><i class="fa fa-heart"></i> <a href="#">${dvo.rvo.recommend }</a></span>
 					</div>
 				</div>
-				<p>${rvo.content }</p>
+				<figure class="post_img">
+					<img src="${pageContext.request.contextPath}/resources/images/blog/blog_1.png" alt="blog post">
+				</figure>
+				<p>${dvo.rvo.content }</p>
+				<c:if test="${mvo!=null}">
+					<div class="serviceBox_2 red">
+						<c:if test="${mvo!=null && mvo.id==dvo.rvo.member.id}">
+							<a href="${pageContext.request.contextPath}/review/update_form.do?no=${dvo.rvo.no}"
+								role="button" class="btn btn-default">update</a>
+						</c:if>
+	                    <div class="service-icon">
+							<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}">
+								<c:choose>
+									<c:when test="${dvo.recommend==null }">
+										<i class="fa fa-heart-o"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart"></i>
+									</c:otherwise>
+								</c:choose>
+							</a>
+	                    </div>
+	                </div>
+				</c:if>
 			</div>
-			<!-- <ul class="shares">
-				<li class="shareslabel"><h3>Share This Story</h3></li>
-				<li><a class="twitter" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Twitter"></a></li>
-				<li><a class="facebook" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Facebook"></a></li>
-				<li><a class="gplus" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Google Plus"></a></li>
-				<li><a class="pinterest" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Pinterest"></a></li>
-				<li><a class="yahoo" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="Yahoo"></a></li>
-				<li><a class="linkedin" href="#" data-placement="bottom"
-					data-toggle="tooltip" title="LinkedIn"></a></li>
-			</ul> -->
 		</article>
 		<div class="about_author">
 			<div class="author_desc">
-				<img src="images/blog/author.png" alt="about author">
+				<img src="${pageContext.request.contextPath}/resources/images/blog/author.png" alt="about author">
 				<ul class="author_social">
 					<li><a class="fb" href="#." data-placement="top"
 						data-toggle="tooltip" title="Facbook"><i
@@ -55,7 +60,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!--News Comments-->
 	<div class="news_comments">
 		<div class="dividerHeading">
@@ -67,7 +71,7 @@
 			<ul id="comment-list">
 				<li class="comment">
 					<div class="avatar">
-						<img alt="" src="images/blog/avatar_1.png" class="avatar">
+						<img alt="" src="${pageContext.request.contextPath}/resources/images/blog/avatar_1.png" class="avatar">
 					</div>
 					<div class="comment-container">
 						<h4 class="comment-author">

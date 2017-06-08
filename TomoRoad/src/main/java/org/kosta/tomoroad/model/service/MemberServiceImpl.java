@@ -76,5 +76,20 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteFriend(String id, String deleteId) {
 		memberDAO.deleteFriend(id, deleteId);
 	}
+	@Override
+	public String getProfileById(String id) {
+		return memberDAO.getProfileById(id);
+	}
+	@Override
+	public void profileFileUpload(String id,String ext) {
+		HashMap<String,String> profileName = new HashMap<String,String>();
+		profileName.put("id", id);
+		profileName.put("ext",id+ext);
+		memberDAO.profileFileUpload(profileName);
+	}
+	@Override
+	public void profileReset(String id) {
+		memberDAO.profileReset(id);
+	}
 
 }
