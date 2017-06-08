@@ -179,7 +179,13 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
+		String profile = memberService.getProfileById(id);
+		if(profile == null){
+			profile = "/tomoroad/resources/img/profiles/kakao.jpg";
+		}else{
+			profile = "/tomoroad/resources/img/profiles/"+id+".jpg";
+		}
+		return new ModelAndView("mypage/"+viewName + ".tiles", "profile",profile);
 	}
 	
 	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
@@ -187,16 +193,16 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
+		uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/profiles/");
+		//uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
 		try {
-			uploadfile.transferTo(new File(uploadPath+id+"2.jpg"));
-			System.out.println(uploadPath+id+"2.jpg");
+			uploadfile.transferTo(new File(uploadPath+id+".jpg"));
+			memberService.profileFileUpload(id);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(uploadfile.getOriginalFilename());
 		return "redirect:mypage/mypage.do?id="+id;
 	}
 }
