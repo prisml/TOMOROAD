@@ -1,7 +1,12 @@
 -- member 테이블 프로필경로 컬럼 추가
 alter table member add(profile varchar2(100))
 update member set profile = '${pageContext.request.contextPath}/resources/images/profile/kakao.jpg'
+select * from member
+update member set profile = 'java' where id = 'java'
 
+update member set profile = null
+
+select * from station
 ---------- drop table ------------
 drop table station_connect;
 drop table review_comment;
@@ -52,6 +57,16 @@ alter table station drop column stayed_time;
 alter table station add lat number not null; --추가부탁드려요 테이블비우고. //위도
 alter table station add lng number not null; --추가부탁드려요 테이블비우고. //경도
 
+delete from station
+
+drop table station
+
+select * from station
+
+delete from place
+
+drop table place
+
 create table place(
 	no number primary key,
 	name varchar2(100) not null,
@@ -61,6 +76,11 @@ create table place(
 );
 create sequence place_seq nocache;
 
+select * from review_comment
+
+delete from review
+
+delete from hashtag
 
 create table review(
 	no number primary key,
@@ -77,6 +97,8 @@ create table review(
 );
 
 create sequence review_seq nocache;
+
+
 
 create table review_comment(
 	no number primary key,	
@@ -109,6 +131,8 @@ create table burn_board(
 	constraint fk_burn_station_name foreign key(station_name) references station(name),
 	constraint fk_burn_board_id foreign key(member_id) references member(id)	
 ); 
+
+delete from burn_board
  
 create table review_recommend(
 	member_id varchar2(100),
@@ -234,10 +258,18 @@ select * from place where name LIKE '%해운대%';
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
 delete from BURN_BOARD where no='2'
 
-select A.* from(select row_number() 
-over(order by no desc) rnum, no, title, station_name, member_id, 
-to_char(posted_time,'YYYY.MM.DD') as posted_time from BURN_BOARD) A 
-where rnum between 1 and 5;
+select * from BURN_COMMENT;
+
+
+select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
+from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+where b.no = c.burn_no) A
+where rnum between 1 and 5
+
+
+
+select burn_no,count(*) from burn_comment where state='comment' group by burn_no;
+
 
 select * from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits
 from (select * from BURN_BOARD where station_name = '서울')) where rnum between 1 and 5
@@ -287,8 +319,9 @@ select row_number() over(order by re.no desc) rnum,
 		as posted_time 
 		from review re, place p
 		where re.place_no=p.no
-		
+
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
+update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg'
 
 select * from member
 		
@@ -325,6 +358,16 @@ select A.*, re.recommend
 select sysdate from dual
 
 -----< friend >-----
-insert into friend values('java','goni','수락',sysdate);
+select * from member
+
+insert into friend values('asdf','java','대기',sysdate);
+
+delete from friend
+
+update friend set state = '대기' where receiver_id = 'java'
+
+select sender_id from friend where receiver_id = 'java' and state = '대기'
+
+select * from friend 
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'

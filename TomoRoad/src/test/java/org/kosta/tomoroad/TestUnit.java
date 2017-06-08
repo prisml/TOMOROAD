@@ -46,9 +46,9 @@ public class TestUnit {
 		List<StationVO> stationInfoList= stationService.getStationInfo("전주");
 		System.out.println("TestUnit>역정보:"+stationInfoList);
 		*/
-/*		StationVO stationInfoList= stationService.getInfo("전주");
-		System.out.println("역정보:"+stationInfoList);
-*/		
+
+/*		StationVO stationInfoList= stationService.getDetailInfo("전주");
+		System.out.println("역정보:"+stationInfoList);*/
 		// 역 주면 관광지 정보 얻어오기
 		/*
 		List<PlaceVO> placeInfolist= placeService.getPlaceInfo("전주");
@@ -80,6 +80,7 @@ public class TestUnit {
 /*		List<StationVO> list=stationService.getTourInfoData();
 		System.out.println(list);
 
+<<<<<<< HEAD
 		memberdao.getProfileById("java");
 */		
 		//ranking 좌표정보 가져오기
@@ -98,5 +99,7 @@ public class TestUnit {
 		//ranking 정보가져오기
 		List<RankingVO> list=rankingservice.rankingInfo();
 		System.out.println(list);
+		memberdao.friend_RequestList("java");
+		
 	}
 }

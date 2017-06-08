@@ -24,8 +24,7 @@
 					<img src="${pageContext.request.contextPath}/resources/images/symbol/${vo.img}.png" alt="">
 	
 					<div class="option">
-						<a href="${pageContext.request.contextPath}/station/info.do" class="fa fa-link"></a>
-						<a href="${pageContext.request.contextPath}/resources/images/symbol/${vo.img}.png" class="fa fa-search mfp-image"></a>
+						<a href="${pageContext.request.contextPath}/station/getDetailInfo.do?name=${vo.name}" class="fa fa-link"></a>
 					</div>
 					
 					<figcaption>

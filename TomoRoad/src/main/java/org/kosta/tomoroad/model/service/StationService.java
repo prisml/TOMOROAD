@@ -6,12 +6,10 @@ import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface StationService {
 
-	StationVO getInfo(String id);
-
-	List<StationVO> getList();
-
 	List<String> getKeyword(String keyword);
 
 	List<StationVO> getTourInfoData();
+
+	StationVO getDetailInfo(String name);
 
 }

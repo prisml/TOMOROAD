@@ -15,16 +15,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getBurnList" parameterType="pagingBean" resultType="burnVO" resultMap="burnRM">		
-		select A.* from(select row_number() 
-		over(order by no desc) rnum, no, title, station_name, member_id, 
-		posted_time, hits from BURN_BOARD) A 
-		where rnum between #{startRowNumber} and #{endRowNumber}	
+		
+		
+		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
+		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+		where b.no = c.burn_no) A
+		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	
 	<select id="findBurnByNo" resultType="burnVO" resultMap="burnRM">
-		select no, title, station_name, member_id, content, hits,
-		to_char(posted_time,'YYYY/MM/DD HH24:MI') as posted_time 
-		from BURN_BOARD where no = #{value}
+		select A.* from 
+		(select b.no, b.title, b.station_name, b.member_id, b.content, b.hits,
+		to_char(b.posted_time,'YYYY/MM/DD HH24:MI') as posted_time, c.commentcount from burn_board b, (select burn_no, count(*) commentcount from burn_comment where state='comment' group by burn_no) c 
+		where b.no = c.burn_no ) A 
+		where no = #{value}
 	</select>
 	
 	<insert id="writeBurn" parameterType="burnVO">

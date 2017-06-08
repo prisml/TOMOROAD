@@ -40,4 +40,7 @@ public interface MemberDAO {
 
 	String getProfileById(String id);
 
+	void profileFileUpload(HashMap<String,String> profileName);
+	
+	void profileReset(String id);
 }
