@@ -38,7 +38,7 @@ public class TestUnit {
 	
 	@Resource(name="rankingServiceImpl")
 	private RankingService rankingservice;
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") 
 	@Test
 	public void test(){
 		// 역 정보 얻어오기
@@ -94,7 +94,7 @@ public class TestUnit {
 			mapList.add(map);
 		}
 			System.out.println(mapList);
-*/		
+*/		 
 		//ranking 정보가져오기
 		List<RankingVO> list=rankingservice.rankingInfo();
 		System.out.println(list);

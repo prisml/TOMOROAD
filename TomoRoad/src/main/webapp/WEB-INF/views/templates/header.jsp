@@ -33,12 +33,12 @@
 						REVIEW </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/mypage.do?id=${mvo.id}">
+				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do?id=${mvo.id}">
 						MYPAGE </a></li>
 				<li>　</li>
 
 				<li><a
-					href="${pageContext.request.contextPath}/station/noauth_getTourInfoData.do">
+					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
 				<li><c:choose>
