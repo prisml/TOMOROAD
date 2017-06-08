@@ -51,13 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
 	</update>
 	<select id="friend_RequestList" resultType="map">
-		select sender_id,profile from friend where receiver_id = #{value} and state = '대기'
+		select sender_id from friend where receiver_id = #{value} and state = '대기'
 	</select>
 	<select id="friendListBySenderId" resultType="map">
-		select receiver_id,profile as friend from friend where sender_id = #{value} and state = '수락'
+		select receiver_id as friend from friend where sender_id = #{value} and state = '수락'
 	</select>
 	<select id="friendListByReceiverId" resultType="map">
-		select sender_id,profile as friend from friend where receiver_id = #{value} and state = '수락'
+		select sender_id as friend from friend where receiver_id = #{value} and state = '수락'
 	</select>
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
