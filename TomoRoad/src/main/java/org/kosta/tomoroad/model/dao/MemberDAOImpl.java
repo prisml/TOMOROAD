@@ -102,5 +102,9 @@ public class MemberDAOImpl implements MemberDAO{
 	public String getProfileById(String id) {
 		return template.selectOne("getProfileById", id);
 	}
+	@Override
+	public void profileFileUpload(String id) {
+		template.update("profileFileUpload", id);
+	}
 
 }

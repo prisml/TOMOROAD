@@ -68,6 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "getProfileById" resultType="string">
 		select profile from member where id = #{value}
 	</select>
+	<update id="profileFileUpload">
+		update member set profile = #{value} where id = #{value}
+	</update>
 </mapper>
 
 

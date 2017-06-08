@@ -40,4 +40,5 @@ public interface MemberDAO {
 
 	String getProfileById(String id);
 
+	void profileFileUpload(String id);
 }

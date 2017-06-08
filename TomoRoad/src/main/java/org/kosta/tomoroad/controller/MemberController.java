@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
+	
+	// 프로필 파일업로드 경로
+	private String uploadPath;
+	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 
@@ -174,5 +180,23 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile", memberService.getProfileById(id));
+	}
+	
+	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
+	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
+		try {
+			uploadfile.transferTo(new File(uploadPath+id+"2.jpg"));
+			System.out.println(uploadPath+id+"2.jpg");
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(uploadfile.getOriginalFilename());
+		return "redirect:mypage/mypage.do?id="+id;
 	}
 }

@@ -76,7 +76,7 @@ public class TestUnit {
 		List<StationVO> list=stationService.getTourInfoData();
 		System.out.println(list);
 
-		memberdao.getProfileById("java");
+		memberdao.profileFileUpload("java");
 		
 	}
 }

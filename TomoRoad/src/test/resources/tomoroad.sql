@@ -1,6 +1,8 @@
 -- member 테이블 프로필경로 컬럼 추가
 alter table member add(profile varchar2(100))
 update member set profile = '${pageContext.request.contextPath}/resources/images/profile/kakao.jpg'
+select * from member
+update member set profile = 'java' where id = 'java'
 
 ---------- drop table ------------
 drop table station_connect;
@@ -284,8 +286,9 @@ select row_number() over(order by re.no desc) rnum,
 		as posted_time 
 		from review re, place p
 		where re.place_no=p.no
-		
+
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
+update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg'
 
 select * from member
 		
