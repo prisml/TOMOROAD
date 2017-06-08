@@ -2,6 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- ${param.id}-->
 
+<div class="col-md-12">
+	<div class="dividerHeading">
+		<h4>
+			<span>${detailInfoVO.name}</span>
+		</h4>
+	</div>
+</div>
 <%-- 
 	<!-- 사진영역 -->
 	<div class="col-lg-12 col-md-12 col-sm-12">
@@ -34,11 +41,11 @@
 	<!-- 게시판 글만 딱 써있는 부분 -->
 	<div class="col-lg-8 col-md-8 col-sm-8">
 		<div class="project_description">
-			<div class="widget_title"><!-- 제목 -->
+			<%-- <div class="widget_title"><!-- 제목 -->
 				<h4>
 					<span>${detailInfoVO.name}</span>
 				</h4>
-			</div>
+			</div> --%>
 			
 			<!-- 설명 -->
 			<p>${detailInfoVO.detail}</p>		
@@ -47,16 +54,16 @@
 </div>
 <!-- 끝 -->
 
-<%-- 
-<!-- 사진2 리스트 시작-->
+
+<!-- 주변 관광지-->
 <section class="latest_work row sub_content">
 	<div class="col-md-12">
 		<div class="dividerHeading">
 			<h4>
-				<span>Recent Work</span>
+				<span>주변 관광지</span>
 			</h4>
 		</div>
-		
+<%-- 		
 나중에 여긴 반복문
 		<div id="recent-work-slider" class="owl-carousel">
 			<div class="box">
@@ -193,7 +200,155 @@
 				</figure>
 			</div>
 		</div>
+--%>
 	</div>
 </section>
-<!-- 사진리스트2 끝 -->
- --%>
+
+<!-- 관련리뷰 -->
+<section class="latest_work row sub_content">
+	<div class="col-md-12">
+		<div class="dividerHeading">
+			<h4>
+				<span>관련 리뷰</span>
+			</h4>
+		</div>
+		<%-- 		
+나중에 여긴 반복문
+		<div id="recent-work-slider" class="owl-carousel">
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Touch and Swipe</h5>
+						<p>Technology</p>
+					</figcaption>
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역2.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역2.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>fully responsive</h5>
+						<p>Mobile</p>
+					</figcaption>
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역3.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역3.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Retina Ready</h5>
+						<p>Responsive</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Boxed Layout</h5>
+						<p>Branding</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역2.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역2.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Touch and Swipe</h5>
+						<p>Technology</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역3.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역3.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>fully responsive</h5>
+						<p>Mobile</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Retina Ready</h5>
+						<p>Responsive</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+
+			<div class="box">
+				<figure class="touching effect-bubba">
+					<img src="${pageContext.request.contextPath}/resources/images/서울역2.jpg" alt="" class="img-responsive">
+
+					<div class="option">
+						<a href="portfolio_single.html" class="fa fa-link"></a>
+						<a href="${pageContext.request.contextPath}/resources/images/서울역2.jpg" class="fa fa-search mfp-image"></a>
+					</div>
+					
+					<figcaption class="item-description">
+						<h5>Boxed Layout</h5>
+						<p>Branding</p>
+					</figcaption>
+					
+				</figure>
+			</div>
+		</div>
+--%>
+	</div>
+</section>
