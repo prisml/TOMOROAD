@@ -86,7 +86,7 @@
      	    </div>
      	  
 			<div class="form-group" align="center">
-      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/weather3.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">WEATHER</a>
+      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">WEATHER</a>
       	    </div>
      
      
