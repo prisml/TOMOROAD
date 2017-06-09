@@ -42,11 +42,11 @@
 		    <div id="images"></div>
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="seoul.json">
+			name="weather" value="seoul.json">서울
 		</div>
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gwangju.json">
+			name="weather" value="gwangju.json">광주
 		</div>
 
 		

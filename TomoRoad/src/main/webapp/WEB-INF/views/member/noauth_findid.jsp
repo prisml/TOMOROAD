@@ -47,13 +47,13 @@
                 <br>
                 <br>
 	<fieldset>
-	<legend > Find ID </legend>
+	<legend > 아이디찾기 </legend>
 	<ul id="findID">
-	<li>Find ID</li>
-	<li><label>Password:</label><input type="password" id="password" name="password" required="required" autofocus ></li>
-	<li><label>Name:</label><input type="text" id="name" name="name" required="required"></li>
-	<li><label>Phone Number:</label><input type="text" id="tel" name="tel" required="required"></li>
-	<li>Find ID<input type="submit" name="btnFindUid" id="btnFindUid" value="Find ID" ></li>
+	<li>정확한 정보를 입력해주세요╹◡╹)ﾉ</li>
+	<li><label>비밀번호:</label><input type="password" id="password" name="password" required="required" autofocus ></li>
+	<li><label>이름:</label><input type="text" id="name" name="name" required="required"></li>
+	<li><label>연락처:</label><input type="text" id="tel" name="tel" required="required"></li>
+	<li><input type="submit" name="btnFindUid" id="btnFindUid" value="아이디찾기" class="btn btn-default btn-lg button"></li>
 
 	</ul>
 	</fieldset>

@@ -127,7 +127,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	        <div class="dividerHeading">
-            <h4><span>가입해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>가입 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" >      
@@ -188,7 +188,7 @@
                 
             <br><br>
             <div class="form-group" align="center">
-            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="회원가입">
+            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="가입">
            </div>
             <br>
             <div class="form-group" align="center">

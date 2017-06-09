@@ -47,7 +47,7 @@
 	
                 
         <div class="dividerHeading">
-            <h4><span>가입해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>로그인 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
         
@@ -82,7 +82,7 @@
     
         
         	<div class="form-group" align="center">
-        	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">회원가입</a>
+        	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">가입</a>
      	    </div>
      	  
 			<div class="form-group" align="center">
