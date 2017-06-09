@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -72,7 +73,7 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("member.friend_Refuse",friend);
 	}
 	@Override
-	public List<String> friend_RequestList(String receiverID) {
+	public List<HashMap<String,String>> friend_RequestList(String receiverID) {
 		return template.selectList("member.friend_RequestList", receiverID);
 	}
 	@Override
@@ -107,9 +108,9 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("profileFileUpload", profileName);
 	}
 	@Override
-	public void profileReset(String id) {
-		System.out.println(id);
-		template.update("profileReset",id);
+	public void profileReset(HashMap<String,String> profileInfo) {
+		System.out.println(profileInfo);
+		template.update("profileReset",profileInfo);
 	}
 
 }

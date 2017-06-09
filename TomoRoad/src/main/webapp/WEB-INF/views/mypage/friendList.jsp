@@ -6,6 +6,6 @@ function deleteFriend(id){
 	location.href = "${pageContext.request.contextPath}/deleteFriend.do?id=${sessionScope.mvo.id}&deleteId="+id;
 }
 </script>
-<c:forEach items="${friendList }" var="list">
+<c:forEach items="${friendList}" var="list">
 	${list} <input type = "button" value="삭제" onclick="deleteFriend('${list}')"><br>
 </c:forEach>

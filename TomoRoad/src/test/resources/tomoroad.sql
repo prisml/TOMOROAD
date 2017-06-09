@@ -209,6 +209,17 @@ update member set profile = 'java' where id = 'java'
 
 update member set profile = null
 
+update member set profile = null
+
+select sender_id,profile from friend where receiver_id = 'java' and state = '대기'
+
+select f.sender_id,m.profile from friend f,member m where f.sender_id=m.id and f.receiver_id = 'java'
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id
+
+select * from member
+
+
 -----< Station 정보 >-----
 insert into station values('서울역','하나의 특별시, 대한민국의 중심','주소: 서울특별시 용산구 한강대로 405 서울역 지번-서울특별시 용산구 동자동 43-205 서울역','Capital','서울',37.554925,126.970831);
 insert into station values('양평역','생태 행복도시 희망의 양평','주소: 경기도 양평군 양평읍 역전길 30 지번-경기도 양평군 양평읍 양근리 130-37','Capital','양평',37.4926782,127.4896693);
@@ -292,7 +303,7 @@ select row_number() over(order by re.no desc) rnum,
 		where re.place_no=p.no
 
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
-update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg'
+update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg' where id = 'asdf'
 
 select * from member
 select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
@@ -333,6 +344,8 @@ select A.*, re.recommend
 select sysdate from dual
 
 -----< friend >-----
+
+
 select * from member
 
 insert into friend values('asdf','java','대기',sysdate);
@@ -342,6 +355,10 @@ delete from friend
 update friend set state = '대기' where receiver_id = 'java'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.state = '대기' and f.sender_id (+)= m.id
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
 
 select * from friend 
 

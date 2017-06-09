@@ -1,5 +1,6 @@
 package org.kosta.tomoroad;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -80,7 +81,6 @@ public class TestUnit {
 /*		List<StationVO> list=stationService.getTourInfoData();
 		System.out.println(list);
 
-<<<<<<< HEAD
 		memberdao.getProfileById("java");
 */		
 		//ranking 좌표정보 가져오기
@@ -101,5 +101,6 @@ public class TestUnit {
 		System.out.println(list);
 		memberdao.friend_RequestList("java");
 		
+		memberdao.friendList("java");
 	}
 }
