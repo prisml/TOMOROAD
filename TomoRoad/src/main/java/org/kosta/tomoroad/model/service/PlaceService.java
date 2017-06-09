@@ -6,8 +6,7 @@ import org.kosta.tomoroad.model.vo.PlaceVO;
 
 public interface PlaceService {
 
-	List<PlaceVO> getPlaceInfo(String id);
-
 	List<String> getKeyWord(String keyword);
+	List<PlaceVO> getPlaceInfo(String name);
 
 }

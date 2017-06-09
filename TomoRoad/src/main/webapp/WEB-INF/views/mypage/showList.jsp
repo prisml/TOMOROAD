@@ -51,7 +51,7 @@
 		<ul class="pagination pull-left mrgt-0">
 			<c:if test="${pb.previousPageGroup == true }">
 				<li><a
-					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.startPageOfPageGroup-1}">«</a></li>
+					href="${pageContext.request.contextPath}/mypage/showList.do?page=${pb.startPageOfPageGroup-1}">«</a></li>
 			</c:if>
 			<c:forEach begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}" var="i">
@@ -63,11 +63,11 @@
 						<li>
 					</c:otherwise>
 				</c:choose>
-				<a href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${i}">${i}</a></li>
+				<a href="${pageContext.request.contextPath}/mypage/showList.do?page=${i}">${i}</a></li>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup == true }">
 				<li><a
-					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.endPageOfPageGroup+1}">»</a></li>
+					href="${pageContext.request.contextPath}/mypage/showList.do?page=${pb.endPageOfPageGroup+1}">»</a></li>
 			</c:if>
 		</ul>
 	</div>
