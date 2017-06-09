@@ -109,4 +109,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void deleteRecommend(Map<String, Object> map) {
 		template.delete("review.deleteRecommend",map);
 	}
+
+	@Override
+	public List<ReviewVO> getReviewListByPlace(int no) {
+		return template.selectList("review.getReviewListByPlace",no);
+	}
 }

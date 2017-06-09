@@ -12,6 +12,7 @@ import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -122,5 +123,14 @@ public class ReviewController {
 			}
 		}
 		return keywordList;
+	}
+	
+	//역정보 게시판-주변관광지에서 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.
+	@RequestMapping("place/getReviewListByPlace.do")
+	public String getReviewListByPlace(int no,Model model){ //name:관광지 번호
+		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
+		System.out.println("역 주변 정보 : "+getReviewListByPlace);
+		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
+		return "place/getPlaceInfo.tiles";
 	}
 }

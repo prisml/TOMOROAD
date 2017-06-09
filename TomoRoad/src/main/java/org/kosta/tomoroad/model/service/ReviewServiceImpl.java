@@ -127,4 +127,9 @@ public class ReviewServiceImpl implements ReviewService {
 		map.put("placeList", getPlaceList());
 		return map;
 	}
+
+	@Override
+	public List<ReviewVO> getReviewListByPlace(int no) {
+		return dao.getReviewListByPlace(no);
+	}
 }

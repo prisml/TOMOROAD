@@ -39,4 +39,6 @@ public interface ReviewDAO {
 	Map<String, Object> isRecommend(Map<String, Object> temp);
 
 	void deleteRecommend(Map<String, Object> map);
+
+	List<ReviewVO> getReviewListByPlace(int no);
 }

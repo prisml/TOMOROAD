@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="getDetailInfo" resultType="stationVO">
-		select name,detail from station where name=#{value}
+		select name,detail,lat,lng from station where name=#{value}
 	</select>
 	
 </mapper>

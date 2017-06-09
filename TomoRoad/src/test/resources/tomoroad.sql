@@ -180,9 +180,10 @@ create table station_connect(
 	primary key (depart,arrived)	
 );
 
+--검색순위테이블
 create table station_reported(
   name varchar2(100) primary key,
-  hit number default 1,
+  hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 )
 
