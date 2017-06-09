@@ -93,18 +93,17 @@ input {
 	</a>
 </c:if>
 <ul class="pagination">
-<li>
+
 <c:forEach begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}" var="page">
 	<c:choose>
 		<c:when test="${pb.nowPage!=page}">
-			<a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${page}">${page}</a> 
+			<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${page}">${page}</a></li> 
 		</c:when>
 		<c:otherwise>
-			<a href="#">${page}</a>
+			<li class="active"><a href="#">${page}</a></li>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
-</li>
 </ul>
 
 <c:if test="${pb.nextPageGroup}">

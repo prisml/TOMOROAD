@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 	var stationInfo; // 역이름 정보
 
@@ -129,50 +129,17 @@ a.cbtn {
     
     $("#form").hide(); //검색기준이 리뷰가 아닐 땐 숨겨놓음.
     
-    
- // DB 연동 없이 사용 할 때,
-/* 	var availableTags = [
-      "전주",
-      "대구",
-      "한옥마을",
-      "전주한옥마을",
-      "젤라또",
-      "전주초코파이",
-      "삼진어묵",
-      "부산",
-      "군산",
-      "새콤달콤",
-      "군산오징어",
-      "왜케많아",
-      "강원도",
-      "원주",
-      "서울",
-      "대전",
-      "곡성",
-      "와따시와아쿠마",
-      "ㅎㅎㅎ초코라뗴",
-      "하",
-      "ㅋㅋ",
-      "화이팅"
-    ]; 
-
-	$( "#tags" ).autocomplete({ // autocomplete : 자동완성기능
-      source: availableTags //source : 검색될 배열
-    }); */
-
-    
 	if(${sessionScope.mvo==null}){ //세션이 없을 때는 검색기능 사용 불가
 		$("#searchkeyword").val("로그인 후 가능합니다.");
 	}else{
-    
 		var reviewFilter="제목만"; //리뷰검색 기준-제목이냐 제목+내용이냐
 		$("#searchkeyword").removeAttr("readonly");
 	    
 		 //리뷰 선택 시 나타나는 검색기준 셀렉트박스
 		 $(":input[name=reviewForm]").change(function(){
 		 	reviewFilter=$(":input[name=reviewForm] option:selected").val();
-		  });//리뷰검색 기준 셀렉트박스
-		//한번더 
+		  });
+		  
 	    //자동완성
 	     $( "#searchkeyword" ).autocomplete({
 	    	source : function( request, response){
@@ -188,7 +155,6 @@ a.cbtn {
 	    	}//source:function
 	    }); //autocomplete
 	    
-		
 	    $(":input[name=searchForm]").change(function(){ //선택상자 폼에서 변했을 때,
 			 criterion=$(this).val();  // 검색기준을 정하고
 			 keyword=$("#searchkeyword").val(); // 키워드를 담음. 어쨌든 내가 선택을 해도 어쨌뜬 최종 검색어가 정해지는거니까
@@ -201,6 +167,7 @@ a.cbtn {
 			}
 		});//form change
 	}//else
+		
   }); //function 
   </script>
   
