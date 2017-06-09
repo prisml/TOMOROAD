@@ -53,11 +53,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="friend_RequestList" resultType="map">
 		select f.sender_id,m.profile from friend f,member m where f.receiver_id = #{value} and f.state = '대기' and f.sender_id (+)= m.id
 	</select>
-	<select id="friendListBySenderId">
-		select receiver_id as friend from friend where sender_id = #{value} and state = '수락'
+	<select id="friendListBySenderId" resultType="map">
+		select m.profile,f.receiver_id as friend from member m,friend f where f.receiver_id = m.id and sender_id = #{value} and state = '수락'
 	</select>
-	<select id="friendListByReceiverId">
-		select sender_id as friend from friend where receiver_id = #{value} and state = '수락'
+	<select id="friendListByReceiverId" resultType ="map">
+		select m.profile,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = #{value} and state = '수락'
 	</select>
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'

@@ -7,5 +7,6 @@ function deleteFriend(id){
 }
 </script>
 <c:forEach items="${friendList}" var="list">
-	${list} <input type = "button" value="삭제" onclick="deleteFriend('${list}')"><br>
+	<img width = "50" height="50" src = "${list.PROFILE}"> ${list.FRIEND} 
+	<input type = "button" value="삭제" onclick="deleteFriend('${list}')"><br><br>
 </c:forEach>
