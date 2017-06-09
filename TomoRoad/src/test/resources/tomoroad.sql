@@ -6,7 +6,13 @@ update member set profile = 'java' where id = 'java'
 
 update member set profile = null
 
-select * from station
+select sender_id,profile from friend where receiver_id = 'java' and state = '대기'
+
+select f.sender_id,m.profile from friend f,member m where f.sender_id=m.id and f.receiver_id = 'java'
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id
+
+select * from member
 ---------- drop table ------------
 drop table station_connect;
 drop table review_comment;
@@ -309,7 +315,7 @@ select row_number() over(order by re.no desc) rnum,
 		where re.place_no=p.no
 
 update member set profile = '/tomoroad/resources/img/profiles/java.jpg' where id = 'java'
-update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg'
+update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg' where id = 'asdf'
 
 select * from member
 		
@@ -346,6 +352,8 @@ select A.*, re.recommend
 select sysdate from dual
 
 -----< friend >-----
+
+
 select * from member
 
 insert into friend values('asdf','java','대기',sysdate);
@@ -355,6 +363,10 @@ delete from friend
 update friend set state = '대기' where receiver_id = 'java'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.state = '대기' and f.sender_id (+)= m.id
+
+select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
 
 select * from friend 
 
