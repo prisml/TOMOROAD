@@ -4,5 +4,5 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<script type="text/javascript">
 			alert("${mvo.name}님 수정 고맙습니다! ${mvo.id} ${mvo.sex} ${mvo.tel}");
-			location.href="${pageContext.request.contextPath}/home.do";
+			location.href="${pageContext.request.contextPath}/mypage/mypage.do?id=${mvo.id}";
 		</script>		

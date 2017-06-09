@@ -356,11 +356,9 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 >>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 select * from member
 
-insert into friend values('java','spring','수락',sysdate);
+insert into friend values('onon22','java','대기',sysdate);
 
-delete from friend
-
-update friend set state = '대기' where receiver_id = 'java'
+update friend set state = '대기' where sender_id = 'onon22'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
@@ -368,6 +366,8 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
 
-select * from friend 
+delete from friend where receiver_id = 'onon22'
+
+select * from friend where receiver_id = 'onon22'
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
