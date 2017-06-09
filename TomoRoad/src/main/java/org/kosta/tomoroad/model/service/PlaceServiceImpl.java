@@ -14,13 +14,14 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceDAO dao;
 
 	@Override
-	public List<PlaceVO> getPlaceInfo(String id) {
-		return dao.getPlaceInfo(id);
-	}
-
-	@Override
 	public List<String> getKeyWord(String keyword) {
 		System.out.println("service다");
 		return dao.getKeyWord(keyword);
 	}
+	
+	@Override
+	public List<PlaceVO> getPlaceInfo(String name) {
+		return dao.getPlaceInfo(name);
+	}
+
 }
