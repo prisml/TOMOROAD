@@ -10,7 +10,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
  $(document).ready(function($){
-	 $("input[name='weather']").click(function() {
+	 $("input[name='weather']").one("click",function() {
 		 var urlAddress = $(this).val();
 	    $.ajax({
 	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/"+urlAddress,
