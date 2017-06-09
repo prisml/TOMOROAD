@@ -32,8 +32,7 @@ public class BurnDAOImpl implements BurnDAO{
 	}
 
 	@Override
-	public void writeBurn(BurnVO bvo) {
-		System.out.println(bvo);
+	public void writeBurn(BurnVO bvo) {		
 		template.insert("burn.writeBurn",bvo);		
 	}
 

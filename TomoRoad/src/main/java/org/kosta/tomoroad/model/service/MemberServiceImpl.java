@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -53,7 +54,7 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.friend_Request(friend);
 	}
 	@Override
-	public List<String> friend_RequestList(String receiverID) {
+	public List<HashMap<String,String>> friend_RequestList(String receiverID) {
 		return memberDAO.friend_RequestList(receiverID);		
 	}
 	@Override
@@ -65,7 +66,7 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.friend_Refuse(senderID, receiverID);
 	}
 	@Override
-	public List<String> friendList(String id) {
+	public List<HashMap<String,String>> friendList(String id) {
 		return memberDAO.friendList(id);
 	}
 	@Override
@@ -81,15 +82,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.getProfileById(id);
 	}
 	@Override
-	public void profileFileUpload(String id,String ext) {
+	public void profileFileUpload(String id,String profile) {
 		HashMap<String,String> profileName = new HashMap<String,String>();
 		profileName.put("id", id);
-		profileName.put("ext",id+ext);
+		profileName.put("profile",profile);
 		memberDAO.profileFileUpload(profileName);
 	}
 	@Override
-	public void profileReset(String id) {
-		memberDAO.profileReset(id);
+	public void profileReset(String id,String profileReset) {
+		HashMap<String,String> profileInfo = new HashMap<String,String>();
+		profileInfo.put("id", id);
+		profileInfo.put("profileReset",profileReset);
+		memberDAO.profileReset(profileInfo);
 	}
 
 }

@@ -15,11 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getBurnList" parameterType="pagingBean" resultType="burnVO" resultMap="burnRM">		
-		
-		
 		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
 		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
-		where b.no = c.burn_no) A
+		where c.burn_no (+)= b.no) A
 		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	
@@ -27,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select A.* from 
 		(select b.no, b.title, b.station_name, b.member_id, b.content, b.hits,
 		to_char(b.posted_time,'YYYY/MM/DD HH24:MI') as posted_time, c.commentcount from burn_board b, (select burn_no, count(*) commentcount from burn_comment where state='comment' group by burn_no) c 
-		where b.no = c.burn_no ) A 
+		where c.burn_no (+)= b.no ) A 
 		where no = #{value}
 	</select>
 	
@@ -78,10 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from burn_board where station_name = #{value}
 	</select>
 	
-	<select id="getBurnListByStation" parameterType="map" resultMap="burnRM" resultType="burnVO">
-		select * 
-		from (select row_number() over(order by no desc) rnum, no, title, station_name, member_id, posted_time, hits 
-			  from (select * from BURN_BOARD where station_name = #{stationName})) 
+	<select id="getBurnListByStation" parameterType="map" resultMap="burnRM" resultType="burnVO">		
+		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
+		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+		where c.burn_no (+)= b.no and b.station_name = #{stationName}) A
 		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 	</select>
 	

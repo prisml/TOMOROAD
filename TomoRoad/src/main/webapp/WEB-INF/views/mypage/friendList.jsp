@@ -6,6 +6,7 @@ function deleteFriend(id){
 	location.href = "${pageContext.request.contextPath}/deleteFriend.do?id=${sessionScope.mvo.id}&deleteId="+id;
 }
 </script>
-<c:forEach items="${friendList }" var="list">
-	${list} <input type = "button" value="삭제" onclick="deleteFriend('${list}')"><br>
+<c:forEach items="${friendList}" var="list">
+	<img width = "100" height="100" src = "${list.PROFILE}"> ${list.FRIEND}(${list.NAME})
+	<input style = color:white; class="btn btn-small btn-default"  type = "button" value="삭제" onclick="deleteFriend('${list.FRIEND}')"><br><br>
 </c:forEach>

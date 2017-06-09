@@ -3,9 +3,48 @@
 
 역 정보 및 역 주변 관광지를 보여주는 페이지
 
+<script>
+$( function() {
+	//자동완성
+	$( "#searchkeyword" ).autocomplete({
+		source : function( request, response){
+			//alert(reviewFilter);
+			$.ajax({
+				url: "${pageContext.request.contextPath}/station/getKeyword.do",
+				dataType:"json",
+				data:"keyword="+request.term, //사용자가 최근 입력한 단어를 보냄
+				success: function(data){
+					response(data);
+				}//success
+			});//ajax
+		}//source:function
+	}); //autocomplete
+});
+
+function keywordSearch() {
+    	alert("에러");
+    if ($("#searchkeyword").val()=="") {
+		return false;
+    } else {
+    	$("#hiddenName").val($("#searchkeyword").val());
+    	alert($("#hiddenName").val());
+		$("#keywordSearchForm").submit();
+    }
+}
+</script>
+
+<form id="keywordSearchForm" action="${pageContext.request.contextPath}/station/getDetailInfo.do">
+	<div class="ui-widget">
+		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
+		<input id="searchkeyword" name="name" type="text">
+		<!-- <input id="hiddenName" type="hidden" value=""> -->
+		<input type="submit" onsubmit="return keywordSearch()" style="display:none;">
+		<!-- <input type="submit" onsubmit="return keywordSearch()" value="검색"> -->
+	</div>
+</form>
 
 <div class="col-lg-12 isotope">
-	<!--begin portfolio filter -->
+	<!--검색 필터 -->
 	<ul id="filter">
 		<li data-filter="*" class="selected"><a href="#">All</a></li>
 		<li data-filter=".Capital"><a href="#">수도권</a></li>
@@ -15,7 +54,7 @@
 		<li data-filter=".Youngnam"><a href="#">영남 지방</a></li>
 	</ul>
 
-	<!--begin portfolio_list -->
+	<!--지역 목록 -->
 	<ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 894.563px;">
 	 	<c:forEach items="${getTourInfoList}" var="vo">
 			<!--begin List Item -->
