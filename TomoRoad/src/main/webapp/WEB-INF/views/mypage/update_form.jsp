@@ -114,7 +114,7 @@
             
             <br>
             <div class="input-group">
-                비밀번호:<input type="password" class="form-control" name="password" id="password" value="${mvo.password}"required="required" 
+                비밀번호:<input type="password" class="form-control" name="password" id="password" value="${mvo.password}" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>
             
