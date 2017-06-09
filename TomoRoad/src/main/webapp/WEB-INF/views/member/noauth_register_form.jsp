@@ -182,7 +182,7 @@
             <br>
                             <div class="input-group">
                             <label>
-                                <input type="checkbox" required="required" >동의합니다 <!-- I agree to <a href="#">terms</a> -->
+                                <input type="checkbox" required="required" >가입을 희망 합니다╹◡╹)ﾉ <!-- I agree to <a href="#">terms</a> -->
                             </label>
                 </div> 
                 
