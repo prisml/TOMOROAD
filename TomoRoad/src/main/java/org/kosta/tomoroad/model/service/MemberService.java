@@ -31,7 +31,7 @@ public interface MemberService {
 	
 	void friend_Refuse(String senderID,String receiverID);
 
-	List<String> friendList(String id);
+	List<HashMap<String,String>> friendList(String id);
 	
 	void deleteFriend(String id,String deleteId);
 

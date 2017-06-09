@@ -97,9 +97,9 @@ public class TestUnit {
 			System.out.println(mapList);
 */		 
 		//ranking 정보가져오기
-		List<RankingVO> list=rankingservice.rankingInfo();
+/*		List<RankingVO> list=rankingservice.rankingInfo();
 		System.out.println(list);
-		memberdao.friend_RequestList("java");
+		memberdao.friend_RequestList("java");*/
 		
 		memberdao.friendList("java");
 	}

@@ -66,7 +66,7 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.friend_Refuse(senderID, receiverID);
 	}
 	@Override
-	public List<String> friendList(String id) {
+	public List<HashMap<String,String>> friendList(String id) {
 		return memberDAO.friendList(id);
 	}
 	@Override
