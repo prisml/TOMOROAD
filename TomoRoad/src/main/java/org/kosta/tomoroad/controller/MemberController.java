@@ -254,7 +254,6 @@ public class MemberController {
 	         page = "1";
 	      String profile = memberService.getProfileById(id);
 	      model.addAttribute("profile",profile);
-	      ListVO<ReviewVO> list = (ListVO<ReviewVO>) reviewService.getListByMember(page,id);
 	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
 	   }
