@@ -157,7 +157,7 @@
            </div>
             <br>
             <div class="form-group" align="center">
-            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작페이지</a>
+            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작화면</a>
            </div>
             <br>            
         </div>
