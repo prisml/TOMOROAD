@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
+import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 
 public interface ReviewService {
@@ -36,5 +37,7 @@ public interface ReviewService {
 	Map<String, Object> getUpdateDetail(String no);
 
 	Map<String, Object> getDetail(String no);
+
+	void writeComment(ReviewCommentVO vo, int reviewNo);
 
 }
