@@ -40,9 +40,9 @@ create table station(
 	simple_detail varchar2(100) not null, --역 간단 설명
 	detail clob not null, --역 설명
 	section varchar2(100) not null, --행정구역
-	img varchar2(100) not null --이미지 파일명
+	img varchar2(100) not null, --이미지 파일명
 	lat number not null,
-	lng number not null,
+	lng number not null
 );
 --저는 테이블을 다 삭제한 상태에서 다시 작성하는 거라서 테이블 내용 자체를 바꿨는데
 --테이블 다 삭제하지 않은 상태이시면 station 테이블만 지우고 아래 것들만 실행해주세요~
@@ -194,15 +194,15 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 
 -----< member >-----
-insert into member values('java','1234','아이유','여자','112');
-insert into MEMBER values('java','123','홍길동','여','01012341234');
+
+alter table member add(profile varchar2(100))
 
 select * from member
 select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
 select distinct station distinct station_name;  
 
 -- member 테이블 프로필경로 컬럼 추가
-alter table member add(profile varchar2(100))
+insert into MEMBER values('java','123','홍길동','여','01012341234','${pageContext.request.contextPath}/resources/images/profile/kakao.jpg');
 update member set profile = '${pageContext.request.contextPath}/resources/images/profile/kakao.jpg'
 select * from member
 update member set profile = 'java' where id = 'java'
@@ -344,8 +344,6 @@ select A.*, re.recommend
 select sysdate from dual
 
 -----< friend >-----
-
-
 select * from member
 
 insert into friend values('asdf','java','대기',sysdate);
