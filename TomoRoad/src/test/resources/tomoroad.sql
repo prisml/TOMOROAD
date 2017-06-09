@@ -1,3 +1,5 @@
+-- 변경해주세요! profile default 값 --
+alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
 
 ---------- drop table ------------
 drop table station_connect;
@@ -32,6 +34,7 @@ create table member(
 	name varchar2(100) not null,
 	sex varchar2(100) not null,
 	tel varchar2(100) not null
+	profile default '/tomoroad/resources/img/profiles/kakao.jpg'
 );
 select * from STATION
 --station 테이블 컬럼추가(0607).
