@@ -99,6 +99,7 @@
 				<span>Leave a comment</span>
 			</h4>
 		</div>
+		<form action=""></form>
 		<div class="comment-box row">
 			<div class="col-sm-12">
 				<p>

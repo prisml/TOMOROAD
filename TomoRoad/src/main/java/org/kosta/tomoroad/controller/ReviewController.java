@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
+import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewUploadVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Controller;
@@ -162,5 +163,13 @@ public class ReviewController {
 			}
 		}
 		return keywordList;
+	}
+	
+	@RequestMapping("review/writeComment.do")
+	public ModelAndView writeComment(ReviewCommentVO vo,HttpServletRequest req, int reviewNo){
+		vo.setMember((MemberVO)req.getSession().getAttribute("mvo"));
+		service.writeComment(vo,reviewNo);
+		return new ModelAndView("redirect:noauth_detail.do?no="+reviewNo);
+		
 	}
 }
