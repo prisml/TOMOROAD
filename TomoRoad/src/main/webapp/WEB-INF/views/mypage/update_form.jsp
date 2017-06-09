@@ -75,7 +75,7 @@
 %>
     <div class="container">
 	
-      <form class="login-form" method="post" action="${pageContext.request.contextPath}/member/updateMember.do" id="updateForm">      
+      <form class="login-form" method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm">      
         <div>
                         <br>
                 <br>

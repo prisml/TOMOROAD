@@ -26,5 +26,7 @@
     </div> --%>
     <a href = "${pageContext.request.contextPath}/mypage/a.do">작성한 리뷰보기</a><br>
     <a href = "${pageContext.request.contextPath}/mypage/friendList.do">친구 목록</a><br>
-    <a href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do">친구요청 목록</a>
+    <a href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do">친구요청 목록</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/update_form.do">회원수정</a><br>
+    <a href = "${pageContext.request.contextPath}/mypage/deleteMember.do?id=${mvo.id}">회원탈퇴</a>
 

@@ -10,28 +10,27 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
  $(document).ready(function($){
+	 $("input[name='weather']").click(function() {
+		 var urlAddress = $(this).val();
 	    $.ajax({
-	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/seoul.json",
+	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/"+urlAddress,
 	        dataType : "jsonp",
 	        success : function(parsed_json) {
 	            var forecast = parsed_json['forecast']['txt_forecast']['forecastday'];
 	            
 	            for (index in forecast) {
-	                var newForecastString = forecast[index]['title'];
-	               /*  var newForecastImages = forecast[index]['icon_url']; */
-	               var newImages="";
+	               var newForecastString = forecast[index]['title'];
+	               var newForecastParagraph = $('<td/>').text(newForecastString);
+	                $("#titles").append(newForecastParagraph);
+	                
 	               var newForecastImages = forecast[index]['icon_url'];
 	               $("#images").append("<img src="+newForecastImages+">");
-	               
-	                var newForecastParagraph = $('<td/>').text(newForecastString);
-	                $("#three").append(newForecastParagraph);
-	               /*  var newForecastImagesParagraph = $('<td/>').text(newForecastImages); */
-	                /* $("#images").html("img src("l+forecast['icon_url']+".svg)"); */
-	                
+   
 	            } 
 	        }
 	    }); 
 	}); 
+ }); 
 	</script>
 </head> 
 <body> 
@@ -39,9 +38,16 @@
 <div >
 
 	<div >	
-		<div id="three"></div>
+		<div id="titles"></div>
 		    <div id="images"></div>
-
+		<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
+			name="weather" value="seoul.json">
+		</div>
+		<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="gwangju.json">
+		</div>
 
 		
 	</div><!-- /content -->
