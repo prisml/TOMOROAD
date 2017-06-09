@@ -28,15 +28,17 @@ drop sequence burn_comment_seq;
 drop sequence advertisement_seq;
 
 ------------ create ------------
+drop table member
 create table member(
 	id varchar2(100) primary key,
 	password varchar2(100) not null,
 	name varchar2(100) not null,
 	sex varchar2(100) not null,
-	tel varchar2(100) not null
-	profile default '/tomoroad/resources/img/profiles/kakao.jpg'
+	tel varchar2(100) not null,
+	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg'
 );
-select * from STATION
+drop table station
+
 --station 테이블 컬럼추가(0607).
 create table station(
 	name varchar2(100) primary key, --역 이름
@@ -56,6 +58,8 @@ alter table station add img varchar2(100) not null;
 alter table station add lat number not null; --추가부탁드려요 테이블비우고. //위도
 alter table station add lng number not null; --추가부탁드려요 테이블비우고. //경도
 
+drop table place
+
 create table place(
 	no number primary key,
 	name varchar2(100) not null,
@@ -64,6 +68,8 @@ create table place(
 	area varchar2(100) not null
 );
 create sequence place_seq nocache;
+
+drop table review
 
 create table review(
 	no number primary key,
@@ -102,6 +108,7 @@ create table hashtag(
 );
 create sequence hashtag_seq nocache;
 
+select * from BURN_COMMENT
 create table burn_board(
 	no number primary key,
 	title varchar2(100) not null,
@@ -198,6 +205,14 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 -----< member >-----
 
+insert into member(id,password,name,sex,tel) values('java','1234','아이유','여자','010')
+insert into member(id,password,name,sex,tel) values('abcd','1234','윤다혜','여자','010')
+insert into member(id,password,name,sex,tel) values('spring','1234','김문일','남자','010')
+insert into member(id,password,name,sex,tel) values('asdf','1234','김성환','남자','010')
+insert into member(id,password,name,sex,tel) values('qwer','1234','오남준','남자','010')
+insert into member(id,password,name,sex,tel) values('qaz','1234','김준영','남자','010')
+insert into member(id,password,name,sex,tel) values('zxcv','1234','박영덕','남자','010')
+
 alter table member add(profile varchar2(100))
 
 select * from member
@@ -287,8 +302,17 @@ select * from review where title like '%부산%' and content like '%부산%';
 select content from review where content like '%부산%';
 select title from review where content like '%부산%';
 
+select A.*, re.recommend
+		from(select row_number() over(order by r.no
+			desc) rnum,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+			from review r, place p, member m where r.place_no = p.no and r.member_id=m.id and r.member_id='java') A, 
+			(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
+		where rnum between 1 and 5 and A.no=re.review_no(+)
 
-select * from REVIEW;
+
+select * from member;
 
 select A.*
 		from(select row_number()
@@ -305,8 +329,7 @@ select row_number() over(order by re.no desc) rnum,
 		from review re, place p
 		where re.place_no=p.no
 
-update member set profile = '/tomoroad/resources/img/profiles/qwer.png' where id = 'qwer'
-update member set profile = '/tomoroad/resources/img/profiles/spring.png' where id = 'spring'
+
 
 select * from member
 select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
@@ -324,6 +347,7 @@ where   r.no=4 and r.place_no=p.no
 select * from friend 
 		
 		
+select * from review_recommend
 insert into review_recommend values('java',3)
 select count(*) from review_recommend where review_no = 3
 select * from review_recommend
@@ -348,6 +372,10 @@ select sysdate from dual
 
 -----< friend >-----
 
+
+update member set profile = '/tomoroad/resources/img/profiles/qwer.png' where id = 'qwer'
+update member set profile = '/tomoroad/resources/img/profiles/spring.png' where id = 'spring'
+
 select * from member
 
 delete from member where id = 'onon22'
@@ -357,10 +385,9 @@ select m.profile,f.receiver_id as friend from member m,friend f where f.receiver
 select m.profile,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = 'java' and state = '수락'
 
 
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 select * from member
 
-insert into friend values('qaz','java','대기',sysdate);
+insert into friend values('zxcv','java','수락',sysdate);
 
 select * from friend
 

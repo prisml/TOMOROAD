@@ -244,9 +244,15 @@ public class MemberController {
 	}
 	
 	   @RequestMapping("mypage/showListByMember.do")
-	   public ModelAndView showListByMember(String page, String id) {
+	   public String showListByMember(String page,HttpServletRequest request,Model model) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
 	      if (page == null)
 	         page = "1";
-	      return new ModelAndView("mypage/showList.tiles", "reviewMap", reviewService.getListByMember(page,id));
+	      String profile = memberService.getProfileById(id);
+	      model.addAttribute("profile",profile);
+	      model.addAttribute("reviewMap", reviewService.getListByMember(page,id));
+	      return "mypage/showList.tiles";
 	   }
 }
