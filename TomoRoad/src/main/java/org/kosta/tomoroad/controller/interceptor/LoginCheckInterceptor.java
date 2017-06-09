@@ -1,4 +1,4 @@
-package org.kosta.tomorad.controller.interceptor;
+package org.kosta.tomoroad.controller.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

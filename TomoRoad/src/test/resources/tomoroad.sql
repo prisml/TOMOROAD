@@ -86,7 +86,7 @@ create table review_comment(
 	no number primary key,	
 	content clob not null,
 	posted_time date not null,
-	recommend number default 0,
+	recomment number default 0,
 	review_no number, 
 	member_id varchar2(100) not null,
 	constraint fk_review_comment_no foreign key(review_no) references review(no),

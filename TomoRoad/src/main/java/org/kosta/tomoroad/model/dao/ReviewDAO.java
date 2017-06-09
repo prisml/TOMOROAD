@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.PlaceVO;
+import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 
 public interface ReviewDAO {
@@ -39,4 +40,6 @@ public interface ReviewDAO {
 	Map<String, Object> isRecommend(Map<String, Object> temp);
 
 	void deleteRecommend(Map<String, Object> map);
+
+	void writeComment(ReviewCommentVO vo);
 }

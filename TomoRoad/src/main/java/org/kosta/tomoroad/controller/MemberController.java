@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
+import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class MemberController {
 	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
+	
+	@Resource
+	private ReviewService reviewService;
 
 	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id, Model model) {
@@ -238,4 +242,11 @@ public class MemberController {
 		memberService.profileReset(id,profileReset);
 		return "redirect:mypage/mypage.do?id="+id;
 	}
+	
+	   @RequestMapping("mypage/showListByMember.do")
+	   public ModelAndView showListByMember(String page, String id) {
+	      if (page == null)
+	         page = "1";
+	      return new ModelAndView("mypage/showList.tiles", "reviewMap", reviewService.getListByMember(page,id));
+	   }
 }
