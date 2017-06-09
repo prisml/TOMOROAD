@@ -29,9 +29,17 @@ function readURL(input) {
 		 location.href = "${pageContext.request.contextPath}/profileReset.do";
 	}
 </script>
-<input type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()"><br>
+<input style="
+border: 3px solid gold;
+border-radius: 7px;
+-moz-border-radius: 7px;
+-khtml-border-radius: 7px;
+-webkit-border-radius: 7px;
+" type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()"><br>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
 <input type = "file"  style="display:none" name = "uploadfile" id = "file">
+<p align="center">
 <input type = "button" onclick = "fileupload()" value = "변경">
 <input type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
+</p>
 </form>

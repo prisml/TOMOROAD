@@ -387,6 +387,15 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
+
+select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
+
+select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
+
+insert into friend values('abcd','qwer','수락',sysdate)
+
+
+
 insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','수락',sysdate);
 insert into friend values('qaz','java','대기',sysdate);

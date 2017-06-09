@@ -14,7 +14,6 @@
 	}
 	#profile22{
 		padding: 5px;
-		border-bottom: 1px solid black;
 	}
 	#left22{
 		padding: 5px;
@@ -26,7 +25,6 @@
 		width:600px;
 		height: 500px;		
 		float: left; /* left로 부유위치를 지정해 left와 main이 수평 배치하도록 한다    */
-		border-left: 1px solid black;
 	}
 </style>
 
@@ -80,7 +78,7 @@
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 					<div id = "mainLayout22">
-						<div id = "profile22"><tiles:insertAttribute name = "profile"/></div>
+						<div id = "profile22"><tiles:insertAttribute name = "profile"/></div><br><br>
 						<div id = "left22"><tiles:insertAttribute name = "left"/></div>
 					</div>
 				<div id = "main22"><tiles:insertAttribute name = "main"/></div>
