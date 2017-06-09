@@ -306,7 +306,7 @@ select row_number() over(order by re.no desc) rnum,
 		where re.place_no=p.no
 
 update member set profile = '/tomoroad/resources/img/profiles/qwer.png' where id = 'qwer'
-update member set profile = '/tomoroad/resources/img/profiles/kakao.jpg' where id = 'zxcv'
+update member set profile = '/tomoroad/resources/img/profiles/spring.png' where id = 'spring'
 
 select * from member
 select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
@@ -348,6 +348,10 @@ select sysdate from dual
 
 -----< friend >-----
 
+select * from member
+
+delete from member where id = 'onon22'
+
 select m.profile,f.receiver_id as friend from member m,friend f where f.receiver_id = m.id and sender_id = 'java' and state = '수락'
 
 select m.profile,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = 'java' and state = '수락'
@@ -356,7 +360,9 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 >>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 select * from member
 
-insert into friend values('onon22','java','대기',sysdate);
+insert into friend values('qaz','java','대기',sysdate);
+
+select * from friend
 
 update friend set state = '대기' where sender_id = 'onon22'
 
