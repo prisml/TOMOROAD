@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -252,7 +254,8 @@ public class MemberController {
 	         page = "1";
 	      String profile = memberService.getProfileById(id);
 	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewMap", reviewService.getListByMember(page,id));
+	      ListVO<ReviewVO> list = (ListVO<ReviewVO>) reviewService.getListByMember(page,id);
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
 	   }
 }
