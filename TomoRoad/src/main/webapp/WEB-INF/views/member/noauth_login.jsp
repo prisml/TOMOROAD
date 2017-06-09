@@ -56,12 +56,12 @@
            	<div class="form-group">
         		<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="id"  placeholder="아이디" autofocus required="required">
+                    <input type="text" class="form-control" name="id"  placeholder="아이디" autofocus required="required" style="font-size: 16px;">
             	</div>
             	<br>
             	<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required">
+                    <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required" style="font-size: 16px;">
                 </div>
 
             	<div class="form-group">

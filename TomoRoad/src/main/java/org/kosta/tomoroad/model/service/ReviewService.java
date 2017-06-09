@@ -38,6 +38,8 @@ public interface ReviewService {
 
 	Map<String, Object> getDetail(String no);
 
+	List<ReviewVO> getReviewListByPlace(int no);
+	
 	void writeComment(ReviewCommentVO vo, int reviewNo);
 
 }

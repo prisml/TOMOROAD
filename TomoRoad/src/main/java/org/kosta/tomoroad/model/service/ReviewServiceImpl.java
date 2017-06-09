@@ -129,8 +129,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<ReviewVO> getReviewListByPlace(int no) {
+		return dao.getReviewListByPlace(no);
+	}
+	
 	public void writeComment(ReviewCommentVO vo, int reviewNo) {
-		vo.setReview(dao.getDetail(reviewNo+""));
-		dao.writeComment(vo);
+	vo.setReview(dao.getDetail(reviewNo+""));
+	dao.writeComment(vo);
 	}
 }

@@ -112,6 +112,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
+	public List<ReviewVO> getReviewListByPlace(int no) {
+		return template.selectList("review.getReviewListByPlace",no);
+	}
+	
 	public void writeComment(ReviewCommentVO vo) {
 		template.insert("review.writeComment",vo);
 	}

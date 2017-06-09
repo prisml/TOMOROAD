@@ -137,7 +137,7 @@
                 <br>
             <div class="input-group">
               <input type="text" class="form-control" name="id"  placeholder="아이디" required="required" autofocus
-              style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+              style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
               <br>
               <span id="idCheckView"></span>
             </div>
@@ -145,20 +145,20 @@
             <br>
             <div class="input-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
             <div class="input-group">
                 <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
                 <font id="check" size="2" color="red"></font> 
             </div>
             
 			<br>
 		    <div class="input-group">
                 <input type="text" class="form-control" name="name"  id="name" placeholder="이름" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
@@ -176,7 +176,7 @@
             <br>
 			<div class="input-group">
                 <input type="text" class="form-control" name="tel"  id="tel" placeholder="연락처" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>

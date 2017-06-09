@@ -36,10 +36,11 @@
 <body> 
 
 <div >
+<div>
 
-	<div >	
 		<div id="titles"></div>
 		    <div id="images"></div>
+	
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
 			name="weather" value="seoul.json">서울

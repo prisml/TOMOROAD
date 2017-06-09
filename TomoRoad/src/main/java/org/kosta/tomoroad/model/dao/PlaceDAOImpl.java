@@ -14,14 +14,14 @@ public class PlaceDAOImpl implements PlaceDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<PlaceVO> getPlaceInfo(String id) {
-		return template.selectList("place.getPlaceInfo",id);
-	}
-
-	@Override
 	public List<String> getKeyWord(String keyword) {
 		System.out.println("dao다");
 		return template.selectList("place.getKeyword",keyword);
 	}
 	
+	@Override
+	public List<PlaceVO> getPlaceInfo(String name) {
+		return template.selectList("place.getPlaceInfo",name);
+	}
+
 }
