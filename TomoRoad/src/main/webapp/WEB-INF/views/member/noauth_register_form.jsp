@@ -20,11 +20,11 @@
   $('#chpass').keyup(function(){
    if($('#password').val()!=$('#chpass').val()){
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password incorrect!");
+    $('font[id=check]').html("비밀번호가 달라요!");
     return false;
    }else{
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password correct");
+    $('font[id=check]').html("비밀번호가 같아요╹◡╹)ﾉ");
    }
    return true;
   }); //#chpass.keyup
@@ -127,7 +127,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	        <div class="dividerHeading">
-            <h4><span>가입해주세요^-^)/</span></h4>
+            <h4><span>가입해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" >      
@@ -166,10 +166,10 @@
                     <label>성별</label>
 					<br>
                                 <label>
-                                    <input type="radio" name="sex"  id="sex" value="Female" >여자
+                                    <input type="radio" name="sex"  id="sex" value="여자" >여자
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex"  id="sex" value="Male" >남자
+                                    <input type="radio" name="sex"  id="sex" value="남자" >남자
                                 </label>
                 </div> 
                 
