@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
+import org.kosta.tomoroad.model.vo.ReviewCommentVO;
+import org.kosta.tomoroad.model.vo.ReviewUploadVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -43,13 +48,35 @@ public class ReviewController {
 			page = "1";
 		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByPlace(page,place));
 	}
-
+	
 	@RequestMapping(value = "review/register.do", method = RequestMethod.POST)
-	public ModelAndView register(ReviewVO vo, int placeNo, HttpServletRequest req) {
-		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
-		vo.setPlace(new PlaceVO(placeNo));
+	public ModelAndView register(ReviewUploadVO ruvo, HttpServletRequest req) {
+		System.out.println(ruvo);
+		ReviewVO vo = new ReviewVO();
+		vo.setTitle(ruvo.getTitle());
+		vo.setContent(ruvo.getContent());
+		vo.setStar(ruvo.getStar());
+		MemberVO mvo = (MemberVO) req.getSession().getAttribute("mvo");
+		System.out.println(mvo);
+		vo.setMember(mvo);
+		vo.setPlace(new PlaceVO(ruvo.getPlaceNo()));
 		service.register(vo);
-		return new ModelAndView("redirect:detail.do?no=" + vo.getNo());
+		List<MultipartFile> files = ruvo.getFiles();
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+		ArrayList<String> nameList = new ArrayList<String>();
+		for (int i = 0; i < files.size(); i++) {
+			String fileName = files.get(i).getOriginalFilename();
+			if (fileName.equals("") == false) {
+				try {
+					files.get(i).transferTo(new File(uploadPath + "review"+vo.getNo()+"_"+i));
+					nameList.add("review"+vo.getNo()+"_"+i);
+					System.out.println("업로드 완료 " + fileName);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
 	
 	@RequestMapping("review/register_form.do")
@@ -65,10 +92,24 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
-	public ModelAndView update(ReviewVO vo, int placeNo, HttpServletRequest req) {
+	public ModelAndView update(List<MultipartFile> files, ReviewVO vo, int placeNo, HttpServletRequest req) {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		vo.setPlace(new PlaceVO(placeNo));
 		service.update(vo);
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+		ArrayList<String> nameList = new ArrayList<String>();
+		for (int i = 0; i < files.size(); i++) {
+			String fileName = files.get(i).getOriginalFilename();
+			if (fileName.equals("") == false) {
+				try {
+					files.get(i).transferTo(new File(uploadPath + "review"+vo.getNo()+"_"+i));
+					nameList.add("review"+vo.getNo()+"_"+i);
+					System.out.println("업로드 완료 " + fileName);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
 
@@ -131,6 +172,14 @@ public class ReviewController {
 		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
 		System.out.println("역 주변 정보 : "+getReviewListByPlace);
 		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
-		return "place/getPlaceInfo.tiles";
+		return "place/getPlaceInfo.tiles"; //여기도 수정해야돼!
+	}
+	
+	@RequestMapping("review/writeComment.do")
+	public ModelAndView writeComment(ReviewCommentVO vo,HttpServletRequest req, int reviewNo){
+		vo.setMember((MemberVO)req.getSession().getAttribute("mvo"));
+		service.writeComment(vo,reviewNo);
+		return new ModelAndView("redirect:noauth_detail.do?no="+reviewNo);
+		
 	}
 }

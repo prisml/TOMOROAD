@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#addPicture").click(function(){
+		var count = $("#fileDiv > input").size();
+		var temp = '<input name="files['+count;
+		temp+=']" class="form-control"';
+		temp+='maxlength="100" data-msg-required="Please input your picture."';
+		temp+='value="" placeholder="사진등록" type="file">';
+		$("#fileDiv").append(temp);
+	});
+});
+</script>
 <div class="col-lg-8 col-md-8 col-sm-8">
 	<div class="dividerHeading">
 		<h4>
@@ -20,7 +32,6 @@
 			aria-hidden="true">×</button>
 		<strong>Error!</strong> There was an error sending your message.
 	</div>
-
 	<form method="post" id="contactForm"
 		action="${pageContext.request.contextPath}/review/update.do"
 		novalidate="novalidate">
@@ -43,15 +54,19 @@
 		</div>
 		<div class="row">
 			<div class="form-group">
-				<div class="col-md-6">
-					<input id="subject" name="picture" class="form-control"
+				<div id="fileDiv" class="col-md-5">
+					<input name="files[0]" class="form-control"
 						maxlength="100" data-msg-required="Please input your picture."
-						value="" placeholder="사진등록" type="text">
+						value="" placeholder="사진등록" type="file">
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-2">
+					<input id="addPicture" class="btn btn-default btn-lg"
+					value="Add" type="button">
+				</div>
+				<div class="col-md-5">
 					<input id="subject" name="star" class="form-control"
 						maxlength="100"
-						value="${dvo.rvo.star }" placeholder="별점" type="number" max="5" min="0">
+						value="5" placeholder="별점" type="number" max="5" min="0">
 				</div>
 			</div>
 		</div>

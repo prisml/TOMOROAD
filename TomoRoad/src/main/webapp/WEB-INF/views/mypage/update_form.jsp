@@ -7,7 +7,7 @@
 <head>
 
 
-    <title>Register Page</title>
+    <title>Update Page</title>
 
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -21,11 +21,11 @@
   $('#chpass').keyup(function(){
    if($('#password').val()!=$('#chpass').val()){
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password incorrect!");
+    $('font[id=check]').html("비밀번호가 달라요!");
     return false;
    }else{
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password correct");
+    $('font[id=check]').html("비밀번호가 같아요╹◡╹)ﾉ");
    }
    return true;
   }); //#chpass.keyup
@@ -66,6 +66,28 @@
  */
 
  </script>
+  <style type="text/css">
+.div {
+    text-align: center;
+
+}
+.span {
+    text-align: center;
+
+}
+.label {
+    text-align: center;
+
+}
+.p {
+    text-align: center;
+
+}
+.input {
+    text-align: center;
+
+}
+</style>
 </head>
 
   <body class="login-img3-body">
@@ -73,57 +95,70 @@
 	System.out.println(vo);
 	if(vo!=null){
 %>
-    <div class="container">
+    <div class="col-lg-12 col-sm-12"> 
 	
-      <form class="login-form" method="post" action="${pageContext.request.contextPath}/member/updateMember.do" id="updateForm">      
-        <div>
+	 <div class="dividerHeading">
+            <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
+        </div>
+        
+      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm">      
+        <div class="form-group">
                         <br>
                 <br>
                 <br>
-            <div>
-             id:  <input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required">
+            <div class="input-group">
+               아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
+               style="width: 250px; height: 50px; margin: 0 auto; align:center;">
               <span id="idCheckView"></span>
             </div>
             
             <br>
-            <div>
-              password:  <input type="password" class="form-control" name="password" id="password" value="${mvo.password}"required="required" >
+            <div class="input-group">
+                비밀번호:<input type="password" class="form-control" name="password" id="password" value="${mvo.password}" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>
             
             <br>
-            <div>
-              password:  <input type="password" class="form-control" name="chpass" id="chpass" placeholder="Re-Password" required="required" >
+            <div class="input-group">
+                <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
                 <font id="check" size="2" color="red"></font> 
             </div>
             
 			<br>
-		    <div>
-               name: <input type="text" class="form-control" name="name"  id="name" value="${mvo.name}" required="required" >
+		    <div class="input-group">
+               <input type="text" class="form-control" name="name"  id="name" value="${mvo.name}" required="required" 
+               style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>  
             
             <br>
-            <div>
-                    <label>Gender</label>
+            <div class="input-group">
+                    <label>성별</label>
 					<br>
                                 <label>
                                 <input type="text"   class="form-control"  value="${mvo.sex}" readonly>  
                                 <br>
-                                    <input type="radio" name="sex"  id="sex" value="Female" placeholder="Female" required="required">Female
+                                    <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex"  id="sex" value="Male" placeholder="Male" required="required">Male
+                                    <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자
                                 </label>
                 </div> 
                 
             <br>
-			<div>
-                <input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" >
+			<div class="input-group">
+                연락처:<input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>            
             <br> 
             <br><br>
-            <input class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Update">
+            <div class="form-group" align="center">
+            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="수정">
+           </div>
             <br>
-            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
+            <div class="form-group" align="center">
+            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작화면</a>
+           </div>
             <br>            
         </div>
       </form>

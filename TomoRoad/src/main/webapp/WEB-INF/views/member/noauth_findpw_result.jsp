@@ -3,4 +3,4 @@
                     <br>
                 <br>
                 <br>
-검색결과 ${result.password}
+검색결과╹◡╹)ﾉ ${result.password} 입니다
