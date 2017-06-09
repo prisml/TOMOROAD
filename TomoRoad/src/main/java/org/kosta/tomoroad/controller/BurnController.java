@@ -35,6 +35,7 @@ public class BurnController {
 	@RequestMapping(method=RequestMethod.POST,value="writeBurn.do")
 	public String writeBurn(BurnVO bvo){
 		burnService.writeBurn(bvo);
+		System.out.println(bvo);
 		return "redirect:writeBurnResult.do?no="+bvo.getNo();
 	}
 	

@@ -1,6 +1,7 @@
 package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -72,17 +73,16 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("member.friend_Refuse",friend);
 	}
 	@Override
-	public List<String> friend_RequestList(String receiverID) {
+	public List<HashMap<String,String>> friend_RequestList(String receiverID) {
 		return template.selectList("member.friend_RequestList", receiverID);
 	}
 	@Override
-	public List<String> friendList(String id) {
-		List<String> list = template.selectList("member.friendListByReceiverId", id);
-		List<String> list2 = template.selectList("member.friendListBySenderId", id);
-		for(int i = 0;i<list2.size();i++)
-			list.add(list2.get(i));
-		System.out.println(list);
-		return list;
+	public List<HashMap<String,String>> friendList(String id) {
+		List<HashMap<String,String>> list =  template.selectList("member.friendListByReceiverId", id);
+		List<HashMap<String,String>> list2 =  template.selectList("member.friendListBySenderId", id);
+		for(int i = 0;i<list.size();i++)
+			list2.add(list.get(i));
+		return list2;
 	}
 	@Override
 	public String getFriendId(String id, String selectId) {
@@ -107,9 +107,9 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("profileFileUpload", profileName);
 	}
 	@Override
-	public void profileReset(String id) {
-		System.out.println(id);
-		template.update("profileReset",id);
+	public void profileReset(HashMap<String,String> profileInfo) {
+		System.out.println(profileInfo);
+		template.update("profileReset",profileInfo);
 	}
 
 }

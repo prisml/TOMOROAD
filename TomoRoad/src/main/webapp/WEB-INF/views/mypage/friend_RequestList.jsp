@@ -9,8 +9,9 @@ function requestRefuse(id){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_Refuse.do?senderID="+id+"&receiverID=${mvo.id}";
 }
 </script>
+
 <c:forEach items="${friend_RequestList }" var="requestList">
-	${requestList} 
-	<input type = "button" value="수락" onclick="requestAccept('${requestList}')">
-	<input type = "button" value="거절" onclick="requestRefuse('${requestList}')"><br>
+	<img width = "50" height="50" src = "${requestList.PROFILE}"> ${requestList.SENDER_ID}
+	<input type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
+	<input type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
 </c:forEach>

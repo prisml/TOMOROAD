@@ -144,12 +144,8 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		model.addAttribute("friendList", memberService.friendList(id));
-		String getprofile = memberService.getProfileById(id);
-		if(getprofile == null){
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
-		}else{
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+getprofile);
-		}
+		String profile = memberService.getProfileById(id);
+		model.addAttribute("profile",profile);
 		return "mypage/friendList.tiles";
 	}
 
@@ -159,12 +155,8 @@ public class MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
 		model.addAttribute("friend_RequestList", memberService.friend_RequestList(id));
-		String getprofile = memberService.getProfileById(id);
-		if(getprofile == null){
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/kakao.jpg");
-		}else{
-			model.addAttribute("profile","/tomoroad/resources/img/profiles/"+getprofile);
-		}
+		String profile = memberService.getProfileById(id);
+		model.addAttribute("profile",profile);
 		return "mypage/friend_RequestList.tiles";
 	}
 
@@ -190,42 +182,36 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		String getprofile = memberService.getProfileById(id);
-		String profile = null;
-		if(getprofile == null){
-			profile = "/tomoroad/resources/img/profiles/kakao.jpg";
-		}else{
-			profile = "/tomoroad/resources/img/profiles/"+getprofile;
-		}
+		String profile = memberService.getProfileById(id);
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile",profile);
 	}
 	
-	
-	
 	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
 	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
-		String fileName = uploadfile.getOriginalFilename();
-		// 확장자명
-		String ext = fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
-		if(uploadfile.isEmpty()){
-			return "mypage/mypage_fail";
-		}
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		memberService.profileFileUpload(id,ext);
+		String fileName = uploadfile.getOriginalFilename();
+		String profile = "/tomoroad/resources/img/profiles/"+id+fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
+		// 확장자명
+		
+		if(uploadfile.isEmpty()){
+			return "mypage/mypage_fail";
+		}
+		
+		memberService.profileFileUpload(id,profile);
 		String getprofile = memberService.getProfileById(id);
+		String ext = id+getprofile.substring(getprofile.lastIndexOf("."), getprofile.lastIndexOf(".")+4);
 		uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/profiles/");
 		String uploadPath2 = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\profiles\\";
-		System.out.println(uploadPath);
 		try {
-			uploadfile.transferTo(new File(uploadPath+getprofile));
+			uploadfile.transferTo(new File(uploadPath+ext));
 			
 			// 프로필파일을 WAS에서 Workspace로 복사하기
 			
-			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(uploadPath+getprofile));
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(uploadPath+ext));
 			
-			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(uploadPath2+getprofile));
+			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(uploadPath2+ext));
 			
 			int data = bis.read();
 			
@@ -248,7 +234,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
-		memberService.profileReset(id);
+		String profileReset = "/tomoroad/resources/img/profiles/kakao.jpg";
+		memberService.profileReset(id,profileReset);
 		return "redirect:mypage/mypage.do?id="+id;
 	}
 }

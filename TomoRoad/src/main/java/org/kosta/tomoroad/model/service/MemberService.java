@@ -1,5 +1,6 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.kosta.tomoroad.model.vo.MemberVO;
@@ -24,13 +25,13 @@ public interface MemberService {
 	
 	void friend_Request(String senderID,String receiverID);
 	
-	List<String> friend_RequestList(String receiverID);
+	List<HashMap<String,String>> friend_RequestList(String receiverID);
 	
 	void friend_Accept(String senderID,String receiverID);
 	
 	void friend_Refuse(String senderID,String receiverID);
 
-	List<String> friendList(String id);
+	List<HashMap<String,String>> friendList(String id);
 	
 	void deleteFriend(String id,String deleteId);
 
@@ -38,7 +39,7 @@ public interface MemberService {
 
 	String getProfileById(String id);
 
-	void profileFileUpload(String id,String ext);
+	void profileFileUpload(String id,String profile);
 	
-	void profileReset(String id);
+	void profileReset(String id,String profileReset);
 }
