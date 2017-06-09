@@ -70,16 +70,16 @@ public class MemberController {
 		return new ModelAndView("member/noauth_register_result.tiles", "mvo", vo);
 	}
 
-	@RequestMapping(value = "member/updateMember.do", method = RequestMethod.POST)
+	@RequestMapping(value = "mypage/updateMember.do", method = RequestMethod.POST)
 	public String updateMember(MemberVO vo) {
 		memberService.updateMember(vo);
 		return "redirect:updateResultView.do?id=" + vo.getId();
 	}
 
-	@RequestMapping("member/updateResultView.do")
+	@RequestMapping("mypage/updateResultView.do")
 	public ModelAndView updateMember(String id) {
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/update_result.tiles", "mvo", vo);
+		return new ModelAndView("mypage/update_result.tiles", "mvo", vo);
 	}
 
 	@RequestMapping("member_idcheckAjax.do")
