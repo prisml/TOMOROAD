@@ -98,7 +98,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	 <div class="dividerHeading">
-            <h4><span>수정해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm">      
@@ -107,14 +107,14 @@
                 <br>
                 <br>
             <div class="input-group">
-               <input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
+               아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
               <span id="idCheckView"></span>
             </div>
             
             <br>
             <div class="input-group">
-                <input type="password" class="form-control" name="password" id="password" value="${mvo.password}"required="required" 
+                비밀번호:<input type="password" class="form-control" name="password" id="password" value="${mvo.password}" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>
             
@@ -147,17 +147,17 @@
                 
             <br>
 			<div class="input-group">
-                <input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" 
+                연락처:<input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center;">
             </div>            
             <br> 
             <br><br>
             <div class="form-group" align="center">
-            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="회원정보수정">
+            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="수정">
            </div>
             <br>
             <div class="form-group" align="center">
-            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작페이지</a>
+            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작화면</a>
            </div>
             <br>            
         </div>

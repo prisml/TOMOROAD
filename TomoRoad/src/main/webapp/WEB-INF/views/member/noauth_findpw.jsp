@@ -47,14 +47,14 @@
                 <br>
                 <br>
 	<fieldset>
-	<legend > Find ID </legend>
+	<legend > 비밀번호찾기 </legend>
 	<ul id="findID">
-	<li>Find ID</li>
-	<li><label>ID:</label><input type="text" id="id" name="id" required="required" autofocus></li>
-	<li><label>Name:</label><input type="text" id="name" name="name" required="required"></li>
-	<li><label>Phone Number:</label><input type="text" id="tel" name="tel" required="required"></li>
-	<li>Find Password<input type="submit" name="btnFindUid" id="btnFindUid" value="Find Password" ></li>
-
+	<li>정확한 정보를 입력 해주세요╹◡╹)ﾉ</li>
+	<li><label>아이디:</label><input type="text" id="id" name="id" required="required" autofocus></li>
+	<li><label>이름   :</label><input type="text" id="name" name="name" required="required"></li>
+	<li><label>연락처:</label><input type="text" id="tel" name="tel" required="required"></li>
+	<li><input type="submit" name="btnFindUid" id="btnFindUid" value="비밀번호찾기" class="btn btn-default btn-lg button"></li>
+    <li><a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a></li>
 	</ul>
 	</fieldset>
 	</form>

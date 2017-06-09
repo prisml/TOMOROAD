@@ -3,4 +3,4 @@
                     <br>
                 <br>
                 <br>
-검색결과 ${result.id}
+검색결과╹◡╹)ﾉ ${result.id} 입니다
