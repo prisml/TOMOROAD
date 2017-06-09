@@ -11,7 +11,7 @@ function requestRefuse(id){
 </script>
 
 <c:forEach items="${friend_RequestList }" var="requestList">
-	<img width = "100" height="100" src = "${requestList.PROFILE}"> ${requestList.SENDER_ID}(${requestList.NAME})
+	<img width = "100" height="100" src = "${requestList.PROFILE}"> <span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
 	<input style = color:white; class="btn btn-small btn-default" type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
 	<input style = color:white; class="btn btn-small btn-default" type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
 	<br><br>

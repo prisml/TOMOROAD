@@ -30,7 +30,6 @@ function readURL(input) {
 	}
 </script>
 <input style="
-border: 3px solid gold;
 border-radius: 7px;
 -moz-border-radius: 7px;
 -khtml-border-radius: 7px;
