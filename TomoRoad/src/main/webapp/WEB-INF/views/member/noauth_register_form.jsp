@@ -82,7 +82,7 @@
 			}			
 			$.ajax({
 				type:"POST",
-				url:"${pageContext.request.contextPath}/idcheckAjax.do",				
+				url:"${pageContext.request.contextPath}/noauth_idcheckAjax.do",				
 				data:"id="+id,	
 				success:function(data){						
 					if(data=="fail"){
