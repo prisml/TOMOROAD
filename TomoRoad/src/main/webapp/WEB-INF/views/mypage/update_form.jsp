@@ -100,10 +100,7 @@
 </head>
 
   <body class="login-img3-body">
-<% MemberVO vo=(MemberVO)session.getAttribute("mvo"); 
-	System.out.println(vo);
-	if(vo!=null){
-%>
+
     <div class="col-lg-12 col-sm-12"> 
 	
 	 <div class="dividerHeading" >
@@ -172,12 +169,7 @@
         </div>
       </form>
     </div>
-<%}else{ %>
-		<script type="text/javascript">
-			alert("로그인하세요!");
-			location.href="${pageContext.request.contextPath}/login.do";
-		</script>
-<%} %>
+
 
   </body>
 </html>
