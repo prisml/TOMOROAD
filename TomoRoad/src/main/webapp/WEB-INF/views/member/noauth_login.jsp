@@ -81,9 +81,9 @@
         	<div class="form-group" align="center">
         	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">가입</a>
      	    </div>  	  
-			<div class="form-group" align="center">
+<%-- 			<div class="form-group" align="center">
       	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
-      	    </div>
+      	    </div> --%>
       	    <div class="form-group" align="center">
             <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
         </div>
