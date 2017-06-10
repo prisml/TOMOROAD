@@ -12,13 +12,13 @@ public class HomeController {
 
 	@RequestMapping("{viewName}.do")
 	public String showView(@PathVariable String viewName) {
-		System.out.println("@PathVariable:" + viewName);
+		//System.out.println("@PathVariable:" + viewName);
 		return viewName + ".tiles";
 	}
 	
 	@RequestMapping("{dirName}/{viewName}.do")
 	public String showView(@PathVariable String dirName, @PathVariable String viewName) {
-		System.out.println("@PathVariable:" + dirName + "/" + viewName);
+		//System.out.println("@PathVariable:" + dirName + "/" + viewName);
 		return dirName + "/" + viewName + ".tiles";
 	}
 	@RequestMapping("loginalert.do")

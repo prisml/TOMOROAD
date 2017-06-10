@@ -12,6 +12,8 @@ public interface StationDAO {
 	List<StationVO> getTourInfoData();
 
 	StationVO getDetailInfo(String name);
+
+	List<StationVO> getAllStationInfo();
 	
 	
 	

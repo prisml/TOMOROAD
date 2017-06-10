@@ -112,10 +112,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from review_recommend where member_id=#{member_id} and review_no=#{review_no}
 	</delete>
 	
-<!-- 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.
-	<select id="getReviewListByPlace">
-		select no,title,postedTim 이거아직 덜 됨!!! 해야돼!!
-	</select> -->
+	<!-- 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.-->
+	<select id="getReviewListByPlace" resultType="reviewVO" resultMap="reviewRM">
+		select r.no,r.title,to_char(posted_time,'YYYY.MM.DD'),r.recommend,r.place_no,r.member_id
+		from review r,place p,member m
+		where r.member_id=m.id and r.place_no=p.no and r.place_no=#{value}
+	</select>
 	
 	<insert id="writeComment" parameterType="reviewCommentVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
