@@ -14,7 +14,7 @@
 
 .primary-container-background .primary-container {width: 100%;}
 
-Disable CSS animations
+/* Disable CSS animations */
 .animated {
     -webkit-animation-duration: 0;
     animation-duration: 0;
@@ -24,16 +24,16 @@ Disable CSS animations
 
 }
 
-#Tablet (Portrait)
-==================================================
+/* #Tablet (Portrait)
+================================================== */
     
 @media only screen and (max-width: 959px) {
 
 
 }
 
-#Mobile (Landscape)
-==================================================
+/* #Mobile (Landscape)
+================================================== */
 
 @media only screen and (max-width: 767px) {
 
@@ -46,8 +46,8 @@ Disable CSS animations
 
 }
 
- #Mobile (Portrait)
-==================================================
+/*  #Mobile (Portrait)
+================================================== */
 
 @media only screen and (max-width: 440px) {
 
