@@ -59,7 +59,7 @@
                     <input type="text" class="form-control" name="id"  placeholder="ID" autofocus>
             	</div>
             	<br>
-            	<div class="input-group">
+            	<div class="input-group" align="center">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
