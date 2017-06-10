@@ -144,9 +144,7 @@
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" onsubmit="return samePw()" >      
         <div class="form-group">
-                        <br>
-                <br>
-                <br>
+
             <div class="input-group">
             <span id="idCheckView"></span>
             <br>

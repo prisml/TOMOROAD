@@ -109,9 +109,7 @@
         
       <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw()">      
         <div class="form-group">
-                        <br>
-                <br>
-                <br>
+
             <div align="center">
                아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
