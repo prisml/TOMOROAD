@@ -146,8 +146,7 @@
                                 <input type="text"   class="form-control"  value="${mvo.sex}" readonly>  
                                 <br>
                                     <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
-                                </label>
-                                <label>
+                                    &nbsp&nbsp
                                     <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자
                                 </label>
                 </div> 
