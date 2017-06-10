@@ -27,7 +27,7 @@
 					<div class="serviceBox_2 red">
 						<c:if test="${mvo!=null && mvo.id==dvo.rvo.member.id}">
 							<a href="${pageContext.request.contextPath}/review/update_form.do?no=${dvo.rvo.no}"
-								role="button" class="btn btn-default">update</a>
+								role="button" class="btn btn-default">수정</a>
 						</c:if>
 	                    <div class="service-icon">
 							<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}">
@@ -65,7 +65,7 @@
 		<div class="news_comments">
 			<div class="dividerHeading">
 				<h4>
-					<span>Comments</span>
+					<span>댓글 목록</span>
 				</h4>
 			</div>
 			<div id="comment">
@@ -81,7 +81,7 @@
 					temp += 'class="avatar"></div>';
 					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
 					temp += '<div class="comment-meta"> <a href="#" class="comment-date link-style1">${cvo.postedTime}</a>';
-					temp += '<a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>';
+					temp += '<a class="comment-reply-link link-style3" href="#respond">댓글달기 »</a></div>';
 					temp += '<div class="comment-body"><p>${cvo.content}</p></div><ul id="reply${cvo.no}" class="chilren"></ul></div></li>'
 					$("#${cvo.recommentId}").append(temp);
 				</c:forEach>

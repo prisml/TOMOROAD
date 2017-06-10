@@ -108,7 +108,6 @@ create table hashtag(
 );
 create sequence hashtag_seq nocache;
 
-select * from BURN_COMMENT
 create table burn_board(
 	no number primary key,
 	title varchar2(100) not null,
@@ -216,6 +215,11 @@ insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박�
 update member set name ='송준영' where id = 'qaz'
 
 alter table member add(profile varchar2(100))
+delete from member where id='java';
+delete from member where id='abcd';
+delete from member where id='spring';
+delete from member where id='asdf';
+
 
 select * from member
 select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
