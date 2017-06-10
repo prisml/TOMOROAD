@@ -136,10 +136,10 @@
                 <br>
                 <br>
             <div class="input-group">
+            <span id="idCheckView"></span>
+            <br>
               <input type="text" class="form-control" name="id"  placeholder="아이디" required="required" autofocus
-              style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
-              <br>
-              <span id="idCheckView"></span>
+              style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">           
             </div>
             
             <br>
