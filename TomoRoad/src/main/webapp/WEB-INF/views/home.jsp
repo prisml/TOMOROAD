@@ -113,7 +113,8 @@ function initMap() {
 
 </script>
 
-<!-- 검색 자동완성 -->
+<!-- 2차로 해야지.
+검색 자동완성 //
 <script>
   $( function() {
     var criterion=""; //검색 기준
@@ -162,8 +163,9 @@ function initMap() {
 		
   }); //function 
 </script>
+-->
   
-<!-- //검색자동완성-->
+<!-- //검색자동완성//
 <select name="searchForm">
 	<option id="all">전체</option>
 	<option id="hash">해시태그</option>
@@ -173,7 +175,7 @@ function initMap() {
 </select>
 <div class="ui-widget">
 		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
-		<!-- 리뷰 선택 시에만 나타나는 폼. -->
+		<!-- 리뷰 선택 시에만 나타나는 폼. //
 		<span id="form">
 			<select name=reviewForm style="width:101px; height: 30px;">
 				<option id="title">제목만</option>
@@ -182,6 +184,9 @@ function initMap() {
 		</span>
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
+-->
+
+<!-- 지도 -->
 <div id=map style="width:100%;height:600px"></div>
 <div id="tomoroading"></div>
 <c:if test="${mvo!=null }">
