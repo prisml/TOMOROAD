@@ -7,29 +7,6 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-/* 아직 미완성본 */
-	#mainLayout22{
-		float : left;
-	}
-	#profile22{
-		padding: 5px;
-		border-bottom: 1px solid black;
-	}
-	#left22{
-		padding: 5px;
-		height:500px;
-		width:200px;
-	}
-	#main22{
-		padding: 5px;
-		width:600px;
-		height: 500px;		
-		float: left; /* left로 부유위치를 지정해 left와 main이 수평 배치하도록 한다    */
-		border-left: 1px solid black;
-	}
-</style>
-
 <!-- CSS FILES -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -51,6 +28,8 @@
 	href="${pageContext.request.contextPath}/resources/css/style-fraction.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/animate.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
@@ -79,11 +58,11 @@
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-					<div id = "mainLayout22">
-						<div id = "profile22"><tiles:insertAttribute name = "profile"/></div>
-						<div id = "left22"><tiles:insertAttribute name = "left"/></div>
+					<div id = "mypageLayout">
+						<div id = "mypageProfile"><tiles:insertAttribute name = "profile"/></div><br><br>
+						<div id = "mypageLeft"><tiles:insertAttribute name = "left"/></div>
 					</div>
-				<div id = "main22"><tiles:insertAttribute name = "main"/></div>
+				<div id = "mypageMain"><tiles:insertAttribute name = "main"/></div>
 				</div>
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 			</div>

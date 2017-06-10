@@ -82,7 +82,7 @@
 			}			
 			$.ajax({
 				type:"POST",
-				url:"${pageContext.request.contextPath}/idcheckAjax.do",				
+				url:"${pageContext.request.contextPath}/noauth_idcheckAjax.do",				
 				data:"id="+id,	
 				success:function(data){						
 					if(data=="fail"){
@@ -127,7 +127,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	        <div class="dividerHeading">
-            <h4><span>가입해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>가입 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" >      
@@ -136,29 +136,30 @@
                 <br>
                 <br>
             <div class="input-group">
+            <span id="idCheckView"></span>
+            <br>
               <input type="text" class="form-control" name="id"  placeholder="아이디" required="required" autofocus
-              style="width: 250px; height: 50px; margin: 0 auto; align:center;">
-              <br>
-              <span id="idCheckView"></span>
+              style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">           
             </div>
             
             <br>
             <div class="input-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
             <div class="input-group">
                 <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
+                <br>
                 <font id="check" size="2" color="red"></font> 
             </div>
             
 			<br>
 		    <div class="input-group">
                 <input type="text" class="form-control" name="name"  id="name" placeholder="이름" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
@@ -176,19 +177,19 @@
             <br>
 			<div class="input-group">
                 <input type="text" class="form-control" name="tel"  id="tel" placeholder="연락처" required="required" 
-                style="width: 250px; height: 50px; margin: 0 auto; align:center;">
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
                             <div class="input-group">
                             <label>
-                                <input type="checkbox" required="required" >동의합니다 <!-- I agree to <a href="#">terms</a> -->
+                                <input type="checkbox" required="required" >가입을 희망 합니다╹◡╹)ﾉ <!-- I agree to <a href="#">terms</a> -->
                             </label>
                 </div> 
                 
             <br><br>
             <div class="form-group" align="center">
-            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="회원가입">
+            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="가입">
            </div>
             <br>
             <div class="form-group" align="center">

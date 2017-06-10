@@ -47,7 +47,7 @@
 	
                 
         <div class="dividerHeading">
-            <h4><span>가입해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>로그인 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
         
@@ -56,12 +56,12 @@
            	<div class="form-group">
         		<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="id"  placeholder="아이디" autofocus>
+                    <input type="text" class="form-control" name="id"  placeholder="아이디" autofocus required="required" style="font-size: 16px;">
             	</div>
             	<br>
             	<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="password" class="form-control" name="password" placeholder="비밀번호">
+                    <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required" style="font-size: 16px;">
                 </div>
 
             	<div class="form-group">
@@ -78,17 +78,16 @@
             <div class="form-group" align="center">
                 <button type="submit" class="btn btn-default btn-lg button" style="width: 400px; height: 40px; margin: 0 auto; align:center;">로그인</button>
             </div>
-      </form>
-    
-        
         	<div class="form-group" align="center">
-        	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">회원가입</a>
-     	    </div>
-     	  
+        	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">가입</a>
+     	    </div>  	  
 			<div class="form-group" align="center">
       	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
       	    </div>
-     
+      	    <div class="form-group" align="center">
+            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
+        </div>
+      </form>
      
         
     </div>     

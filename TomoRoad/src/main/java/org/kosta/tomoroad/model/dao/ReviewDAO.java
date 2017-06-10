@@ -44,4 +44,7 @@ public interface ReviewDAO {
 	void writeComment(ReviewCommentVO vo);
 
 	List<ReviewCommentVO> getCommentList(String no);
+	
+	List<ReviewVO> getReviewListByPlace(int no);
+	
 }
