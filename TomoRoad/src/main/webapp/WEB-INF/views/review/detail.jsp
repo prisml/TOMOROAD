@@ -99,18 +99,24 @@
 				<span>Leave a comment</span>
 			</h4>
 		</div>
-		<form action=""></form>
-		<div class="comment-box row">
-			<div class="col-sm-12">
-				<p>
-					<textarea name="comments" class="form-control" rows="6" cols="40"
-						id="comments"
-						onfocus="if(this.value == 'Message') { this.value = ''; }"
-						onblur="if(this.value == '') { this.value = 'Message'; }"
-						placeholder="Message">Message</textarea>
-				</p>
+		<form action="${pageContext.request.contextPath}/review/writeComment">
+			<div class="comment-box row">
+				<div class="col-sm-12">
+					<p>
+						<textarea name="content" class="form-control" rows="6" cols="40"
+							id="comments"
+							onfocus="if(this.value == 'Message') { this.value = ''; }"
+							onblur="if(this.value == '') { this.value = 'Message'; }"
+							placeholder="Message">Message</textarea>
+					</p>
+				</div>
 			</div>
-		</div>
-
-		<a class="btn btn-lg btn-default" href="#">Post Comment</a>
+			<input type="hidden" name="recomment" value="0">
+			<div class="row">
+				<div class="col-md-12">
+					<input data-loading-text="Loading..." class="btn btn-default btn-lg"
+						value="Post Comment" type="submit">
+				</div>
+			</div>
+		</form>
 	</div>

@@ -115,4 +115,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void writeComment(ReviewCommentVO vo) {
 		template.insert("review.writeComment",vo);
 	}
+
+	@Override
+	public List<ReviewCommentVO> getCommentList(String no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

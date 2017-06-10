@@ -42,4 +42,6 @@ public interface ReviewDAO {
 	void deleteRecommend(Map<String, Object> map);
 
 	void writeComment(ReviewCommentVO vo);
+
+	List<ReviewCommentVO> getCommentList(String no);
 }
