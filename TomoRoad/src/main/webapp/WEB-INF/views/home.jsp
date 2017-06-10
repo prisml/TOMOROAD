@@ -23,7 +23,7 @@ $(document).ready(function(){
 				alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
 			}else{
 				names.push(id);
-				$("#tomoroading").html(names+"&nbsp;");
+				$("#tomoroading").html("<h2> 선택한 여행지:"+names+"</h2>");
 				windowName.close(map, marker);
 			}			
 		});
@@ -67,7 +67,7 @@ $(document).ready(function(){
 });
 $(document).on("click","#roading",function(){
 	if(names.length<2){
-		alert("false");
+		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
 		return false;
 	}else{
 		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+names;

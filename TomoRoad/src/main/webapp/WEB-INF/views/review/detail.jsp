@@ -61,56 +61,59 @@
 		</div>
 	</div>
 	<!--News Comments-->
-	<div class="news_comments">
-		<div class="dividerHeading">
-			<h4>
-				<span>Comments</span>
-			</h4>
-		</div>
-		<div id="comment">
-			<ul id="comment-list">
-				<li class="comment">
-					<div class="avatar">
-						<img alt="" src="${pageContext.request.contextPath}/resources/images/blog/avatar_1.png" class="avatar">
-					</div>
-					<div class="comment-container">
-						<h4 class="comment-author">
-							<a href="#">John Smith</a>
-						</h4>
-						<div class="comment-meta">
-							<a href="#" class="comment-date link-style1">February 22,
-								2015</a><a class="comment-reply-link link-style3" href="#respond">Reply
-								»</a>
-						</div>
-						<div class="comment-body">
-							<p>Ne omnis saperet docendi nec, eos ea alii molestiae
-								aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi
-								forensib argumentum vim an. Te viderer conceptam sed, mea et
-								delenit fabellas probat.</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<!-- /#comments -->
-		<div class="dividerHeading">
-			<h4>
-				<span>Leave a comment</span>
-			</h4>
-		</div>
-		<form action=""></form>
-		<div class="comment-box row">
-			<div class="col-sm-12">
-				<p>
-					<textarea name="comments" class="form-control" rows="6" cols="40"
-						id="comments"
-						onfocus="if(this.value == 'Message') { this.value = ''; }"
-						onblur="if(this.value == '') { this.value = 'Message'; }"
-						placeholder="Message">Message</textarea>
-				</p>
+	<c:if test="${mvo!=null}">
+		<div class="news_comments">
+			<div class="dividerHeading">
+				<h4>
+					<span>Comments</span>
+				</h4>
 			</div>
+			<div id="comment">
+				<ul id="comment-list">
+						
+				</ul>
+			</div>
+			<script type="text/javascript">
+			$(document).ready(function(){
+				<c:forEach items="${dvo.comment }" var="cvo">
+					var temp = '<li class="comment"><div class="avatar">';
+					temp += '<img alt="" src="${pageContext.request.contextPath}/resources/images/blog/avatar_1.png"' ;
+					temp += 'class="avatar"></div>';
+					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
+					temp += '<div class="comment-meta"> <a href="#" class="comment-date link-style1">${cvo.postedTime}</a>';
+					temp += '<a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>';
+					temp += '<div class="comment-body"><p>${cvo.content}</p></div><ul id="reply${cvo.no}" class="chilren"></ul></div></li>'
+					$("#${cvo.recommentId}").append(temp);
+				</c:forEach>
+			});
+			</script>
+	
+			<!-- /#comments -->
+			<div class="dividerHeading">
+				<h4>
+					<span>Leave a comment</span>
+				</h4>
+			</div>
+			<form action="${pageContext.request.contextPath}/review/writeComment.do">
+				<div class="comment-box row">
+					<div class="col-sm-12">
+						<p>
+							<textarea name="content" class="form-control" rows="6" cols="40"
+								id="comments"
+								onfocus="if(this.value == 'Message') { this.value = ''; }"
+								onblur="if(this.value == '') { this.value = 'Message'; }"
+								placeholder="Message">Message</textarea>
+						</p>
+					</div>
+				</div>
+				<input type="hidden" name="recomment" value="0">
+				<input type="hidden" name="reviewNo" value="${dvo.rvo.no }">
+				<div class="row">
+					<div class="col-md-12">
+						<input data-loading-text="Loading..." class="btn btn-default btn-lg"
+							value="Post Comment" type="submit">
+					</div>
+				</div>
+			</form>
 		</div>
-
-		<a class="btn btn-lg btn-default" href="#">Post Comment</a>
-	</div>
+	</c:if>
