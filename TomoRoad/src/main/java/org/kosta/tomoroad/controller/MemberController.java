@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
+import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class MemberController {
 	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
+	
+	@Resource
+	private ReviewService reviewService;
 
 	@RequestMapping("findMemberById.do")
 	public String findMemberById(String id, Model model) {
@@ -71,8 +75,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "mypage/updateMember.do", method = RequestMethod.POST)
-	public String updateMember(MemberVO vo) {
+	public String updateMember(MemberVO vo,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		memberService.updateMember(vo);
+		session.setAttribute("mvo", vo);
 		return "redirect:updateResultView.do?id=" + vo.getId();
 	}
 
@@ -82,18 +88,20 @@ public class MemberController {
 		return new ModelAndView("mypage/update_result.tiles", "mvo", vo);
 	}
 
-	@RequestMapping("member_idcheckAjax.do")
+	@RequestMapping("noauth_idcheckAjax.do")
 	@ResponseBody
 	public String idcheckAjax(String id) {
 		int count = memberService.idcheck(id);
 		return (count == 0) ? "ok" : "fail";
 	}
 
-
 	@RequestMapping("deleteMember.do")
-	public String deleteMember(String id) {
+	public String deleteMember(String id,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null)
+			session.invalidate();
 		memberService.deleteMember(id);
-		return "redirect:member/delete_result.do";
+		return "redirect:home.do";
 	}
 
 	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
@@ -238,4 +246,17 @@ public class MemberController {
 		memberService.profileReset(id,profileReset);
 		return "redirect:mypage/mypage.do?id="+id;
 	}
+	
+	   @RequestMapping("mypage/showListByMember.do")
+	   public String showListByMember(String page,HttpServletRequest request,Model model) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+	      if (page == null)
+	         page = "1";
+	      String profile = memberService.getProfileById(id);
+	      model.addAttribute("profile",profile);
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+	      return "mypage/showList.tiles";
+	   }
 }

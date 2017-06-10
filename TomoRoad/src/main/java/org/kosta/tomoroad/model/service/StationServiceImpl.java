@@ -28,4 +28,8 @@ public class StationServiceImpl implements StationService {
 	public StationVO getDetailInfo(String name) {
 		return dao.getDetailInfo(name);
 	}
+	@Override
+	public List<StationVO> getAllStationInfo(){
+		return dao.getAllStationInfo();
+	}
 }

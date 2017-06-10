@@ -49,6 +49,13 @@ public class ReviewVO {
 	public String getContent() {
 		return content;
 	}
+	
+	public String getSubContent(){
+		if(content.length() > 100)
+			return content.substring(0, 100)+"...";
+		else 
+			return content;
+	}
 
 	public void setContent(String content) {
 		this.content = content;

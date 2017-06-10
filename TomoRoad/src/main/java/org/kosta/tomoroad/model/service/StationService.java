@@ -12,4 +12,6 @@ public interface StationService {
 
 	StationVO getDetailInfo(String name);
 
+	List<StationVO> getAllStationInfo();
+
 }

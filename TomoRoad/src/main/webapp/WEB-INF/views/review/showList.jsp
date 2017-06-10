@@ -18,9 +18,11 @@
 					<span class="day">${rlist.day }</span> <span class="month">${rlist.month }</span>
 				</div>
 				<figure class="post_img">
-					<a href="#"> <img
+					<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
+					<%-- <img
 						src="${pageContext.request.contextPath}/resources/images/blog/blog_medium_1.png"
-						alt="blog post">
+						alt="blog post"> --%>
+						<img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;">
 					</a>
 				</figure>
 				<div class="post_content">
@@ -32,11 +34,11 @@
 						<div class="metaInfo">
 							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
 							</span> <span><i class="fa fa-map-marker"></i> <a href="#.">${rlist.place.name }</a></span>
-							<span><i class="fa fa-dot-circle-o"></i> <a href="#">${rlist.hits } HITS</a></span>
+							<span><i class="fa fa-dot-circle-o"></i> <a href="#.">${rlist.hits } HITS</a></span>
 							<span><i class="fa fa-heart"></i>${rlist.recommend } Recommend</span>
 						</div>
 					</div>
-					<p>${rlist.content }</p>
+					<p>${rlist.subContent }</p>
 					<a class="btn btn-small btn-default"
 						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
