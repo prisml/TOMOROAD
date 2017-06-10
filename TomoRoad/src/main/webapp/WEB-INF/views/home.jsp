@@ -23,7 +23,7 @@ $(document).ready(function(){
 				alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
 			}else{
 				names.push(id);
-				$("#tomoroading").html(names+"&nbsp;");
+				$("#tomoroading").html("<h2> 선택한 여행지:"+names+"</h2>");
 				windowName.close(map, marker);
 			}			
 		});
@@ -67,7 +67,7 @@ $(document).ready(function(){
 });
 $(document).on("click","#roading",function(){
 	if(names.length<2){
-		alert("false");
+		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
 		return false;
 	}else{
 		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+names;
@@ -113,7 +113,8 @@ function initMap() {
 
 </script>
 
-<!-- 검색 자동완성 -->
+<!-- 2차로 해야지.
+검색 자동완성 //
 <script>
   $( function() {
     var criterion=""; //검색 기준
@@ -162,8 +163,9 @@ function initMap() {
 		
   }); //function 
 </script>
+-->
   
-<!-- //검색자동완성-->
+<!-- //검색자동완성//
 <select name="searchForm">
 	<option id="all">전체</option>
 	<option id="hash">해시태그</option>
@@ -173,7 +175,7 @@ function initMap() {
 </select>
 <div class="ui-widget">
 		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
-		<!-- 리뷰 선택 시에만 나타나는 폼. -->
+		<!-- 리뷰 선택 시에만 나타나는 폼. //
 		<span id="form">
 			<select name=reviewForm style="width:101px; height: 30px;">
 				<option id="title">제목만</option>
@@ -182,6 +184,9 @@ function initMap() {
 		</span>
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
+-->
+
+<!-- 지도 -->
 <div id=map style="width:100%;height:600px"></div>
 <div id="tomoroading"></div>
 <c:if test="${mvo!=null }">

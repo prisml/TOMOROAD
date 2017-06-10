@@ -102,19 +102,8 @@
 					<p>흥인지문~~</p>
 				</figcaption>
 			</figure>
-			</a>
-		</li>
-
-		<li class="list_item col-lg-4 col-md-6 col-sm-6 isotope-item" style="">
-			<figure class="touching effect-bubba">
-				<img src="${pageContext.request.contextPath}/resources/images/서울역2.jpg" alt="">
-	
-				<figcaption>
-					<h5>가로수길</h5>
-					<p>세로수길..ㅋㅋㅋㅋ</p>
-				</figcaption>
-			</figure>
-		</li>
+		</a>
+	</li>
 </ul>
 
 						

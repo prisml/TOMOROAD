@@ -15,8 +15,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
-
- $(function(){
+ $(document).ready(function(){
   $('#password').keyup(function(){
    $('font[id=check]').text('');
   }); //#user_pass.keyup
@@ -33,10 +32,20 @@
    return true;
   }); //#chpass.keyup
  });
+ </script>
  
- /* 
  <script type="text/javascript">
- function checkPassword(password){
+ function samePw(password, chpass){
+	 if(password.value != chpass.value){
+		 chpass.value='';
+		 chpass.focus();
+		 return false;
+	 }
+ }
+ </script>
+
+ <script type="text/javascript">
+/*  function checkPassword(password){
 
 	 var pw = password;
 	 var num = pw.search(/[0-9]/g);
@@ -67,7 +76,6 @@
 	   return false;
 	}
  */
-
  </script>
   <style type="text/css">
 .div {
@@ -104,7 +112,7 @@
             <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
-      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm">      
+      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw();">      
         <div class="form-group">
                         <br>
                 <br>
