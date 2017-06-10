@@ -16,6 +16,7 @@ function requestRefuse(id){
 
 <c:forEach items="${friend_RequestList }" var="requestList">
 	<img width = "100" height="100" src = "${requestList.PROFILE}"> 	
+	
 	<div class="btn-group">
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
     <span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
@@ -24,6 +25,7 @@ function requestRefuse(id){
       <li><a href="#">친구페이지로 이동</a></li>
     </ul>
     </div>
+    
 	<input style = color:white; class="btn btn-danger" type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
 	<input style = color:white; class="btn btn-danger" type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
 	<br><br>
