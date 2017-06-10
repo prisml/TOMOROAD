@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
 
@@ -38,7 +39,7 @@ border-radius: 7px;
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
 <input type = "file"  style="display:none" name = "uploadfile" id = "file">
 <p align="center">
-<input type = "button" onclick = "fileupload()" value = "변경">
-<input type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
+<input style = color:black; class="btn" type = "button" onclick = "fileupload()" value = "변경">
+<input style = color:black; class="btn" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
 </p>
 </form>

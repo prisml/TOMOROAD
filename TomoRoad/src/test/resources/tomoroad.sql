@@ -210,8 +210,10 @@ insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤�
 insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png')
 insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png')
 insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg')
-insert into member(id,password,name,sex,tel,profile) values('qaz','1234','김준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
+insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
 insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg')
+
+update member set name ='송준영' where id = 'qaz'
 
 alter table member add(profile varchar2(100))
 

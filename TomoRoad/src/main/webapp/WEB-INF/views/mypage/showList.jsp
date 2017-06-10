@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<p>${rlist.content }</p>
-					<a class="btn btn-small btn-default"
+					<a class="btn btn-danger"
 						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
 
