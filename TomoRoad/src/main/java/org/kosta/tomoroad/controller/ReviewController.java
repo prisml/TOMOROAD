@@ -172,7 +172,7 @@ public class ReviewController {
 		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
 		System.out.println("역 주변 정보 : "+getReviewListByPlace);
 		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
-		return "place/getPlaceInfo.tiles"; //여기도 수정해야돼!
+		return "place/around_place.tiles"; //여기도 수정해야돼!
 	}
 	
 	@RequestMapping("review/writeComment.do")

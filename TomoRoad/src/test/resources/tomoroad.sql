@@ -357,7 +357,7 @@ select sender_id from friend where sender_id in ('java1','goni') and receiver_id
 
 select member_id id, review_no no from review_recommend where member_id='java' and review_no='16']
 
-
+--추천수를 넣기위해서 페이징빈이랑 한 조인한 테이블
 select A.*, re.recommend
 		from(select row_number() over(order by r.no
 		desc) rnum,
@@ -367,7 +367,10 @@ select A.*, re.recommend
 		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
 		where rnum between 1 and 5 and A.no=re.review_no(+)
 
-
+select r.no,r.title,to_char(posted_time,'YYYY.MM.DD'),r.recommend,r.place_no,r.member_id
+from review r,place p,member m
+where r.member_id=m.id and r.place_no=p.no and r.place_no=7;
+		
 -----< dual >-----
 select sysdate from dual
 
