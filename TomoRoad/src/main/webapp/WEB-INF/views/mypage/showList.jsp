@@ -8,10 +8,11 @@
 </c:if> --%>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="blog_medium">
-		<c:if test="${mvo!=null }">
-			<a href="${pageContext.request.contextPath}/review/register_form.do"
-				role="button" class="btn">register</a>
-		</c:if>
+		<div class="dividerHeading">
+			<h4>
+				<span> 작성한 리뷰보기 </span>
+			</h4>
+		</div>
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">
 				<div class="post_date">
