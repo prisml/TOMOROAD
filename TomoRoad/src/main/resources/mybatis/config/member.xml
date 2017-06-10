@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member set profile = #{profile} where id = #{id}
 	</update>
 	<update id="profileReset">
-		update member set profile = #{profile} where id = #{id}
+		update member set profile = #{profileReset} where id = #{id}
 	</update>
 </mapper>
 

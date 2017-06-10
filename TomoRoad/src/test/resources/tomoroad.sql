@@ -205,14 +205,15 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 
 -----< member >-----
+insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg')
+insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png')
+insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png')
+insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png')
+insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg')
+insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
+insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg')
 
-insert into member(id,password,name,sex,tel) values('java','1234','아이유','여자','010')
-insert into member(id,password,name,sex,tel) values('abcd','1234','윤다혜','여자','010')
-insert into member(id,password,name,sex,tel) values('spring','1234','김문일','남자','010')
-insert into member(id,password,name,sex,tel) values('asdf','1234','김성환','남자','010')
-insert into member(id,password,name,sex,tel) values('qwer','1234','오남준','남자','010')
-insert into member(id,password,name,sex,tel) values('qaz','1234','김준영','남자','010')
-insert into member(id,password,name,sex,tel) values('zxcv','1234','박영덕','남자','010')
+update member set name ='송준영' where id = 'qaz'
 
 alter table member add(profile varchar2(100))
 
@@ -391,7 +392,21 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
-insert into friend values('zxcv','java','수락',sysdate);
+
+select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
+
+select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
+
+insert into friend values('abcd','qwer','수락',sysdate)
+
+
+
+insert into friend values('abcd','java','수락',sysdate);
+insert into friend values('asdf','java','수락',sysdate);
+insert into friend values('qaz','java','대기',sysdate);
+insert into friend values('qwer','java','대기',sysdate);
+insert into friend values('java','spring','수락',sysdate);
+insert into friend values('java','zxcv','수락',sysdate);
 
 select * from friend
 
