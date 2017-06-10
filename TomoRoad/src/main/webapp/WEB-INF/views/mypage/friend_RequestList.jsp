@@ -15,12 +15,12 @@ function requestRefuse(id){
 </script>
 
 <c:forEach items="${friend_RequestList }" var="requestList">
-	<img width = "100" height="100" src = "${requestList.PROFILE}"> 	<div class="btn-group">
+	<img width = "100" height="100" src = "${requestList.PROFILE}"> 	
+	<div class="btn-group">
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
     <span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">친구신청</a></li>
       <li><a href="#">친구페이지로 이동</a></li>
     </ul>
     </div>

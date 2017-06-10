@@ -20,7 +20,6 @@ function deleteFriend(id){
     <span style = "font-size:25px">${list.FRIEND}(${list.NAME})</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">친구신청</a></li>
       <li><a href="#">친구페이지로 이동</a></li>
     </ul>
     </div>
