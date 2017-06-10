@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +100,7 @@
 %>
     <div class="col-lg-12 col-sm-12"> 
 	
-	 <div class="dividerHeading">
+	 <div class="dividerHeading" >
             <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
@@ -106,20 +109,20 @@
                         <br>
                 <br>
                 <br>
-            <div class="input-group">
+            <div align="center">
                아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
               <span id="idCheckView"></span>
             </div>
             
             <br>
-            <div class="input-group">
+            <div align="center">
                 비밀번호:<input type="password" class="form-control" name="password" id="password" value="${mvo.password}" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
-            <div class="input-group">
+            <div align="center">
                 <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
                 <br>
@@ -127,13 +130,13 @@
             </div>
             
 			<br>
-		    <div class="input-group">
+		    <div align="center">
                <input type="text" class="form-control" name="name"  id="name" value="${mvo.name}" required="required" 
                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>  
             
             <br>
-            <div class="input-group">
+            <div align="center">
                     <label>성별</label>
 					<br>
                                 <label>
@@ -147,18 +150,17 @@
                 </div> 
                 
             <br>
-			<div class="input-group">
+			<div align="center">
                 연락처:<input type="text" class="form-control" name="tel"  id="tel" value="${mvo.tel}" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>            
             <br> 
             <br><br>
             <div class="form-group" align="center">
-            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="수정">
+            <input class="btn btn-danger" type="submit" style="width: 500px; height: 35px; margin: 0 auto; align:center;" value="수정">
            </div>
-            <br>
             <div class="form-group" align="center">
-            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작화면</a>
+            <a class="btn btn-danger" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">시작화면</a>
            </div>
             <br>            
         </div>
