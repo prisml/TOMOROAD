@@ -38,8 +38,6 @@ border-radius: 7px;
 " type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()"><br>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
 <input type = "file"  style="display:none" name = "uploadfile" id = "file">
-<p align="center">
 <input style = color:black; class="btn btn-default" type = "button" onclick = "fileupload()" value = "변경">
 <input style = color:black; class="btn btn-default" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
-</p>
 </form>

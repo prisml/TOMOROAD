@@ -69,8 +69,8 @@
 					<div class="checkbox col-lg-5 col-sm-5">
                         <!-- <input type="checkbox"> Remember me
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-						<a href="/tomoroad/member/noauth_findid.do"> 아이디가 기억이 않나요?</a>
-						/<a href="/tomoroad/member/noauth_findpw.do"> 비밀번호가 기억이 않나요?</a>
+						<a href="/tomoroad/member/noauth_findid.do"> 아이디가 기억이 안나요?</a>
+						/<a href="/tomoroad/member/noauth_findpw.do"> 비밀번호가 기억이 안나요?</a>
 					</div>
             	</div>
             </div>

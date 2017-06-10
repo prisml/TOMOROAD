@@ -6,8 +6,8 @@
 	<a class="btn btn-small btn-default"
 		href="${pageContext.request.contextPath}/review/register_form.do">Register</a>
 </c:if> --%>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<div class="blog_medium">
+	<div class="blog_medium content">
+	<div class="row">
 		<div class="dividerHeading">
 			<h4>
 				<span> 작성한 리뷰보기 </span>
@@ -41,14 +41,12 @@
 					<a class="btn btn-danger"
 						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
-
 				</div>
 			</article>
 		</c:forEach>
 	</div>
 	
 	<c:set var="pb" value="${reviewList.pagingBean}" />
-	<div class="col-lg-12 col-md-12 col-sm-12">
 		<ul class="pagination pull-left mrgt-0">
 			<c:if test="${pb.previousPageGroup == true }">
 				<li><a
@@ -72,8 +70,3 @@
 			</c:if>
 		</ul>
 	</div>
-</div>
-
-<div class="featured-blocks">
-	<div class="container"></div>
-</div>

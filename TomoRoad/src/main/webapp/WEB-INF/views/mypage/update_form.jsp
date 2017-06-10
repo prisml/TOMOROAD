@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +33,12 @@
  </script>
  
  <script type="text/javascript">
- function samePw(password, chpass){
-	 if(password.value != chpass.value){
-		 chpass.value='';
-		 chpass.focus();
-		 return false;
-	 }
+ function samePw(){
+	if($("#password").val()!=$("#chpass").val()){
+		alert("비밀번호를 똑같이 해주세요!");
+	return false;
+	}
+	return true;
  }
  </script>
 
@@ -102,21 +100,16 @@
 </head>
 
   <body class="login-img3-body">
-<% MemberVO vo=(MemberVO)session.getAttribute("mvo"); 
-	System.out.println(vo);
-	if(vo!=null){
-%>
+
     <div class="col-lg-12 col-sm-12"> 
 	
 	 <div class="dividerHeading" >
             <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
-      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw();">      
+      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw()">      
         <div class="form-group">
-                        <br>
-                <br>
-                <br>
+
             <div align="center">
                아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
@@ -151,8 +144,7 @@
                                 <input type="text"   class="form-control"  value="${mvo.sex}" readonly>  
                                 <br>
                                     <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
-                                </label>
-                                <label>
+                                    &nbsp&nbsp
                                     <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자
                                 </label>
                 </div> 
@@ -170,16 +162,13 @@
             <div class="form-group" align="center">
             <a class="btn btn-danger" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">시작화면</a>
            </div>
+           <br>
+           <br>
             <br>            
         </div>
       </form>
     </div>
-<%}else{ %>
-		<script type="text/javascript">
-			alert("로그인하세요!");
-			location.href="${pageContext.request.contextPath}/login.do";
-		</script>
-<%} %>
+
 
   </body>
 </html>
