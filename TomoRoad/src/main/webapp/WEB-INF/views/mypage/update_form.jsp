@@ -164,6 +164,8 @@
             <div class="form-group" align="center">
             <a class="btn btn-danger" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">시작화면</a>
            </div>
+           <br>
+           <br>
             <br>            
         </div>
       </form>

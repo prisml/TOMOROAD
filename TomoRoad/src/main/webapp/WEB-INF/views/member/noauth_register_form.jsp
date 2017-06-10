@@ -181,6 +181,7 @@
                                 <label>
                                     <input type="radio" name="sex"  id="sex" value="여자" >여자
                                 </label>
+                                &nbsp;&nbsp;
                                 <label>
                                     <input type="radio" name="sex"  id="sex" value="남자" >남자
                                 </label>
