@@ -16,14 +16,6 @@ public class PlaceController {
 	@Resource(name="placeServiceImpl")
 	private PlaceService service;
 	
-	@RequestMapping("noauth_getPlaceInfo.do")
-	public String getPlaceInfo(String id,Model model){ //나중에 역정보게시판에서 관광지 가져올 때 쓸거야
-		List<PlaceVO> placeInfoList=service.getPlaceInfo(id);
-		System.out.println("역 주변 정보 : "+placeInfoList);
-		model.addAttribute("placeInfoList",placeInfoList);
-		return "place/getPlaceInfo.tiles";
-	}
-	
 	@RequestMapping("place/getKeyword.do")
 	@ResponseBody
 	public List<String> getKeyWord(String keyword){
@@ -31,4 +23,14 @@ public class PlaceController {
 		System.out.println("place 키워드 갖고온다 : "+keywordList);
 		return keywordList;
 	}
+	
+	//역정보 게시판에서 특정 역의 주변 관광지 목록들을 가져옴
+	@RequestMapping("place/getPlaceInfo.do")
+	public String getPlaceInfo(String name,Model model){ //name:역 이름
+		List<PlaceVO> placeInfoList=service.getPlaceInfo(name);
+		System.out.println("역 주변 정보 : "+placeInfoList);
+		model.addAttribute("placeInfoList",placeInfoList);
+		return "place/getPlaceInfo.tiles";
+	}
+
 }

@@ -48,7 +48,7 @@
 		<mvc:exclude-mapping path="/**/noauth_*.do"/>
 		<mvc:exclude-mapping path="/**/home.do"/>
 		<mvc:exclude-mapping path="/**/loginalert.do"/>		
-		<bean class="org.kosta.tomorad.controller.interceptor.LoginCheckInterceptor"></bean>
+		<bean class="org.kosta.tomoroad.controller.interceptor.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

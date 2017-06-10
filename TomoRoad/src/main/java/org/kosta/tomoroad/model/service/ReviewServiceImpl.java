@@ -10,6 +10,7 @@ import org.kosta.tomoroad.model.dao.ReviewDAO;
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
+import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Service;
 
@@ -122,9 +123,18 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public Map<String, Object> getUpdateDetail(String no) {
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("rvo", getDetail(no));
+		Map<String, Object> map = getDetail(no);
 		map.put("placeList", getPlaceList());
 		return map;
+	}
+
+	@Override
+	public List<ReviewVO> getReviewListByPlace(int no) {
+		return dao.getReviewListByPlace(no);
+	}
+	
+	public void writeComment(ReviewCommentVO vo, int reviewNo) {
+	vo.setReview(dao.getDetail(reviewNo+""));
+	dao.writeComment(vo);
 	}
 }

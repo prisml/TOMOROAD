@@ -30,6 +30,8 @@
 	href="${pageContext.request.contextPath}/resources/css/style-fraction.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/animate.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>

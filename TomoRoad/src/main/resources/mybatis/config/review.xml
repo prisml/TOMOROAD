@@ -72,13 +72,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update review set hits=hits+1 where no=#{value}
 	</update>
-	<select id="getListByMember" resultType="reviewVO" resultMap="reviewRM">
-		select A.*
-		from(select row_number() over(order by r.no desc) rnum,
-		r.no, r.title, r.member_id, r.place_no, p.name, r.hits,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
-		from review r, place p where r.place_no = p.no) A
-		where rnum between #{startRowNumber} and #{endRowNumber} and member_id={id}
+	<select id="getListByMember" resultType="reviewVO" resultMap="detailReviewRM"
+		parameterType="map">
+		select A.*, re.recommend
+		from(select row_number() over(order by r.no
+			desc) rnum,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+			from review r, place p, member m where r.place_no = p.no and r.member_id=m.id and r.member_id=#{id}) A, 
+			(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} and A.no=re.review_no(+)
 	</select>
 	<select id="getListByPlace" resultType="reviewVO" resultMap="reviewRM">
 		select A.*
@@ -108,4 +111,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteRecommend" parameterType="map">
 		delete from review_recommend where member_id=#{member_id} and review_no=#{review_no}
 	</delete>
+	
+	<!-- 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.-->
+	<select id="getReviewListByPlace" resultType="resultVO" resultMap="reviewRM">
+		select r.no,r.title,to_char(posted_time,'YYYY.MM.DD'),r.recommend,r.place_no,r.member_id
+		from review r,place p,member m
+		where r.member_id=m.id and r.place_no=p.no and r.place_no=#{value}
+	</select>
+	
+	<insert id="writeComment" parameterType="reviewCommentVO">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			review_comment_seq.nextval from dual
+		</selectKey>
+		insert into review_comment(no,content,posted_time,recomment,review_no,member_id)
+		values(#{no}, #{content}, #{postedTime}, #{recomment}, #{review.no}, #{member.id})
+	</insert>
 </mapper>

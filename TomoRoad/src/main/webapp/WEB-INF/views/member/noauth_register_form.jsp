@@ -20,11 +20,11 @@
   $('#chpass').keyup(function(){
    if($('#password').val()!=$('#chpass').val()){
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password incorrect!");
+    $('font[id=check]').html("비밀번호가 달라요!");
     return false;
    }else{
     $('font[id=check]').text('');
-    $('font[id=check]').html("Password correct");
+    $('font[id=check]').html("비밀번호가 같아요╹◡╹)ﾉ");
    }
    return true;
   }); //#chpass.keyup
@@ -82,7 +82,7 @@
 			}			
 			$.ajax({
 				type:"POST",
-				url:"${pageContext.request.contextPath}/idcheckAjax.do",				
+				url:"${pageContext.request.contextPath}/noauth_idcheckAjax.do",				
 				data:"id="+id,	
 				success:function(data){						
 					if(data=="fail"){
@@ -98,66 +98,103 @@
 		});//keyup
 	});//ready
  </script>
+ <style type="text/css">
+.div {
+    text-align: center;
+
+}
+.span {
+    text-align: center;
+
+}
+.label {
+    text-align: center;
+
+}
+.p {
+    text-align: center;
+
+}
+.input {
+    text-align: center;
+
+}
+</style>
 </head>
 
   <body>
 
-    <div class="container">
+    <div class="col-lg-12 col-sm-12"> 
 	
-      <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm">      
-        <div>
+	        <div class="dividerHeading">
+            <h4><span>가입 해주세요╹◡╹)ﾉ</span></h4>
+        </div>
+        
+      <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" >      
+        <div class="form-group">
                         <br>
                 <br>
                 <br>
-            <div>
-              <input type="text" class="form-control" name="id"  placeholder="ID" required="required" autofocus>
-              <span id="idCheckView"></span>
+            <div class="input-group">
+            <span id="idCheckView"></span>
+            <br>
+              <input type="text" class="form-control" name="id"  placeholder="아이디" required="required" autofocus
+              style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">           
             </div>
             
             <br>
-            <div>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required" >
+            <div class="input-group">
+                <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
-            <div>
-                <input type="password" class="form-control" name="chpass" id="chpass" placeholder="Re-Password" required="required" >
+            <div class="input-group">
+                <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
+                <br>
                 <font id="check" size="2" color="red"></font> 
             </div>
             
 			<br>
-		    <div>
-                <input type="text" class="form-control" name="name"  id="name" placeholder="Name" required="required" >
+		    <div class="input-group">
+                <input type="text" class="form-control" name="name"  id="name" placeholder="이름" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
-            <div>
-                    <label>Gender</label>
+            <div class="input-group">
+                    <label>성별</label>
 					<br>
                                 <label>
-                                    <input type="radio" name="sex"  id="sex" value="Female" placeholder="Female">Female
+                                    <input type="radio" name="sex"  id="sex" value="여자" >여자
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex"  id="sex" value="Male" placeholder="Male">Male
+                                    <input type="radio" name="sex"  id="sex" value="남자" >남자
                                 </label>
                 </div> 
                 
             <br>
-			<div>
-                <input type="text" class="form-control" name="tel"  id="tel" placeholder="Phone Number" required="required" >
+			<div class="input-group">
+                <input type="text" class="form-control" name="tel"  id="tel" placeholder="연락처" required="required" 
+                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
             </div>
             
             <br>
-                            <div >
+                            <div class="input-group">
                             <label>
-                                <input type="checkbox" required="required" >동의합니다 I agree to <a href="#">terms</a>
+                                <input type="checkbox" required="required" >가입을 희망 합니다╹◡╹)ﾉ <!-- I agree to <a href="#">terms</a> -->
                             </label>
                 </div> 
                 
             <br><br>
-            <input class="btn btn-info btn-lg btn-block" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="Sign-up">
+            <div class="form-group" align="center">
+            <input class="btn btn-default btn-lg button" type="submit" style="width: 500px; height: 50px; margin: 0 auto; align:center;" value="가입">
+           </div>
             <br>
-            <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">Home</a>
+            <div class="form-group" align="center">
+            <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 50px; margin: 0 auto; align:center;">시작화면</a>
+        </div>
         </div>
       </form>
     </div>
