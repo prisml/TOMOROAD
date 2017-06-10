@@ -75,30 +75,30 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public void recommend(Map<String,Object> map) {
-		template.insert("recommend",map);
+	public void recommend(Map<String, Object> map) {
+		template.insert("recommend", map);
 	}
 
 	@Override
 	public int getRecommendByNo(int no) {
-		return template.selectOne("getRecommendByNo",no);
+		return template.selectOne("getRecommendByNo", no);
 	}
 
 	@Override
-	public List<ReviewVO> getKeyword(String keyword,String reviewFilter) {
-		String filter="";
-		System.out.println("dao에서의 filter->"+filter);
-		System.out.println("dao에서의 reviewFilter->"+reviewFilter);
-		if(reviewFilter.equals("제목만")){
-			System.out.println("제목만인 경우 reviewFilter:"+reviewFilter);
-			filter="Title";
-			System.out.println("제목만인 경우 filter:"+filter);
-		}else{
-			System.out.println("제목과 내용인 경우 reviewFilter:"+reviewFilter);
-			filter="TitleAndContent";
-			System.out.println("제목과 내용인 경우 filter:"+filter);
+	public List<ReviewVO> getKeyword(String keyword, String reviewFilter) {
+		String filter = "";
+		System.out.println("dao에서의 filter->" + filter);
+		System.out.println("dao에서의 reviewFilter->" + reviewFilter);
+		if (reviewFilter.equals("제목만")) {
+			System.out.println("제목만인 경우 reviewFilter:" + reviewFilter);
+			filter = "Title";
+			System.out.println("제목만인 경우 filter:" + filter);
+		} else {
+			System.out.println("제목과 내용인 경우 reviewFilter:" + reviewFilter);
+			filter = "TitleAndContent";
+			System.out.println("제목과 내용인 경우 filter:" + filter);
 		}
-		return template.selectList("review.get"+filter,keyword);
+		return template.selectList("review.get" + filter, keyword);
 	}
 
 	@Override
@@ -108,17 +108,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public void deleteRecommend(Map<String, Object> map) {
-		template.delete("review.deleteRecommend",map);
+		template.delete("review.deleteRecommend", map);
 	}
 
 	@Override
 	public void writeComment(ReviewCommentVO vo) {
-		template.insert("review.writeComment",vo);
+		template.insert("review.writeComment", vo);
 	}
 
 	@Override
 	public List<ReviewCommentVO> getCommentList(String no) {
-		// TODO Auto-generated method stub
-		return null;
+		return template.selectList("review.getCommentList", no);
 	}
 }

@@ -44,6 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
 		temp.put("review_no", no);
 		temp.put("member_id", id);
 		map.put("recommend", dao.isRecommend(temp));
+		map.put("comment", dao.getCommentList(no));
 		return map;
 	}
 

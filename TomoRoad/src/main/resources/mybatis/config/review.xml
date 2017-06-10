@@ -122,4 +122,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into review_comment(no,content,posted_time,recomment,review_no,member_id)
 		values(#{no}, #{content}, sysdate, #{recomment}, #{review.no}, #{member.id})
 	</insert>
+	
+	<resultMap type="reviewCommentVO" id="reviewRecommentRM">
+		<result column="posted_time" property="postedTime" />
+		<result column="review_no" property="review.no" />
+		<result column="member_id" property="member.id" />
+		<result column="member_name" property="member.name" />
+	</resultMap>
+	<select id="getCommentList" resultMap="reviewRecommentRM">
+		select r.no, r.content, r.posted_time, r.recomment, r.review_no, r.member_id, m.name member_name
+		from review_comment r, member m
+		where review_no=#{no} and r.member_id=m.id
+	</select>
 </mapper>
