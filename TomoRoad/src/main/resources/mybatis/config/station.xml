@@ -21,4 +21,7 @@
 		select name,detail,lat,lng from station where name=#{value}
 	</select>
 	
+	<select id="getAllStationInfo" resultType="stationVO">
+		select * from station
+	</select>
 </mapper>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TomoroadingDAOImpl implements TomoroadingDAO {
-	@Resource(name="SqlSessionTemplate")
+	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate template;
 	
 	/* (non-Javadoc)
