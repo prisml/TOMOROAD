@@ -152,6 +152,7 @@
             <div class="input-group">
                 <input type="password" class="form-control" name="chpass" id="chpass" placeholder="비밀번호확인" required="required" 
                 style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
+                <br>
                 <font id="check" size="2" color="red"></font> 
             </div>
             
