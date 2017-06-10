@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TomoroadingServiceImpl implements TomoroadingService {
-	@Resource(name="TomoroadingDAOImpl")
+	@Resource(name="tomoroadingDAOImpl")
 	private TomoroadingDAO dao;
 	
 	/* (non-Javadoc)

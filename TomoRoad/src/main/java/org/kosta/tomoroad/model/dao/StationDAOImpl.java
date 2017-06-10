@@ -29,4 +29,9 @@ public class StationDAOImpl implements StationDAO {
 		System.out.println("dao다");
 		return template.selectOne("station.getDetailInfo",name);
 	}
+	@Override
+	public List<StationVO> getAllStationInfo(){
+		return template.selectList("station.getAllStationInfo");
+	}
+
 }
