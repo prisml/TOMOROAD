@@ -12,7 +12,8 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
- $(function(){
+
+ $(document).ready(function(){
   $('#password').keyup(function(){
    $('font[id=check]').text('');
   }); //#user_pass.keyup
@@ -98,6 +99,17 @@
 		});//keyup
 	});//ready
  </script>
+ 
+ <script type="text/javascript">
+ function samePw(){
+	if($("#password").val()!=$("#chpass").val()){
+		alert("비밀번호를 똑같이 해주세요!");
+	return false;
+	}
+	return true;
+ }
+ </script>
+ 
  <style type="text/css">
 .div {
     text-align: center;
@@ -130,7 +142,7 @@
             <h4><span>가입 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
-      <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" >      
+      <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" onsubmit="return samePw()" >      
         <div class="form-group">
                         <br>
                 <br>

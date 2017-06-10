@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +33,12 @@
  </script>
  
  <script type="text/javascript">
- function samePw(password, chpass){
-	 if(password.value != chpass.value){
-		 chpass.value='';
-		 chpass.focus();
-		 return false;
-	 }
+ function samePw(){
+	if($("#password").val()!=$("#chpass").val()){
+		alert("비밀번호를 똑같이 해주세요!");
+	return false;
+	}
+	return true;
  }
  </script>
 
@@ -112,7 +110,7 @@
             <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
         </div>
         
-      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw();">      
+      <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw()">      
         <div class="form-group">
                         <br>
                 <br>

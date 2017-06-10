@@ -75,8 +75,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "mypage/updateMember.do", method = RequestMethod.POST)
-	public String updateMember(MemberVO vo) {
+	public String updateMember(MemberVO vo,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		memberService.updateMember(vo);
+		session.setAttribute("mvo", vo);
 		return "redirect:updateResultView.do?id=" + vo.getId();
 	}
 
