@@ -2,16 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<c:if test="${mvo!=null }">
+<%-- <c:if test="${mvo!=null }">
 	<a class="btn btn-small btn-default"
 		href="${pageContext.request.contextPath}/review/register_form.do">Register</a>
-</c:if>
+</c:if> --%>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="blog_medium">
-		<c:if test="${mvo!=null }">
-			<a href="${pageContext.request.contextPath}/review/register_form.do"
-				role="button" class="btn">register</a>
-		</c:if>
+		<div class="dividerHeading">
+			<h4>
+				<span> 작성한 리뷰보기 </span>
+			</h4>
+		</div>
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">
 				<div class="post_date">
@@ -37,7 +38,7 @@
 						</div>
 					</div>
 					<p>${rlist.content }</p>
-					<a class="btn btn-small btn-default"
+					<a class="btn btn-danger"
 						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
 

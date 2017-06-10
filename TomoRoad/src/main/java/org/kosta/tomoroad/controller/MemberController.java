@@ -93,11 +93,10 @@ public class MemberController {
 		return (count == 0) ? "ok" : "fail";
 	}
 
-
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id) {
 		memberService.deleteMember(id);
-		return "redirect:member/delete_result.do";
+		return "redirect:home.do";
 	}
 
 	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
@@ -252,7 +251,7 @@ public class MemberController {
 	         page = "1";
 	      String profile = memberService.getProfileById(id);
 	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewMap", reviewService.getListByMember(page,id));
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
 	   }
 }

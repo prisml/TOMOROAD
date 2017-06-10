@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.tomoroad.model.dao.MemberDAO;
+import org.kosta.tomoroad.model.dao.ReviewDAO;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.RankingService;
@@ -101,6 +102,6 @@ public class TestUnit {
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
 		
-		memberdao.friendList("java");
+		reviewService.getListByMember("1","java");
 	}
 }
