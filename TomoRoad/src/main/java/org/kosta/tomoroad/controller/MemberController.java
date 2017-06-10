@@ -86,7 +86,7 @@ public class MemberController {
 		return new ModelAndView("mypage/update_result.tiles", "mvo", vo);
 	}
 
-	@RequestMapping("member_idcheckAjax.do")
+	@RequestMapping("noauth_idcheckAjax.do")
 	@ResponseBody
 	public String idcheckAjax(String id) {
 		int count = memberService.idcheck(id);
