@@ -1,6 +1,8 @@
 -- 변경해주세요! profile default 값 --
 alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
 
+select * from member
+
 ---------- drop table ------------
 drop table station_connect;
 drop table station_reported;
