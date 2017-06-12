@@ -100,10 +100,7 @@
 </head>
 
   <body class="login-img3-body">
-<% MemberVO vo=(MemberVO)session.getAttribute("mvo"); 
-	System.out.println(vo);
-	if(vo!=null){
-%>
+
     <div class="col-lg-12 col-sm-12"> 
 	
 	 <div class="dividerHeading" >
@@ -112,9 +109,7 @@
         
       <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw()">      
         <div class="form-group">
-                        <br>
-                <br>
-                <br>
+
             <div align="center">
                아이디:<input type="text" class="form-control" name="id"  value="${mvo.id}" readonly required="required"
                style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">
@@ -167,16 +162,13 @@
             <div class="form-group" align="center">
             <a class="btn btn-danger" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">시작화면</a>
            </div>
+           <br>
+           <br>
             <br>            
         </div>
       </form>
     </div>
-<%}else{ %>
-		<script type="text/javascript">
-			alert("로그인하세요!");
-			location.href="${pageContext.request.contextPath}/login.do";
-		</script>
-<%} %>
+
 
   </body>
 </html>

@@ -96,7 +96,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("deleteMember.do")
-	public String deleteMember(String id) {
+	public String deleteMember(String id,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null)
+			session.invalidate();
 		memberService.deleteMember(id);
 		return "redirect:home.do";
 	}

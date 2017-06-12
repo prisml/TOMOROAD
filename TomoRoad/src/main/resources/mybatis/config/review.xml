@@ -26,14 +26,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
-		select A.*, re.recommend
+		select A.*
 		from(select row_number() over(order by r.no
 		desc) rnum,
 		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
-		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
-		from review r, place p, member m where r.place_no = p.no and r.member_id=m.id) A, 
-		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
-		where rnum between #{startRowNumber} and #{endRowNumber} and A.no=re.review_no(+)
+		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time, re.recommend
+		from review r, place p, member m, 
+		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re 
+		where r.place_no = p.no and r.member_id=m.id and r.no=re.review_no(+)) A
+		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	<insert id="register" parameterType="reviewVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">

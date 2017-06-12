@@ -144,9 +144,7 @@
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" onsubmit="return samePw()" >      
         <div class="form-group">
-                        <br>
-                <br>
-                <br>
+
             <div class="input-group">
             <span id="idCheckView"></span>
             <br>
@@ -181,6 +179,7 @@
                                 <label>
                                     <input type="radio" name="sex"  id="sex" value="여자" >여자
                                 </label>
+                                &nbsp;&nbsp;
                                 <label>
                                     <input type="radio" name="sex"  id="sex" value="남자" >남자
                                 </label>

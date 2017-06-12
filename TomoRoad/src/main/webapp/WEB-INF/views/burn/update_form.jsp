@@ -15,7 +15,7 @@
 </script>
 
 
-<div class="container">
+
  <div class="dividerHeading">
  	<h4><span> Update Burn </span></h4>
  </div>
@@ -44,4 +44,4 @@
 
      <input type="submit" value="수정하기" class="btn btn-lg btn-default">     
   </form>
-  </div>
+  
