@@ -13,7 +13,7 @@ function requestRefuse(id){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_Refuse.do?senderID="+id+"&receiverID=${mvo.id}";
 }
 function requestBlock(id){
-	location.href = "${pageContext.request.contextPath}/mypage/requestFriend_Block.do?id=${mvo.id}&blockId="+id;
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList_Block.do?id=${mvo.id}&blockId="+id;
 }
 </script>
 

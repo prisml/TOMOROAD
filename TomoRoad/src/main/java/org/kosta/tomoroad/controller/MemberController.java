@@ -146,16 +146,10 @@ public class MemberController {
 		return "redirect:friend_RequestList.do";
 	}
 
-	@RequestMapping("mypage/requestFriend_Block.do")
-	public String requestFriend_Block(String id, String blockId) {
+	@RequestMapping("mypage/friend{viewName}_Block.do")
+	public String requestFriend_Block(@PathVariable String viewName,String id, String blockId) {
 		memberService.friend_Block(id, blockId);
-		return "redirect:friend_RequestList.do";
-	}
-	
-	@RequestMapping("mypage/friendList_Block.do")
-	public String friendList_Block(String id, String blockId) {
-		memberService.friend_Block(id, blockId);
-		return "redirect:friendList.do";
+		return "redirect:friend"+viewName+".do";
 	}
 	
 	@RequestMapping("mypage/friendList.do")
