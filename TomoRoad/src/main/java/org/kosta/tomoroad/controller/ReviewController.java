@@ -167,12 +167,13 @@ public class ReviewController {
 	}
 	
 	//역정보 게시판-주변관광지에서 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.
-	@RequestMapping("place/getReviewListByPlace.do")
-	public String getReviewListByPlace(int no,Model model){ //name:관광지 번호
+	@RequestMapping("review/getReviewListByPlace.do")
+	public String getReviewListByPlace(int no,Model model){ //no:관광지 번호
+		System.out.println("관광지 번호 :"+no);
 		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
-		System.out.println("역 주변 정보 : "+getReviewListByPlace);
+		System.out.println("review에서 역 주변 정보 : "+getReviewListByPlace);
 		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
-		return "place/around_place.tiles"; //여기도 수정해야돼!
+		return "review/around_placeReview.tiles";
 	}
 	
 	@RequestMapping("review/writeComment.do")
