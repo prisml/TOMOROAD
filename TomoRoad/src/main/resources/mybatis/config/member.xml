@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id="findId" resultType="memberVO" parameterType="memberVO">
 		select id from member
-		where password=#{password} and name=#{name} and tel=#{tel}
+		where name=#{name} and tel=#{tel}
 	</select>
 	<select id="findPw" resultType="memberVO" parameterType="memberVO">
 		select password from member

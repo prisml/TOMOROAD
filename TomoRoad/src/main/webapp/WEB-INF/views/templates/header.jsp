@@ -48,7 +48,7 @@
 						</c:when>
 						<c:otherwise>
 							<a href="${pageContext.request.contextPath}/logout.do">
-								LogOut </a>
+								${mvo.name}님╹◡╹)ﾉ LogOut </a>
 						</c:otherwise>
 					</c:choose></li>
 				<li>　</li>
