@@ -13,7 +13,7 @@ $(document).ready(function(){
 		url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
 		success:function(date){
 				if(date != 0){
-					$("#requestFriend").html("<input height = 65 width = 65 type = image src = ${pageContext.request.contextPath}/resources/images/98.png onclick = reqeustList()> ");
+					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
 				}else{
 					$("#requestFriend").html("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png>");
 				}
