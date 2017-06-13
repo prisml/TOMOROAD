@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+	 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
 	$(document).ready(function(){
@@ -34,49 +38,39 @@
 			})						
 			
 			$(this).next().toggle();
-		});
-	});
-	
-	/* 
-	$("#st").change(function(){
-		var station = $("#st :selected").val();
-		$.ajax({
-			type : "GET",
-			url : "getBurnListByStationAjax.do",
-			data : "stationName="+station,
-			dataType : "json",
-			success : function(data) {	
-				var list="";
-		
-				for(var i=0; i<data.list.length; i++){						
-					list += "<table class='table table-hover'>";
-					list += "<tr>";
-					list += "<th>번호</th> <th colspan='11'>제목</th><th>역이름</th><th>작성자</th> <th>작성시간</th><th>조회수</th>";
-					list += "</tr>";
-					list += "<tr align='center'>";
-					list += "<td>+"data.list[i].no"+</td><td  colspan='11'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td><td><a href='#.'>"+data.list[i].memberId+"</a></td>";
-					list += "<td>+"data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td></tr>";
-					list += "</table>";
-					
-					}
-				$("#output").empty();
-			$("#output").html(list);
-				}				
-	});
-	
-}); */
+		});	
+});
 </script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#registerForm").submit(function(){
-			var a = $("#st :selected").val();
-			if(a==""){
-				alert("역을 선택해주세요")
-				return false;
-			}
-		});
-	});
+		$("#st").change(function(){						
+				$.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/getBurnListByStationAjax.do",
+					dataType : "json",
+					data : "stationName="+$("#st :selected").val(),
+					success : function(data){						
+						 var list="";
+						 list += "<table class='table table-hover'>";
+						 list += "<tr>";
+						 list += "<th>번호</th> <th colspan='11'>제목</th><th>역이름</th><th>작성자</th> <th>작성시간</th><th>조회수</th>";
+						 list += "</tr>";
+						 
+						 for(var i=0; i<data.list.length; i++){	
+							list += "<tr align='center'>";
+							list += "<td>"+data.list[i].no+"</td><td colspan='11'>"+data.list[i].title+"("+data.list[i].commentCount+")</td><td>"+data.list[i].stationName+"</td><td><a href='#.'>"+data.list[i].memberId+"</a></td>";
+							list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
+							list += "</tr>";
+													
+							} // for
+						 list += "</table>";	
+						 $("#output").empty();
+						 $("#output").html(list);  
+					} //success
+				}); // ajax
+		}); // change		
+	}); 
 </script>
 
 <style>
@@ -96,13 +90,15 @@ input {
 		<a href="#" class="btn btn-small btn-default" id="write">글쓰기</a>
 	</div> 
 	<div class="col-md-4 col-md-offset-4">
-	역별로 게시물 보기 <select class="col-sm-4 form-control" name=stationName id="st">
-	<option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach>
+	역별로 게시물 보기 
+	<select class="col-sm-4 form-control" name=stationName id="st">
+	<option value="">전체보기</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach>
 	</select>
 	</div> 
 </div>
 
 <br>
+<div id="output">
 <table class="table table-hover" >
   <tr>
     <th>번호</th>
@@ -117,14 +113,7 @@ input {
 	<td>${burn.no}</td>
 	<td  colspan="11"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
 	<td>${burn.stationName}</td>
-	<td style="position: relative;"><a href="#" class="show">${burn.memberId}</a>
-	<span class="pop" style="background-color:pink; display: none; position: absolute; width: 109px; z-index: 1000; bottom:-30px; right:30;">
-    <ul class="popcon">
-      <li><a href="#">리뷰 모아보기</a></li>
-      <li><a href="#">친구신청</a></li>      
-    </ul>
-  	</span>
-  	</td>
+	<td><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${burn.memberId}">${burn.memberId}</a></td>
 	
 	<td>${burn.postedTime}</td>
 	<td>${burn.hits}</td>
@@ -133,7 +122,7 @@ input {
 </table>
 
 
-<center>
+<div align="center">
 
 <c:set value="${lvo.pagingBean}" var="pb"/>
 
@@ -161,4 +150,6 @@ input {
 	</a>
 </c:if>
 
-</center>
+</div>
+
+</div>

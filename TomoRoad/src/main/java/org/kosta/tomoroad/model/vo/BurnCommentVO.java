@@ -8,10 +8,17 @@ public class BurnCommentVO {
 	private int burn_no;
 	private String member_id;
 	private String state;
+	private String profile;
+	
+		
+	public BurnCommentVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	public BurnCommentVO(int no, String content, String posted_time, int recomment, int burn_no, String member_id,
-			String state) {
+			String state, String profile) {
 		super();
 		this.no = no;
 		this.content = content;
@@ -20,11 +27,10 @@ public class BurnCommentVO {
 		this.burn_no = burn_no;
 		this.member_id = member_id;
 		this.state = state;
+		this.profile = profile;
 	}
-	public BurnCommentVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
+
 	public int getNo() {
 		return no;
 	}
@@ -67,11 +73,19 @@ public class BurnCommentVO {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	@Override
 	public String toString() {
 		return "BurnCommentVO [no=" + no + ", content=" + content + ", posted_time=" + posted_time + ", recomment="
-				+ recomment + ", burn_no=" + burn_no + ", member_id=" + member_id + ", state=" + state + "]";
+				+ recomment + ", burn_no=" + burn_no + ", member_id=" + member_id + ", state=" + state + ", profile="
+				+ profile + "]";
 	}
+	
 	
 }
 
