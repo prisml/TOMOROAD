@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%-- <c:if test="${mvo!=null }">
-	<a class="btn btn-small btn-default"
-		href="${pageContext.request.contextPath}/review/register_form.do">Register</a>
-</c:if> --%>
-	<div class="blog_medium content">
+
+<div class="blog_medium content">
 	<div class="row">
 		<div class="dividerHeading">
 			<h4>
