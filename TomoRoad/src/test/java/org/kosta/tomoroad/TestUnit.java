@@ -102,6 +102,6 @@ public class TestUnit {
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
 		
-		reviewService.getListByMember("1","java");
+		memberdao.friendBlockList("java");
 	}
 }
