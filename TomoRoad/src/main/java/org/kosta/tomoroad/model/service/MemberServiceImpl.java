@@ -59,15 +59,24 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void friend_Accept(String senderID, String receiverID) {
-		memberDAO.friend_Accept(senderID, receiverID);		
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		memberDAO.friend_Accept(friend);		
 	}
 	@Override
 	public void friend_Refuse(String senderID, String receiverID) {
-		memberDAO.friend_Refuse(senderID, receiverID);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("senderID", senderID);
+		friend.put("receiverID",receiverID);
+		memberDAO.friend_Refuse(friend);
 	}
 	@Override
 	public void friend_Block(String id, String blockId) {
-		memberDAO.friend_Block(id, blockId);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("blockId",blockId);
+		memberDAO.friend_Block(friend);
 	}
 	@Override
 	public List<HashMap<String,String>> friendList(String id) {
@@ -81,15 +90,25 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public String getFriendId(String id, String selectId) {
-		return memberDAO.getFriendId(id, selectId);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("selectId",selectId);
+		return memberDAO.getFriendId(friend);
 	}
 	@Override
 	public void deleteFriend(String id, String deleteId) {
-		memberDAO.deleteFriend(id, deleteId);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("selectId",deleteId);
+		memberDAO.deleteFriend(friend);
 	}
 	@Override
 	public void unBlockFriend(String id, String unBlockId) {
-		memberDAO.unBlockFriend(id, unBlockId);
+		HashMap<String,String> friend = new HashMap<String,String>();
+		System.out.println(id+" "+unBlockId);
+		friend.put("id", id);
+		friend.put("unBlockId",unBlockId);
+		memberDAO.unBlockFriend(friend);
 	}
 	@Override
 	public String getProfileById(String id) {
