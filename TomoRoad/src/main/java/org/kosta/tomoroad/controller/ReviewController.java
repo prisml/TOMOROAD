@@ -178,6 +178,7 @@ public class ReviewController {
 	
 	@RequestMapping("review/writeComment.do")
 	public ModelAndView writeComment(ReviewCommentVO vo, HttpServletRequest req, int reviewNo) {
+		System.out.println(reviewNo+" "+vo);
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		service.writeComment(vo, reviewNo);
 		return new ModelAndView("redirect:noauth_detail.do?no=" + reviewNo);

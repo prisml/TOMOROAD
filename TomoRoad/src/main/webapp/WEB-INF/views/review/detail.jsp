@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on("click","#replyBtn",function(){
+			var replyLi=$(this).parent().parent().parent();
+			var parentNo=$(this).parent().attr("name");
+			var content = '<form method="post" action="${pageContext.request.contextPath}/review/writeComment.do">';
+			content += "<br><div>";
+			content += '<p><textarea name="content" class="form-control" rows="4" cols="40"';
+			content += 'id="comments" onfocus="if(this.value == \'Message\') { this.value = \'\'; }"';
+			content += 'onblur="if(this.value == \'\') { this.value = \'Message\'; }"';
+			content += 'placeholder=\'Message\'>Message</textarea></p>';
+			content += '<input type="hidden" name="recomment" value="'+parentNo+'">';
+			content += '<input type="hidden" name="reviewNo" value="${dvo.rvo.no }">'
+			content += '<input id="writeReply" class="btn btn-default btn-lg" value="답글달기" type="submit">';
+			content += ' <input id="cancleReply" class="btn btn-default btn-lg" value="취소" type="submit"></form>';
+			replyLi.append(content);
+		});
+	});
+</script>
 	<div class="blog_single">
 		<article class="post">
 			<div class="post_date">
@@ -45,20 +64,6 @@
 				</c:if>
 			</div>
 		</article>
-		<div class="about_author">
-			<div class="author_desc">
-				<img src="${pageContext.request.contextPath}/resources/images/blog/author.png" alt="about author">
-				<ul class="author_social">
-					<li><a class="fb" href="#." data-placement="top"
-						data-toggle="tooltip" title="Facbook"><i
-							class="fa fa-facebook"></i></a></li>
-					<li><a class="twtr" href="#." data-placement="top"
-						data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-					<li><a class="skype" href="#." data-placement="top"
-						data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
-				</ul>
-			</div>
-		</div>
 	</div>
 	<!--News Comments-->
 	<c:if test="${mvo!=null}">
@@ -76,13 +81,16 @@
 			<script type="text/javascript">
 			$(document).ready(function(){
 				<c:forEach items="${dvo.comment }" var="cvo">
-					var temp = '<li class="comment"><div class="avatar">';
-					temp += '<img alt="" src="${pageContext.request.contextPath}/resources/images/blog/avatar_1.png"' ;
+					var temp = '<li id="replyLi${cvo.no}" class="comment"><div class="avatar">';
+					temp += '<img alt="" src="${cvo.member.profile}"' ;
 					temp += 'class="avatar"></div>';
 					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
 					temp += '<div class="comment-meta"> <a href="#" class="comment-date link-style1">${cvo.postedTime}</a>';
-					temp += '<a class="comment-reply-link link-style3" href="#respond">댓글달기 »</a></div>';
-					temp += '<div class="comment-body"><p>${cvo.content}</p></div><ul id="reply${cvo.no}" class="chilren"></ul></div></li>'
+					temp += '<div name="${cvo.no}" class="comment-reply-link"><a id="replyBtn"class="link-style3" href="#respond">답글달기</a> ';
+					<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
+						temp += '<a id="deleteBtn" class="link-style3" href="#.">x</a>';
+					</c:if>
+					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p></div></div><ul id="reply${cvo.no}" class="chilren"></ul></div></li>'
 					$("#${cvo.recommentId}").append(temp);
 				</c:forEach>
 			});
@@ -91,10 +99,10 @@
 			<!-- /#comments -->
 			<div class="dividerHeading">
 				<h4>
-					<span>Leave a comment</span>
+					<span>댓글 작성</span>
 				</h4>
 			</div>
-			<form action="${pageContext.request.contextPath}/review/writeComment.do">
+			<form method="post" action="${pageContext.request.contextPath}/review/writeComment.do">
 				<div class="comment-box row">
 					<div class="col-sm-12">
 						<p>
@@ -111,7 +119,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<input data-loading-text="Loading..." class="btn btn-default btn-lg"
-							value="Post Comment" type="submit">
+							value="댓글 작성" type="submit">
 					</div>
 				</div>
 			</form>
