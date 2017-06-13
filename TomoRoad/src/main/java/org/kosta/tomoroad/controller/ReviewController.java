@@ -32,21 +32,21 @@ public class ReviewController {
 	public ModelAndView showList(String page) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewList", service.getList(page));
+		return new ModelAndView("review/list.tiles", "reviewList", service.getList(page));
 	}
 
 	@RequestMapping("review/noauth_showListByMember.do")
 	public ModelAndView showListByMember(String page, String id) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByMember(page, id));
+		return new ModelAndView("review/list.tiles", "reviewMap", service.getListByMember(page, id));
 	}
 
 	@RequestMapping("review/noauth_showListByPlace.do")
 	public ModelAndView showListByPlace(String page, String place) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByPlace(page, place));
+		return new ModelAndView("review/list.tiles", "reviewMap", service.getListByPlace(page, place));
 	}
 
 	@RequestMapping(value = "review/register.do", method = RequestMethod.POST)
@@ -135,9 +135,8 @@ public class ReviewController {
 
 	@RequestMapping("review/delete.do")
 	public ModelAndView delete(String no, HttpServletRequest req) {
-		MemberVO vo = (MemberVO) req.getSession().getAttribute("mvo");
 		service.delete(no);
-		return new ModelAndView("redirect:review/showListByMember.do?id=" + vo.getId());
+		return new ModelAndView("redirect:review/noauth_showList.do");
 	}
 
 	@RequestMapping("review/recommend")

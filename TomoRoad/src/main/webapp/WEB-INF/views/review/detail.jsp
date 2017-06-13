@@ -18,6 +18,10 @@
 			content += ' <input id="cancleReply" class="btn btn-default btn-lg" value="취소" type="submit"></form>';
 			replyLi.append(content);
 		});
+		$("#deleteReview").click(function(){
+			if(confirm("삭제하시겠습니까?"))
+				location.href="${pageContext.request.contextPath}/review/delete.do?no=${dvo.rvo.no}";					
+		});
 	});
 </script>
 	<div class="blog_single">
@@ -47,6 +51,7 @@
 						<c:if test="${mvo!=null && mvo.id==dvo.rvo.member.id}">
 							<a href="${pageContext.request.contextPath}/review/update_form.do?no=${dvo.rvo.no}"
 								role="button" class="btn btn-default">수정</a>
+							<a id="deleteReview" href="#." role="button" class="btn btn-default">삭제</a>
 						</c:if>
 						<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}"
 						role="button" class="btn btn-default">
@@ -88,9 +93,9 @@
 					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
 					temp += '<div class="comment-meta"> <a href="#" class="comment-date link-style1">${cvo.postedTime}</a>';
 					temp += '<div name="${cvo.no}" class="comment-reply-link"><a id="replyBtn"class="link-style3" href="#respond">답글달기</a> ';
-					<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
+					//<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
 						temp += '<a id="deleteBtn" class="link-style3" href="#.">x</a>';
-					</c:if>
+					//</c:if>
 					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p></div></div><ul id="reply${cvo.no}" class="children"></ul></div></li>'
 					$("#${cvo.recommentId}").append(temp);
 				</c:forEach>
