@@ -68,7 +68,10 @@ public class ReviewController {
 			String fileName = files.get(i).getOriginalFilename();
 			if (fileName.equals("") == false) {
 				try {
-					files.get(i).transferTo(new File(uploadPath + "review" + vo.getNo() + "_" + i));
+					File file = new File(uploadPath + "review" + vo.getNo() + "_" + i);
+					if(!file.exists())
+						file.mkdirs();
+					files.get(i).transferTo(file);
 					nameList.add("review" + vo.getNo() + "_" + i);
 					System.out.println("업로드 완료 " + fileName);
 				} catch (IllegalStateException | IOException e) {

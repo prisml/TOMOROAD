@@ -81,7 +81,7 @@
 			<script type="text/javascript">
 			$(document).ready(function(){
 				<c:forEach items="${dvo.comment }" var="cvo">
-					var temp = '<li id="replyLi${cvo.no}" class="comment"><div class="avatar">';
+					var temp = '<li class="comment"><div class="avatar">';
 					temp += '<img alt="" src="${cvo.member.profile}"' ;
 					temp += 'class="avatar"></div>';
 					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
