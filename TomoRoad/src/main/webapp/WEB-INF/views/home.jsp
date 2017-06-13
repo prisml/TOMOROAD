@@ -66,7 +66,6 @@ $(document).ready(function(){
 			dataType: "jsonp",
 			success : function(parsed_json) {
 				var weather = parsed_json['current_observation'];
-				alert(weather['icon_url']);
 				return "1";
 			}	
 		});
