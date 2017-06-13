@@ -150,9 +150,9 @@ public class MemberController {
 
 
 	@RequestMapping("friend_Request.do")
-	public String friend_Request(String SenderId, String ReceiverId) {
-		memberService.friend_Request(SenderId, ReceiverId);
-		return null;
+	public String friend_Request(String senderId, String receiverId) {
+		memberService.friend_Request(senderId, receiverId);
+		return "redirect:member/memberpage.do?id="+senderId+"&selectId="+receiverId;
 	}
 
 	@RequestMapping("mypage/friend_Accept.do")
@@ -204,6 +204,15 @@ public class MemberController {
 		String profile = memberService.getProfileById(id);
 		model.addAttribute("profile",profile);
 		return "mypage/friend_RequestList.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping("friend_RequestInfo.do")
+	public int friend_RequestInfo(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		return memberService.friend_RequestInfo(id);
 	}
 
 	@RequestMapping("getFriendId.do")
@@ -302,5 +311,23 @@ public class MemberController {
 	      model.addAttribute("profile",profile);
 	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
+	   }
+	   @RequestMapping("mypage/showListByMember2.do")
+	   public String showListByMember2(String page,HttpServletRequest request,Model model) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+	      if (page == null)
+	         page = "1";
+	      String profile = memberService.getProfileById(id);
+	      model.addAttribute("profile",profile);
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+	      return "mypage/showList2.tiles";
+	   }
+	   @RequestMapping("member/memberpage.do")
+	   public String memberpage(String id,String selectId,Model model){
+		   model.addAttribute("memberInfo", memberService.findMemberById(selectId));
+		   model.addAttribute("friend", memberService.getFriendId(id, selectId));
+		   return "member/memberpage.tiles";
 	   }
 }

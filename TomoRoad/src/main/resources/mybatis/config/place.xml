@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 	
 	<!-- 역 이름에 해당되는 주변 관광지 정보 가져옴 -->
-	<select id="getPlaceInfo" resultType="placeVO">
+	<select id="getPlaceInfo" resultType="placeVO" parameterType="String">
 		select p.no,p.name,p.station_name,p.area from place p,station s
 		where
 		p.station_name=s.name and p.station_name=#{value} 

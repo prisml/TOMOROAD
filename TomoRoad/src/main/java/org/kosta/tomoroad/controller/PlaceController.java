@@ -27,10 +27,11 @@ public class PlaceController {
 	//역정보 게시판에서 특정 역의 주변 관광지 목록들을 가져옴
 	@RequestMapping("place/getPlaceInfo.do")
 	public String getPlaceInfo(String name,Model model){ //name:역 이름
+		System.out.println("name="+name);
 		List<PlaceVO> placeInfoList=service.getPlaceInfo(name);
 		System.out.println("역 주변 정보 : "+placeInfoList);
 		model.addAttribute("placeInfoList",placeInfoList);
-		return "place/getPlaceInfo.tiles";
+		return "place/detail_info.tiles";
 	}
 
 }

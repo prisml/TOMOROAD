@@ -52,4 +52,6 @@ public interface MemberService {
 	MemberVO findMember(MemberVO vo);
 
 	String findPw(MemberVO vo);
+	
+	int friend_RequestInfo(String id);
 }

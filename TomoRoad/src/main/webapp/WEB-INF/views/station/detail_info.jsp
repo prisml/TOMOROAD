@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap" async defer></script>
+
+<!-- 역 주변 지도 -->
 <script>
 	var map;
 	var marker;
@@ -10,9 +12,9 @@
 	var windowNames = [];
 
 	function initMap() {
-		var latlng = new google.maps.LatLng(${detailInfoVO.lat}, ${detailInfoVO.lng});
+		var latlng = new google.maps.LatLng(${detailInfoVO.lat}, ${detailInfoVO.lng});//구글 좌표계로 변환.
 		
-		map = new google.maps.Map(document.getElementById('map'), { //역 표시해주는 지도
+		map = new google.maps.Map(document.getElementById('map'), { 
 			center : {
 				lat : ${detailInfoVO.lat},
 				lng : ${detailInfoVO.lng}
@@ -22,7 +24,7 @@
 		
 		marker = new google.maps.Marker({  //마커 표시
 				   position: latlng, 
-				   map: map,
+				   map: map,//기본 배경 지도
 				});
 	}
 </script>
@@ -30,7 +32,7 @@
 <div class="col-md-12">
 	<div class="dividerHeading">
 		<h4>
-			<span>${detailInfoVO.name}</span>
+			<span id="stationName">${detailInfoVO.name}</span>
 		</h4>
 	</div>
 </div>
@@ -92,19 +94,28 @@
 				<span>주변 관광지</span>
 			</h4>
 		</div>
-<ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 895.598px;;">
-		<li class="list_item col-lg-4 col-md-6 col-sm-6 isotope-item" style="">
-			<a href="${pageContext.request.contextPath}/place/around_place.do">
-			<figure class="touching effect-bubba">
-				<img src="${pageContext.request.contextPath}/resources/images/서울역.jpg" alt="">
-				<figcaption>
-					<h5>동대문</h5>
-					<p>흥인지문~~</p>
-				</figcaption>
-			</figure>
-		</a>
-	</li>
-</ul>
+	</div>
+</section>
+
+<!-- 링크 <a href="${pageContext.request.contextPath}/place/getPlaceInfo.do?${detailInfoVO.name}"></a>-->
+	<ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 895.598px;">
+		<c:forEach items="${aroundPlaceVO}" var="vo">
+			<li class="list_item col-lg-4 col-md-6 col-sm-6 isotope-item" style="">
+				<figure class="touching effect-bubba">
+					<!-- 누르면 주변 관광지에 대한 리뷰들을 가져오는 컨트롤러 실행 -->
+					<div class="option">
+						<a href="${pageContext.request.contextPath}/review/getReviewListByPlace.do?no=${vo.no}" class="fa fa-link"></a>
+					</div>
+					
+					<img src="${pageContext.request.contextPath}/resources/images/place/${vo.station_name}/${vo.no}.jpg" alt="">
+					
+					<figcaption>
+						<h5>${vo.name}</h5>
+					</figcaption>
+				</figure>
+			</li>
+		</c:forEach>
+	</ul>
 
 						
 <!-- 사진 옆으로 넘기는거
@@ -243,8 +254,8 @@
 				</figure>
 			</div>
 		</div>
--->
+
 	</div>
-</section>
+</section>-->
 
 
