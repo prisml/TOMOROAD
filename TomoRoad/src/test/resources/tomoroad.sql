@@ -1,7 +1,30 @@
 -- 변경해주세요! profile default 값 --
 alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
-
-select * from member
+---------------리뷰 제약조건 수정----------------
+ALTER table review_comment
+DROP CONSTRAINT fk_review_comment_no;
+ALTER TABLE review_comment 
+  ADD CONSTRAINT fk_review_comment_no 
+  FOREIGN KEY (review_no) 
+  REFERENCES review(no) 
+  ON DELETE CASCADE;
+ALTER table review_recommend
+DROP CONSTRAINT fk_review_recommend_no;
+ALTER TABLE review_recommend 
+  ADD CONSTRAINT fk_review_recommend_no 
+  FOREIGN KEY (review_no) 
+  REFERENCES review(no) 
+  ON DELETE CASCADE;
+---------------번개 제약조건 수정----------------
+ALTER table burn_comment
+DROP CONSTRAINT fk_burn_comment_no;
+ALTER TABLE burn_comment 
+  ADD CONSTRAINT fk_burn_comment_no 
+  FOREIGN KEY (burn_no) 
+  REFERENCES burn_board(no) 
+  ON DELETE CASCADE;
+------------------------------------------------
+  select * from member
 
 ---------- drop table ------------
 drop table station_connect;
@@ -84,7 +107,7 @@ create table review(
 	place_no number not null,
 	member_id varchar2(100) not null,
 	constraint fk_place_no foreign key(place_no) references place(no),
-	constraint fk_member_id foreign key(member_id) references member(id)	
+	constraint fk_member_id foreign key(member_id) references member(id)
 );
 
 create sequence review_seq nocache;
@@ -102,6 +125,9 @@ create table review_comment(
 	state varchar2(100) default 'comment' not null
 );
 alter table review_comment add state varchar2(100) default 'comment' not null --리뷰코멘트 추가필요.
+	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
+	constraint fk_review_comment_member_id foreign key(member_id) references member(id)	
+);
 create sequence review_comment_seq nocache;
 
 create table hashtag(
@@ -129,7 +155,7 @@ create table review_recommend(
 	review_no number,
 	primary key(member_id, review_no),
 	constraint fk_reivew_recommend_id foreign key(member_id) references member(id),
-	constraint fk_review_recommend_no foreign key(review_no) references review(no)	
+	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
 )
 
 create sequence burn_board_seq nocache;
@@ -141,9 +167,14 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
+<<<<<<< HEAD
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
 	constraint fk_burn_comment_id foreign key(member_id) references member(id),	
 	burn_comment varchar2(100) default 'comment' not null
+=======
+	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
+	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 );
 create sequence burn_comment_seq nocache;
 alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
@@ -407,9 +438,9 @@ select sender_id as friend from friend where receiver_id = 'java' and state = '�
 
 insert into friend values('abcd','qwer','수락',sysdate)
 
+insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 
-
-insert into friend values('abcd','java','대기',sysdate);
+insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
@@ -417,6 +448,8 @@ insert into friend values('java','spring','수락',sysdate);
 insert into friend values('java','zxcv','수락',sysdate);
 
 select * from friend where 
+
+select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
 
@@ -430,7 +463,7 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
 
-select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java') and state = '수락'
 
 update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 

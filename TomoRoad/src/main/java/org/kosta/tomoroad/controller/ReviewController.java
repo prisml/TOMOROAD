@@ -32,21 +32,21 @@ public class ReviewController {
 	public ModelAndView showList(String page) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewList", service.getList(page));
+		return new ModelAndView("review/list.tiles", "reviewList", service.getList(page));
 	}
 
 	@RequestMapping("review/noauth_showListByMember.do")
 	public ModelAndView showListByMember(String page, String id) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByMember(page, id));
+		return new ModelAndView("review/list.tiles", "reviewMap", service.getListByMember(page, id));
 	}
 
 	@RequestMapping("review/noauth_showListByPlace.do")
 	public ModelAndView showListByPlace(String page, String place) {
 		if (page == null)
 			page = "1";
-		return new ModelAndView("review/showList.tiles", "reviewMap", service.getListByPlace(page, place));
+		return new ModelAndView("review/list.tiles", "reviewMap", service.getListByPlace(page, place));
 	}
 
 	@RequestMapping(value = "review/register.do", method = RequestMethod.POST)
@@ -68,7 +68,10 @@ public class ReviewController {
 			String fileName = files.get(i).getOriginalFilename();
 			if (fileName.equals("") == false) {
 				try {
-					files.get(i).transferTo(new File(uploadPath + "review" + vo.getNo() + "_" + i));
+					File file = new File(uploadPath + "review" + vo.getNo() + "_" + i);
+					if(!file.exists())
+						file.mkdirs();
+					files.get(i).transferTo(file);
 					nameList.add("review" + vo.getNo() + "_" + i);
 					System.out.println("업로드 완료 " + fileName);
 				} catch (IllegalStateException | IOException e) {
@@ -132,9 +135,8 @@ public class ReviewController {
 
 	@RequestMapping("review/delete.do")
 	public ModelAndView delete(String no, HttpServletRequest req) {
-		MemberVO vo = (MemberVO) req.getSession().getAttribute("mvo");
 		service.delete(no);
-		return new ModelAndView("redirect:review/showListByMember.do?id=" + vo.getId());
+		return new ModelAndView("redirect:review/noauth_showList.do");
 	}
 
 	@RequestMapping("review/recommend")
@@ -168,16 +170,18 @@ public class ReviewController {
 	}
 	
 	//역정보 게시판-주변관광지에서 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.
-	@RequestMapping("place/getReviewListByPlace.do")
-	public String getReviewListByPlace(int no,Model model){ //name:관광지 번호
+	@RequestMapping("review/getReviewListByPlace.do")
+	public String getReviewListByPlace(int no,Model model){ //no:관광지 번호
+		System.out.println("관광지 번호 :"+no);
 		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
-		System.out.println("역 주변 정보 : "+getReviewListByPlace);
+		System.out.println("review에서 역 주변 정보 : "+getReviewListByPlace);
 		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
-		return "place/around_place.tiles"; //여기도 수정해야돼!
+		return "review/around_placeReview.tiles";
 	}
 	
 	@RequestMapping("review/writeComment.do")
 	public ModelAndView writeComment(ReviewCommentVO vo, HttpServletRequest req, int reviewNo) {
+		System.out.println(reviewNo+" "+vo);
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		service.writeComment(vo, reviewNo);
 		return new ModelAndView("redirect:noauth_detail.do?no=" + reviewNo);

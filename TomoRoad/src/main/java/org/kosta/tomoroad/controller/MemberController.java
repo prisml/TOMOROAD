@@ -42,6 +42,14 @@ public class MemberController {
 			model.addAttribute("result", vo);
 		return "redirect:home.do";
 	}
+	
+	@RequestMapping("findMember.do")
+	public String findMember(MemberVO memberVO, Model model) {
+		MemberVO vo = memberService.findMember(memberVO);
+		if (vo != null)
+			model.addAttribute("result", vo);
+		return "redirect:home.do";
+	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "noauth_login.do")
 	public String login(MemberVO memberVO, HttpServletRequest request, HttpSession session) {
@@ -98,9 +106,8 @@ public class MemberController {
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(String id,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if (session != null)
-			session.invalidate();
 		memberService.deleteMember(id);
+		session.invalidate();
 		return "redirect:home.do";
 	}
 
@@ -111,27 +118,41 @@ public class MemberController {
 			return "member/noauth_findid_fail";
 		else {
 			HttpSession session = request.getSession();
-			session.setAttribute("result", vo);
+			session.setAttribute("mvo", vo);
 			return "member/noauth_findid_result.tiles";
 		}
 	}
 
 	@RequestMapping(value = "noauth_findPw.do", method = RequestMethod.POST)
-	public String findPw(MemberVO memberVO, HttpServletRequest request) {
-		MemberVO vo = memberService.findPw(memberVO);
-		if (vo == null)
+	public String findPw(MemberVO vo) {
+		String id = memberService.findPw(vo);
+		System.out.println(vo);
+		if (id.equals("")) 	
 			return "member/noauth_findpw_fail";
 		else {
-			HttpSession session = request.getSession();
-			session.setAttribute("result", vo);
-			return "member/noauth_findpw_result.tiles";
+			return "member/noauth_findpw2.tiles";
 		}
 	}
+	
+	@RequestMapping(value = "member/noauth_findPw2.do", method = RequestMethod.POST)
+	public String findPw2(MemberVO vo,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		memberService.findPw2(vo);
+		session.setAttribute("mvo", vo);
+		return "redirect:noauth_findPw2View.do?id=" + vo.getId();
+	}
+
+	@RequestMapping("member/noauth_findPw2View.do")
+	public ModelAndView findPw2(String id) {
+		MemberVO vo = memberService.findMemberById(id);
+		return new ModelAndView("member/noauth_findpw2_result.tiles", "mvo", vo);
+	}
+
 
 	@RequestMapping("friend_Request.do")
-	public String friend_Request(String SenderId, String ReceiverId) {
-		memberService.friend_Request(SenderId, ReceiverId);
-		return null;
+	public String friend_Request(String senderId, String receiverId) {
+		memberService.friend_Request(senderId, receiverId);
+		return "redirect:member/memberpage.do?id="+senderId+"&selectId="+receiverId;
 	}
 
 	@RequestMapping("mypage/friend_Accept.do")
@@ -146,16 +167,10 @@ public class MemberController {
 		return "redirect:friend_RequestList.do";
 	}
 
-	@RequestMapping("mypage/requestFriend_Block.do")
-	public String requestFriend_Block(String id, String blockId) {
+	@RequestMapping("mypage/friend{viewName}_Block.do")
+	public String requestFriend_Block(@PathVariable String viewName,String id, String blockId) {
 		memberService.friend_Block(id, blockId);
-		return "redirect:friend_RequestList.do";
-	}
-	
-	@RequestMapping("mypage/friendList_Block.do")
-	public String friendList_Block(String id, String blockId) {
-		memberService.friend_Block(id, blockId);
-		return "redirect:friendList.do";
+		return "redirect:friend"+viewName+".do";
 	}
 	
 	@RequestMapping("mypage/friendList.do")
@@ -189,6 +204,15 @@ public class MemberController {
 		String profile = memberService.getProfileById(id);
 		model.addAttribute("profile",profile);
 		return "mypage/friend_RequestList.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping("friend_RequestInfo.do")
+	public int friend_RequestInfo(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		return memberService.friend_RequestInfo(id);
 	}
 
 	@RequestMapping("getFriendId.do")
@@ -287,5 +311,23 @@ public class MemberController {
 	      model.addAttribute("profile",profile);
 	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
+	   }
+	   @RequestMapping("mypage/showListByMember2.do")
+	   public String showListByMember2(String page,HttpServletRequest request,Model model) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+	      if (page == null)
+	         page = "1";
+	      String profile = memberService.getProfileById(id);
+	      model.addAttribute("profile",profile);
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+	      return "mypage/showList2.tiles";
+	   }
+	   @RequestMapping("member/memberpage.do")
+	   public String memberpage(String id,String selectId,Model model){
+		   model.addAttribute("memberInfo", memberService.findMemberById(selectId));
+		   model.addAttribute("friend", memberService.getFriendId(id, selectId));
+		   return "member/memberpage.tiles";
 	   }
 }

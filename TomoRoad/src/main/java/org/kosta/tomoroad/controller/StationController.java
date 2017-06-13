@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.StationService;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class StationController {
 	@Resource(name="stationServiceImpl")
 	private StationService service;
+	@Resource(name="placeServiceImpl")
+	private PlaceService placeSservice;
 	
 	//검색창에 입력한 단어가 들어가는 키워드를 가져옴
 	@RequestMapping("station/getKeyword.do")
@@ -36,12 +40,17 @@ public class StationController {
 		return "station/tourinfo.tiles";
 	}
 	
-	//특정 역 정보(이름,설명)를 가져오는 것. 역이름과 설명
+	//특정 역 정보(이름,설명)를 가져오는 것. 역이름과 설명. 그리고 주변 관광지 정보도 가져온다
 	@RequestMapping("station/getDetailInfo.do")
 	public String getDetailInfo(Model model,String name){ //name : 역 이름
-		StationVO detailInfoVO = service.getDetailInfo(name);
-		System.out.println("역 정보 : "+detailInfoVO);
-		model.addAttribute("detailInfoVO",detailInfoVO);
+		StationVO detailInfoVO = service.getDetailInfo(name); //역정보
+		
+		List<PlaceVO> aroundPlaceVO = placeSservice.getPlaceInfo(name);
+		
+		model.addAttribute("detailInfoVO",detailInfoVO); //특정 역 정보
+		model.addAttribute("aroundPlaceVO",aroundPlaceVO); //주변 관광지 정보
+		System.out.println("station에서 역 정보 : "+detailInfoVO);
+		System.out.println("station에서 역 주변 리스트 : "+aroundPlaceVO);
 		return "station/detail_info.tiles";
 	}
 	
