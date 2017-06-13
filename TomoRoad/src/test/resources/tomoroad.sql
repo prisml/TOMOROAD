@@ -37,7 +37,7 @@ create table member(
 	name varchar2(100) not null,
 	sex varchar2(100) not null,
 	tel varchar2(100) not null,
-	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg'
+	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg' not null
 );
 drop table station
 
@@ -98,8 +98,10 @@ create table review_comment(
 	review_no number, 
 	member_id varchar2(100) not null,
 	constraint fk_review_comment_no foreign key(review_no) references review(no),
-	constraint fk_review_comment_member_id foreign key(member_id) references member(id)	
+	constraint fk_review_comment_member_id foreign key(member_id) references member(id),
+	state varchar2(100) default 'comment' not null
 );
+alter table review_comment add state varchar2(100) default 'comment' not null --리뷰코멘트 추가필요.
 create sequence review_comment_seq nocache;
 
 create table hashtag(
@@ -140,7 +142,8 @@ create table burn_comment(
 	burn_no number not null,
 	member_id varchar2(100) not null,
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
-	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
+	constraint fk_burn_comment_id foreign key(member_id) references member(id),	
+	burn_comment varchar2(100) default 'comment' not null
 );
 create sequence burn_comment_seq nocache;
 alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
@@ -206,13 +209,13 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 
 -----< member >-----
-insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg')
-insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png')
-insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png')
-insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png')
-insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg')
-insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
-insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg')
+insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg');
+insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png');
+insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png');
+insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png');
+insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg');
+insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg');
+insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg');
 
 update member set name ='송준영' where id = 'qaz'
 
