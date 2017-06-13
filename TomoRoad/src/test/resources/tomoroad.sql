@@ -404,9 +404,9 @@ select sender_id as friend from friend where receiver_id = 'java' and state = '�
 
 insert into friend values('abcd','qwer','수락',sysdate)
 
+insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 
-
-insert into friend values('abcd','java','대기',sysdate);
+insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
@@ -427,7 +427,7 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
 
-select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java') and state = '수락'
 
 update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 

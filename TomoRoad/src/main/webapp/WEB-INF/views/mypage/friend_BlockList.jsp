@@ -13,7 +13,7 @@ function FriendUnBlock(id){
     <span style = "font-size:25px">${list.FRIEND}(${list.NAME})</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">친구페이지로 이동</a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${list.FRIEND}">친구페이지로 이동</a></li>
     </ul>
     </div>
 	<input style = color:white; class="btn btn-danger" type = "button" value="차단해제" onclick="FriendUnBlock('${list.FRIEND}')"><br><br>

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member"> 	
 	<sql id="selectMember">
-		select id,password,name,sex,tel from member
+		select id,password,name,sex,tel,profile from member
 	</sql>
 	<select id="findMemberById" resultType="memberVO">
 		<include refid="selectMember"></include>
@@ -87,6 +87,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="profileReset">
 		update member set profile = #{profileReset} where id = #{id}
 	</update>
+	<select id="getFriendById" resultType="memberVo">
+		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in(#{id},#{selectId}) and state = '수락'
+	</select>
 </mapper>
 
 
