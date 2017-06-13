@@ -1,6 +1,8 @@
 -- 변경해주세요! profile default 값 --
 alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
 
+select * from member
+
 ---------- drop table ------------
 drop table station_connect;
 drop table station_reported;
@@ -108,7 +110,6 @@ create table hashtag(
 );
 create sequence hashtag_seq nocache;
 
-select * from BURN_COMMENT
 create table burn_board(
 	no number primary key,
 	title varchar2(100) not null,
@@ -216,6 +217,11 @@ insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박�
 update member set name ='송준영' where id = 'qaz'
 
 alter table member add(profile varchar2(100))
+delete from member where id='java';
+delete from member where id='abcd';
+delete from member where id='spring';
+delete from member where id='asdf';
+
 
 select * from member
 select id from member where password='aaaa' and name='aaaa' and tel='aaaa'
@@ -392,31 +398,40 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
-
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
 select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
 
 insert into friend values('abcd','qwer','수락',sysdate)
 
-
+insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 
 insert into friend values('abcd','java','수락',sysdate);
-insert into friend values('asdf','java','수락',sysdate);
+insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
 insert into friend values('java','spring','수락',sysdate);
 insert into friend values('java','zxcv','수락',sysdate);
 
+select * from friend where 
+
 select * from friend
 
-update friend set state = '대기' where sender_id = 'onon22'
+update friend set state = '대기' where sender_id = 'asdf'
 
-select sender_id from friend where receiver_id = 'java' and state = '대기'
+update friend set state = '차단' where receiver_id = 'java' and sender_id = 'abcd' and state = '대기'
+
+select sender_id from friend where receiver_id = 'java' and sender_id = 'abcd' and state = '대기'
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.state = '대기' and f.sender_id (+)= m.id
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
+
+select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java') and state = '수락'
+
+update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+
+delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
 delete from friend where receiver_id = 'onon22'
 

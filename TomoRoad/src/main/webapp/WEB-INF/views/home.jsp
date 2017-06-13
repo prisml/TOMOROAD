@@ -1,5 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+	 $("input[name='weather']").click(function() {
+		 $("#test").stop(true).fadeToggle();
+	 
+		 var urlAddress = $(this).val();
+	    $.ajax({
+	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/"+urlAddress,
+	        dataType : "jsonp",
+	        success : function(parsed_json) {
+	            var forecast = parsed_json['forecast']['txt_forecast']['forecastday'];
+	             $("#titles").empty();
+	             $("#images").empty();
+	            for (index in forecast) {
+
+	               var newForecastString = forecast[index]['title'];
+	               var newForecastParagraph = $('<td/>').text(newForecastString);
+	                $("#titles").append(newForecastParagraph);
+	                
+	               var newForecastImages = forecast[index]['icon_url'];
+	               $("#images").append("<img src="+newForecastImages+">");
+   
+	            } 
+	        }
+	    });
+	}); 
+ }); 
+	</script>
 <!-- map -->
 <script>
 var map;
@@ -23,7 +53,7 @@ $(document).ready(function(){
 				alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
 			}else{
 				names.push(id);
-				$("#tomoroading").html(names+"&nbsp;");
+				$("#tomoroading").html("<h2> 선택한 여행지:"+names+"</h2>");
 				windowName.close(map, marker);
 			}			
 		});
@@ -67,7 +97,7 @@ $(document).ready(function(){
 });
 $(document).on("click","#roading",function(){
 	if(names.length<2){
-		alert("false");
+		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
 		return false;
 	}else{
 		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+names;
@@ -195,3 +225,41 @@ function initMap() {
 </c:if>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
+ 
+ 	 <div class="dividerHeading">
+            <h4><span>날씨를 알고 싶어요╹◡╹)ﾉ</span></h4>
+        </div>
+
+<div id="test">
+		<div id="titles"></div>
+		    <div id="images"></div>
+	</div>
+
+		<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
+			name="weather" value="seoul.json">서울
+		</div>
+				<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
+			name="weather" value="daegu.json">대구
+		</div>
+		<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="miryang.json">밀양
+		</div>
+				<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
+			name="weather" value="gunsan.json">군산
+		</div>
+		<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="busan.json">부산
+		</div>
+				<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="gwangju.json">광주
+		</div>
+				<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="gangneung.json">강릉
+		</div>

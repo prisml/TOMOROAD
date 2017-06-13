@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member"> 	
 	<sql id="selectMember">
-		select id,password,name,sex,tel from member
+		select id,password,name,sex,tel,profile from member
 	</sql>
 	<select id="findMemberById" resultType="memberVO">
 		<include refid="selectMember"></include>
@@ -30,12 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
-	<insert id="friend" parameterType="map">
-		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
-	</insert>
 	<select id="findId" resultType="memberVO" parameterType="memberVO">
 		select id from member
-		where password=#{password} and name=#{name} and tel=#{tel}
+		where name=#{name} and tel=#{tel}
 	</select>
 	<select id="findPw" resultType="memberVO" parameterType="memberVO">
 		select password from member
@@ -50,6 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id = "friend_Refuse" parameterType="map">
 		update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
 	</update>
+	<update id = "friend_Block" parameterType="map">
+		update friend set state = '차단' where sender_id in (#{id},#{blockId}) and receiver_id in(#{id},#{blockId})
+	</update>
 	<select id="friend_RequestList" resultType="map">
 		select f.sender_id,m.profile,m.name from friend f,member m where f.receiver_id = #{value} and f.state = '대기' and f.sender_id (+)= m.id
 	</select>
@@ -59,12 +59,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="friendListByReceiverId" resultType ="map">
 		select m.profile,m.name,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = #{value} and state = '수락'
 	</select>
+	<select id="friendBlockListBySenderId" resultType="map">
+		select m.profile,m.name,f.receiver_id as friend from member m,friend f where f.receiver_id = m.id and sender_id = #{value} and state = '차단'
+	</select>
+	<select id="friendBlockListByReceiverId" resultType ="map">
+		select m.profile,m.name,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = #{value} and state = '차단'
+	</select>
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
 	</select>
-	<select id="deleteFriend" parameterType="map">
+	<delete id="deleteFriend" parameterType="map">
 		delete from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId})
-	</select>
+	</delete>
+	<!-- 차단해제 -->
+	<delete id="unBlockFriend" parameterType="map">
+		delete from friend where sender_id in (#{id},#{unBlockId}) and receiver_id in(#{id},#{unBlockId})
+	</delete>
 	<select id = "getProfileById" resultType="string">
 		select profile from member where id = #{value}
 	</select>
@@ -74,6 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="profileReset">
 		update member set profile = #{profileReset} where id = #{id}
 	</update>
+	<select id="getFriendById" resultType="memberVo">
+		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in(#{id},#{selectId}) and state = '수락'
+	</select>
 </mapper>
 
 

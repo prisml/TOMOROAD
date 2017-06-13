@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.tomoroad.model.dao.MemberDAO;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
@@ -75,8 +76,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "mypage/updateMember.do", method = RequestMethod.POST)
-	public String updateMember(MemberVO vo) {
+	public String updateMember(MemberVO vo,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		memberService.updateMember(vo);
+		session.setAttribute("mvo", vo);
 		return "redirect:updateResultView.do?id=" + vo.getId();
 	}
 
@@ -94,8 +97,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("deleteMember.do")
-	public String deleteMember(String id) {
+	public String deleteMember(String id,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
 		memberService.deleteMember(id);
+		session.invalidate();
 		return "redirect:home.do";
 	}
 
@@ -124,9 +129,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("friend_Request.do")
-	public String friend_Request(String SenderId, String ReceiverId) {
-		memberService.friend_Request(SenderId, ReceiverId);
-		return null;
+	public String friend_Request(String senderId, String receiverId) {
+		memberService.friend_Request(senderId, receiverId);
+		return "redirect:member/memberpage.do?id="+senderId+"&selectId="+receiverId;
 	}
 
 	@RequestMapping("mypage/friend_Accept.do")
@@ -141,6 +146,12 @@ public class MemberController {
 		return "redirect:friend_RequestList.do";
 	}
 
+	@RequestMapping("mypage/friend{viewName}_Block.do")
+	public String requestFriend_Block(@PathVariable String viewName,String id, String blockId) {
+		memberService.friend_Block(id, blockId);
+		return "redirect:friend"+viewName+".do";
+	}
+	
 	@RequestMapping("mypage/friendList.do")
 	public String friendList(HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
@@ -150,6 +161,17 @@ public class MemberController {
 		String profile = memberService.getProfileById(id);
 		model.addAttribute("profile",profile);
 		return "mypage/friendList.tiles";
+	}
+	
+	@RequestMapping("mypage/friend_BlockList.do")
+	public String friendBlockList(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("friendList", memberService.friendBlockList(id));
+		String profile = memberService.getProfileById(id);
+		model.addAttribute("profile",profile);
+		return "mypage/friend_BlockList.tiles";
 	}
 
 	@RequestMapping("mypage/friend_RequestList.do")
@@ -173,6 +195,12 @@ public class MemberController {
 	public String deleteFriend(String id, String deleteId) {
 		memberService.deleteFriend(id, deleteId);
 		return "redirect:mypage/friendList.do";
+	}
+	
+	@RequestMapping("FriendUnBlock.do")
+	public String FriendUnBlock(String id,String unBlockId){
+		memberService.unBlockFriend(id, unBlockId);
+		return "redirect:mypage/friend_BlockList.do";
 	}
 
 	@RequestMapping("noauth_weather.do")
@@ -253,5 +281,23 @@ public class MemberController {
 	      model.addAttribute("profile",profile);
 	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
 	      return "mypage/showList.tiles";
+	   }
+	   @RequestMapping("mypage/showListByMember2.do")
+	   public String showListByMember2(String page,HttpServletRequest request,Model model) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+	      if (page == null)
+	         page = "1";
+	      String profile = memberService.getProfileById(id);
+	      model.addAttribute("profile",profile);
+	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+	      return "mypage/showList2.tiles";
+	   }
+	   @RequestMapping("member/memberpage.do")
+	   public String memberpage(String id,String selectId,Model model){
+		   model.addAttribute("memberInfo", memberService.findMemberById(selectId));
+		   model.addAttribute("friend", memberService.getFriendId(id, selectId));
+		   return "member/memberpage.tiles";
 	   }
 }

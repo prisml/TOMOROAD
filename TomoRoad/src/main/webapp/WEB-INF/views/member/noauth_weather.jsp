@@ -39,6 +39,10 @@
 </head> 
 <body> 
 
+	 <div class="dividerHeading">
+            <h4><span>날씨를 알고 싶어요╹◡╹)ﾉ</span></h4>
+        </div>
+
 <div id="test">
 		<div id="titles"></div>
 		    <div id="images"></div>
@@ -47,10 +51,6 @@
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
 			name="weather" value="seoul.json">서울
-		</div>
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gwangju.json">광주
 		</div>
 				<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
@@ -67,6 +67,10 @@
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
 			name="weather" value="busan.json">부산
+		</div>
+				<div >
+			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
+			name="weather" value="gwangju.json">광주
 		</div>
 				<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 

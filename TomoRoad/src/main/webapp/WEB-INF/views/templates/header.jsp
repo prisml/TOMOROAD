@@ -48,13 +48,13 @@
 						</c:when>
 						<c:otherwise>
 							<a href="${pageContext.request.contextPath}/logout.do">
-								LogOut </a>
+								${mvo.name}님╹◡╹)ﾉ LogOut </a>
 						</c:otherwise>
 					</c:choose></li>
 				<li>　</li>
-				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
+<%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
-				
+ --%>				
 			</ul>
 		</div>
 	</div>
