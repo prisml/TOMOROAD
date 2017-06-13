@@ -20,8 +20,10 @@ public class BurnController {
 	private BurnService burnService;
 	
 	@RequestMapping("getBurnList.do")
-	public ModelAndView getBurnList(String pageNo){
-		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnList(pageNo));			
+	public String getBurnList(String pageNo, Model model){
+		model.addAttribute("station", burnService.getStationNameList());
+		model.addAttribute("lvo",burnService.getBurnList(pageNo));
+		return "burn/burnlist.tiles";			
 	}
 	
 	@RequestMapping("showBurnDetail.do")
@@ -43,6 +45,7 @@ public class BurnController {
 	public ModelAndView writeBurnResult(String no){		
 		return new ModelAndView("burn/register_result.tiles","bvo",burnService.findBurnByNo(no));		
 	}
+	
 	//댓글
 	@RequestMapping("showBurnComment.do")
 	@ResponseBody
@@ -73,6 +76,7 @@ public class BurnController {
 		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
 	}
 	//댓글끝
+	
 	@RequestMapping("updateBurnView.do")
 	public String updateBurnView(String no, Model model){
 		model.addAttribute("bvo", burnService.findBurnByNo(no));
@@ -100,6 +104,13 @@ public class BurnController {
 	@RequestMapping("getBurnListByStation.do")
 	public ModelAndView getBurnListByStation(String stationName, String pageNo){
 		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnListByStation(stationName, pageNo));
+	}
+	
+	@RequestMapping("getBurnListByStationAjax.do")
+	@ResponseBody
+	public Object getBurnListByStationAjax(String stationName, String pageNo){
+		System.out.println(burnService.getBurnListByStation(stationName, pageNo));
+		return burnService.getBurnListByStation(stationName, pageNo);
 	}
 	
 	@RequestMapping("writeBurnForm.do")

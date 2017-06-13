@@ -19,8 +19,6 @@ public interface MemberDAO {
 
 	public void deleteMember(String id);
 
-	void friend(String senderID,String receiverID);
-
 	MemberVO findId(MemberVO memberVO);
 
 	MemberVO findPw(MemberVO memberVO);
@@ -29,15 +27,21 @@ public interface MemberDAO {
 	
 	List<HashMap<String,String>> friend_RequestList(String receiverID);
 	
-	void friend_Accept(String senderID,String receiverID);
+	void friend_Accept(HashMap<String,String> friend);
 	
-	void friend_Refuse(String senderID,String receiverID);
+	void friend_Refuse(HashMap<String,String> friend);
+	
+	void friend_Block(HashMap<String,String> friend);
 
 	List<HashMap<String,String>> friendList(String id);
 	
-	String getFriendId(String id,String selectId);
+	List<HashMap<String,String>> friendBlockList(String id);
 	
-	void deleteFriend(String id,String deleteId);
+	String getFriendId(HashMap<String,String> friend);
+	
+	void deleteFriend(HashMap<String,String> friend);
+	
+	void unBlockFriend(HashMap<String,String> friend);
 
 	String getProfileById(String id);
 

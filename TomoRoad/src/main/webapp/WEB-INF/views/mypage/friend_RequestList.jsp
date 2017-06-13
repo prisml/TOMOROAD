@@ -12,6 +12,9 @@ function requestAccept(id){
 function requestRefuse(id){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_Refuse.do?senderID="+id+"&receiverID=${mvo.id}";
 }
+function requestBlock(id){
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList_Block.do?id=${mvo.id}&blockId="+id;
+}
 </script>
 
 <c:forEach items="${friend_RequestList }" var="requestList">
@@ -22,11 +25,12 @@ function requestRefuse(id){
     <span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">친구페이지로 이동</a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${requestList.SENDER_ID}">회원페이지로 이동</a></li>
     </ul>
     </div>
     
 	<input style = color:white; class="btn btn-danger" type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
 	<input style = color:white; class="btn btn-danger" type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
+	<input style = color:white; class="btn btn-danger" type = "button" value = "차단" onclick = "requestBlock('${requestList.SENDER_ID}')">
 	<br><br>
 </c:forEach>

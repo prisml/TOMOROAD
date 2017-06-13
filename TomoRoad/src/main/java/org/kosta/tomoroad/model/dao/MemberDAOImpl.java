@@ -39,14 +39,6 @@ public class MemberDAOImpl implements MemberDAO{
 		template.delete("member.deleteMember",id);		
 	}
 	@Override
-
-	public void friend(String senderID, String receiverID) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("senderID", senderID);
-		friend.put("receiverID",receiverID);
-		template.insert("member.friend",friend);
-	}
-	@Override
 	public MemberVO findId(MemberVO memberVO) {
 		return template.selectOne("member.findId", memberVO);
 	}
@@ -59,18 +51,16 @@ public class MemberDAOImpl implements MemberDAO{
 		template.insert("member.friend_Request",friend);
 	}
 	@Override
-	public void friend_Accept(String senderID, String receiverID) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("senderID", senderID);
-		friend.put("receiverID",receiverID);
+	public void friend_Accept(HashMap<String,String> friend) {
 		template.update("member.friend_Accept",friend);
 	}
 	@Override
-	public void friend_Refuse(String senderID, String receiverID) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("senderID", senderID);
-		friend.put("receiverID",receiverID);
+	public void friend_Refuse(HashMap<String,String> friend) {
 		template.update("member.friend_Refuse",friend);
+	}
+	@Override
+	public void friend_Block(HashMap<String,String> friend) {
+		template.update("member.friend_Block",friend);
 	}
 	@Override
 	public List<HashMap<String,String>> friend_RequestList(String receiverID) {
@@ -84,20 +74,30 @@ public class MemberDAOImpl implements MemberDAO{
 			list2.add(list.get(i));
 		return list2;
 	}
+	
 	@Override
-	public String getFriendId(String id, String selectId) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("id", id);
-		friend.put("selectId",selectId);
+	public List<HashMap<String, String>> friendBlockList(String id) {
+		List<HashMap<String,String>> list =  template.selectList("member.friendBlockListByReceiverId", id);
+		List<HashMap<String,String>> list2 =  template.selectList("member.friendBlockListBySenderId", id);
+		for(int i = 0;i<list.size();i++)
+			list2.add(list.get(i));
+		return list2;
+	}
+	
+	@Override
+	public String getFriendId(HashMap<String,String> friend) {
 		return template.selectOne("member.getFriendId", friend);
 	}
 	@Override
-	public void deleteFriend(String id, String deleteId) {
-		HashMap<String,String> friend = new HashMap<String,String>();
-		friend.put("id", id);
-		friend.put("selectId",deleteId);
+	public void deleteFriend(HashMap<String,String> friend) {
 		template.delete("deleteFriend",friend);
 	}
+	
+	@Override
+	public void unBlockFriend(HashMap<String,String> friend) {
+		template.delete("member.unBlockFriend",friend);
+	}
+	
 	@Override
 	public String getProfileById(String id) {
 		return template.selectOne("getProfileById", id);
@@ -108,8 +108,6 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public void profileReset(HashMap<String,String> profileInfo) {
-		System.out.println(profileInfo);
 		template.update("profileReset",profileInfo);
 	}
-
 }

@@ -59,7 +59,7 @@
                     <input type="text" class="form-control" name="id"  placeholder="아이디" autofocus required="required" style="font-size: 16px;">
             	</div>
             	<br>
-            	<div class="input-group">
+            	<div class="input-group" align="center">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required" style="font-size: 16px;">
                 </div>
@@ -81,9 +81,9 @@
         	<div class="form-group" align="center">
         	    <a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">가입</a>
      	    </div>  	  
-			<div class="form-group" align="center">
+<%-- 			<div class="form-group" align="center">
       	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
-      	    </div>
+      	    </div> --%>
       	    <div class="form-group" align="center">
             <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
         </div>
