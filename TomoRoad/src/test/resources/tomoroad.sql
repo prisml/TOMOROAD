@@ -206,13 +206,13 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 
 -----< member >-----
-insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg')
-insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png')
-insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png')
-insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png')
-insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg')
-insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
-insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg')
+insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg');
+insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png');
+insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png');
+insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png');
+insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg');
+insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg');
+insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg');
 
 update member set name ='송준영' where id = 'qaz'
 
@@ -270,6 +270,8 @@ select name,simple_detail,section,img from station;
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
 insert into place values(place_seq.nextval,'동대문','서울역','Capital');
 insert into place values(place_seq.nextval,'해운대','부산역','Youngnam');
+insert into place values(place_seq.nextval,'오죽헌','강릉역','Gwandong');
+insert into place values(place_seq.nextval,'금오산','구미역','Youngnam');
 
 select * from place where name LIKE '%해운대%'; 
 
