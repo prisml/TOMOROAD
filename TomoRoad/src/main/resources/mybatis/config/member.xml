@@ -37,10 +37,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from member
 		where name=#{name} and tel=#{tel}
 	</select>
-	<select id="findPw" resultType="memberVO" parameterType="memberVO">
-		select password from member
+	<select id="findPw" resultType="String" parameterType="memberVO">
+		select id from member
 		where id=#{id} and name=#{name} and tel=#{tel}
 	</select>
+    <update id="findPw2" parameterType="memberVO">
+        update member set
+		password=#{password}
+		where id=#{id}		
+	</update>
 		<insert id="friend_Request" parameterType="map">
 		insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 	</insert>

@@ -2,7 +2,6 @@ package org.kosta.tomoroad.model.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -42,10 +41,7 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO findId(MemberVO memberVO) {
 		return memberDAO.findId(memberVO);
 	}
-	@Override
-	public MemberVO findPw(MemberVO memberVO) {
-		return memberDAO.findPw(memberVO);
-	}
+
 	@Override
 	public void friend_Request(String senderID, String receiverID) {
 		HashMap<String,String> friend = new HashMap<String,String>();
@@ -109,6 +105,20 @@ public class MemberServiceImpl implements MemberService{
 		profileInfo.put("profileReset",profileReset);
 		memberDAO.profileReset(profileInfo);
 	}
+	@Override
+	public void findPw2(MemberVO vo) {
+		memberDAO.findPw2(vo);	
+		
+	}
+	@Override
+	public MemberVO findMember(MemberVO vo) {
+		return memberDAO.findMember(vo);
+	}
+	@Override
+	public String findPw(MemberVO vo) {
+		return memberDAO.findPw(vo);
+	}
+
 
 
 
