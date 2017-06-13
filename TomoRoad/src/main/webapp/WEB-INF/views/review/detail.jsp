@@ -48,18 +48,17 @@
 							<a href="${pageContext.request.contextPath}/review/update_form.do?no=${dvo.rvo.no}"
 								role="button" class="btn btn-default">수정</a>
 						</c:if>
-	                    <div class="service-icon">
-							<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}">
-								<c:choose>
-									<c:when test="${dvo.recommend==null }">
-										<i class="fa fa-heart-o"></i>
-									</c:when>
-									<c:otherwise>
-										<i class="fa fa-heart"></i>
-									</c:otherwise>
-								</c:choose>
-							</a>
-	                    </div>
+						<a href="${pageContext.request.contextPath}/review/recommend.do?no=${dvo.rvo.no}&id=${mvo.id}"
+						role="button" class="btn btn-default">
+							<c:choose>
+								<c:when test="${dvo.recommend==null }">
+									<i class="fa fa-heart-o"></i>
+								</c:when>
+								<c:otherwise>
+									<i class="fa fa-heart"></i>
+								</c:otherwise>
+							</c:choose>
+						</a>
 	                </div>
 				</c:if>
 			</div>
@@ -75,7 +74,9 @@
 			</div>
 			<div id="comment">
 				<ul id="comment-list">
-						
+					<c:if test="${dvo.comment[0]==null}">
+						등록된 댓글이 없습니다.
+					</c:if>
 				</ul>
 			</div>
 			<script type="text/javascript">
@@ -90,7 +91,7 @@
 					<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
 						temp += '<a id="deleteBtn" class="link-style3" href="#.">x</a>';
 					</c:if>
-					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p></div></div><ul id="reply${cvo.no}" class="chilren"></ul></div></li>'
+					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p></div></div><ul id="reply${cvo.no}" class="children"></ul></div></li>'
 					$("#${cvo.recommentId}").append(temp);
 				</c:forEach>
 			});
