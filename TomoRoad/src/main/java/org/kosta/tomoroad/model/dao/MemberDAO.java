@@ -2,7 +2,6 @@ package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.kosta.tomoroad.model.vo.MemberVO;
 
@@ -20,8 +19,6 @@ public interface MemberDAO {
 	public void deleteMember(String id);
 
 	MemberVO findId(MemberVO memberVO);
-
-	MemberVO findPw(MemberVO memberVO);
 
 	void friend_Request(HashMap<String,String> friend);
 	
@@ -48,4 +45,12 @@ public interface MemberDAO {
 	void profileFileUpload(HashMap<String,String> profileName);
 	
 	void profileReset(HashMap<String,String> profileInfo);
+
+	public void findPw2(MemberVO vo);
+
+	MemberVO findMember(MemberVO vo);
+
+	public String findPw(MemberVO vo);
+	
+	int friend_RequestInfo(String id);
 }

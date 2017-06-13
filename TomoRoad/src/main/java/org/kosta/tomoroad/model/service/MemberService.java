@@ -20,8 +20,6 @@ public interface MemberService {
 	void deleteMember(String id);
 
 	MemberVO findId(MemberVO memberVO);
-
-	MemberVO findPw(MemberVO memberVO);
 	
 	void friend_Request(String senderID,String receiverID);
 	
@@ -48,4 +46,12 @@ public interface MemberService {
 	void profileFileUpload(String id,String profile);
 	
 	void profileReset(String id,String profileReset);
+
+	void findPw2(MemberVO vo);
+
+	MemberVO findMember(MemberVO vo);
+
+	String findPw(MemberVO vo);
+	
+	int friend_RequestInfo(String id);
 }

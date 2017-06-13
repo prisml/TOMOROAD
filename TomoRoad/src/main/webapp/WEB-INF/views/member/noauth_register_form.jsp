@@ -63,6 +63,16 @@
 	   $('#password').focus();
 	   return false;
 	}
+	
+	 function checkTel(tel){
+
+		 var pw = tel;
+		 var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		 
+		 if(!regExp.tel( $(#tel).val() ) ){
+		  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+		  return false;
+		 }
  */
  
  $(document).ready(function(){
