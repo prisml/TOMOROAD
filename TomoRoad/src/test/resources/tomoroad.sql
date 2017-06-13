@@ -398,7 +398,6 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
-
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
 select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
@@ -407,22 +406,32 @@ insert into friend values('abcd','qwer','수락',sysdate)
 
 
 
-insert into friend values('abcd','java','수락',sysdate);
-insert into friend values('asdf','java','수락',sysdate);
+insert into friend values('abcd','java','대기',sysdate);
+insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
 insert into friend values('java','spring','수락',sysdate);
 insert into friend values('java','zxcv','수락',sysdate);
 
+select * from friend where 
+
 select * from friend
 
-update friend set state = '대기' where sender_id = 'onon22'
+update friend set state = '대기' where sender_id = 'asdf'
 
-select sender_id from friend where receiver_id = 'java' and state = '대기'
+update friend set state = '차단' where receiver_id = 'java' and sender_id = 'abcd' and state = '대기'
+
+select sender_id from friend where receiver_id = 'java' and sender_id = 'abcd' and state = '대기'
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.state = '대기' and f.sender_id (+)= m.id
 
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id and f.state = '대기'
+
+select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+
+update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+
+delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
 delete from friend where receiver_id = 'onon22'
 

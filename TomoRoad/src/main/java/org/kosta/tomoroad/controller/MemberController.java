@@ -145,6 +145,12 @@ public class MemberController {
 		return "redirect:friend_RequestList.do";
 	}
 
+	@RequestMapping("mypage/friend{viewName}_Block.do")
+	public String requestFriend_Block(@PathVariable String viewName,String id, String blockId) {
+		memberService.friend_Block(id, blockId);
+		return "redirect:friend"+viewName+".do";
+	}
+	
 	@RequestMapping("mypage/friendList.do")
 	public String friendList(HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
@@ -154,6 +160,17 @@ public class MemberController {
 		String profile = memberService.getProfileById(id);
 		model.addAttribute("profile",profile);
 		return "mypage/friendList.tiles";
+	}
+	
+	@RequestMapping("mypage/friend_BlockList.do")
+	public String friendBlockList(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("friendList", memberService.friendBlockList(id));
+		String profile = memberService.getProfileById(id);
+		model.addAttribute("profile",profile);
+		return "mypage/friend_BlockList.tiles";
 	}
 
 	@RequestMapping("mypage/friend_RequestList.do")
@@ -177,6 +194,12 @@ public class MemberController {
 	public String deleteFriend(String id, String deleteId) {
 		memberService.deleteFriend(id, deleteId);
 		return "redirect:mypage/friendList.do";
+	}
+	
+	@RequestMapping("FriendUnBlock.do")
+	public String FriendUnBlock(String id,String unBlockId){
+		memberService.unBlockFriend(id, unBlockId);
+		return "redirect:mypage/friend_BlockList.do";
 	}
 
 	@RequestMapping("noauth_weather.do")

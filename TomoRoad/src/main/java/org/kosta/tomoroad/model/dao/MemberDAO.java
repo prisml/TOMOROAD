@@ -32,12 +32,18 @@ public interface MemberDAO {
 	void friend_Accept(String senderID,String receiverID);
 	
 	void friend_Refuse(String senderID,String receiverID);
+	
+	void friend_Block(String id,String blockId);
 
 	List<HashMap<String,String>> friendList(String id);
+	
+	List<HashMap<String,String>> friendBlockList(String id);
 	
 	String getFriendId(String id,String selectId);
 	
 	void deleteFriend(String id,String deleteId);
+	
+	void unBlockFriend(String id,String unBlockId);
 
 	String getProfileById(String id);
 

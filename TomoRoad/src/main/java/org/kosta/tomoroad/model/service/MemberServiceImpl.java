@@ -66,9 +66,19 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.friend_Refuse(senderID, receiverID);
 	}
 	@Override
+	public void friend_Block(String id, String blockId) {
+		memberDAO.friend_Block(id, blockId);
+	}
+	@Override
 	public List<HashMap<String,String>> friendList(String id) {
 		return memberDAO.friendList(id);
 	}
+	
+	@Override
+	public List<HashMap<String, String>> friendBlockList(String id) {
+		return memberDAO.friendBlockList(id);
+	}
+	
 	@Override
 	public String getFriendId(String id, String selectId) {
 		return memberDAO.getFriendId(id, selectId);
@@ -76,6 +86,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteFriend(String id, String deleteId) {
 		memberDAO.deleteFriend(id, deleteId);
+	}
+	@Override
+	public void unBlockFriend(String id, String unBlockId) {
+		memberDAO.unBlockFriend(id, unBlockId);
 	}
 	@Override
 	public String getProfileById(String id) {
@@ -95,5 +109,8 @@ public class MemberServiceImpl implements MemberService{
 		profileInfo.put("profileReset",profileReset);
 		memberDAO.profileReset(profileInfo);
 	}
+
+
+
 
 }

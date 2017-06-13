@@ -12,6 +12,9 @@ function requestAccept(id){
 function requestRefuse(id){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_Refuse.do?senderID="+id+"&receiverID=${mvo.id}";
 }
+function requestBlock(id){
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList_Block.do?id=${mvo.id}&blockId="+id;
+}
 </script>
 
 <c:forEach items="${friend_RequestList }" var="requestList">
@@ -28,5 +31,6 @@ function requestRefuse(id){
     
 	<input style = color:white; class="btn btn-danger" type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
 	<input style = color:white; class="btn btn-danger" type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
+	<input style = color:white; class="btn btn-danger" type = "button" value = "차단" onclick = "requestBlock('${requestList.SENDER_ID}')">
 	<br><br>
 </c:forEach>

@@ -57,11 +57,12 @@
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-							<div id = "mypageLayout" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div style = "height:auto" id = "mypageLayout" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 								<div id = "mypageProfile"><tiles:insertAttribute name = "profile"/></div><br><br>
 								<div id = "mypageLeft"><tiles:insertAttribute name = "left"/></div>
 							</div>
-							<div id = "mypageMain" class="col-xs-7 col-sm-7 col-md-7 col-lg-7"><tiles:insertAttribute name = "main"/></div>
+							<div style = "height:auto"id = "mypageMain" class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+							<tiles:insertAttribute name = "main"/></div>
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 			</div>
 		</section>

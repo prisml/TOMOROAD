@@ -199,10 +199,10 @@
 	<div align="center">
 		<span>
 		<c:if test="${mvo.id==bvo.memberId}">
-			<button id="update" class="btn btn-sm btn-social-stumbleupon" style="width: 100px">UPDATE</button>
-			<button id="delete" class="btn btn-sm btn-social-pinterest"	style="width: 100px">DELETE</button>
+			<button id="update" class="btn btn-sm btn-social-stumbleupon" style="width: 100px">수정</button>
+			<button id="delete" class="btn btn-sm btn-social-pinterest"	style="width: 100px">삭제</button>
 		</c:if>
-			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">LIST</button>
+			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">목록으로</button>
 		</span>	
 	</div>
 
@@ -210,7 +210,7 @@
 	<div class="news_comments">
 		<div class="dividerHeading">
 			<h4>
-				<span> Comments </span>
+				<span> 댓글 (${bvo.commentCount}) </span>
 			</h4>
 		</div>
 		<div id="comment">
@@ -222,7 +222,7 @@
 		<!-- /#comments -->
 		<div class="dividerHeading">
 			<h4>
-				<span>Leave a comment</span>
+				<span> 댓글 작성 </span>
 			</h4>
 		</div>
 		<div class="comment-box row">
@@ -233,7 +233,7 @@
 				</p>
 			</div>
 		</div>
-			<button class="btn btn-lg btn-default" id="commentBtn">
+			<button class="btn btn-lg btn-default" id="commentBtn" style="font-size:12px;">
 			댓글 등록하기
 			</button>
 		</c:if>
