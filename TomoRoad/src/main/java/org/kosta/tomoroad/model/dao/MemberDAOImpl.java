@@ -110,4 +110,8 @@ public class MemberDAOImpl implements MemberDAO{
 	public void profileReset(HashMap<String,String> profileInfo) {
 		template.update("profileReset",profileInfo);
 	}
+	@Override
+	public int friend_RequestInfo(String id) {
+		return template.selectOne("friend_RequestInfo", id);
+	}
 }

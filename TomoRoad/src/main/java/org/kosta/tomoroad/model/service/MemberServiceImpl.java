@@ -128,6 +128,10 @@ public class MemberServiceImpl implements MemberService{
 		profileInfo.put("profileReset",profileReset);
 		memberDAO.profileReset(profileInfo);
 	}
+	@Override
+	public int friend_RequestInfo(String id) {
+		return memberDAO.friend_RequestInfo(id);
+	}
 
 
 

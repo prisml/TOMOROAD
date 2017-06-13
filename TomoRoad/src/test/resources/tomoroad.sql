@@ -415,6 +415,8 @@ insert into friend values('java','zxcv','수락',sysdate);
 
 select * from friend where 
 
+select sender_id from friend where receiver_id = 'java' and state = '대기'
+
 select * from friend
 
 update friend set state = '대기' where sender_id = 'asdf'

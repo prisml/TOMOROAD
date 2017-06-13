@@ -11,7 +11,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.tomoroad.model.dao.MemberDAO;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.MemberVO;
@@ -183,6 +182,15 @@ public class MemberController {
 		String profile = memberService.getProfileById(id);
 		model.addAttribute("profile",profile);
 		return "mypage/friend_RequestList.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping("friend_RequestInfo.do")
+	public int friend_RequestInfo(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		return memberService.friend_RequestInfo(id);
 	}
 
 	@RequestMapping("getFriendId.do")

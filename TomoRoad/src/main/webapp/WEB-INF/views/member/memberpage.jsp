@@ -8,7 +8,7 @@ function friendRequest(id){
 </script>
 아이디 : ${memberInfo.id}<br>
 이   름 : ${memberInfo.name}<br>
-<img width="200" height="200" src = "${memberInfo.profile}"><br>
+<img width="200" height="200" src = "${memberInfo.profile}"><br><br>
 <c:choose>
 	<c:when test="${friend != null}">
 		<input style = color:white; class="btn btn-danger"  type = "text" value = "친구">

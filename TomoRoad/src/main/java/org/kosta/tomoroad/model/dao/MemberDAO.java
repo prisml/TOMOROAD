@@ -48,4 +48,6 @@ public interface MemberDAO {
 	void profileFileUpload(HashMap<String,String> profileName);
 	
 	void profileReset(HashMap<String,String> profileInfo);
+	
+	int friend_RequestInfo(String id);
 }

@@ -2,6 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript">
+function reqeustList(){
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
+}
+
+$(document).ready(function(){
+	$.ajax({
+		type:"get",
+		url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
+		success:function(date){
+				if(date != 0){
+					$("#requestFriend").html("<input height = 65 width = 65 type = image src = ${pageContext.request.contextPath}/resources/images/98.png onclick = reqeustList()> ");
+				}else{
+					$("#requestFriend").html("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png>");
+				}
+			}
+	})
+})
+</script>
+
 <header id="header">
 	<div class="col-sm-12">
 		<div id="logo">
@@ -21,7 +41,7 @@
 			<ul class="nav navbar-nav" style="align: center">
 				<li>　</li>
 				<li><a href="${pageContext.request.contextPath}/home.do">
-						HOME </a></li>
+				HOME</a></li>
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
@@ -52,6 +72,9 @@
 						</c:otherwise>
 					</c:choose></li>
 				<li>　</li>
+				<c:if test="${mvo != null }">
+				<span id = "requestFriend"></span>
+				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
  --%>				

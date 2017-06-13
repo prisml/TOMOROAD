@@ -87,6 +87,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFriendById" resultType="memberVo">
 		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in(#{id},#{selectId}) and state = '수락'
 	</select>
+	<select id="friend_RequestInfo" resultType="int">
+		select count(*) from friend where receiver_id = #{value} and state = '대기'
+	</select>
 </mapper>
 
 

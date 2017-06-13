@@ -48,4 +48,6 @@ public interface MemberService {
 	void profileFileUpload(String id,String profile);
 	
 	void profileReset(String id,String profileReset);
+	
+	int friend_RequestInfo(String id);
 }
