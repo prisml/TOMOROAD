@@ -9,7 +9,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.runner.Request;
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
@@ -186,6 +188,19 @@ public class ReviewController {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		service.writeComment(vo, reviewNo);
 		return new ModelAndView("redirect:noauth_detail.do?no=" + reviewNo);
+	}
+	
+	//mypage에서 리뷰리스트를 갖고옴
+	@RequestMapping(value="review/getListByMemberInMemberPage.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id,Model model) {
+		System.out.println("페이지랑 아이디"+page+id);
+		if (page == null)
+			page = "1";
+		
+		ListVO<ReviewVO> reviewList=service.getListByMemberInMemberPage(page,id);
+		System.out.println("리뷰리스트"+reviewList);
+		return reviewList;
 	}
 	
 	@RequestMapping("review/getPlaceList.do")
