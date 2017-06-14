@@ -42,4 +42,7 @@ public interface ReviewService {
 	
 	void writeComment(ReviewCommentVO vo, int reviewNo);
 
+	ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id);
+
+
 }
