@@ -21,7 +21,6 @@ $(document).ready(function(){
 	})
 })
 </script>
-
 <header id="header">
 	<%-- <div class="col-sm-12">
 		<div id="logo">
@@ -35,10 +34,10 @@ $(document).ready(function(){
 	<!-- Navigation
     ================================================== -->
 
-	<div class="navbar navbar-default navbar-static-top col-sm-12"
+	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="align: center">
+			<ul class="nav navbar-nav" style="background-color:#fff; align: center">
 				<li>　</li>
 				<li><a href="${pageContext.request.contextPath}/home.do">
 				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
@@ -55,7 +54,7 @@ $(document).ready(function(){
 						REVIEW </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do?id=${mvo.id}">
+				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
 				<li>　</li>
 
