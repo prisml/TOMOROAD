@@ -167,14 +167,8 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
-<<<<<<< HEAD
-	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
-	constraint fk_burn_comment_id foreign key(member_id) references member(id),	
-	burn_comment varchar2(100) default 'comment' not null
-=======
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 );
 create sequence burn_comment_seq nocache;
 alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
