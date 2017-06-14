@@ -8,7 +8,7 @@ function friendRequest(id){
 </script>
 아이디 : ${memberInfo.id}<br>
 이   름 : ${memberInfo.name}<br>
-<img width="200" height="200" src = "${memberInfo.profile}"><br>
+<img width="200" height="200" src = "${memberInfo.profile}"><br><br>
 
 <!-- 친구면은 친구버튼, 아니면 친구신청 버튼 -->
 <c:choose>
