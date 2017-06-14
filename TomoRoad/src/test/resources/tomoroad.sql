@@ -449,6 +449,8 @@ select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
 
+
+
 update friend set state = '대기' where sender_id = 'asdf'
 
 update friend set state = '차단' where receiver_id = 'java' and sender_id = 'abcd' and state = '대기'

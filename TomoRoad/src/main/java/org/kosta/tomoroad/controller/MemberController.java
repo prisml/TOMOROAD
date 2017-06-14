@@ -152,7 +152,7 @@ public class MemberController {
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {
 		memberService.friend_Request(senderId, receiverId);
-		return "redirect:member/memberpage.do?id="+senderId+"&selectId="+receiverId;
+		return "redirect:memberpage.do?selectId="+receiverId;
 	}
 
 	@RequestMapping("mypage/friend_Accept.do")
