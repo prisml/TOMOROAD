@@ -7,6 +7,8 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
+
+
 <!-- CSS FILES -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -37,7 +39,7 @@
 <body>
 	<section class="wrapper container">
 		<tiles:insertAttribute name="header" />
-		<section id="page_head" class="row">
+		<%-- <section id="page_head" class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="page_title">
 					<h2>
@@ -53,7 +55,8 @@
 					</ul>
 				</nav>
 			</div>
-		</section>
+		</section> --%>
+
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -69,7 +72,6 @@
 		<tiles:insertAttribute name="footer" />
 	</section>
 	<!--start footer-->
-
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
