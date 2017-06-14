@@ -298,6 +298,8 @@ select name,simple_detail,section,img from station;
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
 insert into place values(place_seq.nextval,'동대문','서울역','Capital');
 insert into place values(place_seq.nextval,'해운대','부산역','Youngnam');
+insert into place values(place_seq.nextval,'오죽헌','강릉역','Gwandong');
+insert into place values(place_seq.nextval,'금오산','구미역','Youngnam');
 
 select * from place where name LIKE '%해운대%'; 
 
