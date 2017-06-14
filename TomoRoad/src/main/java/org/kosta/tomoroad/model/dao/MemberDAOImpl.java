@@ -1,7 +1,6 @@
 package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -42,10 +41,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO findId(MemberVO memberVO) {
 		return template.selectOne("member.findId", memberVO);
 	}
-	@Override
-	public MemberVO findPw(MemberVO memberVO) {
-		return template.selectOne("member.findPw", memberVO);
-	}	
+
 	@Override
 	public void friend_Request(HashMap<String,String> friend) {
 		template.insert("member.friend_Request",friend);
@@ -109,5 +105,22 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public void profileReset(HashMap<String,String> profileInfo) {
 		template.update("profileReset",profileInfo);
+	}
+	@Override
+	public void findPw2(MemberVO vo) {
+		template.update("member.findPw2",vo);
+		
+	}
+	@Override
+	public MemberVO findMember(MemberVO vo) {
+		return template.selectOne("member.findMember", vo);
+	}
+	@Override
+	public String findPw(MemberVO vo) {
+		return template.selectOne("member.findPw", vo);
+	}
+
+	public int friend_RequestInfo(String id) {
+		return template.selectOne("friend_RequestInfo", id);
 	}
 }
