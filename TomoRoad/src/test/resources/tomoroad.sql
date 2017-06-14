@@ -308,7 +308,7 @@ select * from place where name LIKE '%해운대%';
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
 delete from BURN_BOARD where no='2'
 
-select * from BURN_COMMENT;
+select c.no, c.content, c.posted_time, c.recomment, burn_no, member_id, state from BURN_COMMENT;
 
 
 select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 

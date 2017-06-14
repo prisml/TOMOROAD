@@ -52,12 +52,10 @@ public class BurnServiceImpl implements BurnService {
 	}
 	@Override
 	public List<BurnCommentVO> findBurnCommentByNo(String no) {
-		// TODO Auto-generated method stub
 		return burnDAO.findBurnCommentByNo(no);
 	}
 	@Override
 	public String findCommentMemberId(int no) {
-		// TODO Auto-generated method stub
 		return burnDAO.findCommentMemberId(no);
 	}
 	
@@ -91,13 +89,11 @@ public class BurnServiceImpl implements BurnService {
 
 	@Override
 	public void registeComment(BurnCommentVO vo) {
-		// TODO Auto-generated method stub
 		burnDAO.registeComment(vo);
 	}
 
 	@Override
 	public void deleteComment(BurnCommentVO vo) {
-		// TODO Auto-generated method stub
 		String member_id=burnDAO.findCommentMemberId(vo.getNo());
 		if(member_id.equals(vo.getMember_id())){
 		burnDAO.deleteComment(vo);

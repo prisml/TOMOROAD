@@ -43,7 +43,7 @@
 													if (data[z].recomment != 0) { //대댓글일 경우																									   
 															comments += "<ul class='children'>";
 															comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
-															comments += "<div class='avatar'><img alt='' src='/tomoroad/resources/images/blog/tomas.png' class='avatar'></div>";
+															comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 															comments += "<div class='comment-container'>";
 															comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
 															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
@@ -54,7 +54,7 @@
 														
 													}else { // 본댓글일 경우
 														comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
-														comments += "<div class='avatar'><img alt='' src='/tomoroad/resources/images/blog/tomas.png' class='avatar'></div>";
+														comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 														comments += "<div class='comment-container'>";
 														comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
 														comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
@@ -93,11 +93,10 @@
 												}
 												
 												comments += "</li>"; // comment
-											}
-
-										}//for
-									}//success
-								});//ajax
+											} //if
+										} //for
+									} //success
+								}); //ajax
 					
 						
 								$(document).on("click","#deleteCommentBtn",function(){
@@ -146,7 +145,7 @@
 										content.focus();
 									}else{
 										var recontent="<strong>To. "+$(this).parent().parent().children(".comment-author").text()+"   </strong>"+content.val();
-										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+recontent+"&member_id=${mvo.id}";
+										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+recontent+"&member_id=${mvo.id}&profile=${mvo.profile}";
 									}
 								}); //답글달기-버튼 클릭 시 
 								
@@ -163,7 +162,7 @@
 										alert("댓글 내용을 입력해주세요!");
 										content.focus();
 									}else{										
-										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+"&member_id=${mvo.id}&burn_no=${bvo.no}";
+										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+"&member_id=${mvo.id}&burn_no=${bvo.no}&profile=${mvo.profile}";
 									}
 								}); // Post Comment 버튼 클릭 시
 							
