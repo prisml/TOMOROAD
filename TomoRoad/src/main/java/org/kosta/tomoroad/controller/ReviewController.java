@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
@@ -84,14 +85,14 @@ public class ReviewController {
 
 	@RequestMapping("review/register_form.do")
 	public ModelAndView registerForm() {
-		return new ModelAndView("review/register_form.tiles", "placeList", service.getPlaceList());
+		return new ModelAndView("review/register_form.tiles", "stationList", service.getStaionList());
 	}
 
 	@RequestMapping("review/update_form.do")
-	public ModelAndView updateForm(String no) {
+	public ModelAndView updateForm(String no, String name) {
 		System.out.println("updateForm no=" + no);
 		System.out.println("rvo=" + service.getDetail(no));
-		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no));
+		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no,name));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
@@ -185,5 +186,12 @@ public class ReviewController {
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		service.writeComment(vo, reviewNo);
 		return new ModelAndView("redirect:noauth_detail.do?no=" + reviewNo);
+	}
+	
+	@RequestMapping("review/getPlaceList.do")
+	@ResponseBody
+	public Object getPlaceList(String name){
+		List<PlaceVO> list=service.getPlaceList(name);
+		return list;
 	}
 }

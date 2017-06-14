@@ -10,6 +10,7 @@ import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -65,8 +66,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<PlaceVO> getPlaceList() {
-		return template.selectList("place.getList");
+	public List<PlaceVO> getPlaceList(String name) {
+		return template.selectList("place.getList",name);
 	}
 
 	@Override
@@ -123,5 +124,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	@Override
 	public List<ReviewCommentVO> getCommentList(String no) {
 		return template.selectList("review.getCommentList", no);
+	}
+
+	@Override
+	public List<StationVO> getStationList() {
+		return template.selectList("station.getList");
 	}
 }

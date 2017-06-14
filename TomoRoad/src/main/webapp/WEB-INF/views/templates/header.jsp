@@ -23,14 +23,14 @@ $(document).ready(function(){
 </script>
 
 <header id="header">
-	<div class="col-sm-12">
+	<%-- <div class="col-sm-12">
 		<div id="logo">
 			<h1>
 				<a href="${pageContext.request.contextPath}/home.do"><img
 					src="${pageContext.request.contextPath}/resources/images/logo.png" /></a>
 			</h1>
 		</div>
-	</div>
+	</div> --%>
 
 	<!-- Navigation
     ================================================== -->
@@ -41,7 +41,9 @@ $(document).ready(function(){
 			<ul class="nav navbar-nav" style="align: center">
 				<li>　</li>
 				<li><a href="${pageContext.request.contextPath}/home.do">
-				HOME</a></li>
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
+					style="height:40px; margin-top:-10px;"/>
+				</a></li>
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
