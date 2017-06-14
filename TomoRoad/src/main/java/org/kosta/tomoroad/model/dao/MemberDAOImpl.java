@@ -121,6 +121,10 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	public int friend_RequestInfo(String id) {
-		return template.selectOne("friend_RequestInfo", id);
+		return template.selectOne("member.friend_RequestInfo", id);
+	}
+	
+	public int checkFriend(HashMap<String,String> friend){
+		return template.selectOne("member.checkFriend", friend);
 	}
 }

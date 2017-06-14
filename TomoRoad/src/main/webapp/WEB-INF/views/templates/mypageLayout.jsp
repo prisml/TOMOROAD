@@ -7,6 +7,7 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
+
 <!-- CSS FILES -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -32,28 +33,12 @@
 	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>
 	<section class="wrapper container">
 		<tiles:insertAttribute name="header" />
-		<section id="page_head" class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12">
-				<div class="page_title">
-					<h2>
-						<tiles:insertAttribute name="subtitle" ignore="true" />
-					</h2>
-					<span class="sub_heading">We are here for you 24/7</span>
-				</div>
-				<nav id="breadcrumbs">
-					<ul>
-						<li>Explain :</li>
-						<li><a href="${pageContext.request.contextPath}/home.do"><tiles:insertAttribute
-									name="title" ignore="true" /></a></li>
-					</ul>
-				</nav>
-			</div>
-		</section>
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -69,7 +54,6 @@
 		<tiles:insertAttribute name="footer" />
 	</section>
 	<!--start footer-->
-
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>

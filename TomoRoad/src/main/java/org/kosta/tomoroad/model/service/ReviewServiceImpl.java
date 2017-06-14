@@ -12,6 +12,7 @@ import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -102,8 +103,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<PlaceVO> getPlaceList() {
-		return dao.getPlaceList();
+	public List<PlaceVO> getPlaceList(String name) {
+		return dao.getPlaceList(name);
 	}
 
 	@Override
@@ -123,9 +124,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map<String, Object> getUpdateDetail(String no) {
+	public Map<String, Object> getUpdateDetail(String no,String name) {
 		Map<String, Object> map = getDetail(no);
-		map.put("placeList", getPlaceList());
+		map.put("placeList", getPlaceList(name));
 		return map;
 	}
 
@@ -147,5 +148,9 @@ public class ReviewServiceImpl implements ReviewService {
 		lvo.setList(dao.getListByMember(pb, id));
 		return lvo;
 	}
-
+	
+	@Override
+	public List<StationVO> getStaionList() {
+		return dao.getStationList();
+	}
 }

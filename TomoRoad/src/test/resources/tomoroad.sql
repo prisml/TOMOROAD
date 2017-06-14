@@ -167,14 +167,8 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
-<<<<<<< HEAD
-	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
-	constraint fk_burn_comment_id foreign key(member_id) references member(id),	
-	burn_comment varchar2(100) default 'comment' not null
-=======
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 );
 create sequence burn_comment_seq nocache;
 alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
@@ -314,7 +308,7 @@ select * from place where name LIKE '%해운대%';
 insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
 delete from BURN_BOARD where no='2'
 
-select * from BURN_COMMENT;
+select c.no, c.content, c.posted_time, c.recomment, burn_no, member_id, state from BURN_COMMENT;
 
 
 select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
@@ -449,7 +443,7 @@ insert into friend values('qwer','java','대기',sysdate);
 insert into friend values('java','spring','수락',sysdate);
 insert into friend values('java','zxcv','수락',sysdate);
 
-select * from friend where 
+select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
@@ -471,7 +465,7 @@ update friend set state = '차단' where sender_id in ('abcd','java') and receiv
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
-delete from friend where receiver_id = 'onon22'
+delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
 

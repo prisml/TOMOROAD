@@ -24,4 +24,9 @@
 	<select id="getAllStationInfo" resultType="stationVO">
 		select * from station
 	</select>
+	
+	<select id="getList" resultType="stationVO">
+		select name from station
+	</select>
+	
 </mapper>
