@@ -24,7 +24,7 @@
 						HOME </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
+				<li><a href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
 						BURNING </a></li>
 				<li>　</li>
 

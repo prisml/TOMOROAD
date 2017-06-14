@@ -41,8 +41,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
 	<!-- 댓글 -->
-	<select id="findBurnCommentByNo" resultType="burnCommentVO">
-		select * from burn_comment where burn_no=#{value} order by no asc	
+	<select id="findBurnCommentByNo" resultType="burnCommentVO">		
+		select c.no, c.content, c.posted_time, c.recomment, c.burn_no, c.member_id, c.state, m.profile 
+		from BURN_COMMENT c, member m
+		where c.member_id=m.id and c.burn_no=#{value} order by c.no asc	
 	</select>
 	<select id="findCommentMemberId" resultType="String">
 		select member_id from burn_comment where no=#{value}

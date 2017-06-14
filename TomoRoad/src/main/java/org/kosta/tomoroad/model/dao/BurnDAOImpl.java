@@ -43,13 +43,11 @@ public class BurnDAOImpl implements BurnDAO{
 
 	@Override
 	public List<BurnCommentVO> findBurnCommentByNo(String no) {
-		// TODO Auto-generated method stub
 		return template.selectList("burn.findBurnCommentByNo",no);
 	}
 
 	@Override
 	public String findCommentMemberId(int no) {
-		// TODO Auto-generated method stub
 		return template.selectOne("burn.findCommentMemberId",no);
 	}
 	public void updateBurn(BurnVO bvo) {
