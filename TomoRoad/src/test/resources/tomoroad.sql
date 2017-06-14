@@ -447,7 +447,7 @@ insert into friend values('qwer','java','대기',sysdate);
 insert into friend values('java','spring','수락',sysdate);
 insert into friend values('java','zxcv','수락',sysdate);
 
-select * from friend where 
+select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
@@ -469,7 +469,7 @@ update friend set state = '차단' where sender_id in ('abcd','java') and receiv
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
-delete from friend where receiver_id = 'onon22'
+delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
 
