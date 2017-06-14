@@ -28,7 +28,7 @@ function friendRequest(id){
         <div class="col-md-12">
             <section id="timeline" class="timeline-container">
                 <div class="timeline-block">
-                    <div class="timeline-img tl-green">
+                    <div class="timeline-img tl-green"> <!-- 초록색 그림 -->
                         <i class="fa fa-picture-o"></i>
                     </div>
 
