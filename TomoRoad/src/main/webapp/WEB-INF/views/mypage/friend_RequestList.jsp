@@ -25,7 +25,7 @@ function requestBlock(id){
     <span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${requestList.SENDER_ID}">친구페이지로 이동</a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${requestList.SENDER_ID}">회원페이지로 이동</a></li>
     </ul>
     </div>
     

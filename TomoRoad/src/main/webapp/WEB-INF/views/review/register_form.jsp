@@ -2,18 +2,55 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-<!--
-//-->
-$(document).ready(function(){
-	$("#addPicture").click(function(){
-		var count = $("#fileDiv > input").size();
-		var temp = '<input name="files['+count;
-		temp+=']" class="form-control"';
-		temp+='maxlength="100" data-msg-required="Please input your picture."';
-		temp+='value="" placeholder="사진등록" type="file">';
-		$("#fileDiv").append(temp);
+	$(document).ready(function(){
+		$("#addPicture").click(function(){
+			var count = $("#fileDiv > input").size();
+			var temp = '<input name="files['+count;
+			temp+=']" class="form-control"';
+			temp+='maxlength="100" data-msg-required="Please input your picture."';
+			temp+='value="" placeholder="사진등록" type="file">';
+			$("#fileDiv").append(temp);
+		});
+		$(".star_rating a").click(function() {
+		    $(this).parent().children("a").removeClass("on");
+		    $(this).addClass("on").prevAll("a").addClass("on");
+		    $("#star").val($(".on").length);
+		    return false;
+		});
+		$("#stationName").change(function(){
+			var name = "name="+$(this).val();
+			$.ajax({
+				type : "GET",
+				url : "getPlaceList.do",
+				data : name,
+				success : function(data) {
+					$("select[name='placeNo'] option").remove();
+					for(var i=0;i<data.length;i++){
+						$("<option></option>")
+						  .attr("selected", "selected")
+						  .text(data[i].name)
+						  .attr("value", data[i].no)
+						  .appendTo("select[name='placeNo']");
+					}
+				}
+			});
+		});
+		var name = "name="+$("#stationName").val();
+		$.ajax({
+			type : "GET",
+			url : "getPlaceList.do",
+			data : name,
+			success : function(data) {
+				for(var i=0;i<data.length;i++){
+					$("<option></option>")
+					  .attr("selected", "selected")
+					  .text(data[i].name)
+					  .attr("value", data[i].no)
+					  .appendTo("select[name='placeNo']");
+				}
+			}
+		});
 	});
-});
 </script>
 <div class="col-lg-8 col-md-8 col-sm-8">
 	<div class="dividerHeading">
@@ -22,7 +59,7 @@ $(document).ready(function(){
 		</h4>
 	</div>
 
-	<div class="alert alert-success hidden alert-dismissable"
+	<!-- <div class="alert alert-success hidden alert-dismissable"
 		id="contactSuccess">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">×</button>
@@ -33,7 +70,7 @@ $(document).ready(function(){
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">×</button>
 		<strong>Error!</strong> There was an error sending your message.
-	</div>
+	</div> -->
 
 	<form method="post" id="contactForm" enctype="multipart/form-data"
 		action="${pageContext.request.contextPath}/review/register.do"
@@ -45,11 +82,18 @@ $(document).ready(function(){
 						data-msg-required="Please enter title." value=""
 						placeholder="Title" type="text">
 				</div>
-				<div class="col-lg-6 ">
-					<select name="placeNo" class="from-control">
-						<c:forEach items="${placeList}" var="pvo">
-							<option value="${pvo.no }">${pvo.name }</option>
+				<div class="col-lg-3 ">
+					<select id="stationName" name="stationName" class="from-control">
+						<c:forEach items="${stationList}" var="svo">
+							<option value="${svo.name }">${svo.name }</option>
 						</c:forEach>
+					</select>
+				</div>
+				<div class="col-lg-3 ">
+					<select id="placeNo" name="placeNo" class="from-control">
+						<%-- <c:forEach items="${placeList}" var="pvo">
+							<option value="${pvo.name }">${pvo.name }</option>
+						</c:forEach> --%>
 					</select>
 				</div>
 			</div>
@@ -66,9 +110,14 @@ $(document).ready(function(){
 					value="Add" type="button">
 				</div>
 				<div class="col-md-5">
-					<input id="subject" name="star" class="form-control"
-						maxlength="100"
-						value="5" placeholder="별점" type="number" max="5" min="0">
+					<input id="star" name="star" value="5" type="hidden">
+					<p class="star_rating">
+					    <a href="#." class="on">★</a>
+					    <a href="#." class="on">★</a>
+					    <a href="#." class="on">★</a>
+					    <a href="#." class="on">★</a>
+					    <a href="#." class="on">★</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -85,7 +134,7 @@ $(document).ready(function(){
 		<div class="row">
 			<div class="col-md-12">
 				<input data-loading-text="Loading..." class="btn btn-default btn-lg"
-					value="Register" type="submit">
+					value="Register" type="submit" onsubmit="starCount()">
 			</div>
 		</div>
 	</form>

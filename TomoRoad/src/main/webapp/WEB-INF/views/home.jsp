@@ -16,14 +16,11 @@
 	             $("#titles").empty();
 	             $("#images").empty();
 	            for (index in forecast) {
-
 	               var newForecastString = forecast[index]['title'];
 	               var newForecastParagraph = $('<td/>').text(newForecastString);
 	                $("#titles").append(newForecastParagraph);
-	                
 	               var newForecastImages = forecast[index]['icon_url'];
 	               $("#images").append("<img src="+newForecastImages+">");
-   
 	            } 
 	        }
 	    });
@@ -38,6 +35,7 @@ var markers=[];
 var infoList= [];
 var windowNames = [];
 var names=[];
+var cityurl =[];
 $(document).ready(function(){
 	function doInfo(marker, windowName,windowNames) {
         google.maps.event.addListener(marker, 'click', function() {
@@ -62,9 +60,20 @@ $(document).ready(function(){
 		$("#tomoroading").html("");
 		names =[];
 	});
+	function weatherInfo(cityname){		
+		$.ajax({
+			url: "http://api.wunderground.com/api/a876e7a78280d5b6/conditions/lang:KR/q/CA/"+cityname+".json",
+			dataType: "jsonp",
+			success : function(parsed_json) {
+				var weather = parsed_json['current_observation'];
+				return "1";
+			}	
+		});
+	}
 	$.ajax({
 		type:"GET",
 		url:"station/noauth_getAllStationInfo.do",
+		async: false,
 		success:function(data){
 			for(var i=0;i<data.length;i++){
 				markers[i] = new google.maps.Marker({
@@ -73,8 +82,9 @@ $(document).ready(function(){
 					position: {lat: data[i].lat,lng: data[i].lng},
 					title: data[i].name
 				});
-				infoList[i] += '<div>';
+				infoList[i] += '<div id="content">';
 				infoList[i] +='<h1 class="firstHeading">'+data[i].name+'</h1>';
+				infoList[i] += '<img src='+weatherInfo("seoul")+'>';
 				infoList[i] +='<div id="bodyContent">';
 				infoList[i] +='<p>'+data[i].detail+'</p>';
 				infoList[i] +='<br>';
@@ -103,7 +113,9 @@ $(document).on("click","#roading",function(){
 		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+names;
 	}
 });
-
+$(document).on("click","#testBtn",function(){
+	$("#test").html("<img src="+img+">");	
+});
 
 function initMap() {
 	   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -229,11 +241,10 @@ function initMap() {
  	 <div class="dividerHeading">
             <h4><span>날씨를 알고 싶어요╹◡╹)ﾉ</span></h4>
         </div>
-
-<div id="test">
+<!-- 날씨 -->
 		<div id="titles"></div>
 		    <div id="images"></div>
-	</div>
+
 
 		<div >
 			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 

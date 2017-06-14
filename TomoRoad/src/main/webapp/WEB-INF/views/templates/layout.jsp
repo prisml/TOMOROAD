@@ -39,7 +39,7 @@
 <body>
 	<section class="wrapper container">
 		<tiles:insertAttribute name="header" />
-		<section id="page_head" class="row">
+		<%-- <section id="page_head" class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="page_title">
 					<h2>
@@ -55,7 +55,7 @@
 					</ul>
 				</nav>
 			</div>
-		</section>
+		</section> --%>
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
