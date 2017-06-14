@@ -4,9 +4,10 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(document).on("click","#replyBtn",function(){
+			$(".replyForm").remove();
 			var replyLi=$(this).parent().parent().parent();
 			var parentNo=$(this).parent().attr("name");
-			var content = '<form method="post" action="${pageContext.request.contextPath}/review/writeComment.do">';
+			var content = '<form class="replyForm" method="post" action="${pageContext.request.contextPath}/review/writeComment.do">';
 			content += "<br><div>";
 			content += '<p><textarea name="content" class="form-control" rows="4" cols="40"';
 			content += 'id="comments" onfocus="if(this.value == \'Message\') { this.value = \'\'; }"';

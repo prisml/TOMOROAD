@@ -167,14 +167,8 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
-<<<<<<< HEAD
-	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no),
-	constraint fk_burn_comment_id foreign key(member_id) references member(id),	
-	burn_comment varchar2(100) default 'comment' not null
-=======
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 );
 create sequence burn_comment_seq nocache;
 alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
@@ -304,6 +298,8 @@ select name,simple_detail,section,img from station;
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
 insert into place values(place_seq.nextval,'동대문','서울역','Capital');
 insert into place values(place_seq.nextval,'해운대','부산역','Youngnam');
+insert into place values(place_seq.nextval,'오죽헌','강릉역','Gwandong');
+insert into place values(place_seq.nextval,'금오산','구미역','Youngnam');
 
 select * from place where name LIKE '%해운대%'; 
 

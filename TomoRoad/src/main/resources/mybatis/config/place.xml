@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getList" resultType="placeVO">
 		select no,name,station_name,area
-		from place
+		from place where station_name=#{value}
 	</select>
 	
 </mapper>

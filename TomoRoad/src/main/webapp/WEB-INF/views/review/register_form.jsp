@@ -17,6 +17,39 @@
 		    $("#star").val($(".on").length);
 		    return false;
 		});
+		$("#stationName").change(function(){
+			var name = "name="+$(this).val();
+			$.ajax({
+				type : "GET",
+				url : "getPlaceList.do",
+				data : name,
+				success : function(data) {
+					$("select[name='placeNo'] option").remove();
+					for(var i=0;i<data.length;i++){
+						$("<option></option>")
+						  .attr("selected", "selected")
+						  .text(data[i].name)
+						  .attr("value", data[i].no)
+						  .appendTo("select[name='placeNo']");
+					}
+				}
+			});
+		});
+		var name = "name="+$("#stationName").val();
+		$.ajax({
+			type : "GET",
+			url : "getPlaceList.do",
+			data : name,
+			success : function(data) {
+				for(var i=0;i<data.length;i++){
+					$("<option></option>")
+					  .attr("selected", "selected")
+					  .text(data[i].name)
+					  .attr("value", data[i].no)
+					  .appendTo("select[name='placeNo']");
+				}
+			}
+		});
 	});
 </script>
 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -26,7 +59,7 @@
 		</h4>
 	</div>
 
-	<div class="alert alert-success hidden alert-dismissable"
+	<!-- <div class="alert alert-success hidden alert-dismissable"
 		id="contactSuccess">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">×</button>
@@ -37,7 +70,7 @@
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">×</button>
 		<strong>Error!</strong> There was an error sending your message.
-	</div>
+	</div> -->
 
 	<form method="post" id="contactForm" enctype="multipart/form-data"
 		action="${pageContext.request.contextPath}/review/register.do"
@@ -49,11 +82,18 @@
 						data-msg-required="Please enter title." value=""
 						placeholder="Title" type="text">
 				</div>
-				<div class="col-lg-6 ">
-					<select name="placeNo" class="from-control">
-						<c:forEach items="${placeList}" var="pvo">
-							<option value="${pvo.no }">${pvo.name }</option>
+				<div class="col-lg-3 ">
+					<select id="stationName" name="stationName" class="from-control">
+						<c:forEach items="${stationList}" var="svo">
+							<option value="${svo.name }">${svo.name }</option>
 						</c:forEach>
+					</select>
+				</div>
+				<div class="col-lg-3 ">
+					<select id="placeNo" name="placeNo" class="from-control">
+						<%-- <c:forEach items="${placeList}" var="pvo">
+							<option value="${pvo.name }">${pvo.name }</option>
+						</c:forEach> --%>
 					</select>
 				</div>
 			</div>
