@@ -20,7 +20,7 @@
 	<c:forEach items="${friend_RequestList }" var="requestList">
 		<tr>
 			<td>
-				<img style="border-radius: 7px;-moz-border-radius: 7px;-khtml-border-radius: 7px;-webkit-border-radius: 7px;" width = "100" height="100" src = "${requestList.PROFILE}"> 	
+				<img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" width = "100" height="100" src = "${requestList.PROFILE}"> 	
 			</td>
 			<td>
 				<div class="btn-group">

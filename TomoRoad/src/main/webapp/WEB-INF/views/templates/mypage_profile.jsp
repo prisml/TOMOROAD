@@ -3,22 +3,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
-
-$(function(){
-    $("#file").on('change', function(){
-        readURL(this);
-    });
-});
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-    	var reader = new FileReader();
-   		reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-        }
-      reader.readAsDataURL(input.files[0]);
-    }
-}
+	$(function(){
+  		$("#file").on('change', function(){
+    		readURL(this);
+		});
+  	});
+	
+	function readURL(input) {
+    	if (input.files && input.files[0]) {
+    		var reader = new FileReader();
+   			reader.onload = function (e) {
+           		$('#blah').attr('src', e.target.result);
+        	}
+      		reader.readAsDataURL(input.files[0]);
+    	}
+	}
 
 	function upload(){
 		document.getElementById('file').click();
@@ -32,7 +31,7 @@ function readURL(input) {
 </script>
 <input class = "img-thumbnail img-responsive" type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()"><br>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
-<input type = "file"  style="display:none" name = "uploadfile" id = "file">
-<input style = color:black; class="btn btn-default" type = "button" onclick = "fileupload()" value = "변경"> &nbsp;
-<input style = color:black; class="btn btn-default" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
+	<input type = "file"  style="display:none" name = "uploadfile" id = "file">
+	<input style = color:black; class="btn btn-default" type = "button" onclick = "fileupload()" value = "변경"> &nbsp;
+	<input style = color:black; class="btn btn-default" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
 </form>

@@ -19,7 +19,7 @@
 	<c:forEach items="${friendList}" var="list">
 		<tr>
 			<td>
-				<img style="border-radius: 7px; -moz-border-radius: 7px; -khtml-border-radius: 7px; -webkit-border-radius: 7px;" width = "125" height="100" src = "${list.PROFILE}">
+				<img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" src = "${list.PROFILE}">
 			</td>
 			<td>
 				<div class="btn-group">
