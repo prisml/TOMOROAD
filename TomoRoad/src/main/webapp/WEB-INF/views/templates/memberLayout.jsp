@@ -7,7 +7,6 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
-
 <!-- CSS FILES -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -31,9 +30,10 @@
 	href="${pageContext.request.contextPath}/resources/css/animate.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/memberpage.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>
@@ -42,12 +42,11 @@
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-							<div style = "height:auto" id = "mypageLayout" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-								<div id = "mypageProfile"><tiles:insertAttribute name = "profile"/></div><br><br>
-								<div id = "mypageLeft"><tiles:insertAttribute name = "left"/></div>
-							</div>
-							<div style = "height:auto"id = "mypageMain" class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-							<tiles:insertAttribute name = "main"/></div>
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+						<div id = "memberpageLeft"><tiles:insertAttribute name ="left"/></div>
+						<div id = "memberpageMain"><tiles:insertAttribute name="main" /></div>
+				</div>
+				
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 			</div>
 		</section>
@@ -126,3 +125,5 @@
 	<!-- End Style Switcher -->
 </body>
 </html>
+
+<!--  -->
