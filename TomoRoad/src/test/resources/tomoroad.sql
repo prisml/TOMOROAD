@@ -225,6 +225,12 @@ create table station_reported(
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 )
+--역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
+create table stationcityname(
+	name varchar2(100) primary key,
+	cityname varchar2(100) not null,
+	constraint fk_station_cityname foreign key(name) references station(name) 
+)
 
 insert into station_reported (name) values ('서울역');
 insert into station_reported (name) values ('부산역');
@@ -293,6 +299,8 @@ insert into station values('대전역','가장 살기 좋은 도시, 바로 대�
 insert into station values('남원역','춘향이와 몽룡이의 도시','주소: 전북 남원시 교룡로 71','Chungcheong','남원',35.411252,127.3591693);
 
 select name,simple_detail,section,img from station;
+-----<station cityname 정보>-----
+insert into stationcityname values ('서울역','seoul');
 
 -----< place 정보 >-----
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
@@ -470,3 +478,7 @@ delete from friend where sender_id = 'asdf'
 select * from friend where receiver_id = 'onon22'
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
+
+
+
+
