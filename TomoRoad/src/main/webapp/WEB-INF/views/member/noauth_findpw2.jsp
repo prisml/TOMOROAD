@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--                     <br>
-                <br>
-                <br>
-검색결과╹◡╹)ﾉ ${result.password} 입니다 --%>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
  $(document).ready(function(){
@@ -70,10 +63,8 @@
 	    }
  } */
  </script>
-</head>
-<body>
 <div >	
-	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_findPw2.do" onSubmit="return idSearch()" >
+	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_updatePw.do" onSubmit="return idSearch()" >
 	                <br>
                 <br>
                 <br>
@@ -81,7 +72,7 @@
 	<legend > 비밀번호찾기 </legend>
 	<ul id="findID">
 	<li>정확한 정보를 입력 해주세요╹◡╹)ﾉ</li>
-	<li><label>아이디:</label><input type="text" id="id" name="id" required="required" autofocus></li>
+	<li><label>아이디:</label><input type="text" id="id" name="id" required="required" readonly autofocus></li>
 	<li><label>비밀번호:</label><input type="password" id="password" name="password" required="required"></li>
 	<li><label>비밀번호 확인   :</label><input type="password" id="chpass" name="chpass" required="required"></li>
 	<li> <font id="check" size="2" color="red"></font> </li>
@@ -91,5 +82,3 @@
 	</fieldset>
 	</form>
 </div>
-</body>
-</html>

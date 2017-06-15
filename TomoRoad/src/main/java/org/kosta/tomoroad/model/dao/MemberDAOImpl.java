@@ -124,4 +124,5 @@ public class MemberDAOImpl implements MemberDAO{
 	public int checkFriend(HashMap<String,String> friend){
 		return template.selectOne("member.checkFriend", friend);
 	}
+
 }

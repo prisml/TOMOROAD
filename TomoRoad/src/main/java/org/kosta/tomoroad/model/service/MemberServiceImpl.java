@@ -144,4 +144,5 @@ public class MemberServiceImpl implements MemberService{
 	public int friend_RequestInfo(String id) {
 		return memberDAO.friend_RequestInfo(id);
 	}
+
 }

@@ -8,9 +8,9 @@ public class StationVO {
 	private String img;
 	private double lat;
 	private double lng;
-	
+	private String cityurl;
 	public StationVO(String name, String detail, String simpleDetail, String section, String img, double lat,
-			double lng) {
+			double lng, String cityname, String cityurl) {
 		super();
 		this.name = name;
 		this.detail = detail;
@@ -19,10 +19,11 @@ public class StationVO {
 		this.img = img;
 		this.lat = lat;
 		this.lng = lng;
+		this.cityurl = cityurl;
 	}
-	
 	public StationVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public String getName() {
 		return name;
@@ -54,29 +55,35 @@ public class StationVO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
 	public double getLat() {
 		return lat;
 	}
-
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
-
 	public double getLng() {
 		return lng;
 	}
-
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-
+	public String getCityurl() {
+		return cityurl;
+	}
+	public void setCityurl(String cityurl) {
+		this.cityurl = cityurl;
+	}
 	@Override
 	public String toString() {
 		return "StationVO [name=" + name + ", detail=" + detail + ", simpleDetail=" + simpleDetail + ", section="
-				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + "]";
+				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + ", cityurl="
+				+ cityurl + "]";
 	}
-
+	
+	
+	
+	
+	
 	
 	
 }

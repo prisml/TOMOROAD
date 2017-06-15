@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
 /*  function idSearch() { 
@@ -39,10 +34,8 @@
 	    }
  } */
  </script>
-</head>
-<body>
 <div >	
-	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_findPw.do" onSubmit="return idSearch()" >
+	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/member/noauth_findpw2.do" onSubmit="return idSearch()" >
 	                <br>
                 <br>
                 <br>
@@ -59,5 +52,3 @@
 	</fieldset>
 	</form>
 </div>
-</body>
-</html>
