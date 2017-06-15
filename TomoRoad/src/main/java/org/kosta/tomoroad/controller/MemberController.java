@@ -305,25 +305,25 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
-	      if (page == null)
-	         page = "1";
-	      String profile = memberService.getProfileById(id);
-	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
-	      return "mypage/showList.tiles";
+			if (page == null)
+	        page = "1";
+			String profile = memberService.getProfileById(id);
+			model.addAttribute("profile",profile);
+			model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+			return "mypage/showList.tiles";
 	   }
 	   
 	   @RequestMapping("mypage/showListByMember2.do")
 	   public String showListByMember2(String page,HttpServletRequest request,Model model) {
-			HttpSession session = request.getSession();
+		   	HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
-	      if (page == null)
-	         page = "1";
-	      String profile = memberService.getProfileById(id);
-	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
-	      return "mypage/showList2.tiles";
+			if (page == null)
+	        page = "1";
+			String profile = memberService.getProfileById(id);
+			model.addAttribute("profile",profile);
+			model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+			return "mypage/showList2.tiles";
 	   }
 	   
 	   @RequestMapping("memberpage.do")
