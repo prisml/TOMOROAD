@@ -27,9 +27,9 @@ public class BurnServiceImpl implements BurnService {
 
 		PagingBean pagingBean = null;
 		if (pageNo == null) {
-			pagingBean = new PagingBean(totalCount);
+			pagingBean = new PagingBean(1, 5, 4, totalCount);
 		} else {
-			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
+			pagingBean = new PagingBean(Integer.parseInt(pageNo), 5, 4, totalCount);
 		}
 
 		return new ListVO<BurnVO>(burnDAO.getBurnList(pagingBean), pagingBean);
@@ -75,9 +75,9 @@ public class BurnServiceImpl implements BurnService {
 
 		PagingBean pagingBean = null;
 		if (pageNo == null) {
-			pagingBean = new PagingBean(totalCount);
+			pagingBean = new PagingBean(1, 5, 4, totalCount);
 		} else {
-			pagingBean = new PagingBean(totalCount, Integer.parseInt(pageNo));
+			pagingBean = new PagingBean(Integer.parseInt(pageNo), 5, 4, totalCount);
 		}
 		return new ListVO<BurnVO>(burnDAO.getBurnListByStation(pagingBean, stationName), pagingBean);		
 	}

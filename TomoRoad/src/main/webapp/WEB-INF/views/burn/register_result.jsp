@@ -10,7 +10,7 @@
 
 </script>
 		
-		<section class="content blog">
+		
 				<div class="row">					
 						<div class="blog_single">
 							<article class="post">								
@@ -37,10 +37,10 @@
 							</article>														
 						</div>						   				
 				</div><!--/.row-->
-		</section>
+		
 
 
 <center>
-<br>
-<a href="#" id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">LIST</a>
+
+<a href="#" id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color:#FFCC00">목록으로</a>
 </center>
