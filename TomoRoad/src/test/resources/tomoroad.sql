@@ -440,14 +440,21 @@ insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
-insert into friend values('java','spring','수락',sysdate);
-insert into friend values('java','zxcv','수락',sysdate);
+insert into friend values('java','spring','대기',sysdate);
+insert into friend values('java','zxcv','대기',sysdate);
 
 select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
+
+update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
+
+
+delete from friend
+
+select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
 update friend set state = '대기' where sender_id = 'asdf'
 

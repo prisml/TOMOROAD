@@ -35,13 +35,19 @@
     			</div>
     		</td>
 			<td>
-				<input style = color:white; class="btn btn-danger" type = "button" value = "수락" onclick = "requestAccept('${requestList.SENDER_ID}')">
+				<button style = color:white; class = "btn btn-danger" onclick="requestAccept('${requestList.SENDER_ID}')">
+					<i class = "fa fa-user-plus">수락</i>
+				</button> 
 			</td>
 			<td>
-				<input style = color:white; class="btn btn-danger" type = "button" value = "거절" onclick = "requestRefuse('${requestList.SENDER_ID}')">
+				<button style = color:white; class = "btn btn-danger" onclick = "requestRefuse('${requestList.SENDER_ID}')">
+					<i class = "fa fa-user-times">거절</i>
+				</button>
 			</td>
 			<td>
-				<input style = color:white; class="btn btn-danger" type = "button" value = "차단" onclick = "requestBlock('${requestList.SENDER_ID}')">
+				<button style = color:white; class = "btn btn-danger" onclick = "requestBlock('${requestList.SENDER_ID}')">
+					<i class = "fa fa-times-circle-o">차단</i>
+				</button>
 			</td>
 		</tr>
 	</c:forEach>

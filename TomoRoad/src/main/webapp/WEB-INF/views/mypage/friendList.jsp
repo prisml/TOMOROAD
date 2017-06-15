@@ -34,10 +34,14 @@
    				 </div>
    			</td>
 			<td>
-				<input style = color:white; class="btn btn-danger" type = "button" value="삭제" onclick="deleteFriend('${list.FRIEND}')">
+				<button style = color:white; class = "btn btn-danger" onclick = "deleteFriend('${list.FRIEND}')">
+					<i class = "fa fa-user-times">삭제</i>
+				</button>
 			</td>
 			<td>
-				<input style = color:white; class="btn btn-danger" type = "button" value="차단" onclick="blockFriend('${list.FRIEND}')">
+				<button style = color:white; class = "btn btn-danger" onclick = "blockFriend('${list.FRIEND}')">
+					<i class = "fa fa-times-circle-o">차단</i>
+				</button>
 			</td>
 		</tr>
 	</c:forEach>
