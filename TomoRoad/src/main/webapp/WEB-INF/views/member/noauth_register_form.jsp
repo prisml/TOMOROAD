@@ -2,14 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-
-
-    <title>Register Page</title>
-
-
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
 
@@ -142,9 +134,6 @@
 
 }
 </style>
-</head>
-
-  <body>
 
     <div class="col-lg-12 col-sm-12"> 
 	
@@ -219,7 +208,3 @@
         </div>
       </form>
     </div>
-
-
-  </body>
-</html>

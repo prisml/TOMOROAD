@@ -145,6 +145,4 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.friend_RequestInfo(id);
 	}
 
-
-
 }

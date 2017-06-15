@@ -49,7 +49,7 @@
 															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
 															comments += "<div class='comment-body'> <br> <p> "+ data[z].content + "</p> </div><br>";
 															comments += "<div id='buttons'>";
-															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>";
+															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>&nbsp;";
 															
 														
 													}else { // 본댓글일 경우
@@ -61,12 +61,12 @@
 														comments += "<div class='comment-body'> <p>"+ data[z].content + "</p> </div>";
 														comments += "<br>";
 														comments += "<div id='buttons'>";
-														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</button>";
+														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</button>&nbsp;";
 													}
 																										
 														
 													if ("${mvo.id}" == data[z].member_id) { // 자기 댓글일 경우														
-														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</button>";
+														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</button>&nbsp;";
 														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn' name="+ data[z].no +">수정</button>";														
 													}													
 													
@@ -108,9 +108,11 @@
 								});// 댓글 삭제 버튼 클릭 시
 								
 								$(document).on("click","#updateCommentBtn",function(){
-									var cont = $(this).parent().children(".comment-body").text();
-									$(this).parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><button id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</a><a id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</button>");
-									$(this).next().empty();	
+									alert();
+									var cont = $(this).parent().parent().children(".comment-body").text();
+									alert(cont);
+									$(this).parent().parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><button id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</button>&nbsp;<button id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</button>");
+									$(this).parent().next().empty();	
 								});// 댓글 수정 버튼 클릭시 
 								
 								$(document).on("click","#updateComment",function(){									
@@ -201,7 +203,7 @@
 			<button id="update" class="btn btn-sm btn-social-stumbleupon" style="width: 100px">수정</button>
 			<button id="delete" class="btn btn-sm btn-social-pinterest"	style="width: 100px">삭제</button>
 		</c:if>
-			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">목록으로</button>
+			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFCC00">목록으로</button>
 		</span>	
 	</div>
 

@@ -53,6 +53,7 @@ public interface MemberDAO {
 	public String findPw(MemberVO vo);
 	
 	int friend_RequestInfo(String id);
-	
+
 	public int checkFriend(HashMap<String,String> friend);
+
 }

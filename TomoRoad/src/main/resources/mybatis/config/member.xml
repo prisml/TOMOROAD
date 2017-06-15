@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
 	</update>
 	<update id = "friend_Block" parameterType="map">
-		update friend set state = '차단' where sender_id in (#{id},#{blockId}) and receiver_id in(#{id},#{blockId})
+		update friend set sender_id = #{id}, receiver_id=#{blockId}, state = '차단' where receiver_id in (#{id},#{blockId}) and sender_id in (#{id},#{blockId})
 	</update>
 	<select id="friend_RequestList" resultType="map">
 		select f.sender_id,m.profile,m.name from friend f,member m where f.receiver_id = #{value} and f.state = '대기' and f.sender_id (+)= m.id
@@ -67,9 +67,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="friendBlockListBySenderId" resultType="map">
 		select m.profile,m.name,f.receiver_id as friend from member m,friend f where f.receiver_id = m.id and sender_id = #{value} and state = '차단'
 	</select>
-	<select id="friendBlockListByReceiverId" resultType ="map">
+<!-- 	<select id="friendBlockListByReceiverId" resultType ="map">
 		select m.profile,m.name,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = #{value} and state = '차단'
-	</select>
+	</select> -->
 	<select id="getFriendId" parameterType="map" resultType="string">
 		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
 	</select>
@@ -93,11 +93,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in(#{id},#{selectId}) and state = '수락'
 	</select>
 	<select id = "checkFriend" parameterType = "map" resultType="int">
-		select count(*) from friend where sender_id in (#{senderID},#{receiverID}) and receiver_id in(#{senderID},#{receiverID}) and state = '대기'
+		select count(*) from friend where sender_id in (#{senderID},#{receiverID}) and receiver_id in(#{senderID},#{receiverID}) and state in('대기','차단')
 	</select>
 	<select id="friend_RequestInfo" resultType="int">
 		select count(*) from friend where receiver_id = #{value} and state = '대기'
 	</select>
+ 	
 </mapper>
 
 

@@ -62,6 +62,15 @@ create table member(
 	tel varchar2(100) not null,
 	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg' not null
 );
+
+drop table manager
+create table manager(
+	id varchar2(100) primary key,
+	password varchar2(100) not null
+);
+insert into manager(id,password) values('java','1234');
+select * from manager;
+
 drop table station
 
 --station 테이블 컬럼추가(0607).
@@ -313,7 +322,7 @@ select * from place where name LIKE '%해운대%';
 
 
 -----< burn >-----
-insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
+insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java',0);
 delete from BURN_BOARD where no='2'
 
 select c.no, c.content, c.posted_time, c.recomment, burn_no, member_id, state from BURN_COMMENT;
@@ -448,14 +457,21 @@ insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
-insert into friend values('java','spring','수락',sysdate);
-insert into friend values('java','zxcv','수락',sysdate);
+insert into friend values('java','spring','대기',sysdate);
+insert into friend values('java','zxcv','대기',sysdate);
 
 select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
+
+update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
+
+
+delete from friend
+
+select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
 update friend set state = '대기' where sender_id = 'asdf'
 
@@ -478,7 +494,10 @@ delete from friend where sender_id = 'asdf'
 select * from friend where receiver_id = 'onon22'
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
