@@ -134,7 +134,7 @@
                     <div class="timeline-img tl-orange">
                         <i class="fa fa-picture-o"></i>
                     </div>
-
+                    
                     <div class="timeline-content">
                         <h2>This title in post blogs</h2>
                         <p>
