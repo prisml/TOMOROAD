@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
-	 
+ 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -14,62 +14,238 @@
 				return false;
 			}
 			location.href="${pageContext.request.contextPath}/writeBurnForm.do";
-		});
-		
-		$(".show").click(function(){
-			var selectId = $(this).text();
-			var myId = "${sessionScope.mvo.id}";
-			if(selectId==myId){
-				return false;
-			}
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/getFriendId.do",				
-				data:"id=${sessionScope.mvo.id}&selectId="+selectId,				  
-				success:function(result){
-					if(result!=""){
-						$(".popcon").empty();
-						$(".popcon").html("<li><a href='#'>리뷰 모아보기</a></li>");					
-					}else{
-						$(".popcon").empty();
-						$(".popcon").html("<li><a href='#'>리뷰 모아보기</a></li><li><a href='#'>친구신청</a></li>");
-					}
-				}
-			})						
-			
-			$(this).next().toggle();
-		});	
-});
+		});		
+}); // ready
 </script>
 
+
+<script type="text/javascript"> // popover
+$(document).ready(function(){	
+	$('[data-toggle="popover"]').popover();
+	
+	$(document).on("click",".AjaxPop",function(){
+		$('[data-toggle="popover"]').popover(); 
+	});
+	
+	$(document).on("click",".doVisit",function(){  // 페이지로 이동 클릭시			
+		var selectId = $(":input[type=hidden]").val();			
+		var myId = "${sessionScope.mvo.id}";			
+		if(selectId==myId){
+			if(confirm("마이페이지로 이동하시겠습니까?")){
+				location.href="memberpage.do?selectId="+selectId;
+			}
+			return false;
+			
+		}else{
+		$.ajax({
+			type:"get",
+			url:"${pageContext.request.contextPath}/getFriendId.do",				
+			data:"id=${sessionScope.mvo.id}&selectId="+selectId,				  
+			success:function(data){
+				if(data!=""){
+					if(confirm("친구입니다! "+selectId+" 님 페이지로 이동하시겠습니까?")){
+						location.href="memberpage.do?selectId="+selectId;
+					}	
+				}else{
+					if(confirm(selectId+" 님 페이지로 이동하시겠습니까?")){
+						location.href="memberpage.do?selectId="+selectId;
+					}
+				}																	
+			} // success
+		}); // ajax
+		}
+	});	// doVisit
+});
+
+</script>
+
+
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#st").change(function(){						
+$(document).ready(function(){ 
+				
+		$("#st").change(function(){ // 역 셀렉터 변경시
+			var stSel = $("#st :selected").val();	
 				$.ajax({
 					type : "get",
 					url : "${pageContext.request.contextPath}/getBurnListByStationAjax.do",
 					dataType : "json",
-					data : "stationName="+$("#st :selected").val(),
+					data : "stationName="+stSel,
 					success : function(data){						
-						 var list="";
-						 list += "<table class='table table-hover'>";
-						 list += "<tr>";
-						 list += "<th>번호</th> <th colspan='11'>제목</th><th>역이름</th><th>작성자</th> <th>작성시간</th><th>조회수</th>";
-						 list += "</tr>";
-						 
-						 for(var i=0; i<data.list.length; i++){	
+						// list 출력부 
+						var list="";
+						list += "<table class='table table-hover'>";
+						list += "<tr>";
+						list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+						list += "</tr>";
+												 
+						for(var i=0; i<data.list.length; i++){	
 							list += "<tr align='center'>";
-							list += "<td>"+data.list[i].no+"</td><td colspan='11'>"+data.list[i].title+"("+data.list[i].commentCount+")</td><td>"+data.list[i].stationName+"</td><td><a href='#.'>"+data.list[i].memberId+"</a></td>";
+							list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
+							list += "<td>";
+							list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+							list += "</td>";		
 							list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
 							list += "</tr>";
-													
-							} // for
-						 list += "</table>";	
-						 $("#output").empty();
-						 $("#output").html(list);  
+						} // for						
+						list += "</table>";
+						
+						$("#listOutput").empty();						
+						$("#listOutput").html(list);
+						
+						
+						// pagingBean 출력부						
+						var pb ="";
+						// 이전 페이지 존재 하면 ◀
+						pb += "<ul class='pagination'>";
+						if(data.pagingBean.previousPageGroup){
+							pb += "<li><a class='arrowBtn' id='prevBtn'><input type='hidden' value="+parseInt(data.pagingBean.startPageOfPageGroup-1)+">◀</a></li>";
+						}
+						// 페이지 넘버 버튼 생성
+						for(var i=data.pagingBean.startPageOfPageGroup; i<data.pagingBean.endPageOfPageGroup+1; i++){					
+							if(data.pagingBean.nowPage!=i){
+								pb += "<li><a href='#.' class='pbtn'>"+i+"</a></li>";
+							}else{
+								pb += "<li class='active'><a href=#.>"+i+"</a></li>";
+							}
+						}
+						
+						if(data.pagingBean.nextPageGroup){
+							pb += "<li><a class='arrowBtn' id='nextBtn'><input type='hidden' value="+parseInt(data.pagingBean.endPageOfPageGroup+1)+">▶</a></li>";						
+						}
+						
+						pb += "</ul>";						
+						
+						$("#pageDiv").empty();
+						$("#pageDiv").html(pb);	
+						
 					} //success
-				}); // ajax
-		}); // change		
+				}); // ajax					
+		}); // change
+		
+		$(document).on("click",".pbtn",function(){ // Ajax 페이지 버튼 클릭시
+			var stSel = $("#st :selected").val();			
+			$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/getBurnListByStationAjax.do",
+				dataType : "json",
+				data : "stationName="+stSel+"&pageNo="+$(this).text(),
+				success :function(data){
+					// list 출력부 
+					var list="";
+					list += "<table class='table table-hover'>";
+					list += "<tr>";
+					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "</tr>";
+											 
+					for(var i=0; i<data.list.length; i++){	
+						list += "<tr align='center'>";
+						list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
+						list += "<td>";
+						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+						list += "</td>";					
+						list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
+						list += "</tr>";
+					} // for						
+					list += "</table>";
+					
+					$("#listOutput").empty();						
+					$("#listOutput").html(list);
+					
+					
+					// pagingBean 출력부						
+					var pb ="";
+					// 이전 페이지 존재 하면 ◀
+					pb += "<ul class='pagination'>";
+					if(data.pagingBean.previousPageGroup){
+						pb += "<li><a class='arrowBtn' id='prevBtn'><input type='hidden' value="+parseInt(data.pagingBean.startPageOfPageGroup-1)+">◀</a></li>";
+					}
+					// 페이지 넘버 버튼 생성
+					for(var i=data.pagingBean.startPageOfPageGroup; i<data.pagingBean.endPageOfPageGroup+1; i++){					
+						if(data.pagingBean.nowPage!=i){
+							pb += "<li><a href='#.' class='pbtn'>"+i+"</a></li>";
+						}else{
+							pb += "<li class='active'><a href=#.>"+i+"</a></li>";
+						}
+					}
+					
+					if(data.pagingBean.nextPageGroup){
+						pb += "<li><a class='arrowBtn' id='nextBtn'><input type='hidden' value="+parseInt(data.pagingBean.endPageOfPageGroup+1)+">▶</a></li>";						
+					}
+					
+					pb += "</ul>";		
+					
+					$("#pageDiv").empty();
+					$("#pageDiv").html(pb);	
+				} // success				
+			}); // ajax			
+		});
+		
+		$(document).on("click",".arrowBtn",function(){ // Ajax 화살 버튼 클릭시
+			var stSel = $("#st :selected").val();
+			var pageNo="";
+			if($(this).attr("id")=="prevBtn"){
+				pageNo=$(":input[type=hidden]").val();				
+			}else{
+				pageNo=$(":input[type=hidden]").val();
+			}
+			
+			$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/getBurnListByStationAjax.do",
+				dataType : "json",
+				data : "stationName="+stSel+"&pageNo="+pageNo,
+				success :function(data){
+					// list 출력부 
+					var list="";
+					list += "<table class='table table-hover'>";
+					list += "<tr>";
+					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "</tr>";
+											 
+					for(var i=0; i<data.list.length; i++){	
+						list += "<tr align='center'>";
+						list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
+						list += "<td>";
+						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+						list += "</td>";					
+						list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
+						list += "</tr>";
+					} // for						
+					list += "</table>";
+					
+					$("#listOutput").empty();						
+					$("#listOutput").html(list);
+					
+					
+					// pagingBean 출력부						
+					var pb ="";
+					// 이전 페이지 존재 하면 ◀
+					pb += "<ul class='pagination'>";
+					if(data.pagingBean.previousPageGroup){
+						pb += "<li><a class='arrowBtn' id='prevBtn'><input type='hidden' value="+parseInt(data.pagingBean.startPageOfPageGroup-1)+">◀</a></li>";
+					}
+					// 페이지 넘버 버튼 생성
+					for(var i=data.pagingBean.startPageOfPageGroup; i<data.pagingBean.endPageOfPageGroup+1; i++){					
+						if(data.pagingBean.nowPage!=i){
+							pb += "<li><a href='#.' class='pbtn'>"+i+"</a></li>";
+						}else{
+							pb += "<li class='active'><a href=#.>"+i+"</a></li>";
+						}
+					}
+					
+					if(data.pagingBean.nextPageGroup){
+						pb += "<li><a class='arrowBtn' id='nextBtn'><input type='hidden' value="+parseInt(data.pagingBean.endPageOfPageGroup+1)+">▶</a></li>";						
+					}
+					
+					pb += "</ul>";		
+					
+					
+					$("#pageDiv").empty();
+					$("#pageDiv").html(pb);	
+				} // success				
+			}); // ajax	
+		});
+		
 	}); 
 </script>
 
@@ -90,48 +266,48 @@ input {
 		<a href="#" class="btn btn-small btn-default" id="write">글쓰기</a>
 	</div> 
 	<div class="col-md-4 col-md-offset-4">
-	역별로 게시물 보기 
+	
 	<select class="col-sm-4 form-control" name=stationName id="st">
-	<option value="">전체보기</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach>
+	<option value="all">전체보기</option><c:forEach items="${station}" var="sname"><option value="${sname}">${sname}</option></c:forEach>
 	</select>
 	</div> 
 </div>
 
 <br>
-<div id="output">
+<div id="listOutput">
 <table class="table table-hover" >
   <tr>
-    <th>번호</th>
-    <th colspan="11">제목</th>
-    <th>역이름</th>
-    <th>작성자</th>
-    <th>작성시간</th>
-    <th>조회수</th>
+    <th width="100px">번호</th>
+    <th>제목</th>
+    <th width="100px">역이름</th>
+    <th width="120px">작성자</th>
+    <th width="200px">작성시간</th>
+    <th width="100px">조회수</th>
   </tr>
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
 	<td>${burn.no}</td>
-	<td  colspan="11"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
-	<td>${burn.stationName}</td>
-	<td><a href="${pageContext.request.contextPath}/member/memberpage.do?id=${mvo.id}&selectId=${burn.memberId}">${burn.memberId}</a></td>
-	
+	<td style="word-break:break-all;"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
+	<td>${burn.stationName}</td>	
+	<td><a href="#." data-html="true" data-toggle="popover" data-trigger="focus" data-content="<ul><li><a href='#.' class='message'>메세지 보내기</a></li><li><a href='#.' class='doVisit'><input type='hidden' value='${burn.memberId}'> 페이지로 이동</a></li></ul>">${burn.memberId}</a>	
+	</td>
 	<td>${burn.postedTime}</td>
 	<td>${burn.hits}</td>
 	</tr>
-	</c:forEach>  
+  </c:forEach>  
 </table>
+</div>
 
-
-<div align="center">
+<div id="pageDiv" align="center">
 
 <c:set value="${lvo.pagingBean}" var="pb"/>
 
-<c:if test="${pb.previousPageGroup}">
-	<a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.startPageOfPageGroup-1}">
-	◀
-	</a>
-</c:if>
 <ul class="pagination">
+<c:if test="${pb.previousPageGroup}">
+	<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.startPageOfPageGroup-1}">
+	◀
+	</a></li>
+</c:if>
 <c:forEach begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}" var="page">
 	<c:choose>
 		<c:when test="${pb.nowPage!=page}">
@@ -142,14 +318,15 @@ input {
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
+<c:if test="${pb.nextPageGroup}">
+	<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.endPageOfPageGroup+1}">
+	▶
+	</a></li>
+</c:if>
 </ul>
 
-<c:if test="${pb.nextPageGroup}">
-	<a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.endPageOfPageGroup+1}">
-	▶
-	</a>
-</c:if>
 
 </div>
 
-</div>
+
+

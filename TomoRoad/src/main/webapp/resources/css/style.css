@@ -65,7 +65,7 @@ body{
 }
 .wrapper{
     background:#FFFFFF;
-    margin-top:70px;
+    margin-top:10px;
     border-top: 7px solid #ED4B4B;
     border-radius: 19px;
 }
@@ -184,7 +184,7 @@ a:focus{
 ====================================================================== */
 #header { z-index: 999;
     background: #fff;
-    padding: 70px 0 25px;
+    padding: 30px 0 25px;
 }
 
 #header:after{
@@ -5042,7 +5042,7 @@ ul{
 
 @media only screen and (min-width: 768px) and (max-width: 989px){
 
-    #header {padding: 40px 0 30px;}
+    #header {padding: 30px 0 30px;}
 
     #logo {margin: 0 0 35px;}
 
@@ -5525,3 +5525,15 @@ nav.tm_navbar li.active > a {
   border-collapse: separate;
   margin-left: 334px;
 }
+
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating a {
+    font-size:32px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#F9F900;}

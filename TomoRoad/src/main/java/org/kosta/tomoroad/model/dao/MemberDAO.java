@@ -54,4 +54,6 @@ public interface MemberDAO {
 	
 	int friend_RequestInfo(String id);
 
+	public int checkFriend(HashMap<String,String> friend);
+
 }

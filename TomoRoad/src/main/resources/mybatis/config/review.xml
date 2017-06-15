@@ -141,6 +141,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCommentList" resultMap="reviewRecommentRM">
 		select r.no, r.content, r.posted_time, r.recomment, r.review_no, r.member_id, m.name member_name, m.profile
 		from review_comment r, member m
-		where review_no=#{no} and r.member_id=m.id
+		where review_no=#{no} and r.member_id=m.id order by r.no asc
 	</select>
 </mapper>

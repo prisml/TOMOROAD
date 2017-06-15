@@ -12,6 +12,7 @@ import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -102,8 +103,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<PlaceVO> getPlaceList() {
-		return dao.getPlaceList();
+	public List<PlaceVO> getPlaceList(String name) {
+		return dao.getPlaceList(name);
 	}
 
 	@Override
@@ -123,9 +124,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map<String, Object> getUpdateDetail(String no) {
+	public Map<String, Object> getUpdateDetail(String no,String name) {
 		Map<String, Object> map = getDetail(no);
-		map.put("placeList", getPlaceList());
+		map.put("placeList", getPlaceList(name));
 		return map;
 	}
 
@@ -137,5 +138,19 @@ public class ReviewServiceImpl implements ReviewService {
 	public void writeComment(ReviewCommentVO vo, int reviewNo) {
 	vo.setReview(dao.getDetail(reviewNo+""));
 	dao.writeComment(vo);
+	}
+
+	@Override
+	public ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id) {
+		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 5, 5, dao.getTotalContents()); //불러오는 데이터 수만 다르고 기존의 getListByMember 메서드 이용
+		lvo.setPagingBean(pb);
+		lvo.setList(dao.getListByMember(pb, id));
+		return lvo;
+	}
+	
+	@Override
+	public List<StationVO> getStaionList() {
+		return dao.getStationList();
 	}
 }

@@ -156,7 +156,7 @@ public class MemberController {
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {
 		memberService.friend_Request(senderId, receiverId);
-		return "redirect:member/memberpage.do?id="+senderId+"&selectId="+receiverId;
+		return "redirect:memberpage.do?selectId="+receiverId;
 	}
 
 	@RequestMapping("mypage/friend_Accept.do")
@@ -243,7 +243,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mypage/{viewName}.do")
-	public ModelAndView showMypage(@PathVariable String viewName,HttpServletRequest request){
+	public ModelAndView showMypage(@PathVariable String viewName,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
@@ -309,30 +309,39 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
-	      if (page == null)
-	         page = "1";
-	      String profile = memberService.getProfileById(id);
-	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
-	      return "mypage/showList.tiles";
+			if (page == null)
+	        page = "1";
+			String profile = memberService.getProfileById(id);
+			model.addAttribute("profile",profile);
+			model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+			return "mypage/showList.tiles";
 	   }
+	   
 	   @RequestMapping("mypage/showListByMember2.do")
 	   public String showListByMember2(String page,HttpServletRequest request,Model model) {
-			HttpSession session = request.getSession();
+		   	HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
-	      if (page == null)
-	         page = "1";
-	      String profile = memberService.getProfileById(id);
-	      model.addAttribute("profile",profile);
-	      model.addAttribute("reviewList", reviewService.getListByMember(page,id));
-	      return "mypage/showList2.tiles";
+			if (page == null)
+	        page = "1";
+			String profile = memberService.getProfileById(id);
+			model.addAttribute("profile",profile);
+			model.addAttribute("reviewList", reviewService.getListByMember(page,id));
+			return "mypage/showList2.tiles";
 	   }
-	   @RequestMapping("member/memberpage.do")
-	   public String memberpage(String id,String selectId,Model model){
-		   model.addAttribute("memberInfo", memberService.findMemberById(selectId));
-		   model.addAttribute("friend", memberService.getFriendId(id, selectId));
-		   return "member/memberpage.tiles";
+	   
+	   @RequestMapping("memberpage.do")
+	   public String memberpage(HttpServletRequest request,String selectId,Model model){	 
+		   	HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+			if(id.equals(selectId)){
+				return "redirect:mypage/mypage.do";
+			}else{
+				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
+				model.addAttribute("friend", memberService.getFriendId(id, selectId));
+				return "memberpage/memberpage.tiles";
+			}
 	   }
 	   
 /*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")

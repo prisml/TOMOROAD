@@ -102,6 +102,6 @@ public class TestUnit {
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
 		
-		memberdao.friendBlockList("java");
+		memberService.friend_Request("asdf", "java");
 	}
 }

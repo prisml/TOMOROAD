@@ -7,6 +7,7 @@ import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface ReviewService {
 
@@ -28,18 +29,22 @@ public interface ReviewService {
 
 	void delete(String no);
 
-	List<PlaceVO> getPlaceList();
+	List<PlaceVO> getPlaceList(String name);
 	
 	void recommend(String id,int no);
 	
 	int getRecommendByNo(int review_no);
 
-	Map<String, Object> getUpdateDetail(String no);
+	Map<String, Object> getUpdateDetail(String no, String name);
 
 	Map<String, Object> getDetail(String no);
 
 	List<ReviewVO> getReviewListByPlace(int no);
 	
 	void writeComment(ReviewCommentVO vo, int reviewNo);
+
+	ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id);
+
+	List<StationVO> getStaionList();
 
 }

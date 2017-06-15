@@ -11,6 +11,10 @@
 				return false;
 			}
 		});
+		
+		$("#golist").click(function() {
+			location.href = "${pageContext.request.contextPath}/getBurnList.do";
+		});
 	});
 </script>
 
@@ -41,7 +45,11 @@
          </p>
       </div>
      </div>
-
-     <input type="submit" value="수정하기" class="btn btn-lg btn-default">     
+     
+	<div align="center">
+     <input type="submit" value="작성하기" class="btn btn-lg btn-default"> 
+     <input type="button" id="golist" class="btn btn-lg btn-default" style="color:white; background-color: #FFCC00" value="취소">
+    </div>   
+      
   </form>
   

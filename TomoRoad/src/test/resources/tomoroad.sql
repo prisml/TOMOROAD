@@ -60,7 +60,7 @@ create table member(
 	name varchar2(100) not null,
 	sex varchar2(100) not null,
 	tel varchar2(100) not null,
-	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg'
+	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg' not null
 );
 
 drop table manager
@@ -129,6 +129,11 @@ create table review_comment(
 	recomment number default 0,
 	review_no number, 
 	member_id varchar2(100) not null,
+	constraint fk_review_comment_no foreign key(review_no) references review(no),
+	constraint fk_review_comment_member_id foreign key(member_id) references member(id),
+	state varchar2(100) default 'comment' not null
+);
+alter table review_comment add state varchar2(100) default 'comment' not null --리뷰코멘트 추가필요.
 	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
 	constraint fk_review_comment_member_id foreign key(member_id) references member(id)	
 );
@@ -238,13 +243,13 @@ update station_reported set hit=hit+1 where name = '서울역';
 
 
 -----< member >-----
-insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg')
-insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png')
-insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png')
-insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png')
-insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg')
-insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg')
-insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg')
+insert into member(id,password,name,sex,tel,profile) values('java','1234','아이유','여자','010','/tomoroad/resources/img/profiles/java.jpg');
+insert into member(id,password,name,sex,tel,profile) values('abcd','1234','윤다혜','여자','010','/tomoroad/resources/img/profiles/abcd.png');
+insert into member(id,password,name,sex,tel,profile) values('spring','1234','김문일','남자','010','/tomoroad/resources/img/profiles/spring.png');
+insert into member(id,password,name,sex,tel,profile) values('asdf','1234','김성환','남자','010','/tomoroad/resources/img/profiles/asdf.png');
+insert into member(id,password,name,sex,tel,profile) values('qwer','1234','오남준','남자','010','/tomoroad/resources/img/profiles/qwer.jpg');
+insert into member(id,password,name,sex,tel,profile) values('qaz','1234','송준영','남자','010','/tomoroad/resources/img/profiles/qaz.jpg');
+insert into member(id,password,name,sex,tel,profile) values('zxcv','1234','박영덕','남자','010','/tomoroad/resources/img/profiles/zxcv.jpg');
 
 update member set name ='송준영' where id = 'qaz'
 
@@ -302,15 +307,17 @@ select name,simple_detail,section,img from station;
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
 insert into place values(place_seq.nextval,'동대문','서울역','Capital');
 insert into place values(place_seq.nextval,'해운대','부산역','Youngnam');
+insert into place values(place_seq.nextval,'오죽헌','강릉역','Gwandong');
+insert into place values(place_seq.nextval,'금오산','구미역','Youngnam');
 
 select * from place where name LIKE '%해운대%'; 
 
 
 -----< burn >-----
-insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
+insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java',0);
 delete from BURN_BOARD where no='2'
 
-select * from BURN_COMMENT;
+select c.no, c.content, c.posted_time, c.recomment, burn_no, member_id, state from BURN_COMMENT;
 
 
 select A.* from(select b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount 
@@ -442,14 +449,21 @@ insert into friend values('abcd','java','수락',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
-insert into friend values('java','spring','수락',sysdate);
-insert into friend values('java','zxcv','수락',sysdate);
+insert into friend values('java','spring','대기',sysdate);
+insert into friend values('java','zxcv','대기',sysdate);
 
-select * from friend where 
+select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
+
+update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
+
+
+delete from friend
+
+select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
 update friend set state = '대기' where sender_id = 'asdf'
 
@@ -467,7 +481,7 @@ update friend set state = '차단' where sender_id in ('abcd','java') and receiv
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
-delete from friend where receiver_id = 'onon22'
+delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
 
