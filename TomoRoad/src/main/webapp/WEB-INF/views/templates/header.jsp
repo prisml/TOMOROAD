@@ -11,11 +11,14 @@ $(document).ready(function(){
 	$.ajax({
 		type:"get",
 		url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
-		success:function(date){
-				if(date != 0){
+		success:function(data){
+				if(data != 0){
 					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-				}else{
+					$("#requestCount").text(data);
+					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+			 	}else{
 					$("#requestFriend").html("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png>");
+					
 				}
 			}
 	})
@@ -74,6 +77,11 @@ $(document).ready(function(){
 					</c:choose></li>
 				<li>　</li>
 				<c:if test="${mvo != null }">
+				
+				<div id = "bubble" style="position: absolute; top: -25px; left: 850px;">
+				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
+				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
+				</div>
 				<span id = "requestFriend"></span>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
