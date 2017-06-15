@@ -32,7 +32,7 @@ $(document).ready(function(){
 		var myId = "${sessionScope.mvo.id}";			
 		if(selectId==myId){
 			if(confirm("마이페이지로 이동하시겠습니까?")){
-				location.href="";
+				location.href="memberpage.do?selectId="+selectId;
 			}
 			return false;
 			
