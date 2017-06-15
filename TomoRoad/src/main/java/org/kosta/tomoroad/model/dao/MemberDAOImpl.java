@@ -123,4 +123,5 @@ public class MemberDAOImpl implements MemberDAO{
 	public int friend_RequestInfo(String id) {
 		return template.selectOne("friend_RequestInfo", id);
 	}
+
 }

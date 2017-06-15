@@ -95,6 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="friend_RequestInfo" resultType="int">
 		select count(*) from friend where receiver_id = #{value} and state = '대기'
 	</select>
+ 	
 </mapper>
 
 

@@ -53,4 +53,5 @@ public interface MemberDAO {
 	public String findPw(MemberVO vo);
 	
 	int friend_RequestInfo(String id);
+
 }

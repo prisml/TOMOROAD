@@ -62,6 +62,15 @@ create table member(
 	tel varchar2(100) not null,
 	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg'
 );
+
+drop table manager
+create table manager(
+	id varchar2(100) primary key,
+	password varchar2(100) not null
+);
+insert into manager(id,password) values('java','1234');
+select * from manager;
+
 drop table station
 
 --station 테이블 컬럼추가(0607).
