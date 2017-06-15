@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
+	var flag = false;
 	$(function(){
   		$("#file").on('change', function(){
     		readURL(this);
@@ -21,13 +22,23 @@
 
 	function upload(){
 		document.getElementById('file').click();
+		
+		flag = true;
 	}
+	
 	function fileupload(){
-		$("#profileUpload").submit();
+		if(flag == true){
+			$("#profileUpload").submit();
+		}else{
+			alert("변경할 프로필을 선택하세요");
+			return false;
+		}
 	}
+	
 	function resetprile(){
 		 location.href = "${pageContext.request.contextPath}/profileReset.do";
 	}
+	
 </script>
 <div align="right" style="position: absolute; top: 150px; left: 165px;">
 <input type= "image" class = "img-thumbnail img-responsive"  width = "50px" height="45px" src = "${pageContext.request.contextPath}/resources/images/upload.png" onclick = "upload()">
