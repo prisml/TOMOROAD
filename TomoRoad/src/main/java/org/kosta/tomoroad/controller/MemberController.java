@@ -328,7 +328,7 @@ public class MemberController {
 	   
 	   @RequestMapping("memberpage.do")
 	   public String memberpage(HttpServletRequest request,String selectId,Model model){	 
-		   HttpSession session = request.getSession();
+		   	HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
 			if(id.equals(selectId)){
@@ -336,7 +336,7 @@ public class MemberController {
 			}else{
 				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
 				model.addAttribute("friend", memberService.getFriendId(id, selectId));
-				return "member/memberpage.tiles";
+				return "memberpage/memberpage.tiles";
 			}
 	   }
 }
