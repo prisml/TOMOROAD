@@ -6,10 +6,10 @@ function friendRequest(id){
 	location.href = "${pageContext.request.contextPath}/friend_Request.do?senderId=${mvo.id}&receiverId="+id;
 }
 </script>
-아이디 : ${memberInfo.id}<br>
-이   름 : ${memberInfo.name}<br>
-<img width="200" height="200" src = "${memberInfo.profile}"><br><br>
 
+<img style="border: 1px solid #dddddd;
+  border-radius: 5px; line-height: 1.428571429; padding: 4px;" width="200" height="200" src = "${memberInfo.profile}"><br>
+<p align="center" style = "font-size:25px">${memberInfo.id}(${memberInfo.name})</p>
 <!-- 친구면은 친구버튼, 아니면 친구신청 버튼 -->
 <c:choose>
 	<c:when test="${friend != null}">
