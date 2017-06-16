@@ -43,6 +43,7 @@ drop table place;
 drop table station;
 drop table member;
 drop table manager;
+drop table bucket;
 ---------- drop sequence -----------
 drop sequence place_seq;
 drop sequence review_seq;
@@ -51,7 +52,6 @@ drop sequence hashtag_seq;
 drop sequence burn_board_seq;
 drop sequence burn_comment_seq;
 drop sequence advertisement_seq;
-
 ------------ create ------------
 drop table member
 create table member(
@@ -239,6 +239,14 @@ create table stationcityname(
 	name varchar2(100) primary key,
 	cityname varchar2(100) not null,
 	constraint fk_station_cityname foreign key(name) references station(name) 
+)
+
+create table bucket(
+	id varchar2(100),
+	name varchar2(100),
+	primary key(id,name),
+	constraint fk_bucket_id foreign key(id) references member(id),
+	constraint fk_bucket_name foreign key(name) references station(name)
 )
 
 insert into station_reported (name) values ('서울역');
