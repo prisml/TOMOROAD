@@ -1,121 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
- <script type="text/javascript">
- $(document).ready(function(){
-	 $("input[name='weather']").click(function() {
-		 $("#test").stop(true).fadeToggle();
-	 
-		 var urlAddress = $(this).val();
-	    $.ajax({
-	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/"+urlAddress,
-	        dataType : "jsonp",
-	        success : function(parsed_json) {
-	            var forecast = parsed_json['forecast']['txt_forecast']['forecastday'];
-	             $("#titles").empty();
-	             $("#images").empty();
-	            for (index in forecast) {
-	               var newForecastString = forecast[index]['title'];
-	               var newForecastParagraph = $('<td/>').text(newForecastString);
-	                $("#titles").append(newForecastParagraph);
-	               var newForecastImages = forecast[index]['icon_url'];
-	               $("#images").append("<img src="+newForecastImages+">");
-	            } 
-	        }
-	    });
-	}); 
- }); 
-	</script>
 <!-- map -->
 <script>
 var map;
-var place=[];
 var markers=[];
 var infoList= [];
 var windowNames = [];
-var names=[];
+var selectedstation = [];
 var cityurl =[];
+var number = [];
 $(document).ready(function(){
-	function doInfo(marker, windowName,windowNames) {
-        google.maps.event.addListener(marker, 'click', function() {
-        	for(var z=0;z<windowNames.length;z++){
-        		windowNames[z].close();
-        	}
-        	windowName.open(map, marker);
-        });
-    }
-	function buttonClick(id,marker,windowName){
-		$(document).on("click","#"+id,function(){
-			if(names.indexOf(id) != -1){
-				alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
-			}else{
-				names.push(id);
-				$("#tomoroading").html("<h2> 선택한 여행지:"+names+"</h2>");
-				windowName.close(map, marker);
-			}			
-		});
-	}
 	$("#trcancleBtn").click(function(){
 		$("#tomoroading").html("");
-		names =[];
-	});
-	function weatherInfo(cityname){		
-		$.ajax({
-			url: "http://api.wunderground.com/api/a876e7a78280d5b6/conditions/lang:KR/q/CA/"+cityname+".json",
-			dataType: "jsonp",
-			success : function(parsed_json) {
-				var weather = parsed_json['current_observation'];
-				return "1";
-			}	
-		});
-	}
-	$.ajax({
-		type:"GET",
-		url:"station/noauth_getAllStationInfo.do",
-		async: false,
-		success:function(data){
-			for(var i=0;i<data.length;i++){
-				markers[i] = new google.maps.Marker({
-					map: map,
-					animation: google.maps.Animation.DROP,
-					position: {lat: data[i].lat,lng: data[i].lng},
-					title: data[i].name
-				});
-				infoList[i] += '<div id="content">';
-				infoList[i] +='<h1 class="firstHeading">'+data[i].name+'</h1>';
-				infoList[i] += '<img src='+weatherInfo("seoul")+'>';
-				infoList[i] +='<div id="bodyContent">';
-				infoList[i] +='<p>'+data[i].detail+'</p>';
-				infoList[i] +='<br>';
-	            if("${mvo.id}"==""){
-	            }else{
-	            infoList[i] +='<a href='+"${pageContext.request.contextPath}/station/getDetailInfo.do?name="+data[i].name+'>'+data[i].name+'정보 보러가기'+'</a>';
-	            infoList[i] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName="+data[i].name+'> 번개시판가기</a>';
-				infoList[i] +='<input type="button" value="담기" id="'+data[i].name+'">';
-	            }
-				infoList[i] +='</div>';
-				infoList[i] +='</div>';
-	            windowNames[i] = new google.maps.InfoWindow({
-	            	content: infoList[i]
-	            });	            
-	            doInfo(markers[i],windowNames[i],windowNames);
-	           	buttonClick(data[i].name,markers[i],windowNames[i]);
-			}
-		}
+		selectedstation =[];
 	});
 });
-$(document).on("click","#roading",function(){
-	if(names.length<2){
-		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
-		return false;
-	}else{
-		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+names;
-	}
-});
-$(document).on("click","#testBtn",function(){
-	$("#test").html("<img src="+img+">");	
-});
+
+function buttonClick(id,marker,windowName){
+	$(document).on("click","#"+id,function(){
+		if(selectedstation.indexOf(id) != -1){
+			alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
+		}else{
+			selectedstation.push(id);
+			$("#tomoroading").html("<h2> 선택한 여행지:"+selectedstation+"</h2>");
+			windowName.close(map,marker);
+		}			
+	});
+}
+
 
 function initMap() {
 	   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -125,9 +38,50 @@ function initMap() {
 	    zoom: 9
 	  });
 	  var infoWindow = new google.maps.InfoWindow({map: map});
-	  
-	  
-	  if (navigator.geolocation) {
+	  	<c:forEach items = "${station}" var = "station" varStatus="status">		
+	 	 markers[${status.index}] = new google.maps.Marker({
+			map: map,
+			animation: google.maps.Animation.DROP,
+			position: {lat: ${station.lat},lng: ${station.lng}},
+			title: "${station.name}"
+		});
+	 	 
+		infoList[${status.index}] += '<div>';
+		infoList[${status.index}] += '<div id="siteNotice"></div>'
+		if("${station.cityurl}"=="http://icons.wxug.com/i/c/k/.gif"){
+		infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
+		}else{
+		infoList[${status.index}] +='<h1>${station.name}<img src="'+"${station.cityurl}"+'">'+'</h1>';			
+		}
+		infoList[${status.index}] +='<div>';
+		infoList[${status.index}] +='<br>';
+     	if("${mvo.id}"==""){
+     	}else{
+     	infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name="'+'"${station.name}">${station.name}정보 보러가기</a>  ';
+     	infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
+		infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';
+		//infoList[index] +='<input type="button" value="담기" id="'++'"'
+     	}
+		if("${station.cityurl}"!="http://icons.wxug.com/i/c/k/.gif"){
+     	infoList[${status.index}] += '<input type="button" value="이지역 주간 날씨"'
+		}infoList[${status.index}] +='</div>';
+		infoList[${status.index}] +='</div>';    				
+		windowNames[${status.index}] = new google.maps.InfoWindow({
+       	content: infoList[${status.index}],
+       	maxWidth:200
+		});
+		doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
+	    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);		
+	    </c:forEach>
+		function doInfo(marker,windowName,windowNames){
+			google.maps.event.addListener(marker,'click',function(){
+				for(var z=0;z<windowNames.length;z++){
+					windowNames[z].close();	
+				}
+				windowName.open(map,marker);
+			});
+		}
+	    if (navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function(position){
 	      var pos = {
 	        lat: position.coords.latitude,
@@ -153,6 +107,15 @@ function initMap() {
 	                          'Error: Your browser doesn\'t support geolocation.');
 	  }
 
+
+$(document).on("click","#roading",function(){
+	if(selectedstation.length<2){
+		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
+		return false;
+	}else{
+		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+selectedstation;
+	}
+});
 </script>
 
 <!-- 2차로 해야지.
@@ -235,42 +198,7 @@ function initMap() {
 <input type="button" id="roading" value="투모로딩하기!">
 <input type="button" id="trcancleBtn" value="지우기">
 </c:if>
+<!-- google map API KEY -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
  
- 	 <div class="dividerHeading">
-            <h4><span>날씨를 알고 싶어요╹◡╹)ﾉ</span></h4>
-        </div>
-<!-- 날씨 -->
-		<div id="titles"></div>
-		    <div id="images"></div>
-
-
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="seoul.json">서울
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="daegu.json">대구
-		</div>
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="miryang.json">밀양
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="gunsan.json">군산
-		</div>
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="busan.json">부산
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gwangju.json">광주
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gangneung.json">강릉
-		</div>

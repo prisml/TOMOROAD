@@ -24,7 +24,7 @@
 	</definition>
 	
 		
-	<definition name = "member/*.tiles" template="/WEB-INF/views/templates/memberLayout.jsp">
+	<definition name = "memberpage/*.tiles" template="/WEB-INF/views/templates/memberLayout.jsp">
 		<put-attribute name="title" value = "{1}"/>
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
 		

@@ -62,6 +62,15 @@ create table member(
 	tel varchar2(100) not null,
 	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg' not null
 );
+
+drop table manager
+create table manager(
+	id varchar2(100) primary key,
+	password varchar2(100) not null
+);
+insert into manager(id,password) values('java','1234');
+select * from manager;
+
 drop table station
 
 --station 테이블 컬럼추가(0607).
@@ -225,6 +234,12 @@ create table station_reported(
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 )
+--역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
+create table stationcityname(
+	name varchar2(100) primary key,
+	cityname varchar2(100) not null,
+	constraint fk_station_cityname foreign key(name) references station(name) 
+)
 
 insert into station_reported (name) values ('서울역');
 insert into station_reported (name) values ('부산역');
@@ -292,7 +307,77 @@ insert into station values('강릉역','관광휴양도시','주소: 강원 강�
 insert into station values('대전역','가장 살기 좋은 도시, 바로 대전','주소: 경상북도 구미시 구미중앙로 76 지번-경상북도 구미시 원평동 1008-1','Chungcheong','대전',36.3603063,127.3393904);
 insert into station values('남원역','춘향이와 몽룡이의 도시','주소: 전북 남원시 교룡로 71','Chungcheong','남원',35.411252,127.3591693);
 
+insert into station values('서울역','','','','서울',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('영등포역','','','','영등포',35.411252,127.3591693);
+insert into station values('안양역','','','','안양',35.411252,127.3591693);
+insert into station values('수원역','','','','수원',35.411252,127.3591693);
+insert into station values('오산역','','','','오산',35.411252,127.3591693);
+insert into station values('서정리역','','','','서정리',35.411252,127.3591693);
+insert into station values('평택역','','','','평택',35.411252,127.3591693);
+insert into station values('성환역','','','','성환',35.411252,127.3591693);
+insert into station values('천안역','','','','천안',35.411252,127.3591693);
+insert into station values('소정리역','','','','소정리',35.411252,127.3591693);
+insert into station values('전의역','','','','전의',35.411252,127.3591693);
+insert into station values('조치원역','','','','조치원',35.411252,127.3591693);
+insert into station values('부강역','','','','부강',35.411252,127.3591693);
+insert into station values('신탄진역','','','','신탄진',35.411252,127.3591693);
+insert into station values('대전역','','','','대전',35.411252,127.3591693);
+insert into station values('옥천역','','','','옥천',35.411252,127.3591693);
+insert into station values('이원역','','','','이원',35.411252,127.3591693);
+insert into station values('지탄역','','','','지탄',35.411252,127.3591693);
+insert into station values('심천역','','','','심천',35.411252,127.3591693);
+insert into station values('각계역','','','','각계',35.411252,127.3591693);
+insert into station values('영동역','','','','영동',35.411252,127.3591693);
+insert into station values('황간역','','','','황간',35.411252,127.3591693);
+insert into station values('추풍령역','','','','추풍령',35.411252,127.3591693);
+insert into station values('김천역','','','','김천',35.411252,127.3591693);
+insert into station values('구미역','','','','구미',35.411252,127.3591693);
+insert into station values('사곡역','','','','사곡',35.411252,127.3591693);
+insert into station values('약목역','','','','약목',35.411252,127.3591693);
+insert into station values('왜관역','','','','왜관',35.411252,127.3591693);
+insert into station values('신동역','','','','신동',35.411252,127.3591693);
+insert into station values('대구역','','','','대구',35.411252,127.3591693);
+insert into station values('동대구역','','','','동대구',35.411252,127.3591693);
+insert into station values('경산역','','','','경산',35.411252,127.3591693);
+insert into station values('남성현역','','','','남성현',35.411252,127.3591693);
+insert into station values('청도역','','','','청도',35.411252,127.3591693);
+insert into station values('상동역','','','','상동',35.411252,127.3591693);
+insert into station values('밀양역','','','','밀양',35.411252,127.3591693);
+insert into station values('삼랑진역','','','','삼랑진',35.411252,127.3591693);
+insert into station values('원동역','','','','원동',35.411252,127.3591693);
+insert into station values('물금역','','','','물금',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
+insert into station values('용산역','','','','용산',35.411252,127.3591693);
 select name,simple_detail,section,img from station;
+-----<station cityname 정보>-----
+insert into stationcityname values ('서울역','seoul');
 
 -----< place 정보 >-----
 insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
@@ -305,7 +390,7 @@ select * from place where name LIKE '%해운대%';
 
 
 -----< burn >-----
-insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울','java',0);
+insert into burn_board values(burn_board_seq.nextval,'연습제목',sysdate,'연습내용','서울역','java',0);
 delete from BURN_BOARD where no='2'
 
 select c.no, c.content, c.posted_time, c.recomment, burn_no, member_id, state from BURN_COMMENT;
@@ -436,18 +521,24 @@ insert into friend values('abcd','qwer','수락',sysdate)
 
 insert into friend values(#{senderID},#{receiverID},'대기',sysdate)
 
-insert into friend values('abcd','java','수락',sysdate);
+insert into friend values('abcd','java','대기',sysdate);
 insert into friend values('asdf','java','대기',sysdate);
 insert into friend values('qaz','java','대기',sysdate);
 insert into friend values('qwer','java','대기',sysdate);
-insert into friend values('java','spring','수락',sysdate);
-insert into friend values('java','zxcv','수락',sysdate);
+insert into friend values('spring','java','대기',sysdate);
+insert into friend values('zxcv','java','대기',sysdate);
 
 select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
 select * from friend
+
+update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
+
+delete from friend
+
+select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
 update friend set state = '대기' where sender_id = 'asdf'
 
