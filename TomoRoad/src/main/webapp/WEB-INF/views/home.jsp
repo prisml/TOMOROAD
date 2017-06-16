@@ -1,32 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
- <script type="text/javascript">
- $(document).ready(function(){
-	 $("input[name='weather']").click(function() {
-		 $("#test").stop(true).fadeToggle();
-	 
-		 var urlAddress = $(this).val();
-	    $.ajax({
-	        url: "http://api.wunderground.com/api/a876e7a78280d5b6/forecast/lang:KR/q/"+urlAddress,
-	        dataType : "jsonp",
-	        success : function(parsed_json) {
-	            var forecast = parsed_json['forecast']['txt_forecast']['forecastday'];
-	             $("#titles").empty();
-	             $("#images").empty();
-	            for (index in forecast) {
-	               var newForecastString = forecast[index]['title'];
-	               var newForecastParagraph = $('<td/>').text(newForecastString);
-	                $("#titles").append(newForecastParagraph);
-	               var newForecastImages = forecast[index]['icon_url'];
-	               $("#images").append("<img src="+newForecastImages+">");
-	            } 
-	        }
-	    });
-	}); 
- }); 
-	</script>
 <!-- map -->
 <script>
 var map;
@@ -39,7 +13,7 @@ var number = [];
 $(document).ready(function(){
 	$("#trcancleBtn").click(function(){
 		$("#tomoroading").html("");
-		names =[];
+		selectedstation =[];
 	});
 });
 
@@ -71,13 +45,15 @@ function initMap() {
 			position: {lat: ${station.lat},lng: ${station.lng}},
 			title: "${station.name}"
 		});
-		infoList[${status.index}] += '<div id="content">';
+	 	 
+		infoList[${status.index}] += '<div>';
+		infoList[${status.index}] += '<div id="siteNotice"></div>'
 		if("${station.cityurl}"=="http://icons.wxug.com/i/c/k/.gif"){
-		infoList[${status.index}] +='<h1 class="firstHeading">${station.name}</h1>'+'This area does not provide weather information.';			
+		infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
 		}else{
-		infoList[${status.index}] +='<h1 class="firstHeading">${station.name}<img src="'+"${station.cityurl}"+'">'+'</h1>';			
+		infoList[${status.index}] +='<h1>${station.name}<img src="'+"${station.cityurl}"+'">'+'</h1>';			
 		}
-		infoList[${status.index}] +='<div id="bodyContent">';
+		infoList[${status.index}] +='<div>';
 		infoList[${status.index}] +='<br>';
      	if("${mvo.id}"==""){
      	}else{
@@ -86,10 +62,13 @@ function initMap() {
 		infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';
 		//infoList[index] +='<input type="button" value="담기" id="'++'"'
      	}
-		infoList[${status.index}] +='</div>';
+		if("${station.cityurl}"!="http://icons.wxug.com/i/c/k/.gif"){
+     	infoList[${status.index}] += '<input type="button" value="이지역 주간 날씨"'
+		}infoList[${status.index}] +='</div>';
 		infoList[${status.index}] +='</div>';    				
 		windowNames[${status.index}] = new google.maps.InfoWindow({
-       	content: infoList[${status.index}]
+       	content: infoList[${status.index}],
+       	maxWidth:200
 		});
 		doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
 	    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);		
@@ -219,42 +198,7 @@ $(document).on("click","#roading",function(){
 <input type="button" id="roading" value="투모로딩하기!">
 <input type="button" id="trcancleBtn" value="지우기">
 </c:if>
+<!-- google map API KEY -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
  
- 	 <div class="dividerHeading">
-            <h4><span>날씨를 알고 싶어요╹◡╹)ﾉ</span></h4>
-        </div>
-<!-- 날씨 -->
-		<div id="titles"></div>
-		    <div id="images"></div>
-
-
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="seoul.json">서울
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="daegu.json">대구
-		</div>
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="miryang.json">밀양
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="제천" 
-			name="weather" value="gunsan.json">군산
-		</div>
-		<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="busan.json">부산
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gwangju.json">광주
-		</div>
-				<div >
-			<input type="image" src="${pageContext.request.contextPath}/resources/img/1.png"  id="논산" 
-			name="weather" value="gangneung.json">강릉
-		</div>
