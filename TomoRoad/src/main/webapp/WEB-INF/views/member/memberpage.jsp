@@ -29,21 +29,15 @@
 	});
 			
 	function getList(page){
-		alert("함수실행중");
 		$.ajax({
 			type : 'POST',
-			url : "${pageContext.request.contextPath}/review/getListByMemberInMemberPageAjax.do",
+			url : "${pageContext.request.contextPath}/review/getListByMemberInMemberPage.do",
 			data : {"page" : page,
 					"id" : '${memberInfo.id}'
 					},
 			success : function(result){
-				//alert("성공");
-				//alert("페이지:"+page);
-				//alert("길이"+result.list.length);
 				
 				var TimeLine="";
-				
-				//	$("#content"+${status.index}).append("<div class=timeline-content><h2>"+result.list[i].title+"</h2><p>"+result.list[i].content+"</p><a href=# class='btn btn-defaul'>더 읽기</a><span>"+result.list.postedTime+"</span></div>");
 				
 				for(var i=0;i<result.pagingBean.endRowNumber;i++){ //리스트의 길이만큼 데이터를 넣는다.
 					TimeLine="";
@@ -53,76 +47,43 @@
 					TimeLine+="</div>";
 					TimeLine+="<div class='timeline-content'>";
 					TimeLine+="<h2>"+result.list[i].title+"</h2>";
-					TimeLine+="<p>"+result.list[i].content+"</p>";
-					TimeLine+="<a href='#' class='btn btn-defaul'>더 읽기</a>";
-					TimeLine+="<span>"+result.list[i].postedTime+"</span>";
+					
+					//사진슬라이드 영역
+					TimeLine+="<div class='porDetCarousel'>";
+						//사진
+						TimeLine+="<div class='carousel-content'>";
+							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>";
+						TimeLine+="</div>";	
+						//화살표
+						TimeLine+="<div class='carousel-control'>";
+							TimeLine+="<div class='carousel-prev'></div>";
+							TimeLine+="<div class='carousel-next'></div>";
+							TimeLine+="<ul class='carousel-pagination'>";
+								TimeLine+="<li class='active'></li>";
+								TimeLine+="<li class=''></li>";
+								TimeLine+="<li class=''></li>";
+							TimeLine+="</ul>";
+						TimeLine+="</div>";
+						
+					TimeLine+="</div>";	
+					
+					TimeLine+="<div class=metaInfo style='text-align: center; margin-bottom: -17px;'>";
+					TimeLine+="<span><i class='fa fa-map-marker'></i>&nbsp;<a href='#.'>"+result.list[i].place.name+"</a>";
+					TimeLine+="&nbsp;&nbsp;<i class='fa fa-eye'></i><a href='#.'>"+result.list[i].hits+"&nbsp;</a>";
+					TimeLine+="&nbsp;<i class='fa fa-heart'></i>"+result.list[i].recommend+"</span>";
+					TimeLine+="</div>";
+					
+					TimeLine+="<p>"+result.list[i].subContent+"</p>";
+					TimeLine+="<a href='${pageContext.request.contextPath}/review/noauth_detailHit.do?no="+result.list[i].no+"' class='btn btn-default'>더 읽기</a>";
+					TimeLine+="<span class='tl-post-date'>&nbsp;"+result.list[i].postedTime+"&nbsp;</span>";
 					TimeLine+="</div>";
 					TimeLine+="</div>";
 					$("#timeline").append(TimeLine);
-					//$("#timeline").append("<div class=timeline-block><div class='timeline-img tl-green'><i class='fa fa-picture-o'></i></div><div class='timeline-content'><h2>"+result.list[i].title+"</h2><p>"+result.list[i].content+"</p><a href=# class='btn btn-defaul'>더 읽기</a><span>"+result.list[i].postedTime+"</span></div></div>");
 				}	
 				
-				
-				/*					$("#timeline").append("<div class=timeline-block>");
-					$("#timeline").append("<div class=timeline-img tl-green><i class=fa fa-picture-o></i></div>");
-					$("#timeline").append("<div class=timeline-content><h2>"+result.list[i].title+"</h2><p>"+result.list[i].content+"</p><a href=# class=btn btn-defaul>더 읽기</a><span>"+result.list[i].postedTime+"</span></div>");
-					$("#timeline").append("</div>");
-					*/
-/* 				for(var i=0;i<result.pagingBean.endRowNumber;i++){
-					$(".page-title").text(result.list[i].title);
-					$(".page-content").text(result.list[i].content);
-					$(".tl-post-date").text(result.list[i].postedTime);
-				} */
-/* 
-			 	if(result.pagingBean.startRowNumber<=result.pagingBean.endRowNumber){ //시작번호보다 끝번호가 같거나 더 클 때..시작번호랑 같거나 끝번호랑 같을 떄,
-					if(data.length>0){	
-				 		for(var i=0;i<result.list.length;i++){ //데이터 길이만큼 돈다. 5 10 11 길이..
-								//alert(result.list[i].no);
-													
-				 				
-							 */
-								/* var title=$(".timeline-content").html("<h2 class='page-title"+i+">"+result.list[i].title+"</h2>");
-								var content=$(".timeline-content").html("<p class='page-content"+i+">"+result.list[i].content+"</p>");
-								var date=$(".timeline-content").html("<span class='tl-post-date"+i+">"+result.list[i].postedTime+"</span>");
-								
-								$(".timeline-content").html("<h2 class=\"page-title"+i+"\">"+result.list[i].title+"</h2>");
-								$(".timeline-content").html("<p class=\"page-content"+i+"\">"+result.list[i].content+"</p>");
-								$(".timeline-content").html("<a href=\"#\" class=\"btn btn-default\">더 읽기</a>");
-								$(".timeline-content").html("<span class=\"tl-post-date"+i+"\">"+result.list[i].postedTime+"</span>"); */
-								
-	/* 							$(".page-title").text(result.list[i].title);
-								$(".page-content").text(result.list[i].content);
-								$(".tl-post-date").text(result.list[i].postedTime); 
-								
-								alert("i"+i);
-							
-  							if(result.pagingBean.endNum==result.pagingBean.totalCnt){ //지금 도는 번호가 현재 페이지의 마지막 행번호이면 append(다음그룹으로 넘어가야하므로)
-	 								$("#timeline-content").append("되냐??");
-	 								$("#timeline-content").append("<div class=\"timeline-block\">");
-									$("#timeline-content").append("<div class=\"timeline-img tl-green\">");
-									$("#timeline-content").append("<i class=\"fa fa-picture-o\"></i>");
-									$("#timeline-content").append("</div>");
-									$("#timeline-content").append("<div class=\"timeline-content\">");
-									$("#timeline-content").append("<h2 class=\"title\"></h2>");
-									$("#timeline-content").append("<p class=\"content\"></p>");
-									$("#timeline-content").append("<a href=\"#\" class=\"btn btn-default\">더 읽기</a>");
-									$("#zz").append("</div>");
-									$("#zz").append("</div>");
-									
-								}
-							}//for
-					}else{//데이터 없음
-						alert("데이터없음");
-					}//else
-			 	}//if
-				 */
 			}//success
-			/* ,		
-			error:function(e){
-				if(e.status==300)
-					alert("데이터 갖고오는데 실패함");
-			} */
-		
 		}); //ajax
 	}//function
 </script>
@@ -132,7 +93,7 @@
 	<div class="dividerHeading text-center">
 		<h4>
 			<span>친구의 타임라인</span>
-		</h4>
+		</h4>	
 	</div>
 
 	<div class="col-md-12">

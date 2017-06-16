@@ -189,7 +189,7 @@ public class ReviewController {
 	}
 	
 	//mypage에서 리뷰리스트를 갖고옴
-	@RequestMapping(value="review/getListByMemberInMemberPageAjax.do", method=RequestMethod.POST)
+	@RequestMapping(value="review/getListByMemberInMemberPage.do", method=RequestMethod.POST)
 	@ResponseBody
 	public ListVO<ReviewVO> getListByMemberInMemberPageAjax(String page, String id) {
 		System.out.println("페이지랑 아이디"+page+id);

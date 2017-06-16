@@ -219,7 +219,9 @@ a:focus {
 }
 
 .super_sub_content {
-	padding: 60px 10px;
+	padding: 20px 10px;
+    margin-left: 18px;
+    margin-right: -170px;
 }
 
 .grey_bg {
@@ -4993,7 +4995,7 @@ h5.circular-title {
 .dividerHeading h4, .widget_title h4 {
 	font-size: 21px;
 	font-weight: normal;
-	margin-bottom: 25px;
+	margin-bottom: 0px;
 	padding: 0 0 10px;
 	position: relative;
 }
@@ -5041,6 +5043,8 @@ h5.circular-title {
 	.widget_title h4::before {
 	background-color: #ED4B4B;
 }
+
+
 
 .widget_title {
 	padding: 0 10px;
@@ -5235,7 +5239,7 @@ blockquote.default {
    30. CAROUSEL
 ================================================== */
 .porDetCarousel, .porDet2Carousel {
-	margin-bottom: 40px;
+	margin-bottom: 0px;
 	overflow: hidden;
 }
 
@@ -5922,7 +5926,8 @@ ul {
 }
 
 .timeline-content p, .timeline-content .tl-post-date {
-	font-size: 13px;
+	font-size: 12px;
+	font-family: inherit;
 }
 
 .timeline-content .tl-post-date {
@@ -6017,7 +6022,7 @@ ul {
 		border-left-color: #e9f0f5;
 	}
 	.timeline-content .btn {
-		float: left;
+		float: right;
 	}
 	.timeline-content .tl-post-date {
 		position: absolute;
@@ -6667,6 +6672,7 @@ nav.tm_navbar li.active>a {
     -moz-transition:all 0.3s ease-in-out;
     -ms-transition:all 0.3s ease-in-out;
     -o-transition:all 0.3s ease-in-out;
+}
     
 #nav {
 	border: 1px solid #ccc;
