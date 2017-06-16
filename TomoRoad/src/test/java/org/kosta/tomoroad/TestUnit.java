@@ -1,20 +1,18 @@
 package org.kosta.tomoroad;
 
-import java.util.HashMap;
-import java.util.List;
+import java.io.IOException;
 
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.tomoroad.model.dao.MemberDAO;
-import org.kosta.tomoroad.model.dao.ReviewDAO;
+import org.kosta.tomoroad.model.service.MapService;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.RankingService;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.service.StationService;
-import org.kosta.tomoroad.model.vo.RankingVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -40,9 +38,11 @@ public class TestUnit {
 	
 	@Resource(name="rankingServiceImpl")
 	private RankingService rankingservice;
-	@SuppressWarnings("unchecked") 
+	
+	@Resource(name="mapServiceImpl")
+	private MapService mapservice;
 	@Test
-	public void test(){
+	public void test() throws IOException{
 		// 역 정보 얻어오기
 		/*
 		List<StationVO> stationInfoList= stationService.getStationInfo("전주");
@@ -101,7 +101,6 @@ public class TestUnit {
 /*		List<RankingVO> list=rankingservice.rankingInfo();
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
-		
-		memberService.friend_Request("asdf", "java");
+		System.out.println(mapservice.getAllStationInfo(""));
 	}
 }

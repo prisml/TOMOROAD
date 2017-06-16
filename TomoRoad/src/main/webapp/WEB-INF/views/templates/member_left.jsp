@@ -25,6 +25,6 @@
 	</c:otherwise>
 </c:choose>
 <br>
-<button style = "margin-top: 16px; color:white;" class = "btn btn-warning" >
+<button style = "margin-top: 10px; color:white;" class = "btn btn-warning" >
 	<i style = "width:165px" class = "fa fa-envelope-o">메세지 보내기</i>
 </button>
