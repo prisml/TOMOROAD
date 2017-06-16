@@ -9,12 +9,6 @@ var infoList= new Array(${size});
 var windowNames = new Array(${size});
 var icons = [];
 var names = [];
-$(document).ready(function(){
-	$("#trcancleBtn").click(function(){
-		$("#tomoroading").html("");
-		selectedstation =[];
-	});
-});
 
 function buttonClick(id,marker,windowName){
 	$(document).on("click","#"+id,function(){
@@ -27,10 +21,15 @@ function buttonClick(id,marker,windowName){
 					alert(id+" 이미 버킷리스트에 추가한 역입니다");
 				}else{
 					alert(id+" 추가완료!");
+					if(confirm("장바구니 목록으로 이동하시겠습니까?")==true)
+					location.href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}";
 				}
+				windowName.close(map,marker);
 			}
 		});
+		
 	});
+	
 }
 
 function initMap() {
@@ -64,26 +63,30 @@ function initMap() {
 			$.ajax({
 				type:"GET",
 				url:"noauth_weatherInfo.do",
-				data: "lat=${station.lat}&lng=${station.lng}",
+				data: "lat=${station.lat}&lng=${station.lng}&id=${mvo.id}&name=${station.name}",
 				success:function(data){
 					infoList[${status.index}] += '<div>';
 					infoList[${status.index}] += '<div id="siteNotice"></div>'
-					if(data=="http://icons.wxug.com/i/c/k/.gif"){
+					if(data=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
 					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
 					}else{//if
-					infoList[${status.index}] +='<h1>${station.name}<img src="'+data+'">'+'</h1>';			
+					infoList[${status.index}] +='<h1>${station.name}<img src="'+data.cityurl+'">'+'</h1>';			
 					}//else
 					infoList[${status.index}] +='<div>';
 					infoList[${status.index}] +='<br>';
 			     	if("${mvo.id}"==""){//if
 			     	}else{
-			     	infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name="'+'"${station.name}">${station.name}정보 보러가기</a>  ';
-			     	infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
-					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';
-					//infoList[index] +='<input type="button" value="담기" id="'++'"'
+				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보 보러가기</a><br>';
+				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
+			  		if(data.result!=0){
+			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}"+'>버킷리스트 보러가기</a><br>';
+			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷리스트에서 삭제하기</a><br>';//버튼으로 수정하자 이거는.
+			  		}else{
+					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
+			  		}
 			     	}//else
 					if(data!="http://icons.wxug.com/i/c/k/.gif"){
-			     	infoList[${status.index}] += '<input type="button" value="이지역 주간 날씨"';
+			     	infoList[${status.index}] += '<input type="button" id="${station.name}weather" value="이지역 주간 날씨">';
 					}//if
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';
@@ -92,15 +95,14 @@ function initMap() {
 			       	maxWidth:200
 					});//windowNames
 					//windowNames.close();
-					windowNames[${status.index}].open(map,markers[${status.index}]);
-				
+					windowNames[${status.index}].open(map,markers[${status.index}]);				
+				    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);
 				}//success
 			});//ajax
 				
 		});//marker click
 		
 		//doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
-	    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);		
 	    </c:forEach>
 			
 	    if (navigator.geolocation) {
@@ -128,16 +130,6 @@ function initMap() {
 	                          'Error: 현재위치 불러오기에 실패했습니다. 현재위치 정보 받아오기에 동의하지않으신 경우, 현재위치관련 서비스를  제공받을 수 없습니다.' :
 	                          'Error: Your browser doesn\'t support geolocation.');
 	  }
-
-
-$(document).on("click","#roading",function(){
-	if(selectedstation.length<2){
-		alert("투모로딩을 하기위해선 2가지 이상의 역을 선택해주셔야합니다.");
-		return false;
-	}else{
-		location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+selectedstation;
-	}
-});
 </script>
 
 <!-- 2차로 해야지.
@@ -215,11 +207,6 @@ $(document).on("click","#roading",function(){
 
 <!-- 지도 -->
 <div id=map style="width:100%;height:600px"></div>
-<div id="tomoroading"></div>
-<c:if test="${mvo!=null }">
-<input type="button" id="roading" value="투모로딩하기!">
-<input type="button" id="trcancleBtn" value="지우기">
-</c:if>
 <!-- google map API KEY -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>

@@ -475,8 +475,8 @@ a:focus {
 	border: none;
 }
 
-/* sub menus arrows */
-.navbar-nav .sub-arrow, .navbar-nav .collapsible .sub-arrow {
+/* sub menus arrows */ 
+.sub-arrow, .navbar-nav .collapsible .sub-arrow {
 	position: static;
 	margin-top: 0;
 	margin-right: 0;
@@ -490,6 +490,7 @@ a:focus {
 	border-right: 4px dashed transparent;
 	border-bottom: 4px dashed transparent;
 	border-left: 4px dashed transparent;
+	text-align: center;	
 }
 
 .navbar-nav>li>.has-submenu .sub-arrow {
@@ -502,6 +503,7 @@ a:focus {
 	height: 8px;
 	line-height: 8px;
 	border-width: 0px;
+	text-align: center;
 }
 
 .navbar-nav>li>.has-submenu .sub-arrow:before {
@@ -6592,17 +6594,20 @@ nav.tm_navbar li.active>a {
 }
 
 #my-navbar {
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 }
 
 #my-navbar>ul {
+	margin:auto;
 	display: inline-block;
 	text-align: center;
 }
 
 #my-navbar>ul>li {
+	text-align: center;
 	display: inline-block;
 }
 

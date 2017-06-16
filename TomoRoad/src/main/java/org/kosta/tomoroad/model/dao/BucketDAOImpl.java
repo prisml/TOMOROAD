@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.BucketVO;
@@ -33,5 +35,9 @@ public class BucketDAOImpl implements BucketDAO {
 	@Override
 	public void deleteBucket(BucketVO vo){
 		template.delete("bucket.deleteBucket",vo);
+	}
+	@Override
+	public List<BucketVO> selectBucketList(String id){
+		return template.selectList("bucket.selectBucketList",id);
 	}
 }

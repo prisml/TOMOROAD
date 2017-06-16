@@ -12,4 +12,7 @@
 	<delete id="deleteBucket" parameterType="bucketVO">
 		delete bucket where id=#{id} and name=#{name}
 	</delete>
+	<select id="selectBucketList" resultType="bucketVO" parameterType="String">
+		select * from bucket where id=#{value}
+	</select>
 </mapper>

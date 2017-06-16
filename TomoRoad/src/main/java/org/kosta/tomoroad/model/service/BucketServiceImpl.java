@@ -1,5 +1,7 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.BucketDAO;
@@ -31,5 +33,9 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	public void deleteBucket(BucketVO vo){
 		dao.deleteBucket(vo);
+	}
+	@Override
+	public List<BucketVO> selectBucketList(String id){
+		return dao.selectBucketList(id);
 	}
 }
