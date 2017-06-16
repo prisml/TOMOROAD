@@ -6653,6 +6653,21 @@ nav.tm_navbar li.active>a {
 	color: #F9F900;
 }
 
+.fa-photo:before, .fa-image:before, .fa-picture-o:before {
+	content: "\f03e";
+}
+
+
+.btn-default{
+    background:#ED4B4B;
+    color:#fff;
+    border:none;
+    transition:all 0.3s ease-in-out;
+    -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -ms-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    
 #nav {
 	border: 1px solid #ccc;
 	border-width: 1px 0;

@@ -561,10 +561,12 @@ delete from friend where sender_id = 'asdf'
 select * from friend where receiver_id = 'onon22'
 
 select sender_id from friend where sender_id in ('java1','goni') and receiver_id in ('java1','goni') and state = '수락'
-<<<<<<< HEAD
 
+select count(*) from review where member_id='asdf';
 
-
-
-=======
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+select A.*, re.recommend
+		from(select row_number() over(order by r.no desc) rnum,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+			to_char(posted_time,'YYYY/MM/DD') as posted_time
+			from review r, place p, member m where r.place_no = p.no and r.member_id=m.id and r.member_id='java') A, 
+			(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
