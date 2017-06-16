@@ -13,7 +13,7 @@
 <c:choose>
 	<c:when test="${friend != null}">
 		<!-- <input style = color:white; class="btn btn-danger"  type = "text" value = "친구"> -->
-		<button  style = color:white; class="btn btn-danger">
+		<button style = color:white; class="btn btn-danger">
 			<i style = "width:165px" class = "fa fa-user">친구
 			</i>
 		</button>
@@ -24,7 +24,7 @@
 		</button> 
 	</c:otherwise>
 </c:choose>
-<br><br>
-<button style = color:white; class = "btn btn-warning" >
+<br>
+<button style = "margin-top: 16px; color:white;" class = "btn btn-warning" >
 	<i style = "width:165px" class = "fa fa-envelope-o">메세지 보내기</i>
 </button>
