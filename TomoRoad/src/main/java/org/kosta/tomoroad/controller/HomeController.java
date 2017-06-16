@@ -34,7 +34,6 @@ public class HomeController {
 	}
 	@RequestMapping("home.do")
 	public String home(Model model) throws IOException{
-		System.out.println(service.getAllStationInfo());
 		model.addAttribute("station",service.getAllStationInfo());
 		return "home.tiles";
 	}
