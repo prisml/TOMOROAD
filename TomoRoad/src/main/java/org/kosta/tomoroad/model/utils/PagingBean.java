@@ -1,5 +1,10 @@
 package org.kosta.tomoroad.model.utils;
 
+import java.util.List;
+
+import org.kosta.tomoroad.model.vo.ListVO;
+import org.kosta.tomoroad.model.vo.ReviewVO;
+
 /**
  * 페이징 처리를 위한 비즈니스 계층의 클래스 PagingBean method 구현순서 getStartRowNumber()
  * getEndRowNumber()<br> getTotalPage()<br> getTotalPageGroup()<br>
@@ -26,9 +31,19 @@ public class PagingBean {
 	 * database에 저장된 총게시물수
 	 */
 	private int totalContents;
+	
+
+	public int getTotalContents() {
+		return totalContents;
+	}
+
+	public void setTotalContents(int totalContents) {
+		this.totalContents = totalContents;
+	}
 
 	public PagingBean() {
 	}
+
 
 	public PagingBean(int totalContents) {
 		this.totalContents = totalContents;
@@ -43,6 +58,12 @@ public class PagingBean {
 		this.nowPage = nowPage;
 		this.contentNumberPerPage = contentNumberPerPage;
 		this.pageNumberPerPageGroup = pageNumberPerPageGroup;
+		this.totalContents = totalContents;
+	}
+
+	public PagingBean(int nowPage, int contentNumberPerPage, int totalContents) {
+		this.nowPage = nowPage;
+		this.contentNumberPerPage = contentNumberPerPage;
 		this.totalContents = totalContents;
 	}
 

@@ -43,6 +43,7 @@ drop table place;
 drop table station;
 drop table member;
 drop table manager;
+drop table bucket;
 ---------- drop sequence -----------
 drop sequence place_seq;
 drop sequence review_seq;
@@ -51,7 +52,6 @@ drop sequence hashtag_seq;
 drop sequence burn_board_seq;
 drop sequence burn_comment_seq;
 drop sequence advertisement_seq;
-
 ------------ create ------------
 drop table member
 create table member(
@@ -239,6 +239,14 @@ create table stationcityname(
 	name varchar2(100) primary key,
 	cityname varchar2(100) not null,
 	constraint fk_station_cityname foreign key(name) references station(name) 
+)
+
+create table bucket(
+	id varchar2(100),
+	name varchar2(100),
+	primary key(id,name),
+	constraint fk_bucket_id foreign key(id) references member(id),
+	constraint fk_bucket_name foreign key(name) references station(name)
 )
 
 insert into station_reported (name) values ('서울역');
@@ -706,6 +714,7 @@ insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
 
+select count(*) from review where member_id='asdf';
 
 
 insert into STATION_CONNECT(depart,arrived,spent_time) values('서울역','용산역',5);
@@ -752,3 +761,9 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('조치원역','�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조치원역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
+select A.*, re.recommend
+		from(select row_number() over(order by r.no desc) rnum,
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+			to_char(posted_time,'YYYY/MM/DD') as posted_time
+			from review r, place p, member m where r.place_no = p.no and r.member_id=m.id and r.member_id='java') A, 
+			(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re

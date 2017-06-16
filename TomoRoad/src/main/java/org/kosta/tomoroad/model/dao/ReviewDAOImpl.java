@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
@@ -130,4 +131,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public List<StationVO> getStationList() {
 		return template.selectList("station.getList");
 	}
+
+	@Override
+	public int getTotalContentsByMember(String id) {
+		return template.selectOne("review.getTotalContentsByMember",id);
+	}
+
 }

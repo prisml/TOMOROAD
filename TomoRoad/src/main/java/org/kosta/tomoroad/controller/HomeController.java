@@ -1,12 +1,9 @@
 package org.kosta.tomoroad.controller;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.StationService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,9 +29,5 @@ public class HomeController {
 	public String loginAlert(){
 		return "loginalert";
 	}
-	@RequestMapping("home.do")
-	public String home(Model model) throws IOException{
-		model.addAttribute("station",service.getAllStationInfo());
-		return "home.tiles";
-	}
+
 }

@@ -27,7 +27,6 @@ public class StationVO {
 		this.img = img;
 		this.lat = lat;
 		this.lng = lng;
-		this.cityurl = cityurl;
 	}
 
 	public StationVO(String name) {

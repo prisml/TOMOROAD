@@ -143,4 +143,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from review_comment r, member m
 		where review_no=#{no} and r.member_id=m.id order by r.no asc
 	</select>
+	
+	<!-- 해당 아이디가 쓴 리뷰 수를 불러옴-->
+	<select id="getTotalContentsByMember" resultType="int">
+		select count(*) from review
+		where member_id=#{value}
+	</select>
+	
+	
 </mapper>
