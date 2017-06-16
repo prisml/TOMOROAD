@@ -4,12 +4,11 @@
 <!-- map -->
 <script>
 var map;
-var markers=[];
-var infoList= [];
-var windowNames = [];
-var selectedstation = [];
-var cityurl =[];
-var number = [];
+var markers=new Array(${size});
+var infoList= new Array(${size});
+var windowNames = new Array(${size});
+var icons = [];
+var names = [];
 $(document).ready(function(){
 	$("#trcancleBtn").click(function(){
 		$("#tomoroading").html("");
@@ -19,68 +18,91 @@ $(document).ready(function(){
 
 function buttonClick(id,marker,windowName){
 	$(document).on("click","#"+id,function(){
-		if(selectedstation.indexOf(id) != -1){
-			alert("이미 추가한 여행지입니다! 다른 여행지를 선택해주세요!");
-		}else{
-			selectedstation.push(id);
-			$("#tomoroading").html("<h2> 선택한 여행지:"+selectedstation+"</h2>");
-			windowName.close(map,marker);
-		}			
+		$.ajax({
+			type:"GET",
+			url:"${pageContext.request.contextPath}/bucket/addBucket.do",
+			data:"id=${mvo.id}&name="+id,
+			success:function(data){
+				if(data=="fail"){
+					alert(id+" 이미 버킷리스트에 추가한 역입니다");
+				}else{
+					alert(id+" 추가완료!");
+				}
+			}
+		});
 	});
 }
 
-
 function initMap() {
-	   var directionsDisplay = new google.maps.DirectionsRenderer;
+	    var directionsDisplay = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
 	  map = new google.maps.Map(document.getElementById('map'), { 
 		center: {lat:37.402040, lng:127.107296}, //사용자가 위치정보 전송을 원하지않을때는 이 좌표 (유스페이스)로 이동함.
 	    zoom: 9
 	  });
 	  var infoWindow = new google.maps.InfoWindow({map: map});
-	  	<c:forEach items = "${station}" var = "station" varStatus="status">		
-	 	 markers[${status.index}] = new google.maps.Marker({
+	  	<c:forEach items = "${station}" var = "station" varStatus="status">
+		if(${station.member_id==null}){
+		 	icons[${status.index}] = "resources/img/marker/marker.png";
+		}else{
+			icons[${status.index}] = "resources/img/marker/visited.png";
+		}
+	  	markers[${status.index}] = new google.maps.Marker({
 			map: map,
 			animation: google.maps.Animation.DROP,
 			position: {lat: ${station.lat},lng: ${station.lng}},
-			title: "${station.name}"
+			title: "${station.name}",
+			icon : icons[${status.index}]
 		});
-	 	 
-		infoList[${status.index}] += '<div>';
-		infoList[${status.index}] += '<div id="siteNotice"></div>'
-		if("${station.cityurl}"=="http://icons.wxug.com/i/c/k/.gif"){
-		infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
-		}else{
-		infoList[${status.index}] +='<h1>${station.name}<img src="'+"${station.cityurl}"+'">'+'</h1>';			
-		}
-		infoList[${status.index}] +='<div>';
-		infoList[${status.index}] +='<br>';
-     	if("${mvo.id}"==""){
-     	}else{
-     	infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name="'+'"${station.name}">${station.name}정보 보러가기</a>  ';
-     	infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
-		infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';
-		//infoList[index] +='<input type="button" value="담기" id="'++'"'
-     	}
-		if("${station.cityurl}"!="http://icons.wxug.com/i/c/k/.gif"){
-     	infoList[${status.index}] += '<input type="button" value="이지역 주간 날씨"'
-		}infoList[${status.index}] +='</div>';
-		infoList[${status.index}] +='</div>';    				
-		windowNames[${status.index}] = new google.maps.InfoWindow({
-       	content: infoList[${status.index}],
-       	maxWidth:200
-		});
-		doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
+		google.maps.event.addListener(markers[${status.index}],'click',function(){
+			for(var z=0;z<windowNames.length;z++){
+				if(windowNames[z]!=null){
+					windowNames[z].close();
+				}
+			}
+			infoList[${status.index}] = "";
+			$.ajax({
+				type:"GET",
+				url:"noauth_weatherInfo.do",
+				data: "lat=${station.lat}&lng=${station.lng}",
+				success:function(data){
+					infoList[${status.index}] += '<div>';
+					infoList[${status.index}] += '<div id="siteNotice"></div>'
+					if(data=="http://icons.wxug.com/i/c/k/.gif"){
+					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
+					}else{//if
+					infoList[${status.index}] +='<h1>${station.name}<img src="'+data+'">'+'</h1>';			
+					}//else
+					infoList[${status.index}] +='<div>';
+					infoList[${status.index}] +='<br>';
+			     	if("${mvo.id}"==""){//if
+			     	}else{
+			     	infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name="'+'"${station.name}">${station.name}정보 보러가기</a>  ';
+			     	infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
+					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';
+					//infoList[index] +='<input type="button" value="담기" id="'++'"'
+			     	}//else
+					if(data!="http://icons.wxug.com/i/c/k/.gif"){
+			     	infoList[${status.index}] += '<input type="button" value="이지역 주간 날씨"';
+					}//if
+					infoList[${status.index}] +='</div>';
+					infoList[${status.index}] +='</div>';
+					windowNames[${status.index}] = new google.maps.InfoWindow({
+			       	content: infoList[${status.index}],
+			       	maxWidth:200
+					});//windowNames
+					//windowNames.close();
+					windowNames[${status.index}].open(map,markers[${status.index}]);
+				
+				}//success
+			});//ajax
+				
+		});//marker click
+		
+		//doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
 	    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);		
 	    </c:forEach>
-		function doInfo(marker,windowName,windowNames){
-			google.maps.event.addListener(marker,'click',function(){
-				for(var z=0;z<windowNames.length;z++){
-					windowNames[z].close();	
-				}
-				windowName.open(map,marker);
-			});
-		}
+			
 	    if (navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function(position){
 	      var pos = {

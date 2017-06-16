@@ -1,6 +1,5 @@
 package org.kosta.tomoroad.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -55,12 +54,6 @@ public class StationController {
 		return "station/detail_info.tiles";
 	}
 	
-	//메인페이지 관련 컨트롤러
-		@RequestMapping("station/noauth_getAllStationInfo.do")
-		@ResponseBody
-		public List<StationVO> getAllStationInfo() throws IOException{
-			return service.getAllStationInfo();
-		}
-	
+
 
 }
