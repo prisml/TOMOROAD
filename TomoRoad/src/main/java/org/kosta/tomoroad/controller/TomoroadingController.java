@@ -21,10 +21,11 @@ public class TomoroadingController {
 	
 	@RequestMapping("tomoroading/tomoroading.do")
 	public String tomoroading_result(Model model,String names){
-		String[] listarray = names.split(",");
+		System.out.println(names);
+		String[] listarray = names.split("역");
 		List<String> namelist= new ArrayList<String>();
 		for(int i=0;i<listarray.length;i++){
-			namelist.add(listarray[i]);
+			namelist.add(listarray[i]+"역");
 		}
 		model.addAttribute("locationNames", namelist);
 		return "tomoroading/tomoroading_result.tiles";
@@ -34,6 +35,7 @@ public class TomoroadingController {
 	@ResponseBody
 	public List<StationVO> Tomoroading(HttpServletRequest request){
 		String names=request.getParameter("names");
+		System.out.println(names);
 		String[] listarray=names.split(",");
 		List<String> namelist= new ArrayList<String>();
 		List<StationVO> list=new ArrayList<StationVO>();

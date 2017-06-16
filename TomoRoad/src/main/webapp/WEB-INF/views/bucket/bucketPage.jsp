@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+var list ="";
+var text ="";
+   $(document).ready(function(){
+     $("#deleteStation").click(function(){
+    	 list="";
+    	 $('input:checkbox:checked').each(function(){
+    		list += $(this).val() ; 
+    	 });
+    	 $.ajax({
+            type : "POST",
+            url : "deletechecked.do",
+            data : "list="+list+"&id=${mvo.id}",
+            success : function(data) {
+               text="";
+               $("#stationList").html("");
+               for(var i=0;i<data.length;i++){
+                  text += '<input type="checkbox" name="station" value="';
+                  text += data[i].name;
+                  text += '">'+data[i].name+'<br>';
+               }
+               $("#stationList").html(text);
+              }
+         });
+         
+      });
+     $("#testBtn").click(function(){
+    	 list="";
+    	 $('input:checkbox:checked').each(function(){
+    		list += $(this).val() ; 
+    	 });
+    	 location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+list;
+     });
+   });
+</script>
+<form action="tomoroad/makeRoute.do">
+   출발역 <input name="depart" type="text">
+   <div id="stationList">
+   <c:forEach items="${bvo}" var="svo">
+      <input type="checkbox" name="station" value="${svo.name }">${svo.name }<br>
+   </c:forEach>
+   </div>
+   <input type="submit" value="투모로딩"> <input id="deleteStation"
+      type="button" value="선택삭제">
+</form>
+<input type="button" id="testBtn" value="테스트벝은">

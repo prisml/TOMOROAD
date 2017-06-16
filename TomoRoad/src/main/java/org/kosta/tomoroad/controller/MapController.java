@@ -1,11 +1,15 @@
 package org.kosta.tomoroad.controller;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.tomoroad.model.service.BucketService;
 import org.kosta.tomoroad.model.service.MapService;
+import org.kosta.tomoroad.model.vo.BucketVO;
 import org.kosta.tomoroad.model.vo.MapVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MapController {
 	@Resource(name="mapServiceImpl")
 	private MapService service;
+	@Resource(name="bucketServiceImpl")
+	private BucketService bucketService;
 	
 	@RequestMapping("home.do")
 	public String getAllStationInfo(Model model,HttpSession session){
@@ -33,7 +39,10 @@ public class MapController {
 	}
 	@RequestMapping("noauth_weatherInfo.do")
 	@ResponseBody
-	public String weatherInfo(Model model,MapVO vo) throws IOException{		
-		return service.weatherInfo(vo);
+	public Map<String,Object> weatherInfo(MapVO vo,BucketVO bvo) throws IOException{		
+		Map<String, Object> map = new LinkedHashMap<String,Object>();
+		map.put("cityurl", service.weatherInfo(vo));
+		map.put("result", bucketService.findBucket(bvo));
+		return map;
 	}
 }
