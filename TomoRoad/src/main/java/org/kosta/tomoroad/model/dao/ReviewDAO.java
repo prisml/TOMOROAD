@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.kosta.tomoroad.model.utils.PagingBean;
+import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
 import org.kosta.tomoroad.model.vo.ReviewVO;
@@ -49,5 +50,8 @@ public interface ReviewDAO {
 	List<ReviewVO> getReviewListByPlace(int no);
 
 	List<StationVO> getStationList();
+	
+	int getTotalContentsByMember(String id);
+
 	
 }

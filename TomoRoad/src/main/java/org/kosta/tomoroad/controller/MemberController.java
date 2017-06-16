@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.vo.ListVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.ReviewVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -339,4 +341,5 @@ public class MemberController {
 				return "member/memberpage.tiles";
 			}
 	   }
+	   
 }

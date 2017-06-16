@@ -9,10 +9,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.junit.runner.Request;
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.ListVO;
-import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;
@@ -191,17 +190,19 @@ public class ReviewController {
 	}
 	
 	//mypage에서 리뷰리스트를 갖고옴
-	@RequestMapping(value="review/getListByMemberInMemberPage.do", method=RequestMethod.POST)
+	@RequestMapping(value="review/getListByMemberInMemberPageAjax.do", method=RequestMethod.POST)
 	@ResponseBody
-	public ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id,Model model) {
+	public ListVO<ReviewVO> getListByMemberInMemberPageAjax(String page, String id) {
 		System.out.println("페이지랑 아이디"+page+id);
 		if (page == null)
 			page = "1";
 		
 		ListVO<ReviewVO> reviewList=service.getListByMemberInMemberPage(page,id);
 		System.out.println("리뷰리스트"+reviewList);
+
 		return reviewList;
 	}
+	
 	
 	@RequestMapping("review/getPlaceList.do")
 	@ResponseBody
