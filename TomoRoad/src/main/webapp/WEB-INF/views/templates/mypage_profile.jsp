@@ -47,6 +47,6 @@
 </div>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
 	<input type = "file"  style="display:none" name = "uploadfile" id = "file">
-	<input style = color:#333;background-color:#fff;border-color:#8c8c8c class="btn" type = "button" onclick = "fileupload()" value = "변경"> &nbsp;
-	<input style = color:#333;background-color:#fff;border-color:#8c8c8c class="btn" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
+	<input style = "color:#333;background-color:#fff;border-color:#8c8c8c;" class="btn" type = "button" onclick = "fileupload()" value = "변경">
+	<input style = "color:#333;background-color:#fff;border-color:#8c8c8c;" class="btn" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
 </form>
