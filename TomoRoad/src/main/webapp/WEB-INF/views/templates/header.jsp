@@ -24,6 +24,8 @@ $(document).ready(function(){
 	})
 })
 </script>
+<style>
+</style>
 <header id="header">
 	<%-- <div class="col-sm-12">
 		<div id="logo">
@@ -39,7 +41,7 @@ $(document).ready(function(){
 
 	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
-		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
+		<div class="navbar-collapse collapse col-sm-12">
 			<ul class="nav navbar-nav">
 				<li>　</li>
 

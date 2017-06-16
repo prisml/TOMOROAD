@@ -53,7 +53,6 @@ drop sequence burn_board_seq;
 drop sequence burn_comment_seq;
 drop sequence advertisement_seq;
 ------------ create ------------
-drop table member
 create table member(
 	id varchar2(100) primary key,
 	password varchar2(100) not null,
@@ -63,15 +62,10 @@ create table member(
 	profile varchar2(100) default '/tomoroad/resources/img/profiles/kakao.jpg' not null
 );
 
-drop table manager
 create table manager(
 	id varchar2(100) primary key,
 	password varchar2(100) not null
 );
-insert into manager(id,password) values('java','1234');
-select * from manager;
-
-drop table station
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -83,16 +77,6 @@ create table station(
 	lat number not null,
 	lng number not null
 );
---저는 테이블을 다 삭제한 상태에서 다시 작성하는 거라서 테이블 내용 자체를 바꿨는데
---테이블 다 삭제하지 않은 상태이시면 station 테이블만 지우고 아래 것들만 실행해주세요~
-alter table station drop column administrative_district;
-alter table station drop column stayed_time;
-alter table station add simple_detail varchar2(100) not null;
-alter table station add img varchar2(100) not null;
-alter table station add lat number not null; --추가부탁드려요 테이블비우고. //위도
-alter table station add lng number not null; --추가부탁드려요 테이블비우고. //경도
-
-drop table place
 
 create table place(
 	no number primary key,
@@ -102,8 +86,6 @@ create table place(
 	area varchar2(100) not null
 );
 create sequence place_seq nocache;
-
-drop table review
 
 create table review(
 	no number primary key,
@@ -121,7 +103,6 @@ create table review(
 
 create sequence review_seq nocache;
 
-
 create table review_comment(
 	no number primary key,	
 	content clob not null,
@@ -129,13 +110,9 @@ create table review_comment(
 	recomment number default 0,
 	review_no number, 
 	member_id varchar2(100) not null,
-	constraint fk_review_comment_no foreign key(review_no) references review(no),
+	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
 	constraint fk_review_comment_member_id foreign key(member_id) references member(id),
 	state varchar2(100) default 'comment' not null
-);
-alter table review_comment add state varchar2(100) default 'comment' not null --리뷰코멘트 추가필요.
-	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
-	constraint fk_review_comment_member_id foreign key(member_id) references member(id)	
 );
 create sequence review_comment_seq nocache;
 
@@ -165,7 +142,7 @@ create table review_recommend(
 	primary key(member_id, review_no),
 	constraint fk_reivew_recommend_id foreign key(member_id) references member(id),
 	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
-)
+);
 
 create sequence burn_board_seq nocache;
 
@@ -180,18 +157,12 @@ create table burn_comment(
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
 create sequence burn_comment_seq nocache;
-alter table burn_comment add state varchar2(100) default 'comment'; --추가부탁드려요 테이블비우고.
 
 create table advertisement(
 	no number primary key,
 	link varchar2(1000) not null
 );
 create sequence advertisement_seq nocache;
-
-create table manager(
-	id varchar2(100) primary key,
-	password varchar2(100) not null
-);
 
 create table friend(
 	sender_id varchar2(100) not null,
@@ -233,13 +204,13 @@ create table station_reported(
   name varchar2(100) primary key,
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
-)
+);
 --역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
 create table stationcityname(
 	name varchar2(100) primary key,
 	cityname varchar2(100) not null,
 	constraint fk_station_cityname foreign key(name) references station(name) 
-)
+);
 
 create table bucket(
 	id varchar2(100),
@@ -247,13 +218,21 @@ create table bucket(
 	primary key(id,name),
 	constraint fk_bucket_id foreign key(id) references member(id),
 	constraint fk_bucket_name foreign key(name) references station(name)
-)
+);
+--------------------------------------------------연습장-------------------------------------------------
 
 insert into station_reported (name) values ('서울역');
 insert into station_reported (name) values ('부산역');
 update station_reported set hit=hit+1 where name = '서울역';
 
---------------------------------------------------연습장-------------------------------------------------
+--저는 테이블을 다 삭제한 상태에서 다시 작성하는 거라서 테이블 내용 자체를 바꿨는데
+--테이블 다 삭제하지 않은 상태이시면 station 테이블만 지우고 아래 것들만 실행해주세요~
+alter table station drop column administrative_district;
+alter table station drop column stayed_time;
+alter table station add simple_detail varchar2(100) not null;
+alter table station add img varchar2(100) not null;
+alter table station add lat number not null; --추가부탁드려요 테이블비우고. //위도
+alter table station add lng number not null; --추가부탁드려요 테이블비우고. //경도
 
 
 -----< member >-----
@@ -511,7 +490,6 @@ insert into station values('음성역','1','1','1','1',36.926244,127.703838);
 insert into station values('의성역','1','1','1','1',36.354076,128.693501);
 insert into station values('이양역','1','1','1','1',34.891760,126.989816);
 insert into station values('이원역','1','1','1','1',36.244362,127.617986);
-insert into station values('익산역','1','1','1','1',35.940476,126.946330);
 insert into station values('일로역','1','1','1','1',34.848603,126.477714);
 insert into station values('일신역','1','1','1','1',37.445695,127.688264);
 insert into station values('임기역','1','1','1','1',36.903875,128.999305);
@@ -522,11 +500,7 @@ insert into station values('장항역','1','1','1','1',36.040302, 126.715438);
 insert into station values('전의역','1','1','1','1',36.678644, 127.203144);
 insert into station values('전주역','1','1','1','1',35.849944, 127.161766);
 insert into station values('점촌역','1','1','1','1',36.595687, 128.203222);
-insert into station values('정동진역','1','1','1','1',37.691714, 129.032618);
-insert into station values('정읍역','1','1','1','1',35.575833, 126.843040);
-insert into station values('제천역','1','1','1','1',37.128310, 128.205397);
 insert into station values('조성역','1','1','1','1',34.767160, 127.081731);
-insert into station values('조치원역','1','1','1','1',36.601360, 127.296260);
 insert into station values('좌천역','1','1','1','1',35.311913, 129.254886);
 insert into station values('주덕역','1','1','1','1',36.973657, 127.802364);
 insert into station values('중리역','1','1','1','1',35.249872, 128.518844);
@@ -537,39 +511,29 @@ insert into station values('진례역','1','1','1','1',35.266823, 128.763192);
 insert into station values('진상역','1','1','1','1',35.016808, 127.719759);
 insert into station values('진영역','1','1','1','1',35.303739, 128.728736);
 insert into station values('증평역','1','1','1','1',36.778383, 127.583177);
-insert into station values('진주역','1','1','1','1',35.150958, 128.118006);
 insert into station values('창원역','1','1','1','1',35.257695, 128.606539);
 insert into station values('창원중앙역','1','1','1','1',35.242973, 128.701611);
-insert into station values('천안역','1','1','1','1',36.809507, 127.146231);
-insert into station values('대천역','1','1','1','1',36.341862, 126.586735);
 insert into station values('덕소역','1','1','1','1',37.586969, 127.208877);
 insert into station values('덕하역','1','1','1','1',35.495175, 129.305211);
 insert into station values('도계역','1','1','1','1',37.229530, 129.043814);
 insert into station values('도고온천역','1','1','1','1',36.749641, 126.889677);
-insert into station values('동대구역','1','1','1','1',35.879850, 128.628476);
 insert into station values('동백산역','1','1','1','1',37.155062, 129.034547);
-insert into station values('동해역','1','1','1','1',37.498260, 129.123824);
 insert into station values('동화역','1','1','1','1',37.342153, 127.859819);
 insert into station values('득량역','1','1','1','1',34.761806, 127.170164);
 insert into station values('마산역','1','1','1','1',35.236271, 128.577383);
 insert into station values('매곡역','1','1','1','1',37.432904, 127.718848);
 insert into station values('명봉역','1','1','1','1',34.828032, 127.075462);
-insert into station values('목포역','1','1','1','1',34.791210, 126.386518);
 insert into station values('몽탄역','1','1','1','1',34.930061, 126.503297);
 insert into station values('무안역','1','1','1','1',34.962852, 126.517021);
 insert into station values('묵호역','1','1','1','1',37.546926, 129.107672);
 insert into station values('물금역','1','1','1','1',35.307179, 128.985323);
 insert into station values('민둥산역','1','1','1','1',37.243887, 128.773650);
-insert into station values('밀양역','1','1','1','1',35.474696, 128.771146);
 insert into station values('반곡역','1','1','1','1',37.323213, 127.994290);
 insert into station values('반성역','1','1','1','1',35.175010, 128.258172);
 insert into station values('백양사역','1','1','1','1',35.431623, 126.808149);
 insert into station values('벌교역','1','1','1','1',34.842172, 127.345307);
-insert into station values('보성역','1','1','1','1',34.767108, 127.081635);
 insert into station values('봉화역','1','1','1','1',36.891689, 128.726867);
 insert into station values('부강역','1','1','1','1',36.532387, 127.365474);
-insert into station values('부산역','1','1','1','1',35.115389, 129.042195);
-insert into station values('부전역','1','1','1','1',35.164922, 129.060131);
 insert into station values('북영천역','1','1','1','1',35.966000, 128.917591);
 insert into station values('북천역','1','1','1','1',35.113633, 127.893101);
 insert into station values('분천역','1','1','1','1',36.932739, 129.058398);
@@ -581,24 +545,19 @@ insert into station values('강릉역','1','1','1','1',37.762555, 128.899634);
 insert into station values('개포역','1','1','1','1',37.489299, 127.066405);
 insert into station values('건천역','1','1','1','1',35.854376, 129.097307);
 insert into station values('경산역','1','1','1','1',35.819424, 128.727699);
-insert into station values('경주역','1','1','1','1',35.844583, 129.217902);
 insert into station values('계룡역','1','1','1','1',36.273237, 127.265224);
 insert into station values('고한역','1','1','1','1',37.201037, 128.852937);
 insert into station values('곡성역','1','1','1','1',35.283805, 127.303615);
 insert into station values('광양역','1','1','1','1',34.969357, 127.589667);
-insert into station values('광주송정역','1','1','1','1',35.137717, 126.791546);
 insert into station values('광주역','1','1','1','1',35.165509, 126.909211);
 insert into station values('광천역','1','1','1','1',36.501982, 126.622488);
 insert into station values('구례구역','1','1','1','1',35.163619, 127.452611);
 insert into station values('구미역','1','1','1','1',36.128499, 128.330929);
 insert into station values('구포역','1','1','1','1',35.205501, 128.997134);
 insert into station values('군북역','1','1','1','1',35.251911, 128.350691);
-insert into station values('군산역','1','1','1','1',35.999450, 126.759768);
 insert into station values('극락강역','1','1','1','1',35.176132, 126.829992);
 insert into station values('기장역','1','1','1','1',35.243211, 129.218550);
 insert into station values('김제역','1','1','1','1',35.792582, 126.902896);
-insert into station values('김천역','1','1','1','1',36.123648, 128.114656);
-insert into station values('나주역','1','1','1','1',35.014490, 126.717093);
 insert into station values('남성현역','1','1','1','1',35.704844, 128.716302);
 insert into station values('남원역','1','1','1','1',35.411234, 127.361369);
 insert into station values('남창역','1','1','1','1',35.417630, 129.283260);
@@ -606,12 +565,8 @@ insert into station values('논산역','1','1','1','1',36.207271, 127.092420);
 insert into station values('능주역','1','1','1','1',34.986771, 126.963996);
 insert into station values('다시역','1','1','1','1',35.016898, 126.641006);
 insert into station values('단양역','1','1','1','1',36.973343, 128.343597);
-insert into station values('대구역','1','1','1','1',35.943692, 126.811000);
 insert into station values('대야역','1','1','1','1',35.943683, 126.810957);
-insert into station values('대전역','1','1','1','1',36.331315, 127.433052);
-insert into station values('철암역','1','1','1','1',37.113226, 129.036532);
 insert into station values('청도역','1','1','1','1',35.640227, 128.746495);
-insert into station values('청량리역','1','1','1','1',37.580503, 127.046988);
 insert into station values('청리역','1','1','1','1',36.339285, 128.128885);
 insert into station values('청소역','1','1','1','1',36.446176, 126.590878);
 insert into station values('청주공항역','1','1','1','1',36.722018, 127.489624);
@@ -624,7 +579,6 @@ insert into station values('태백역','1','1','1','1',37.176415, 128.984217);
 insert into station values('태화강역','1','1','1','1',35.539566, 129.353790);
 insert into station values('판교역','1','1','1','1',37.395088, 127.111146);
 insert into station values('평택역','1','1','1','1',36.990893, 127.085507);
-insert into station values('포항역','1','1','1','1',36.071978, 129.341936);
 insert into station values('풍기역','1','1','1','1',36.874165, 128.524445);
 insert into station values('하동역','1','1','1','1',35.071397, 127.757960);
 insert into station values('하양역','1','1','1','1',35.909946, 128.817902);
@@ -644,42 +598,30 @@ insert into station values('횡천역','1','1','1','1',35.103385, 127.808685);
 insert into station values('효천역','1','1','1','1',35.103119, 126.877586);
 insert into station values('희방사역','1','1','1','1',36.894758, 128.464987);
 insert into station values('안강역','1','1','1','1',35.989684, 129.230998);
-insert into station values('안동역','1','1','1','1',37.402176, 126.922658);
 insert into station values('안양역','1','1','1','1',35.989684, 129.230998);
 insert into station values('약목역','1','1','1','1',36.041011, 128.362999);
 insert into station values('양동역','1','1','1','1',37.420599, 127.754494);
 insert into station values('양원역','1','1','1','1',36.963475, 129.091151);
-insert into station values('양평역','1','1','1','1',37.492938, 127.491847);
-insert into station values('여수엑스포역','1','1','1','1',34.752846, 127.745975);
 insert into station values('여천역','1','1','1','1',34.779417, 127.664153);
 insert into station values('연산역','1','1','1','1',36.212531, 127.200790);
-insert into station values('영동역','1','1','1','1',36.172376, 127.786233);
-insert into station values('영등포역','1','1','1','1',37.515977, 126.907399);
 insert into station values('영월역','1','1','1','1',37.182664, 128.480735);
-insert into station values('영주역','1','1','1','1',36.811370, 128.625120);
-insert into station values('영천역','1','1','1','1',35.959640, 128.939260);
 insert into station values('예당역','1','1','1','1',34.778844, 127.202288);
 insert into station values('예미역','1','1','1','1',37.212640, 128.648191);
 insert into station values('예산역','1','1','1','1',36.687736, 126.828508);
 insert into station values('예천역','1','1','1','1',37.128293, 128.205321);
 insert into station values('오근장역','1','1','1','1',36.700369, 127.478543);
 insert into station values('오산역','1','1','1','1',37.151745, 127.067049);
-insert into station values('오송역','1','1','1','1',36.620729, 127.327399);
 insert into station values('오수역','1','1','1','1',35.543111, 127.320569);
 insert into station values('옥산역','1','1','1','1',36.283189, 128.094464);
 insert into station values('옥천역','1','1','1','1',36.298328, 127.565550);
-insert into station values('온양온천역','1','1','1','1',36.780642, 127.003739);
 insert into station values('완사역','1','1','1','1',35.134580, 127.977458);
 insert into station values('왜관역','1','1','1','1',35.992542, 128.400010);
 insert into station values('용궁역','1','1','1','1',36.607201, 128.273383);
 insert into station values('용문역','1','1','1','1',37.482323, 127.594187);
-insert into station values('용산역','1','1','1','1',37.530154, 126.964754);
 insert into station values('웅천역','1','1','1','1',36.234591, 126.601897);
 insert into station values('원동역','1','1','1','1',35.363229, 128.920505);
-insert into station values('원주역','1','1','1','1',37.357265, 127.944777);
 insert into station values('사북역','1','1','1','1', 37.226438,128.817023);
 insert into station values('사상역','1','1','1','1', 35.162536,128.985760);
-insert into station values('삼랑진역','1','1','1','1', 35.399625,128.843228);
 insert into station values('삼례역','1','1','1','1', 35.904472,127.066337);
 insert into station values('삼산역','1','1','1','1', 37.446335,127.768538);
 insert into station values('삼탄역','1','1','1','1', 37.073341,128.038593);
@@ -688,8 +630,6 @@ insert into station values('상동역','1','1','1','1', 37.506066,126.753136);
 insert into station values('상주역','1','1','1','1', 36.410507,128.163871);
 insert into station values('서경주역','1','1','1','1', 35.868989,129.201153);
 insert into station values('서광주역','1','1','1','1', 35.125082,126.846881);
-insert into station values('서대전역','1','1','1','1', 36.322636,127.403868);
-insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('서정리역','1','1','1','1', 37.056476,127.052855);
 insert into station values('서천역','1','1','1','1', 36.081596,126.708662);
 insert into station values('석불역','1','1','1','1', 37.460265,127.654872);
@@ -697,8 +637,6 @@ insert into station values('석포역','1','1','1','1', 37.045499,129.061108);
 insert into station values('성환역','1','1','1','1', 36.915891,127.126964);
 insert into station values('센텀역','1','1','1','1', 35.169044,129.131616);
 insert into station values('소정리역','1','1','1','1', 37.056527,127.052876);
-insert into station values('수원역','1','1','1','1', 37.266213,126.999842);
-insert into station values('순천역','1','1','1','1', 34.945753,127.503347);
 insert into station values('승부역','1','1','1','1', 36.993645,129.083866);
 insert into station values('신기역','1','1','1','1', 37.438800,129.095816);
 insert into station values('신녕역','1','1','1','1', 36.034198,128.791131);
@@ -716,7 +654,47 @@ delete from station;
 
 select count(*) from review where member_id='asdf';
 
-
+insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
+insert into station values('용산역','1','1','1','1',37.530154, 126.964754);
+insert into station values('청량리역','1','1','1','1',37.580503, 127.046988);
+insert into station values('양평역','1','1','1','1',37.492938, 127.491847);
+insert into station values('원주역','1','1','1','1',37.357265, 127.944777);
+insert into station values('제천역','1','1','1','1',37.128310, 128.205397);
+insert into station values('영주역','1','1','1','1',36.811370, 128.625120);
+insert into station values('경주역','1','1','1','1',35.844583, 129.217902);
+insert into station values('포항역','1','1','1','1',36.071978, 129.341936);
+insert into station values('부전역','1','1','1','1',35.164922, 129.060131);
+insert into station values('부산역','1','1','1','1',35.115389, 129.042195);
+insert into station values('삼랑진역','1','1','1','1', 35.399625,128.843228);
+insert into station values('밀양역','1','1','1','1',35.474696, 128.771146);
+insert into station values('동대구역','1','1','1','1',35.879850, 128.628476);
+insert into station values('대구역','1','1','1','1',35.943692, 126.811000);
+insert into station values('김천역','1','1','1','1',36.123648, 128.114656);
+insert into station values('영동역','1','1','1','1',36.172376, 127.786233);
+insert into station values('대전역','1','1','1','1',36.331315, 127.433052);
+insert into station values('조치원역','1','1','1','1',36.601360, 127.296260);
+insert into station values('천안역','1','1','1','1',36.809507, 127.146231);
+insert into station values('수원역','1','1','1','1', 37.266213,126.999842);
+insert into station values('영등포역','1','1','1','1',37.515977, 126.907399);
+insert into station values('온양온천역','1','1','1','1',36.780642, 127.003739);
+insert into station values('대천역','1','1','1','1',36.341862, 126.586735);
+insert into station values('군산역','1','1','1','1',35.999450, 126.759768);
+insert into station values('익산역','1','1','1','1',35.940476,126.946330);
+insert into station values('정읍역','1','1','1','1',35.575833, 126.843040);
+insert into station values('광주송정역','1','1','1','1',35.137717, 126.791546);
+insert into station values('나주역','1','1','1','1',35.014490, 126.717093);
+insert into station values('목포역','1','1','1','1',34.791210, 126.386518);
+insert into station values('보성역','1','1','1','1',34.767108, 127.081635);
+insert into station values('순천역','1','1','1','1', 34.945753,127.503347);
+insert into station values('여수엑스포역','1','1','1','1',34.752846, 127.745975);
+insert into station values('진주역','1','1','1','1',35.150958, 128.118006);
+insert into station values('철암역','1','1','1','1',37.113226, 129.036532);
+insert into station values('동해역','1','1','1','1',37.498260, 129.123824);
+insert into station values('정동진역','1','1','1','1',37.691714, 129.032618);
+insert into station values('서대전역','1','1','1','1', 36.322636,127.403868);
+insert into station values('오송역','1','1','1','1',36.620729, 127.327399);
+insert into station values('영천역','1','1','1','1',35.959640, 128.939260);
+insert into station values('안동역','1','1','1','1',36.563066, 128.732955);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('서울역','용산역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('청량리역','양평역',35);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('양평역','원주역',53);

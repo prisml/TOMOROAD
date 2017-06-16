@@ -8,6 +8,6 @@ public interface TomoroadingService {
 
 	StationVO locationInfo(String name);
 
-	List<StationVO> makeRoute(String[] station, String depart, String arrived);
+	List<String> makeRoute(String[] station, String depart, String arrived);
 
 }

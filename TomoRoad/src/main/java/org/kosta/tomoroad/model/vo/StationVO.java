@@ -10,7 +10,7 @@ public class StationVO {
 	private double lng;
 	private String cityurl;
 	private StationVO child;
-	private int spendTime;
+	private int spendTime = Integer.MAX_VALUE;
 
 	public StationVO() {
 		super();

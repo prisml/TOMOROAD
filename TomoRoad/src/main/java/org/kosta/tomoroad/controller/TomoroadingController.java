@@ -48,14 +48,6 @@ public class TomoroadingController {
 	
 	@RequestMapping("tomoroad/makeRoute.do")
 	public ModelAndView makeRoute(String station[],String depart, String arrived){
-		List<StationVO> route = service.makeRoute(station,depart,arrived);
-		return new ModelAndView("tomoroading/tomoroading_result.tiles");
-	}
-	
-	@RequestMapping("tomoroad/delete.do")
-	@ResponseBody
-	public List<StationVO> delete(HttpServletRequest req){
-		String id=(String) req.getSession().getAttribute("id");
-		return null;
+		return new ModelAndView("tomoroading/tomoroading_result.tiles","names",service.makeRoute(station,depart,arrived));
 	}
 }

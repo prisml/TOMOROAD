@@ -7,6 +7,12 @@
 	<resultMap type="stationVO" id="stationRM">
 		<result property="simpleDetail" column="simple_detail"/>
 	</resultMap>
+	
+	<resultMap type="connectionVO" id="connectionRM">
+		<result property="stationVO.name" column="depart"/>
+		<result property="stationVO.name" column="arrived"/>
+		<result property="spendTime" column="spent_time"/>
+	</resultMap>
 
 	<select id="getKeyword" resultType="String">
 		select name from station
@@ -27,6 +33,14 @@
 	
 	<select id="getList" resultType="stationVO">
 		select name from station
+	</select>
+	
+	<select id="getConnectionList" resultType="connectionVO" resultMap="connectionRM">
+		select depart, arrived, spent_time from station_connect
+	</select>
+
+	<select id="getNumberOfStation">
+		select count(*) from station
 	</select>
 	
 </mapper>
