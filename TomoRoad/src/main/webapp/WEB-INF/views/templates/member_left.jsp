@@ -14,16 +14,17 @@
 	<c:when test="${friend != null}">
 		<!-- <input style = color:white; class="btn btn-danger"  type = "text" value = "친구"> -->
 		<button  style = color:white; class="btn btn-danger">
-			<i class = "fa fa-user">친구
+			<i style = "width:165px" class = "fa fa-user">친구
 			</i>
 		</button>
 	</c:when>
 	<c:otherwise>
 		<button style = color:white; class = "btn btn-danger" onclick="friendRequest('${memberInfo.id}')">
-			<i class = "fa fa-user-plus">친구신청</i>
+			<i style = "width:165px"class = "fa fa-user-plus">친구신청</i>
 		</button> 
 	</c:otherwise>
 </c:choose>
-<button style = color:white; class = "btn btn-danger" >
-	<i class = "fa fa-envelope-o">메세지 보내기</i>
+<br><br>
+<button style = color:white; class = "btn btn-warning" >
+	<i style = "width:165px" class = "fa fa-envelope-o">메세지 보내기</i>
 </button>
