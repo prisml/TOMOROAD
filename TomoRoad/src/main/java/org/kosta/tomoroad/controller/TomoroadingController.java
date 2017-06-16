@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TomoroadingController {
@@ -45,5 +46,18 @@ public class TomoroadingController {
 			list.add(service.locationInfo(namelist.get(i)));
 		}
 		return list;
+	}
+	
+	@RequestMapping("tomoroad/makeRoute.do")
+	public ModelAndView makeRoute(String station[],String depart, String arrived){
+		List<StationVO> route = service.makeRoute(station,depart,arrived);
+		return new ModelAndView("tomoroading/tomoroading_result.tiles");
+	}
+	
+	@RequestMapping("tomoroad/delete.do")
+	@ResponseBody
+	public List<StationVO> delete(HttpServletRequest req){
+		String id=(String) req.getSession().getAttribute("id");
+		return null;
 	}
 }
