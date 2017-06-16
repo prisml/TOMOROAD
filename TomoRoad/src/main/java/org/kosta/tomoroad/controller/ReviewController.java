@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.tomoroad.model.service.ReviewService;
-import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.ReviewCommentVO;

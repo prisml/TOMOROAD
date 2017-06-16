@@ -38,12 +38,7 @@ $(document).ready(function(){
 	<div class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="align: center">
-				<li>　</li>
-				<li><a href="${pageContext.request.contextPath}/home.do">
-				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
-					style="height:40px; margin-top:-10px;"/>
-				</a></li>
+			<ul class="nav navbar-nav">
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
@@ -57,6 +52,12 @@ $(document).ready(function(){
 
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do?id=${mvo.id}">
 						MYPAGE </a></li>
+				<li>　</li>
+				
+				<li><a href="${pageContext.request.contextPath}/home.do">
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
+					style="height:40px; margin-top:-10px;"/>
+				</a></li>
 				<li>　</li>
 
 				<li><a
