@@ -249,7 +249,8 @@ $(document).ready(function(){
 	}); 
 </script>
 
-<style>
+<!--  남준  -->
+<!-- <style>
 th {
 	text-align : center;
 }
@@ -257,10 +258,8 @@ input {
 	margin: 10px;
 	
 }
-</style>　　　　　　　
+</style>　　 -->　　　　　
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-
-
 <div class="row"> 
 	<div class="col-md-4">
 		<a href="#" class="btn btn-small btn-default" id="write">글쓰기</a>
