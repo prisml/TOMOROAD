@@ -75,14 +75,12 @@ $(document).ready(function(){
 								${mvo.name}님╹◡╹)ﾉ LogOut </a>
 						</c:otherwise>
 					</c:choose></li>
-				<li>　</li>
 				<c:if test="${mvo != null }">
-				
-				<div id = "bubble" style="position: absolute; top: -25px; left: 850px;">
+				<li><span id = "requestFriend"></span></li>
+				<div id = "bubble" style="position: absolute; top: -25px; left: 810px;">
 				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
 				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
-				<span id = "requestFriend"></span>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
