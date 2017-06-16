@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
 	var flag = false;
@@ -48,6 +47,6 @@
 </div>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">
 	<input type = "file"  style="display:none" name = "uploadfile" id = "file">
-	<input style = color:black; class="btn btn-default" type = "button" onclick = "fileupload()" value = "변경"> &nbsp;
-	<input style = color:black; class="btn btn-default" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
+	<input style = "color:#333;background-color:#fff;border-color:#8c8c8c;" class="btn" type = "button" onclick = "fileupload()" value = "변경">
+	<input style = "color:#333;background-color:#fff;border-color:#8c8c8c;" class="btn" type = "button" onclick = "resetprile()" value = "기본이미지로 변경">
 </form>

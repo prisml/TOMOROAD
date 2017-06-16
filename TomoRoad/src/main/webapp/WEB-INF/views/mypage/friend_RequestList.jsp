@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script type="text/javascript">
 	function requestAccept(id){
@@ -23,16 +23,7 @@
 				<img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" width = "100" height="100" src = "${requestList.PROFILE}"> 	
 			</td>
 			<td>
-				<div class="btn-group">
-   					<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-    					<span style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</span>
-    				</button>
-    				<ul class="dropdown-menu" role="menu">
-      					<li>
-      						<a href="${pageContext.request.contextPath}/memberpage.do?selectId=${requestList.SENDER_ID}">회원페이지로 이동</a>
-      					</li>
-    				</ul>
-    			</div>
+    					<a href ="${pageContext.request.contextPath}/memberpage.do?selectId=${requestList.SENDER_ID}"  style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</a>
     		</td>
 			<td>
 				<button style = color:white; class = "btn btn-danger" onclick="requestAccept('${requestList.SENDER_ID}')">
