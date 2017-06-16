@@ -11,17 +11,19 @@ $(document).ready(function(){
 	$.ajax({
 		type:"get",
 		url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
-		success:function(date){
-				if(date != 0){
+		success:function(data){
+				if(data != 0){
 					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-				}else{
+					$("#requestCount").text(data);
+					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+			 	}else{
 					$("#requestFriend").html("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png>");
+					
 				}
 			}
 	})
 })
 </script>
-
 <header id="header">
 	<%-- <div class="col-sm-12">
 		<div id="logo">
@@ -35,13 +37,13 @@ $(document).ready(function(){
 	<!-- Navigation
     ================================================== -->
 
-	<div class="navbar navbar-default navbar-static-top col-sm-12"
+	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
 		role="navigation">
 		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
 			<ul class="nav navbar-nav">
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/getBurnList.do">
+				<li><a href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
 						BURNING </a></li>
 				<li>　</li>
 
@@ -50,7 +52,7 @@ $(document).ready(function(){
 						REVIEW </a></li>
 				<li>　</li>
 
-				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do?id=${mvo.id}">
+				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
 				<li>　</li>
 				
@@ -74,9 +76,12 @@ $(document).ready(function(){
 								${mvo.name}님╹◡╹)ﾉ LogOut </a>
 						</c:otherwise>
 					</c:choose></li>
-				<li>　</li>
 				<c:if test="${mvo != null }">
-				<span id = "requestFriend"></span>
+				<li><span id = "requestFriend"></span></li>
+				<div id = "bubble" style="position: absolute; top: -25px; left: 810px;">
+				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
+				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
+				</div>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>

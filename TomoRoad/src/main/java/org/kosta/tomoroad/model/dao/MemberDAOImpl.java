@@ -73,11 +73,8 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public List<HashMap<String, String>> friendBlockList(String id) {
-		List<HashMap<String,String>> list =  template.selectList("member.friendBlockListByReceiverId", id);
-		List<HashMap<String,String>> list2 =  template.selectList("member.friendBlockListBySenderId", id);
-		for(int i = 0;i<list.size();i++)
-			list2.add(list.get(i));
-		return list2;
+		List<HashMap<String,String>> list =  template.selectList("member.friendBlockListBySenderId", id);
+		return list;
 	}
 	
 	@Override
@@ -121,6 +118,11 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	public int friend_RequestInfo(String id) {
-		return template.selectOne("friend_RequestInfo", id);
+		return template.selectOne("member.friend_RequestInfo", id);
 	}
+	
+	public int checkFriend(HashMap<String,String> friend){
+		return template.selectOne("member.checkFriend", friend);
+	}
+
 }

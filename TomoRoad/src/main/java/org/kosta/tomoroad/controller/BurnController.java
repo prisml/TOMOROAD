@@ -50,7 +50,7 @@ public class BurnController {
 	@RequestMapping("showBurnComment.do")
 	@ResponseBody
 	public Object showBurnComment(String no,Model model){
-		List<BurnCommentVO> list=burnService.findBurnCommentByNo(no);
+		List<BurnCommentVO> list=burnService.findBurnCommentByNo(no);		
 		return list;
 	}
 	@RequestMapping("deleteComment.do")
@@ -102,15 +102,27 @@ public class BurnController {
 	}
 	
 	@RequestMapping("getBurnListByStation.do")
-	public ModelAndView getBurnListByStation(String stationName, String pageNo){
-		return new ModelAndView("burn/burnlist.tiles","lvo",burnService.getBurnListByStation(stationName, pageNo));
+	public String getBurnListByStation(String stationName, String pageNo, Model model){
+		model.addAttribute("station", burnService.getStationNameList());
+		if(stationName.equals("all")){
+			model.addAttribute("station", burnService.getStationNameList());
+			model.addAttribute("lvo",burnService.getBurnList(pageNo));
+		}else{
+			model.addAttribute("station", burnService.getStationNameList());
+			model.addAttribute("lvo",burnService.getBurnListByStation(stationName, pageNo));
+		}
+		return "burn/burnlist.tiles";		
 	}
 	
 	@RequestMapping("getBurnListByStationAjax.do")
 	@ResponseBody
 	public Object getBurnListByStationAjax(String stationName, String pageNo){
-		System.out.println(burnService.getBurnListByStation(stationName, pageNo));
-		return burnService.getBurnListByStation(stationName, pageNo);
+		System.out.println(stationName);
+		if(stationName.equals("all")){
+			return burnService.getBurnList(pageNo);
+		}else{
+			return burnService.getBurnListByStation(stationName, pageNo);			
+		}		
 	}
 	
 	@RequestMapping("writeBurnForm.do")

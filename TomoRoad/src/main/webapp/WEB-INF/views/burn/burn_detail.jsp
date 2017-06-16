@@ -43,30 +43,30 @@
 													if (data[z].recomment != 0) { //대댓글일 경우																									   
 															comments += "<ul class='children'>";
 															comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
-															comments += "<div class='avatar'><img alt='' src='/tomoroad/resources/images/blog/tomas.png' class='avatar'></div>";
+															comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 															comments += "<div class='comment-container'>";
 															comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
 															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
 															comments += "<div class='comment-body'> <br> <p> "+ data[z].content + "</p> </div><br>";
 															comments += "<div id='buttons'>";
-															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>";
+															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>&nbsp;";
 															
 														
 													}else { // 본댓글일 경우
 														comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
-														comments += "<div class='avatar'><img alt='' src='/tomoroad/resources/images/blog/tomas.png' class='avatar'></div>";
+														comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 														comments += "<div class='comment-container'>";
 														comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
 														comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
 														comments += "<div class='comment-body'> <p>"+ data[z].content + "</p> </div>";
 														comments += "<br>";
 														comments += "<div id='buttons'>";
-														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</button>";
+														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</button>&nbsp;";
 													}
 																										
 														
 													if ("${mvo.id}" == data[z].member_id) { // 자기 댓글일 경우														
-														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</button>";
+														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</button>&nbsp;";
 														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn' name="+ data[z].no +">수정</button>";														
 													}													
 													
@@ -93,11 +93,10 @@
 												}
 												
 												comments += "</li>"; // comment
-											}
-
-										}//for
-									}//success
-								});//ajax
+											} //if
+										} //for
+									} //success
+								}); //ajax
 					
 						
 								$(document).on("click","#deleteCommentBtn",function(){
@@ -109,9 +108,11 @@
 								});// 댓글 삭제 버튼 클릭 시
 								
 								$(document).on("click","#updateCommentBtn",function(){
-									var cont = $(this).parent().children(".comment-body").text();
-									$(this).parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><button id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</a><a id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</button>");
-									$(this).next().empty();	
+									alert();
+									var cont = $(this).parent().parent().children(".comment-body").text();
+									alert(cont);
+									$(this).parent().parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><button id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</button>&nbsp;<button id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</button>");
+									$(this).parent().next().empty();	
 								});// 댓글 수정 버튼 클릭시 
 								
 								$(document).on("click","#updateComment",function(){									
@@ -146,7 +147,7 @@
 										content.focus();
 									}else{
 										var recontent="<strong>To. "+$(this).parent().parent().children(".comment-author").text()+"   </strong>"+content.val();
-										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+recontent+"&member_id=${mvo.id}";
+										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+recontent+"&member_id=${mvo.id}&profile=${mvo.profile}";
 									}
 								}); //답글달기-버튼 클릭 시 
 								
@@ -163,7 +164,7 @@
 										alert("댓글 내용을 입력해주세요!");
 										content.focus();
 									}else{										
-										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+"&member_id=${mvo.id}&burn_no=${bvo.no}";
+										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+"&member_id=${mvo.id}&burn_no=${bvo.no}&profile=${mvo.profile}";
 									}
 								}); // Post Comment 버튼 클릭 시
 							
@@ -202,7 +203,7 @@
 			<button id="update" class="btn btn-sm btn-social-stumbleupon" style="width: 100px">수정</button>
 			<button id="delete" class="btn btn-sm btn-social-pinterest"	style="width: 100px">삭제</button>
 		</c:if>
-			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFD700">목록으로</button>
+			<button id="golist" class="btn btn-sm btn-social-pinterest" style="width: 100px; background-color: #FFCC00">목록으로</button>
 		</span>	
 	</div>
 

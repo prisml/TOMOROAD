@@ -47,7 +47,10 @@ public class MemberServiceImpl implements MemberService{
 		HashMap<String,String> friend = new HashMap<String,String>();
 		friend.put("senderID", senderID);
 		friend.put("receiverID",receiverID);
-		memberDAO.friend_Request(friend);
+		int count = memberDAO.checkFriend(friend);
+		if(count == 0){
+			memberDAO.friend_Request(friend);
+		}
 	}
 	@Override
 	public List<HashMap<String,String>> friend_RequestList(String receiverID) {
@@ -141,7 +144,5 @@ public class MemberServiceImpl implements MemberService{
 	public int friend_RequestInfo(String id) {
 		return memberDAO.friend_RequestInfo(id);
 	}
-
-
 
 }

@@ -141,6 +141,15 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id) {
+		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 5, 5, dao.getTotalContents()); //불러오는 데이터 수만 다르고 기존의 getListByMember 메서드 이용
+		lvo.setPagingBean(pb);
+		lvo.setList(dao.getListByMember(pb, id));
+		return lvo;
+	}
+	
+	@Override
 	public List<StationVO> getStaionList() {
 		return dao.getStationList();
 	}
