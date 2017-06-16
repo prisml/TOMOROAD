@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div><img src = "${pageContext.request.contextPath}/resources/images/myStation2.png"><strong style="font-size : 20px">나의 여행 루트</strong></div>
+<div><img src = "${pageContext.request.contextPath}/resources/images/train.png"><strong style="font-size : 20px;">나의 여행 루트</strong></div>
 <br>
 <br>
 <%-- <div id = "myStationInfo">
