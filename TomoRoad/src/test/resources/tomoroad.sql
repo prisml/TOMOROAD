@@ -23,6 +23,11 @@ ALTER TABLE burn_comment
   FOREIGN KEY (burn_no) 
   REFERENCES burn_board(no) 
   ON DELETE CASCADE;
+
+alter table burn_board drop constraint fk_burn_station_name;
+alter table burn_board add constraint fk_burn_station_name 
+	foreign key (station_name)
+	references station(name);
 ------------------------------------------------
   select * from member
 

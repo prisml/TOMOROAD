@@ -89,6 +89,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select distinct name from station
 	</select>
 	
+	<select id="isNewMsg" resultType="int" parameterType="string">
+		select count(*) from message where m_receiver = #{value} and m_checked =1 
+	</select>
+	
 	
 	
 </mapper>

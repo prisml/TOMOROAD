@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
@@ -103,15 +108,25 @@ $(document).ready(function(){
 					</c:choose>
 >>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 				<c:if test="${mvo != null }">
+				
+				<li><jsp:include page="message.jsp"/></li>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;
+								
 				<li><span id = "requestFriend"></span></li>
-				<div id = "bubble" style="position: absolute; top: -25px; left: 810px;">
+				<div id = "bubble" style="position: absolute; top: -25px; left: 882px;">
 				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
 				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
- --%>				
+ --%>			
+ 
+ 				
+ 	
+
+ 				
 			</ul>
 		</div>
 	</div>
