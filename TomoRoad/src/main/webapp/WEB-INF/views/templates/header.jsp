@@ -105,7 +105,7 @@ $(document).ready(function(){
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
 				<li><span id = "requestFriend"></span></li>
-				<div id = "bubble" style="position: absolute; top: -25px; left: 883px;">
+				<div id = "bubble" style="position: absolute; top: -25px; left: 894px;">
 				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
 				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
