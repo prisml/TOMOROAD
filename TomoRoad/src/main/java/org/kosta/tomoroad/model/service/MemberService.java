@@ -55,5 +55,8 @@ public interface MemberService {
 	
 	int friend_RequestInfo(String id);
 
+	void updateMemberByManager(MemberVO vo);
+
+
 
 }

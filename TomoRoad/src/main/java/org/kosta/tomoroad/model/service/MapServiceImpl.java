@@ -64,7 +64,6 @@ public class MapServiceImpl implements MapService {
 			for(int r=0;r<result.length;r++){
 				if(result[r].contains("icon_url")){
 					cityurl = result[r].trim().substring(9);
-					System.out.println(cityurl);
 				}
 		}
 		return cityurl;

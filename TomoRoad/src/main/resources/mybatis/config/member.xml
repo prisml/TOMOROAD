@@ -27,6 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMember">
 		delete from member where id=#{id}	
 	</delete>
+<!-- 	<update id="deleteMember">
+		delete from member where id=#{id}	
+	</update>
+	<update id="deleteMember">
+		drop from member where id=#{id} cascade	
+	</update> -->
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
@@ -99,18 +105,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from friend where receiver_id = #{value} and state = '대기'
 	</select>
  	
+ 	    <update id="updateMemberByManager" parameterType="memberVO">
+        update member set
+		password=#{password}, name=#{name}, sex=#{sex}, tel=#{tel}
+		where id=#{id}		
+	</update>
+	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
