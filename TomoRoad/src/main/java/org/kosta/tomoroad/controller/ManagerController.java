@@ -23,9 +23,9 @@ public class ManagerController {
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	
+	
 	@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")
 	public String managerLogin(ManagerVO managerVO, HttpServletRequest request, HttpSession session,Model model) {
-		/*System.out.println("접근함?");*/
 		ManagerVO vo = managerService.managerLogin(managerVO);
 		if (vo == null)
 			return "member/noauth_login_fail";
@@ -44,7 +44,7 @@ public class ManagerController {
 	@RequestMapping(value = "mypage/updateMemberByManager.do", method = RequestMethod.POST)
 	public String updateMemberByManager(MemberVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		memberService.updateMemberByManager(vo);
+		managerService.updateMemberByManager(vo);
 		session.setAttribute("mvo", vo);
 		return "redirect:updateResultViewByManager.do?id=" + vo.getId();
 	}
@@ -58,7 +58,7 @@ public class ManagerController {
 	@RequestMapping("deleteMemberByManager.do")
 	public String deleteMemberByManager(String id,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		memberService.deleteMemberByManager(id);
+		managerService.deleteMemberByManager(id);
 		session.invalidate();
 		return "redirect:manager/manager.do";
 	}

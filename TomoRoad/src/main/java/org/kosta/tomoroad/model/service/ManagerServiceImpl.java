@@ -22,6 +22,16 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<MemberVO> getMemberList() {
 		return managerDAO.getMemberList();
 	}
+	@Override
+	public void updateMemberByManager(MemberVO vo) {
+		managerDAO.updateMemberByManager(vo);	
+		
+	}
+	@Override
+	public void deleteMemberByManager(String id) {
+		managerDAO.deleteMemberByManager(id);	
+		
+	}
 
 
 

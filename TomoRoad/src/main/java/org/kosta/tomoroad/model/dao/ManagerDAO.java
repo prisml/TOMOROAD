@@ -11,4 +11,8 @@ public interface ManagerDAO {
 	ManagerVO managerLogin(ManagerVO managerVO);
 
 	List<MemberVO> getMemberList();
+
+	void updateMemberByManager(MemberVO vo);
+
+	void deleteMemberByManager(String id);
 }

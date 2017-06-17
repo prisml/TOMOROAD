@@ -22,4 +22,16 @@ public class ManagerDAOImpl implements ManagerDAO{
 	public List<MemberVO> getMemberList() {
 		return template.selectList("manager.getMemberList");
 	}
+
+	@Override
+	public void updateMemberByManager(MemberVO vo) {
+		template.update("manager.updateMemberByManager",vo);		
+		
+	}
+
+	@Override
+	public void deleteMemberByManager(String id) {
+		template.delete("manager.deleteMemberByManager",id);	
+		
+	}
 }
