@@ -62,16 +62,24 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
-				<li><c:choose>
-						<c:when test="${empty mvo}">
-							<a href="${pageContext.request.contextPath}/member/noauth_login.do">
-								LogIn </a>
-						</c:when>
-						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/logout.do">
-								${mvo.name}님╹◡╹)ﾉ LogOut </a>
-						</c:otherwise>
-					</c:choose></li>
+				<li>
+				<c:choose>
+                  <c:when test="${not empty mvo}">
+                     <a href="${pageContext.request.contextPath}/logout.do">
+                        ${mvo.name}님╹◡╹)ﾉ LogOut </a>
+                  </c:when>
+                  <c:when test="${not empty manager}">
+                  <!-- <script>alert("테스트2");</script> -->
+                  <a href="${pageContext.request.contextPath}/logout.do">
+                        관리자님╹◡╹)ﾉ LogOut </a>
+                  </c:when>
+                  <c:otherwise>
+                     <!-- <script>alert("테스트3");</script> -->
+                     <a href="${pageContext.request.contextPath}/member/noauth_login.do">
+                        LogIn </a>
+                  </c:otherwise>
+            </c:choose>
+				</li>
 				<li>　</li>
 				<c:if test="${mvo != null }">
 				<span id = "requestFriend"></span>

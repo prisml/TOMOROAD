@@ -2531,6 +2531,8 @@ input[type="submit"]{color:#fff !important;}
     font-size: 13px;
     font-weight: normal;
     margin-bottom: 4px;
+    width: 236px;
+    margin: 0 auto;
 }
 .content_3 .widget_info_contact {
     margin-top: 20px;
@@ -5523,7 +5525,8 @@ nav.tm_navbar li.active > a {
   position: relative;
   display: table;
   border-collapse: separate;
-  margin-left: 334px;
+  width: 236px;
+  margin: 0 auto;
 }
 
 .star_rating {font-size:0; letter-spacing:-4px;}
