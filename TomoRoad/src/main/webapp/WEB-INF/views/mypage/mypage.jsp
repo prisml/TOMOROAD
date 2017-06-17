@@ -12,34 +12,29 @@
 			<img src = "${pageContext.request.contextPath}/resources/images/stationInfo.png">
 		</span>
 		<c:if test="${index.last}">
-			<img src = "${pageContext.request.contextPath}/resources/images/train2.png">
+			<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 		</c:if>
 	</c:forEach>
 </div> --%>
 
 <div id = "myStationInfo">
  <span style = "position:relative;">
-<span style = "position:absolute;top:0px;left:20px;"><strong>서울역</strong></span>
-<img src = "${pageContext.request.contextPath}/resources/images/stationInfo3.png">
+<span style = "position:absolute;top:-2px;left:23px;"><strong>서울역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
 </span>
-<img src = "${pageContext.request.contextPath}/resources/images/train2.png">
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 <span style = "position:relative;">
-<span style = "position:absolute; top:0px;left:15px;"><strong>여의도역</strong></span>
-<img src = "${pageContext.request.contextPath}/resources/images/stationInfo3.png">
+<span style = "position:absolute; top:-2px;left:17px;"><strong>여의도역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
 </span>
-<img src = "${pageContext.request.contextPath}/resources/images/train2.png">
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 <span style = "position:relative;">
-<span style = "position:absolute;top:-9px;left:20px;"><strong>&nbsp;여의<br>나무역</strong></span>
-<img src = "${pageContext.request.contextPath}/resources/images/stationInfo3.png">
+<span style = "position:absolute;top:-11px;left:24px;"><strong>&nbsp;여의<br>나무역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
 </span>
-<img src = "${pageContext.request.contextPath}/resources/images/train2.png">
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 <span style = "position:relative;">
-<span style = "position:absolute;top:-9px;left:14px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;여수<br>엑스포역</strong></span>
-<img src = "${pageContext.request.contextPath}/resources/images/stationInfo3.png">
-</span>
-<img src = "${pageContext.request.contextPath}/resources/images/train2.png">
-<span style = "position:relative;">
-<span style = "position:absolute;top:-9px;left:14px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;여수<br>엑스포역</strong></span>
-<img src = "${pageContext.request.contextPath}/resources/images/stationInfo3.png">
+<span style = "position:absolute;top:-11px;left:16px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여수<br>엑스포역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
 </span>
 </div> 
