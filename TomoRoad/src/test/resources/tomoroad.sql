@@ -72,6 +72,8 @@ create table manager(
 	password varchar2(100) not null
 );
 
+insert into manager values('abc',1234)
+
 --station 테이블 컬럼추가(0607).
 create table station(
 	name varchar2(100) primary key, --역 이름
