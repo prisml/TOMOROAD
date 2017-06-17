@@ -20,6 +20,7 @@ $(document).ready(function() {
 						}
 					});
 	$("#deleteMember").click(function() {
+		$('input[type=radio]:checked').val();
 						if (confirm("회원을 삭제하시겠습니까?")){
 							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?no=${mvo.id}";
 						}
