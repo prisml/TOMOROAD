@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Sql Mapper -->
+<mapper namespace="bucket">
+	<select id="findBucket" resultType="int" parameterType="bucketVO">
+		select count(*) from bucket where id=#{id} and name=#{name}
+	</select>
+	<insert id="insertBucket" parameterType="bucketVO">
+		insert into bucket(id,name) values (#{id},#{name}) 
+	</insert>
+	<delete id="deleteBucket" parameterType="bucketVO">
+		delete bucket where id=#{id} and name=#{name}
+	</delete>
+	<select id="selectBucketList" resultType="bucketVO" parameterType="String">
+		select * from bucket where id=#{value}
+	</select>
+</mapper>

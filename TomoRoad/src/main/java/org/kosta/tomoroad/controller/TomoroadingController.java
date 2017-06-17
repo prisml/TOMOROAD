@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TomoroadingController {
@@ -21,14 +22,11 @@ public class TomoroadingController {
 	@RequestMapping("tomoroading/tomoroading.do")
 	public String tomoroading_result(Model model,String names){
 		System.out.println(names);
-		String[] listarray = names.split(",");
+		String[] listarray = names.split("역");
 		List<String> namelist= new ArrayList<String>();
-		System.out.println(listarray.length);
 		for(int i=0;i<listarray.length;i++){
-			System.out.println(listarray[i]);
-			namelist.add(listarray[i]);
+			namelist.add(listarray[i]+"역");
 		}
-		System.out.println(namelist.size());
 		model.addAttribute("locationNames", namelist);
 		return "tomoroading/tomoroading_result.tiles";
 	}
@@ -37,18 +35,21 @@ public class TomoroadingController {
 	@ResponseBody
 	public List<StationVO> Tomoroading(HttpServletRequest request){
 		String names=request.getParameter("names");
+		System.out.println(names);
 		String[] listarray=names.split(",");
 		List<String> namelist= new ArrayList<String>();
 		List<StationVO> list=new ArrayList<StationVO>();
-		System.out.println(listarray.length);
 		for(int i=0;i<listarray.length;i++){
-			System.out.println(listarray[i]);
 			namelist.add(listarray[i]);
 		}
 		for(int i=0;i<namelist.size();i++){
 			list.add(service.locationInfo(namelist.get(i)));
 		}
-		System.out.println(namelist.size());
 		return list;
+	}
+	
+	@RequestMapping("tomoroad/makeRoute.do")
+	public ModelAndView makeRoute(String station[],String depart, String arrived){
+		return new ModelAndView("tomoroading/tomoroading_result.tiles","names",service.makeRoute(station,depart,arrived));
 	}
 }

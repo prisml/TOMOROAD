@@ -13,7 +13,6 @@ public interface StationDAO {
 
 	StationVO getDetailInfo(String name);
 
-	List<StationVO> getAllStationInfo();
 	
 	
 	

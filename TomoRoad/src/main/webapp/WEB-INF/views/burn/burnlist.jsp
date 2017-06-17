@@ -255,7 +255,8 @@ $(document).ready(function(){
 	}); 
 </script>
 
-<style>
+<!--  남준  -->
+<!-- <style>
 th {
 	text-align : center;
 }
@@ -263,14 +264,14 @@ input {
 	margin: 10px;
 	
 }
-</style>　　　　　　　
+</style>　　 -->　　　　　
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <br><br>
 <div class="row"> 
 	<div class="col-md-4">
-		<a href="#" class="btn"bstyle="ackhground-color:#ED4B4B;" id="write">글쓰기</a>
+		<a href="#" class="btn"style="backhground-color:#ED4B4B;" id="write">글쓰기</a>
 	</div> 
 	<div class="col-md-4 col-md-offset-4">
 	
@@ -296,7 +297,7 @@ input {
 	<td>${burn.no}</td>
 	<td style="word-break:break-all;"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
 	<td>${burn.stationName}</td>	
-	<td><a href="#." data-html="true" data-toggle="popover" data-trigger="focus" data-content="<ul><li><a href='#.' class='sendMsg'>메세지 보내기</a></li><li><a href='#.' class='doVisit'><input type='hidden' value='${burn.memberId}'> 페이지로 이동</a></li></ul>">${burn.memberId}</a>	
+	<td><a href="#." data-html="true" data-toggle="popover" data-trigger="focus" data-content="<ul><li><a href='#.' class='message'>메세지 보내기</a></li><li><a href='#.' class='doVisit'><input type='hidden' value='${burn.memberId}'> 페이지로 이동</a></li></ul>">${burn.memberId}</a>	
 	</td>
 	<td>${burn.postedTime}</td>
 	<td>${burn.hits}</td>

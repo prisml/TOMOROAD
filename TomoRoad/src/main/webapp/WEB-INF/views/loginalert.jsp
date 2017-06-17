@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert("로그인이 필요한 서비스입니다. 로그인을 해주세요");
-	location.href="noauth_login.do";
+	location.href="${pageContext.request.contextPath}/member/noauth_login.do";
 </script>

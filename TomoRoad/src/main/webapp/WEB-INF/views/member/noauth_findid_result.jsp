@@ -3,8 +3,8 @@
                     <br>
                 <br>
                 <br>
-검색결과╹◡╹)ﾉ ${mvo.id} 입니다
+검색결과╹◡╹)ﾉ ${member.id} 입니다
 <br>
 <br>
 <br>
-<li><a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a></li>
+<a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>

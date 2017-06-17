@@ -1,16 +1,7 @@
 <%@page import="org.kosta.tomoroad.model.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-
-
-    <title>Update Page</title>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
  $(document).ready(function(){
@@ -107,9 +98,6 @@
 
 }
 </style>
-</head>
-
-  <body class="login-img3-body">
 
     <div class="col-lg-12 col-sm-12"> 
 	
@@ -154,7 +142,7 @@
                                 <input type="text"   class="form-control"  value="${mvo.sex}" readonly>  
                                 <br>
                                     <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
-                                    &nbsp&nbsp
+                                    &nbsp;&nbsp;
                                     <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자
                                 </label>
                 </div> 
@@ -178,7 +166,3 @@
         </div>
       </form>
     </div>
-
-
-  </body>
-</html>

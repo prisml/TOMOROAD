@@ -47,4 +47,7 @@ public interface ReviewService {
 
 	List<StationVO> getStaionList();
 
+	int getTotalContentsByMember(String id);
+
+
 }

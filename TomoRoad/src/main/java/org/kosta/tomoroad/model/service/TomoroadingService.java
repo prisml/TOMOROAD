@@ -1,9 +1,13 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.List;
+
 import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface TomoroadingService {
 
 	StationVO locationInfo(String name);
+
+	List<String> makeRoute(String[] station, String depart, String arrived);
 
 }
