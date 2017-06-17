@@ -24,6 +24,25 @@
 </span>
 <img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 <span style = "position:relative;">
+<span style = "position:absolute;top:-2px;left:23px;"><strong>용산역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
+</span>
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
+ <span style = "position:relative;">
+<span style = "position:absolute;top:-2px;left:23px;"><strong>천안역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
+</span>
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
+<span style = "position:relative;">
+<span style = "position:absolute;top:-11px;left:16px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여수<br>엑스포역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
+</span>
+<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
+<span style = "position:relative;">
+<span style = "position:absolute;top:-2px;left:23px;"><strong>서울역</strong></span>
+<img src = "${pageContext.request.contextPath}/resources/images/c.png">
+</span>
+<%-- <span style = "position:relative;">
 <span style = "position:absolute; top:-2px;left:17px;"><strong>여의도역</strong></span>
 <img src = "${pageContext.request.contextPath}/resources/images/c.png">
 </span>
@@ -36,5 +55,5 @@
 <span style = "position:relative;">
 <span style = "position:absolute;top:-11px;left:16px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여수<br>엑스포역</strong></span>
 <img src = "${pageContext.request.contextPath}/resources/images/c.png">
-</span>
+</span> --%>
 </div> 
