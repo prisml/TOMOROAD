@@ -36,9 +36,9 @@ function weaterDetail(id,lat,lng){
 		$.ajax({
 			type:"GET",
 			url:"http://api.wunderground.com/api/5e1e5a83789f94e3/forecast/lang:KR/q/"+lat+","+lng+".json",
-			dataType:jsonp,
+			dataType:"jsonp",
 			success:function(data){
-				alert(1);
+				/* var forecast = data['forecast']p */
 			}
 		});
 	});	
