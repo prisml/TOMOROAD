@@ -53,7 +53,7 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/review/noauth_showList.do">
 						REVIEW </a></li>
 				<li>　</li>
-
+				
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
 				<li>　</li>
@@ -68,16 +68,18 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
-				<li><c:choose>
+				<c:choose>
 						<c:when test="${empty mvo}">
-							<a href="${pageContext.request.contextPath}/member/noauth_login.do">
-								LogIn </a>
+							<li><a href="${pageContext.request.contextPath}/member/noauth_login.do">
+								LogIn </a></li>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/logout.do">
-								${mvo.name}님╹◡╹)ﾉ LogOut </a>
+							<li><a href="${pageContext.request.contextPath}/logout.do">
+								${mvo.name}님 LogOut </a></li>
+							<li><a href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">버킷리스트</a>
+							</li>
 						</c:otherwise>
-					</c:choose></li>
+					</c:choose>
 				<c:if test="${mvo != null }">
 				<li><span id = "requestFriend"></span></li>
 				<div id = "bubble" style="position: absolute; top: -25px; left: 810px;">
