@@ -52,4 +52,5 @@
 		<bean class="org.kosta.tomoroad.controller.interceptor.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+		
 </beans>

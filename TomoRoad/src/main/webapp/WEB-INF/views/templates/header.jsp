@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
@@ -78,7 +83,12 @@ $(document).ready(function(){
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
- --%>				
+ --%>			
+ 
+ 				<li><jsp:include page="message.jsp"/></li>
+ 	
+
+ 				
 			</ul>
 		</div>
 	</div>
