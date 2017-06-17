@@ -33,14 +33,15 @@ public class TomoroadingController {
 	
 	@RequestMapping("tomoroading/route.do")
 	@ResponseBody
-	public List<StationVO> Tomoroading(HttpServletRequest request){
-		String names=request.getParameter("names");
-		System.out.println(names);
+	public List<StationVO> Tomoroading(HttpServletRequest request,String names){
+		System.out.println(names+"1");
 		String[] listarray=names.split(",");
 		List<String> namelist= new ArrayList<String>();
 		List<StationVO> list=new ArrayList<StationVO>();
 		for(int i=0;i<listarray.length;i++){
+			System.out.println(listarray[i]);
 			namelist.add(listarray[i]);
+			
 		}
 		for(int i=0;i<namelist.size();i++){
 			list.add(service.locationInfo(namelist.get(i)));
@@ -49,7 +50,7 @@ public class TomoroadingController {
 	}
 	
 	@RequestMapping("tomoroad/makeRoute.do")
-	public ModelAndView makeRoute(String station[],String depart, String arrived){
-		return new ModelAndView("tomoroading/tomoroading_result.tiles","names",service.makeRoute(station,depart,arrived));
+	public ModelAndView makeRoute(String station[],String depart){
+		return new ModelAndView("tomoroading/tomoroading_result.tiles","names",service.makeRoute(station,depart,depart));
 	}
 }
