@@ -97,6 +97,16 @@ public class BurnDAOImpl implements BurnDAO{
 	public int countComment(String no) {
 		return template.selectOne("burn.countComment");
 	}
+
+	@Override
+	public int isNewMsg(String receiver) {
+		return template.selectOne("burn.isNewMsg",receiver);
+	}
+
+	@Override
+	public String findId(String id) {
+		return template.selectOne("burn.findId",id);
+	}
 	
 	
 }

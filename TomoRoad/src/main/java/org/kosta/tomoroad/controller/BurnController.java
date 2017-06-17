@@ -3,6 +3,7 @@ package org.kosta.tomoroad.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
@@ -20,9 +21,9 @@ public class BurnController {
 	private BurnService burnService;
 	
 	@RequestMapping("getBurnList.do")
-	public String getBurnList(String pageNo, Model model){
+	public String getBurnList(String pageNo, Model model, HttpServletRequest request){
 		model.addAttribute("station", burnService.getStationNameList());
-		model.addAttribute("lvo",burnService.getBurnList(pageNo));
+		model.addAttribute("lvo",burnService.getBurnList(pageNo));		
 		return "burn/burnlist.tiles";			
 	}
 	
@@ -116,8 +117,7 @@ public class BurnController {
 	
 	@RequestMapping("getBurnListByStationAjax.do")
 	@ResponseBody
-	public Object getBurnListByStationAjax(String stationName, String pageNo){
-		System.out.println(stationName);
+	public Object getBurnListByStationAjax(String stationName, String pageNo){		
 		if(stationName.equals("all")){
 			return burnService.getBurnList(pageNo);
 		}else{
@@ -129,6 +129,20 @@ public class BurnController {
 	public ModelAndView writeBurnForm(){
 		return new ModelAndView("burn/register_form.tiles","station",burnService.getStationNameList());
 	}
+	
+	@RequestMapping("isNewMsg.do")
+	@ResponseBody
+	public int isNewMsg(String receiver){
+		System.out.println(receiver);
+		return burnService.isNewMsg(receiver);
+	}
+	
+	@RequestMapping("findId.do")
+	@ResponseBody
+	public String findId(String id){
+		return burnService.findId(id);
+	}
+	
 }
 
 

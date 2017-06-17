@@ -36,7 +36,7 @@ function weaterDetail(id,lat,lng){
 		$.ajax({
 			type:"GET",
 			url:"http://api.wunderground.com/api/5e1e5a83789f94e3/forecast/lang:KR/q/"+lat+","+lng+".json",
-			dataType:jsonp,
+			dataType:"jsonp",
 			success:function(data){
 				alert(1);
 			}
@@ -96,9 +96,6 @@ function initMap() {
 					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
 			  		}
 			     	}//else
-					if(data!="http://icons.wxug.com/i/c/k/.gif"){
-			     	infoList[${status.index}] += '<input type="button" id="${station.name}weather" value="이지역 주간 날씨">';
-					}//if
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';
 					windowNames[${status.index}] = new google.maps.InfoWindow({

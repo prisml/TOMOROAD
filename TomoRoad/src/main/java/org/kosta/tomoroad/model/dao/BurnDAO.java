@@ -41,4 +41,8 @@ public interface BurnDAO {
 
 	int countComment(String no);
 
+	int isNewMsg(String receiver);
+
+	String findId(String id);
+
 }

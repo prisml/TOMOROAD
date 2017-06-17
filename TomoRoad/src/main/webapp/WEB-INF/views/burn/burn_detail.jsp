@@ -108,9 +108,7 @@
 								});// 댓글 삭제 버튼 클릭 시
 								
 								$(document).on("click","#updateCommentBtn",function(){
-									alert();
-									var cont = $(this).parent().parent().children(".comment-body").text();
-									alert(cont);
+									var cont = $(this).parent().parent().children(".comment-body").text();									
 									$(this).parent().parent().children(".comment-body").html("<textarea id=updateText rows=2 style='width:400px; word-break:break-all;'>" + cont + "</textarea><br><button id='updateComment' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>수정하기</button>&nbsp;<button id='updateCancelBtn' class='btn btn-sm btn-social-stumbleupon' style='background-color:Plum; height:25px; width:70px; font-size:11px;'>취소하기</button>");
 									$(this).parent().next().empty();	
 								});// 댓글 수정 버튼 클릭시 

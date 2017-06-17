@@ -3,8 +3,7 @@
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <script>
 	$(document).ready(function(){
@@ -12,9 +11,9 @@
 			if(${empty mvo}){
 				alert("로그인을 해주세요");
 				return false;
-			}
+			}			
 			location.href="${pageContext.request.contextPath}/writeBurnForm.do";
-		});		
+		});
 }); // ready
 </script>
 
@@ -55,7 +54,19 @@ $(document).ready(function(){
 		}); // ajax
 		}
 	});	// doVisit
+	
+	
+	
+	$(document).on("click",".message",function(){		
+		openNav();
+	});
+	
+	
+	     
+	      
 });
+	
+
 
 </script>
 
@@ -75,14 +86,14 @@ $(document).ready(function(){
 						var list="";
 						list += "<table class='table table-hover'>";
 						list += "<tr>";
-						list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+						list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 						list += "</tr>";
 												 
 						for(var i=0; i<data.list.length; i++){	
 							list += "<tr align='center'>";
 							list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
 							list += "<td>";
-							list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+							list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=sendMsg>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
 							list += "</td>";		
 							list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
 							list += "</tr>";
@@ -134,14 +145,14 @@ $(document).ready(function(){
 					var list="";
 					list += "<table class='table table-hover'>";
 					list += "<tr>";
-					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 					list += "</tr>";
 											 
 					for(var i=0; i<data.list.length; i++){	
 						list += "<tr align='center'>";
 						list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
 						list += "<td>";
-						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=sendMsg>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
 						list += "</td>";					
 						list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
 						list += "</tr>";
@@ -199,14 +210,14 @@ $(document).ready(function(){
 					var list="";
 					list += "<table class='table table-hover'>";
 					list += "<tr>";
-					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 					list += "</tr>";
 											 
 					for(var i=0; i<data.list.length; i++){	
 						list += "<tr align='center'>";
 						list += "<td>"+data.list[i].no+"</td><td style='word-break:break-all;'><a href=${pageContext.request.contextPath}/showBurnDetail.do?no="+data.list[i].no+">"+data.list[i].title+"("+data.list[i].commentCount+")</a></td><td>"+data.list[i].stationName+"</td>";
 						list += "<td>";
-						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=message>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
+						list += "<a href='#.' class='AjaxPop' data-html='true' data-toggle='popover' data-trigger='focus' data-content='<ul><li><a href=#. class=sendMsg>메세지 보내기</a></li><li><a href=#. class=doVisit><input type=hidden value="+data.list[i].memberId+"> 페이지로 이동</a></li></ul>'>"+data.list[i].memberId+"</a>";
 						list += "</td>";					
 						list += "<td>"+data.list[i].postedTime+"</td><td>"+data.list[i].hits+"</td>";
 						list += "</tr>";
@@ -260,9 +271,12 @@ input {
 }
 </style>　　 -->　　　　　
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<br><br>
 <div class="row"> 
 	<div class="col-md-4">
-		<a href="#" class="btn btn-small btn-default" id="write">글쓰기</a>
+		<a href="#" class="btn" style="background-color:#ED4B4B;" id="write">글쓰기</a>
 	</div> 
 	<div class="col-md-4 col-md-offset-4">
 	
@@ -276,12 +290,12 @@ input {
 <div id="listOutput">
 <table class="table table-hover" >
   <tr>
-    <th width="100px">번호</th>
-    <th>제목</th>
-    <th width="100px">역이름</th>
-    <th width="120px">작성자</th>
-    <th width="200px">작성시간</th>
-    <th width="100px">조회수</th>
+    <th width="100px" style="text-align:center;">번호</th>
+    <th style="text-align:center;">제목</th>
+    <th width="100px" style="text-align:center;">역이름</th>
+    <th width="120px" style="text-align:center;">작성자</th>
+    <th width="200px" style="text-align:center;">작성시간</th>
+    <th width="100px" style="text-align:center;">조회수</th>
   </tr>
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
@@ -296,7 +310,7 @@ input {
   </c:forEach>  
 </table>
 </div>
-
+<br>
 <div id="pageDiv" align="center">
 
 <c:set value="${lvo.pagingBean}" var="pb"/>
@@ -326,6 +340,6 @@ input {
 
 
 </div>
-
-
+<br><br>
+</div>
 

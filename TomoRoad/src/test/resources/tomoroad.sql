@@ -23,6 +23,11 @@ ALTER TABLE burn_comment
   FOREIGN KEY (burn_no) 
   REFERENCES burn_board(no) 
   ON DELETE CASCADE;
+
+alter table burn_board drop constraint fk_burn_station_name;
+alter table burn_board add constraint fk_burn_station_name 
+	foreign key (station_name)
+	references station(name);
 ------------------------------------------------
   select * from member
 
@@ -66,6 +71,8 @@ create table manager(
 	id varchar2(100) primary key,
 	password varchar2(100) not null
 );
+
+insert into manager values('abc',1234)
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -153,6 +160,7 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
+	state varchar2(100) default 'comment',
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
 	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
 );
@@ -302,11 +310,11 @@ select name,simple_detail,section,img from station;
 insert into stationcityname values ('서울역','seoul');
 
 -----< place 정보 >-----
-insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주역','Honam');
+insert into place values(place_seq.nextval,'5·18 민주화운동 기록관','광주송정역','Honam');
 insert into place values(place_seq.nextval,'동대문','서울역','Capital');
 insert into place values(place_seq.nextval,'해운대','부산역','Youngnam');
-insert into place values(place_seq.nextval,'오죽헌','강릉역','Gwandong');
-insert into place values(place_seq.nextval,'금오산','구미역','Youngnam');
+insert into place values(place_seq.nextval,'영남루','밀양역','Youngnam');
+insert into place values(place_seq.nextval,'정동진해변','정동진역','Gwandong');
 
 select * from place where name LIKE '%해운대%'; 
 
@@ -477,6 +485,8 @@ select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd
 update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+
+update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
 delete from friend where sender_id = 'asdf'
 

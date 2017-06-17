@@ -23,7 +23,7 @@
   }); //#chpass.keyup
  });
 
- /* 
+ </script>
  <script type="text/javascript">
  function checkPassword(password){
 
@@ -65,8 +65,8 @@
 		  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
 		  return false;
 		 }
- */
- 
+		 </script>
+  <script type="text/javascript">
  $(document).ready(function(){
 		var checkResultId="";		
 		$("#regForm").submit(function(){				
@@ -138,7 +138,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	        <div class="dividerHeading">
-            <h4><span>가입 해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>가입 해주세요</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/member/noauth_registerMember.do" id="regForm" onsubmit="return samePw()" >      
@@ -193,7 +193,7 @@
             <br>
                             <div class="input-group">
                             <label>
-                                <input type="checkbox" required="required" >가입을 희망 합니다╹◡╹)ﾉ <!-- I agree to <a href="#">terms</a> -->
+                                <input type="checkbox" required="required" >가입을 희망 합니다 <!-- I agree to <a href="#">terms</a> -->
                             </label>
                 </div> 
                 

@@ -86,9 +86,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getStationNameList" resultType="string">
-		select distinct name from station
+		select distinct name from station order by name asc
 	</select>
 	
+	<select id="isNewMsg" resultType="int" parameterType="string">
+		select count(*) from message where m_receiver = #{value} and m_checked =1 
+	</select>
 	
+	<select id="findId" resultType="string">
+		select id from member where id like '%' || #{value} || '%'
+	</select>
 	
 </mapper>

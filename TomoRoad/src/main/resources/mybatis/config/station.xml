@@ -9,8 +9,8 @@
 	</resultMap>
 	
 	<resultMap type="connectionVO" id="connectionRM">
-		<result property="stationVO.name" column="depart"/>
-		<result property="stationVO.name" column="arrived"/>
+		<result property="depart.name" column="depart"/>
+		<result property="arrived.name" column="arrived"/>
 		<result property="spendTime" column="spent_time"/>
 	</resultMap>
 
@@ -39,7 +39,7 @@
 		select depart, arrived, spent_time from station_connect
 	</select>
 
-	<select id="getNumberOfStation">
+	<select id="getNumberOfStation" resultType="int">
 		select count(*) from station
 	</select>
 	

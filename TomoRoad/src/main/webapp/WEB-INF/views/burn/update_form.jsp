@@ -12,8 +12,8 @@
 			}
 		});
 		
-		$("#golist").click(function() {
-			location.href = "${pageContext.request.contextPath}/getBurnList.do";
+		$("#cancel").click(function() {
+			location.href = "${pageContext.request.contextPath}/showBurnDetail.do?no="+${bvo.no};
 		});
 	});
 </script>
@@ -47,8 +47,8 @@
      </div>
      
 	<div align="center">
-     <input type="submit" value="작성하기" class="btn btn-lg btn-default"> 
-     <input type="button" id="golist" class="btn btn-lg btn-default" style="color:white; background-color: #FFCC00" value="취소">
+     <input type="submit" value="수정완료" class="btn btn-lg btn-default"> 
+     <input type="button" id="cancel" class="btn btn-lg btn-default" style="color:white; background-color: #FFCC00" value="취소">
     </div>   
       
   </form>

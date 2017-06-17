@@ -124,5 +124,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public int checkFriend(HashMap<String,String> friend){
 		return template.selectOne("member.checkFriend", friend);
 	}
+	@Override
+	public void updateMemberByManager(MemberVO vo) {
+		template.update("member.updateMemberByManager",vo);
+		
+	}
 
 }

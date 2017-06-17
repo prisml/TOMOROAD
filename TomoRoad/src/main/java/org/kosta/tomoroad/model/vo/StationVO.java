@@ -9,15 +9,13 @@ public class StationVO {
 	private double lat;
 	private double lng;
 	private String cityurl;
-	private StationVO child;
 	private int spendTime = Integer.MAX_VALUE;
+	private StationVO child;
 
 	public StationVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	public StationVO(String name, String detail, String simpleDetail, String section, String img, double lat,
 			double lng, String cityurl, StationVO child, int spendTime) {
@@ -33,8 +31,6 @@ public class StationVO {
 		this.child = child;
 		this.spendTime = spendTime;
 	}
-
-
 
 	public StationVO(String name) {
 		super();
@@ -121,15 +117,10 @@ public class StationVO {
 		this.spendTime = spendTime;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "StationVO [name=" + name + ", detail=" + detail + ", simpleDetail=" + simpleDetail + ", section="
-				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + ", cityurl=" + cityurl + ", child="
-				+ child + ", spendTime=" + spendTime + "]";
+		return "StationVO [name=" + name + ", spendTime="
+				+ spendTime + ", child=" + child + "]";
 	}
-
-	
 
 }

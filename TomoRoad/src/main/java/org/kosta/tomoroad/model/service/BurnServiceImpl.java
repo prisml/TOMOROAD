@@ -121,5 +121,15 @@ public class BurnServiceImpl implements BurnService {
 	public int CountComment(String no){
 		return burnDAO.countComment(no);
 	}
+	
+	@Override
+	public int isNewMsg(String receiver) {
+		return burnDAO.isNewMsg(receiver);
+	}
+
+	@Override
+	public String findId(String id) {
+		return burnDAO.findId(id);
+	}
 
 }
