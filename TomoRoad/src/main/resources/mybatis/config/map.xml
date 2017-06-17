@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Sql Mapper -->
+<mapper namespace="map">
+	<select id="getAllStationInfo" resultType="mapVO" parameterType="String">
+		select s.name,s.lat,s.lng,i.member_id from station s,(
+		select r.member_id,p.station_name from review r,place p where r.place_no = p.no
+		and r.member_id=#{val})I where I.station_name (+)= s.name
+	</select>
+</mapper>

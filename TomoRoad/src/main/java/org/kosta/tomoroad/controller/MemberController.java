@@ -67,7 +67,7 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session != null)
 			session.invalidate();
-		return "home.tiles";
+		return "redirect:home.do";
 	}
 
 	@RequestMapping(value = "member/noauth_registerMember.do", method = RequestMethod.POST)

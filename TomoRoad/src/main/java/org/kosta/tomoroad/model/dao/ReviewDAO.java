@@ -21,7 +21,6 @@ public interface ReviewDAO {
 
 	void update(ReviewVO vo);
 
-
 	List<ReviewVO> getKeyword(String keyword, String reviewFilter);
 
 	List<ReviewVO> getListByMember(PagingBean pb, String id);
@@ -33,7 +32,7 @@ public interface ReviewDAO {
 	List<PlaceVO> getPlaceList(String name);
 
 	void hits(String no);
-	
+
 	int getRecommendByNo(int no);
 
 	void recommend(Map<String, Object> map);
@@ -45,9 +44,11 @@ public interface ReviewDAO {
 	void writeComment(ReviewCommentVO vo);
 
 	List<ReviewCommentVO> getCommentList(String no);
-	
+
 	List<ReviewVO> getReviewListByPlace(int no);
 
 	List<StationVO> getStationList();
-	
+
+	int getTotalContentsByMember(String id);
+
 }

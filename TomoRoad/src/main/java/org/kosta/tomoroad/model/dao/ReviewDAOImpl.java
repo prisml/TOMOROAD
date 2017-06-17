@@ -130,4 +130,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public List<StationVO> getStationList() {
 		return template.selectList("station.getList");
 	}
+
+	@Override
+	public int getTotalContentsByMember(String id) {
+		return template.selectOne("review.getTotalContentsByMember",id);
+	}
+
 }

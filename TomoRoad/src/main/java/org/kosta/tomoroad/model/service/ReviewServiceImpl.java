@@ -143,7 +143,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public ListVO<ReviewVO> getListByMemberInMemberPage(String page, String id) {
 		ListVO<ReviewVO> lvo = new ListVO<ReviewVO>();
-		PagingBean pb = new PagingBean(Integer.parseInt(page), 5, 5, dao.getTotalContents()); //불러오는 데이터 수만 다르고 기존의 getListByMember 메서드 이용
+		PagingBean pb = new PagingBean(Integer.parseInt(page), 5, dao.getTotalContentsByMember(id)); //현재페이지,페이지 당 게시물 수, 페이지 그룹당 페이지수,해당 아이디가 쓴 리뷰 데이터 갯수를 불러옴
 		lvo.setPagingBean(pb);
 		lvo.setList(dao.getListByMember(pb, id));
 		return lvo;
@@ -153,4 +153,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<StationVO> getStaionList() {
 		return dao.getStationList();
 	}
+
+	@Override
+	public int getTotalContentsByMember(String id) {
+		return dao.getTotalContentsByMember(id);
+	}
+
 }
