@@ -17,8 +17,10 @@ public class StationVO {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public StationVO(String name, String detail, String simpleDetail, String section, String img, double lat,
-			double lng, String cityname, String cityurl) {
+			double lng, String cityurl, StationVO child, int spendTime) {
 		super();
 		this.name = name;
 		this.detail = detail;
@@ -27,7 +29,12 @@ public class StationVO {
 		this.img = img;
 		this.lat = lat;
 		this.lng = lng;
+		this.cityurl = cityurl;
+		this.child = child;
+		this.spendTime = spendTime;
 	}
+
+
 
 	public StationVO(String name) {
 		super();
@@ -114,10 +121,15 @@ public class StationVO {
 		this.spendTime = spendTime;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "StationVO [name=" + name + ", detail=" + detail + ", simpleDetail=" + simpleDetail + ", section="
-				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + ", cityurl=" + cityurl + "]";
+				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + ", cityurl=" + cityurl + ", child="
+				+ child + ", spendTime=" + spendTime + "]";
 	}
+
+	
 
 }
