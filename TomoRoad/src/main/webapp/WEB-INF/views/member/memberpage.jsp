@@ -52,6 +52,10 @@
 					TimeLine+="<div class='porDetCarousel'>";
 						//사진
 						TimeLine+="<div class='carousel-content'>";
+						//이미지가 없을 때는 upload 파일에 사진이 없어. 그러면 
+						/* TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
+						TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
+						TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>"; */
 							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
 							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
 							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>";

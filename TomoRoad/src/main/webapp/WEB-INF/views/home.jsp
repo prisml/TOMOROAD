@@ -31,7 +31,18 @@ function buttonClick(id,marker,windowName){
 	});
 	
 }
-
+function weaterDetail(id,lat,lng){
+	$(document).on("click","#"+id+"weather",function(){
+		$.ajax({
+			type:"GET",
+			url:"http://api.wunderground.com/api/5e1e5a83789f94e3/forecast/lang:KR/q/"+lat+","+lng+".json",
+			dataType:jsonp,
+			success:function(data){
+				alert(1);
+			}
+		});
+	});	
+}
 function initMap() {
 	    var directionsDisplay = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
@@ -67,7 +78,7 @@ function initMap() {
 				success:function(data){
 					infoList[${status.index}] += '<div>';
 					infoList[${status.index}] += '<div id="siteNotice"></div>'
-					if(data=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
+					if(data.cityurl=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
 					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
 					}else{//if
 					infoList[${status.index}] +='<h1>${station.name}<img src="'+data.cityurl+'">'+'</h1>';			
@@ -97,6 +108,7 @@ function initMap() {
 					//windowNames.close();
 					windowNames[${status.index}].open(map,markers[${status.index}]);				
 				    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);
+				    weaterDetail("${station.name}",${station.lat},${station.lng});
 				}//success
 			});//ajax
 				
@@ -204,7 +216,7 @@ function initMap() {
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
 -->
-
+<div id="forecastInfo"></div>
 <!-- 지도 -->
 <div id=map style="width:100%;height:600px"></div>
 <!-- google map API KEY -->
