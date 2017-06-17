@@ -28,20 +28,3 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/bucket.xml"/>		
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
