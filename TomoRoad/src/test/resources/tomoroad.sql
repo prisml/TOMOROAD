@@ -221,6 +221,8 @@ create table bucket(
 );
 --------------------------------------------------연습장-------------------------------------------------
 
+select * from STATION_CONNECT
+
 insert into station_reported (name) values ('서울역');
 insert into station_reported (name) values ('부산역');
 update station_reported set hit=hit+1 where name = '서울역';
