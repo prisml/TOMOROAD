@@ -105,4 +105,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from friend where receiver_id = #{value} and state = '대기'
 	</select>
  	
+ 	    <update id="updateMemberByManager" parameterType="memberVO">
+        update member set
+		password=#{password}, name=#{name}, sex=#{sex}, tel=#{tel}
+		where id=#{id}		
+	</update>
+	
 </mapper>

@@ -43,4 +43,6 @@ public interface BurnDAO {
 
 	int isNewMsg(String receiver);
 
+	String findId(String id);
+
 }

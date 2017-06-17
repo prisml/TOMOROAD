@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,password,name,sex,tel from member
 		order by id ASC
 	</select>
- 		<update id="updateMemberByManager" parameterType="memberVO">
+    <update id="updateMemberByManager" parameterType="memberVO">
         update member set
 		password=#{password}, name=#{name}, sex=#{sex}, tel=#{tel}
 		where id=#{id}		

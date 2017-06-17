@@ -23,7 +23,7 @@
   }); //#chpass.keyup
  });
 
- /* 
+ </script>
  <script type="text/javascript">
  function checkPassword(password){
 
@@ -65,8 +65,8 @@
 		  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
 		  return false;
 		 }
- */
- 
+		 </script>
+  <script type="text/javascript">
  $(document).ready(function(){
 		var checkResultId="";		
 		$("#regForm").submit(function(){				

@@ -12,6 +12,27 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
+<script>
+	$(document).ready(function(){
+		 $(document).mousedown(function(e) {
+	         $('#mySidenav').each(function() {
+	            if ($(this).css('display') == 'block') {
+	               var l_position = $(this).offset();
+	               l_position.right = parseInt(l_position.left)+ ($(this).width());
+	               l_position.bottom = parseInt(l_position.top)+ parseInt($(this).height());
+	               if ((l_position.left <= e.pageX && e.pageX <= l_position.right)&& (l_position.top <= e.pageY && e.pageY <= l_position.bottom)) {
+	               		
+	               } else {	                 
+	                  closeNav();
+	               }
+	            }
+	         });
+	      });
+	      
+	});
+</script>
+
+
 
 <!-- tab header -->
 <script>
@@ -94,7 +115,7 @@ body {font-family: "Lato", sans-serif;}
     cursor: pointer;
     padding: 14px 16px;
     font-size: 17px;
-    width: 50%;
+    width: 93px;
 }
 
 .tablink:hover {
@@ -124,9 +145,7 @@ body {font-family: "Lato", sans-serif;}
 	<button class="tablink" onclick="openCity('mBox', this, 'salmon')">쪽지</button>		
 
 	<div id="fList" class="tabcontent">  		
-  		<p style="word-break:break-all;">
-  			친구리스트
-  		</p>
+  		<input type="text">
 	</div>
 
 	<div id="mBox" class="tabcontent">  		
@@ -138,10 +157,10 @@ body {font-family: "Lato", sans-serif;}
 	
 </div>
 
-<script>	
+<!-- <script>	
 	$(document).ready(function(){
 		
-		/* if(${!empty mvo}){
+		 if(${!empty mvo}){
 		$.ajax({
 			type:"get",
 			url :"isNewMsg.do",
@@ -152,10 +171,13 @@ body {font-family: "Lato", sans-serif;}
 				}
 			}			
 		});
-		} */
+		}
 	});
 
-</script>
+</script> -->
+
+
+
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()"><i id="mm" class="fa fa-envelope-o"></i></span>
 

@@ -47,9 +47,9 @@ $(document).ready(function() {
         
 <button id="memberButton" class="btn btn-default btn-lg button" >회원님들</button>
 
-<button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
+<!-- <button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
 
-<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button>
+<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button> -->
 
  <div>
 <form  id="listOutput" method="post"  action="${pageContext.request.contextPath}/getMemberList.do" style="display:none">
@@ -73,7 +73,7 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
-
+<a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>
 </form>
 </div>
 

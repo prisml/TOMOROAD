@@ -72,7 +72,7 @@
 	<legend > 비밀번호찾기 </legend>
 	<ul id="findID">
 	<li>정확한 정보를 입력 해주세요</li>
-	<li><label>아이디:</label><input type="text" id="id" name="id" required="required" readonly value="${mvo.id}" autofocus></li>
+    <li><label>아이디:</label><input type="text" id="id" name="id" required="required" autofocus></li> 
 	<li><label>비밀번호:</label><input type="password" id="password" name="password" required="required"></li>
 	<li><label>비밀번호 확인   :</label><input type="password" id="chpass" name="chpass" required="required"></li>
 	<li> <font id="check" size="2" color="red"></font> </li>
