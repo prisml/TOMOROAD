@@ -27,6 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMember">
 		delete from member where id=#{id}	
 	</delete>
+<!-- 	<update id="deleteMember">
+		delete from member where id=#{id}	
+	</update>
+	<update id="deleteMember">
+		drop from member where id=#{id} cascade	
+	</update> -->
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>

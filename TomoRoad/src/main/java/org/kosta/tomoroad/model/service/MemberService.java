@@ -56,4 +56,5 @@ public interface MemberService {
 	int friend_RequestInfo(String id);
 
 
+
 }

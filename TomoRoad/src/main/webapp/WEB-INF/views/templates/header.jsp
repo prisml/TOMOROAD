@@ -73,6 +73,27 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
+
+				<li>
+				<c:choose>
+                  <c:when test="${not empty mvo}">
+                     <a href="${pageContext.request.contextPath}/logout.do">
+                        ${mvo.name}님╹◡╹)ﾉ LogOut </a>
+                  </c:when>
+                  <c:when test="${not empty manager}">
+                  <!-- <script>alert("테스트2");</script> -->
+                  <a href="${pageContext.request.contextPath}/logout.do">
+                        관리자님╹◡╹)ﾉ LogOut </a>
+                  </c:when>
+                  <c:otherwise>
+                     <!-- <script>alert("테스트3");</script> -->
+                     <a href="${pageContext.request.contextPath}/member/noauth_login.do">
+                        LogIn </a>
+                  </c:otherwise>
+            </c:choose>
+				</li>
+				<li>　</li>
+
 				<c:choose>
 						<c:when test="${empty mvo}">
 							<li><a href="${pageContext.request.contextPath}/member/noauth_login.do">
@@ -85,6 +106,7 @@ $(document).ready(function(){
 							</li>
 						</c:otherwise>
 					</c:choose>
+
 				<c:if test="${mvo != null }">
 				
 				<li><jsp:include page="message.jsp"/></li>
@@ -92,7 +114,7 @@ $(document).ready(function(){
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
 				<li><span id = "requestFriend"></span></li>
-				<div id = "bubble" style="position: absolute; top: -25px; left: 810px;">
+				<div id = "bubble" style="position: absolute; top: -25px; left: 883px;">
 				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
 				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>

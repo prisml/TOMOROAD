@@ -3144,10 +3144,47 @@ input[type="submit"] {
 }
 
 .content_3 .form-control {
+<<<<<<< HEAD
+    border-radius: 0;
+    height: 36px;
+    margin-bottom: 10px;
+    padding:0 12px ;
+}
+.content_3 textarea.form-control{
+    height: 230px;
+}
+.content_3 .form-group label {
+    color: #6f6f6f;
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    width: 236px;
+    margin: 0 auto;
+}
+.content_3 .widget_info_contact {
+    margin-top: 20px;
+    display: inline-block;
+}
+.content_3 .widget_info_contact strong {
+    display: block;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.content_3 .widget_info_contact li i {
+    color: #647382;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 17px;
+=======
 	border-radius: 0;
 	height: 36px;
 	margin-bottom: 10px;
 	padding: 0 12px;
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 }
 
 .content_3 textarea.form-control {
@@ -6635,10 +6672,18 @@ nav.tm_navbar li.active>a {
 }
 
 .input-group {
+<<<<<<< HEAD
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  width: 236px;
+  margin: 0 auto;
+=======
 	position: relative;
 	display: table;
 	border-collapse: separate;
 	margin-left: 334px;
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 }
 
 .star_rating {
