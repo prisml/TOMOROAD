@@ -486,6 +486,8 @@ update friend set state = '차단' where sender_id in ('abcd','java') and receiv
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
+update review set content ='혹시 사진 속 자전거 보신분 계시면'
+
 delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'

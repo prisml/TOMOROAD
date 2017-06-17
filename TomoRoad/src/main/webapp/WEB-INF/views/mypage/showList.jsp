@@ -96,7 +96,7 @@
 
 	<div class="dividerHeading text-center">
 		<h4>
-			<span>친구의 타임라인</span>
+			<span>타임라인</span>
 		</h4>	
 	</div>
 
