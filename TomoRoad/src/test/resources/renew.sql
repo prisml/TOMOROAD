@@ -12,11 +12,10 @@ drop table hashtag;
 drop table interested_place;
 drop table review;
 drop table place;
-drop table station;
-drop table member;
 drop table manager;
 drop table bucket;
-drop table stationcityname;
+drop table station;
+drop table member;
 ---------- drop sequence -----------
 drop sequence place_seq;
 drop sequence review_seq;
@@ -148,6 +147,7 @@ create table burn_comment(
 	recomment number default 0,
 	burn_no number not null,
 	member_id varchar2(100) not null,
+	state varchar2(100) default 'comment',
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
 	constraint fk_burn_comment_id foreign key(member_id) references member(id) on delete cascade	
 );
@@ -201,18 +201,14 @@ create table station_connect(
 	primary key (depart,arrived)	
 );
 
+
 --검색순위테이블
 create table station_reported(
   name varchar2(100) primary key,
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name) on delete cascade 
 );
---역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
-create table stationcityname(
-	name varchar2(100) primary key,
-	cityname varchar2(100) not null,
-	constraint fk_station_cityname foreign key(name) references station(name) on delete cascade
-);
+
 
 create table bucket(
 	id varchar2(100),
@@ -221,3 +217,6 @@ create table bucket(
 	constraint fk_bucket_id foreign key(id) references member(id) on delete cascade,
 	constraint fk_bucket_name foreign key(name) references station(name) on delete cascade
 );
+
+select distinct name from station order by name asc
+

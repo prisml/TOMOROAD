@@ -56,4 +56,6 @@ public interface MemberDAO {
 
 	public int checkFriend(HashMap<String,String> friend);
 
+	public void updateMemberByManager(MemberVO vo);
+
 }

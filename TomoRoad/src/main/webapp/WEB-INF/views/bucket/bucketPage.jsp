@@ -27,16 +27,9 @@ var text ="";
          });
          
       });
-     $("#testBtn").click(function(){
-    	 list="";
-    	 $('input:checkbox:checked').each(function(){
-    		list += $(this).val() ; 
-    	 });
-    	 location.href="${pageContext.request.contextPath}/tomoroading/tomoroading.do?names="+list;
-     });
    });
 </script>
-<form action="tomoroad/makeRoute.do">
+<form action="${pageContext.request.contextPath}/tomoroad/makeRoute.do">
    출발역 <input name="depart" type="text">
    <div id="stationList">
    <c:forEach items="${bvo}" var="svo">
@@ -46,4 +39,3 @@ var text ="";
    <input type="submit" value="투모로딩"> <input id="deleteStation"
       type="button" value="선택삭제">
 </form>
-<input type="button" id="testBtn" value="테스트벝은">

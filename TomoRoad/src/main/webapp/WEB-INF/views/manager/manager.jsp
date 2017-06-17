@@ -13,19 +13,6 @@ $(document).ready(function(){
     });	
 });
 
-$(document).ready(function() {  
-	$("#updateMember").click(function() {
-						if (confirm("회원정보를 수정하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?no=${mvo.id}";
-						}
-					});
-	$("#deleteMember").click(function() {
-						if (confirm("회원을 삭제하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?no=${mvo.id}";
-						}
-					});
-				});
-
  $(document).ready(function(){
     $('input[type=radio]').prop('checked', false);
 
@@ -34,18 +21,35 @@ $(document).ready(function() {
     });
 }); 
 </script> 
+<script>
+var checked = $('input[type=radio]:checked').val();
+$(document).ready(function() {  
+	$("#updateMember").click(function() {
+
+						if (confirm("회원정보를 수정하시겠습니까?")){
+							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?id=checked";
+						}
+					});
+	$("#deleteMember").click(function() {
+		
+						if (confirm("회원을 삭제하시겠습니까?")){
+							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=checked";
+						} 
+					});
+				});
+</script>
 
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
-            <h4><span>안녕 관리자님╹◡╹)ﾉ</span></h4>
+            <h4><span>관리자 페이지</span></h4>
         </div>
         
 <button id="memberButton" class="btn btn-default btn-lg button" >회원님들</button>
 
-<button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
+<!-- <button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
 
-<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button>
+<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button> -->
 
  <div>
 <form  id="listOutput" method="post"  action="${pageContext.request.contextPath}/getMemberList.do" style="display:none">
@@ -59,7 +63,7 @@ $(document).ready(function() {
 	<tbody>
 	<c:forEach items="${list}" var="mvo">
 		<tr>
-    <td><input type="radio" value="${mvo.id}"></td>
+    <td><input type="radio" value="${mvo.id}" required="required"></td>
 	<td><input type="text" value="${mvo.id}" readonly></td>
 	<td><input type="text" value="${mvo.password}"></td>
 	<td><input type="text" value="${mvo.name}"></td>
@@ -69,7 +73,7 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
-
+<a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>
 </form>
 </div>
 

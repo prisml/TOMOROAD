@@ -42,4 +42,6 @@ public interface BurnService {
 	int CountComment(String no);
 
 	int isNewMsg(String receiver);
+
+	String findId(String id);
 }

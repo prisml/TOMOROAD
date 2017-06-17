@@ -34,7 +34,7 @@
  </script>
 
  <script type="text/javascript">
-/*  function checkPassword(password){
+  function checkPassword(password){
 
 	 var pw = password;
 	 var num = pw.search(/[0-9]/g);
@@ -74,7 +74,7 @@
 		  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
 		  return false;
 		 }
- */
+
  </script>
   <style type="text/css">
 .div {

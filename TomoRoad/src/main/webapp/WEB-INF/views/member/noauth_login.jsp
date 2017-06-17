@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-var key = "qwe";
+var key = "tomoroad";
 var input = "";
 	  $(document).keypress(function(e) {
 		  if (e.which !== 0) {
@@ -49,7 +49,7 @@ var input = "";
 	
                 
         <div class="dividerHeading">
-            <h4><span>로그인 해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>로그인 해주세요</span></h4>
         </div>
         
 
