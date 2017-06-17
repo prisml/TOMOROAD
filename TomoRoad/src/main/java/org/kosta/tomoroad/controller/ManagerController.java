@@ -46,13 +46,13 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		managerService.updateMemberByManager(vo);
 		session.setAttribute("mvo", vo);
-		return "redirect:updateResultViewByManager.do?id=" + vo.getId();
+		return "redirect:manager/updateResultViewByManager.do?id=" + vo.getId();
 	}
 
 	@RequestMapping("manager/updateResultViewByManager.do")
 	public ModelAndView updateMemberByManager(String id) {
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("manager/manager_update_result.tiles", "mvo", vo);
+		return new ModelAndView("manager/manager_update_result.do", "mvo", vo);
 	}
 	
 	@RequestMapping("deleteMemberByManager.do")
