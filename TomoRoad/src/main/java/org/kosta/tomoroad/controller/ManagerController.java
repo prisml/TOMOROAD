@@ -52,13 +52,13 @@ public class ManagerController {
 	@RequestMapping("manager/updateResultViewByManager.do")
 	public ModelAndView updateMemberByManager(String id) {
 		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("manager/manager.tiles", "mvo", vo);
+		return new ModelAndView("manager/manager_update_result.tiles", "mvo", vo);
 	}
 	
 	@RequestMapping("deleteMemberByManager.do")
 	public String deleteMemberByManager(String id) {
 		managerService.deleteMemberByManager(id);
-		return "redirect:manager/manager.do";
+		return "redirect:manager/manager_delete_result.do";
 	}
 	   
 }
