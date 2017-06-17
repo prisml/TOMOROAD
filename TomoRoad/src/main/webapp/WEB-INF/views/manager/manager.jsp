@@ -13,20 +13,6 @@ $(document).ready(function(){
     });	
 });
 
-$(document).ready(function() {  
-	$("#updateMember").click(function() {
-						if (confirm("회원정보를 수정하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?id=${mvo.id}";
-						}
-					});
-	$("#deleteMember").click(function() {
-		var checked = $('input[type=radio]:checked').val();
-						if (confirm("회원을 삭제하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=checked";
-						} 
-					});
-				});
-
  $(document).ready(function(){
     $('input[type=radio]').prop('checked', false);
 
@@ -35,6 +21,23 @@ $(document).ready(function() {
     });
 }); 
 </script> 
+<script>
+var checked = $('input[type=radio]:checked').val();
+$(document).ready(function() {  
+	$("#updateMember").click(function() {
+
+						if (confirm("회원정보를 수정하시겠습니까?")){
+							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?id=checked";
+						}
+					});
+	$("#deleteMember").click(function() {
+		
+						if (confirm("회원을 삭제하시겠습니까?")){
+							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=checked";
+						} 
+					});
+				});
+</script>
 
     <div class="col-lg-12 col-sm-12"> 
 	
@@ -60,7 +63,7 @@ $(document).ready(function() {
 	<tbody>
 	<c:forEach items="${list}" var="mvo">
 		<tr>
-    <td><input type="radio" value="${mvo.id}"></td>
+    <td><input type="radio" value="${mvo.id}" required="required"></td>
 	<td><input type="text" value="${mvo.id}" readonly></td>
 	<td><input type="text" value="${mvo.password}"></td>
 	<td><input type="text" value="${mvo.name}"></td>
