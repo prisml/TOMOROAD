@@ -73,7 +73,7 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
-
+<a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>
 </form>
 </div>
 
