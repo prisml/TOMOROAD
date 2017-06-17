@@ -12,9 +12,11 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {		
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {// 로그인상태아니면 
-			response.sendRedirect(request.getContextPath() +"/loginalert.do");
-			return false;
+		if (session == null || session.getAttribute("manager") == null){
+			if (session.getAttribute("mvo") == null) {// 로그인상태아니면 
+				response.sendRedirect(request.getContextPath() +"/loginalert.do");
+				return false;
+			}
 		}
 		return true;
 	}
