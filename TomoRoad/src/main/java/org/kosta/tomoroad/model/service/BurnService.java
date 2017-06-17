@@ -40,4 +40,6 @@ public interface BurnService {
 	void replyComment(BurnCommentVO vo);
 
 	int CountComment(String no);
+
+	int isNewMsg(String receiver);
 }
