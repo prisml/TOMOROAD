@@ -36,9 +36,9 @@ function weaterDetail(id,lat,lng){
 		$.ajax({
 			type:"GET",
 			url:"http://api.wunderground.com/api/5e1e5a83789f94e3/forecast/lang:KR/q/"+lat+","+lng+".json",
-			dataType:jsonp,
+			dataType:"jsonp",
 			success:function(data){
-				alert(1);
+				/* var forecast = data['forecast']p */
 			}
 		});
 	});	
@@ -78,7 +78,7 @@ function initMap() {
 				success:function(data){
 					infoList[${status.index}] += '<div>';
 					infoList[${status.index}] += '<div id="siteNotice"></div>'
-					if(data=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
+					if(data.cityurl=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
 					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
 					}else{//if
 					infoList[${status.index}] +='<h1>${station.name}<img src="'+data.cityurl+'">'+'</h1>';			
