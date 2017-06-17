@@ -87,7 +87,7 @@ $(document).ready(function(){
 					</c:choose>
 				<c:if test="${mvo != null }">
 				
-				<li><jsp:include page="message.jsp"/></li>
+				<li><jsp:include page="messagetap.jsp"/></li>
 				
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								

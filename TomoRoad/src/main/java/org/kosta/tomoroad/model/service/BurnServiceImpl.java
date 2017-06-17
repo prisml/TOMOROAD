@@ -127,4 +127,9 @@ public class BurnServiceImpl implements BurnService {
 		return burnDAO.isNewMsg(receiver);
 	}
 
+	@Override
+	public String findId(String id) {
+		return burnDAO.findId(id);
+	}
+
 }
