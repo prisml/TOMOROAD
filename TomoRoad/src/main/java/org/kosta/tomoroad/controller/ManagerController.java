@@ -41,7 +41,7 @@ public class ManagerController {
 		return "manager/manager.tiles";
 	}
 	
-	@RequestMapping(value = "mypage/updateMemberByManager.do", method = RequestMethod.POST)
+	@RequestMapping(value = "manager/updateMemberByManager.do", method = RequestMethod.POST)
 	public String updateMemberByManager(MemberVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		managerService.updateMemberByManager(vo);
@@ -49,17 +49,15 @@ public class ManagerController {
 		return "redirect:updateResultViewByManager.do?id=" + vo.getId();
 	}
 
-	@RequestMapping("mypage/updateResultViewByManager.do")
+	@RequestMapping("manager/updateResultViewByManager.do")
 	public ModelAndView updateMemberByManager(String id) {
 		MemberVO vo = memberService.findMemberById(id);
 		return new ModelAndView("manager/manager.tiles", "mvo", vo);
 	}
 	
 	@RequestMapping("deleteMemberByManager.do")
-	public String deleteMemberByManager(String id,HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
+	public String deleteMemberByManager(String id) {
 		managerService.deleteMemberByManager(id);
-		session.invalidate();
 		return "redirect:manager/manager.do";
 	}
 	   

@@ -3,7 +3,7 @@
                     <br>
                 <br>
                 <br>
-검색결과╹◡╹)ﾉ ${member.id} 입니다
+검색결과 ${member.id} 입니다
 <br>
 <br>
 <br>

@@ -42,7 +42,7 @@
 	<fieldset>
 	<legend > 비밀번호찾기 </legend>
 	<ul id="findID">
-	<li>정확한 정보를 입력 해주세요╹◡╹)ﾉ</li>
+	<li>정확한 정보를 입력 해주세요</li>
 	<li><label>아이디:</label><input type="text" id="id" name="id" required="required" autofocus></li>
 	<li><label>이름   :</label><input type="text" id="name" name="name" required="required"></li>
 	<li><label>연락처:</label><input type="text" id="tel" name="tel" required="required"></li>

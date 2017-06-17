@@ -10,7 +10,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
-            <h4><span>안녕 관리자님╹◡╹)ﾉ</span></h4>
+            <h4><span>안녕 관리자님</span></h4>
         </div>
         
 	  <form method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do">

@@ -78,12 +78,14 @@ $(document).ready(function(){
 				<c:choose>
                   <c:when test="${not empty mvo}">
                      <a href="${pageContext.request.contextPath}/logout.do">
-                        ${mvo.name}님╹◡╹)ﾉ LogOut </a>
+                        ${mvo.name}님 LogOut </a>
+                        <li><a href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">버킷리스트</a>
+							</li>
                   </c:when>
                   <c:when test="${not empty manager}">
                   <!-- <script>alert("테스트2");</script> -->
                   <a href="${pageContext.request.contextPath}/logout.do">
-                        관리자님╹◡╹)ﾉ LogOut </a>
+                        관리자님 LogOut </a>
                   </c:when>
                   <c:otherwise>
                      <!-- <script>alert("테스트3");</script> -->
@@ -94,18 +96,7 @@ $(document).ready(function(){
 				</li>
 				<li>　</li>
 
-				<c:choose>
-						<c:when test="${empty mvo}">
-							<li><a href="${pageContext.request.contextPath}/member/noauth_login.do">
-								LogIn </a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/logout.do">
-								${mvo.name}님 LogOut </a></li>
-							<li><a href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">버킷리스트</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
+
 
 				<c:if test="${mvo != null }">
 				
