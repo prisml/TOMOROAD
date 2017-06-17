@@ -53,7 +53,7 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/review/noauth_showList.do">
 						REVIEW </a></li>
 				<li>　</li>
-				
+					
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
 				<li>　</li>
