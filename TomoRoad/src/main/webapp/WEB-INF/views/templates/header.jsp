@@ -73,7 +73,7 @@ $(document).ready(function(){
 					href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 						TourInfo </a></li>
 				<li>　</li>
-<<<<<<< HEAD
+
 				<li>
 				<c:choose>
                   <c:when test="${not empty mvo}">
@@ -93,7 +93,7 @@ $(document).ready(function(){
             </c:choose>
 				</li>
 				<li>　</li>
-=======
+
 				<c:choose>
 						<c:when test="${empty mvo}">
 							<li><a href="${pageContext.request.contextPath}/member/noauth_login.do">
@@ -106,7 +106,7 @@ $(document).ready(function(){
 							</li>
 						</c:otherwise>
 					</c:choose>
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+
 				<c:if test="${mvo != null }">
 				
 				<li><jsp:include page="message.jsp"/></li>
