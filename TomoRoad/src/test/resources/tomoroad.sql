@@ -221,6 +221,8 @@ create table bucket(
 );
 --------------------------------------------------연습장-------------------------------------------------
 
+select * from STATION_CONNECT
+
 insert into station_reported (name) values ('서울역');
 insert into station_reported (name) values ('부산역');
 update station_reported set hit=hit+1 where name = '서울역';
@@ -656,6 +658,7 @@ insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 delete from station;
 
 select count(*) from review where member_id='asdf';
+select count(*) from station;
 
 insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('용산역','1','1','1','1',37.530154, 126.964754);

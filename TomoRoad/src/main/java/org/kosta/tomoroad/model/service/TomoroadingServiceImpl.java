@@ -21,11 +21,10 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	@Resource(name = "tomoroadingDAOImpl")
 	private TomoroadingDAO dao;
 	// 역 연결정보 list
-	private List<ConnectionVO> connectionList = dao.getConnectionList();
+	private List<ConnectionVO> connectionList;
 	
 	// 역 연결 그래프
-	@SuppressWarnings("unchecked")
-	private Map<String, Integer>[] map = new HashMap[dao.getNumberOfStation()];
+	private Map<String, Integer>[] map;
 
 	// 역 index
 	private Map<String, Integer> stationIdx = new HashMap<String, Integer>();
@@ -42,8 +41,11 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 		return dao.locationInfo(name);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> makeRoute(String[] bucket, String depart, String arrived) {
+		connectionList = dao.getConnectionList();
+		map = new HashMap[dao.getNumberOfStation()];
 		List<String> result = new ArrayList<String>();
 		List<StationVO> stationList = dao.getStationList();
 		for (int i = 0; i < stationList.size(); i++) { // 역 index setting
