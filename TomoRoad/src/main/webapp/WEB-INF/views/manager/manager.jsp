@@ -16,13 +16,14 @@ $(document).ready(function(){
 $(document).ready(function() {  
 	$("#updateMember").click(function() {
 						if (confirm("회원정보를 수정하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?no=${mvo.id}";
+							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?id=${mvo.id}";
 						}
 					});
 	$("#deleteMember").click(function() {
+		var checked = $('input[type=radio]:checked').val();
 						if (confirm("회원을 삭제하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?no=${mvo.id}";
-						}
+							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=checked";
+						} 
 					});
 				});
 
@@ -38,7 +39,7 @@ $(document).ready(function() {
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
-            <h4><span>안녕 관리자님╹◡╹)ﾉ</span></h4>
+            <h4><span>관리자 페이지</span></h4>
         </div>
         
 <button id="memberButton" class="btn btn-default btn-lg button" >회원님들</button>

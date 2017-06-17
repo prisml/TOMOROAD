@@ -3,6 +3,6 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<script type="text/javascript">
-		alert("${mvo.name}님 회원가입 고맙습니다!");
-		location.href="${pageContext.request.contextPath}/home.do";
+			alert("${mvo.id} ${mvo.password} ${mvo.name} ${mvo.sex} ${mvo.tel} ");
+			location.href="${pageContext.request.contextPath}/getMemberList.do?id=${mvo.id}";
 		</script>		
