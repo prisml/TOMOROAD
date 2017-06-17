@@ -52,6 +52,7 @@
 					TimeLine+="<div class='porDetCarousel'>";
 						//사진
 						TimeLine+="<div class='carousel-content'>";
+						//이미지가 없을 때는 upload 파일에 사진이 없어. 그러면 
 						/* TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
 						TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
 						TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>"; */
