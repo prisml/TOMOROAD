@@ -75,11 +75,13 @@ public class ReviewController {
 					files.get(i).transferTo(file);
 					nameList.add("review" + vo.getNo() + "_" + i);
 					System.out.println("업로드 완료 " + fileName);
+					
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+		System.out.println("총 사진파일 갯수 : "+nameList.size());
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
 

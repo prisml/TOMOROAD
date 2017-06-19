@@ -9,7 +9,7 @@
 	var polys=[];
 	var infoList= [];
 	var windowNames = [];
-	$(document).ready(function(){
+ 	$(document).ready(function(){
 		function doInfo(marker, windowName,windowNames) {
 	        google.maps.event.addListener(marker, 'click', function() {
 	        	for(var z=0;z<windowNames.length;z++){
@@ -34,6 +34,7 @@
 						title: data[i].name
 					});
 					infoList[i] += '<div>';
+					infoList[i] += '<div id="siteNotice"></div>'
 					infoList[i] +='<h1 class="firstHeading">'+data[i].name+'</h1>';
 					infoList[i] +='<div class="bodyContent">';
 					infoList[i] +='<br>';
@@ -56,7 +57,8 @@
 			        flightPath.setMap(map);
 			}	
 		});
-	});
+	}); 
+	
 </script>
 
 <!-- map띄우기 -->
