@@ -443,6 +443,8 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
+select count(*) from friend where sender_id = ('java') and receiver_id = ('java') and state = '수락'
+
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
 select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
@@ -462,11 +464,15 @@ select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
+select state from friend where sender_id in ('java','asdf') and receiver_id in('java','asdf');
+
 select * from friend
 
 update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
 
-delete from friend
+delete from friend where sender sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+
+delete from friend where sender_id = 'qwer' and receiver_id = 'java'
 
 select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
