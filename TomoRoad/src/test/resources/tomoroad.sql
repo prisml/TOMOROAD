@@ -443,7 +443,9 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
-select count(*) from friend where sender_id = ('java') and receiver_id = ('java') and state = '수락'
+select count(*) from friend where (sender_id = 'java' or receiver_id = 'java') and state = '수락'
+
+select * from friend
 
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 

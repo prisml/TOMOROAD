@@ -258,6 +258,7 @@ public class MemberController {
 		String id = vo.getId();
 		model.addAttribute("profile",  memberService.getProfileById(id));
 		model.addAttribute("totalfriend", memberService.totalFriend(id));
+		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
 		return "mypage/mypage.tiles";
 	}
 
