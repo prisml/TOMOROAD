@@ -442,7 +442,9 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
-select count(*) from friend where sender_id = ('java') and receiver_id = ('java') and state = '수락'
+select count(*) from friend where (sender_id = 'java' or receiver_id = 'java') and state = '수락'
+
+select * from friend
 
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
@@ -686,7 +688,6 @@ insert into station values('경주역','1','1','1','1',35.844583, 129.217902);
 insert into station values('포항역','1','1','1','1',36.071978, 129.341936);
 insert into station values('부전역','1','1','1','1',35.164922, 129.060131);
 insert into station values('부산역','1','1','1','1',35.115389, 129.042195);
-
 insert into station values('삼랑진역','1','1','1','1', 35.399625,128.843228);
 insert into station values('밀양역','1','1','1','1',35.474696, 128.771146);
 insert into station values('동대구역','1','1','1','1',35.879850, 128.628476);
@@ -694,7 +695,6 @@ insert into station values('대구역','1','1','1','1',35.943692, 126.811000);
 insert into station values('김천역','1','1','1','1',36.123648, 128.114656);
 insert into station values('영동역','1','1','1','1',36.172376, 127.786233);
 insert into station values('대전역','1','1','1','1',36.331315, 127.433052);
-
 insert into station values('조치원역','1','1','1','1',36.601360, 127.296260);
 insert into station values('천안역','1','1','1','1',36.809507, 127.146231);
 insert into station values('수원역','1','1','1','1', 37.266213,126.999842);
@@ -763,6 +763,3 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('조치원역','�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조치원역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
-
-select * from STATION_CONNECT 
-

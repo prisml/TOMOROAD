@@ -10,7 +10,7 @@
 				<i class = "fa fa-users "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000">${totalfriend}</b>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/friendList.do">${totalfriend}</a></b>
 			</p>
 			<span class = "title">나의 친구</span>
 		</div>
@@ -21,8 +21,8 @@
 				<i class = "fa fa-briefcase "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000">100</b>
-			%</p>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/showListByMember2.do">${totalContents}</a></b>
+			</p>
 			<span class = "title">내가 작성한 리뷰</span>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 				<i class = "fa fa-briefcase "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000">100</b>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "#">100</a></b>
 			%</p>
 			<span class = "title">여행지</span>
 		</div>

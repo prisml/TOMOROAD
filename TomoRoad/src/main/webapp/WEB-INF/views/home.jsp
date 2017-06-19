@@ -213,10 +213,12 @@ function initMap() {
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
 -->
+</div>
 <div id="forecastInfo"></div>
 <!-- 지도 -->
-<div id=map style="width:100%;height:600px"></div>
+<div class='map' id='map' style="width:100%;height:600px"></div>
 <!-- google map API KEY -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
+ <div>
  

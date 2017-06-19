@@ -14,7 +14,7 @@ $(document).ready(function(){
 	setInterval(() => {
 		$.ajax({
 			type:"get",
-			url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
+			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
 			success:function(data){
 				if(data != 0){
 					$("#bubble").empty(); 
@@ -42,10 +42,14 @@ $(document).ready(function(){
 	<!-- Navigation
     ================================================== -->
 
-	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
-		role="navigation">
-		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="text-align:center">
+	<div class="navbar navbar-default navbar-static-top">
+			<ul class="nav navbar-nav">
+				<li>　</li>
+				
+				<li><a href="${pageContext.request.contextPath}/home.do">
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
+					style="height:40px; margin-top:-10px;"/>
+				</a></li>
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
@@ -59,12 +63,6 @@ $(document).ready(function(){
 					
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
-				<li>　</li>
-				
-				<li><a href="${pageContext.request.contextPath}/home.do">
-				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
-					style="height:40px; margin-top:-10px;"/>
-				</a></li>
 				<li>　</li>
 
 				<li><a
@@ -94,8 +92,6 @@ $(document).ready(function(){
 				</li>
 				<li>　</li>
 
-
-
 				<c:if test="${mvo != null }">
 				
 				<li><jsp:include page="messagetap.jsp"/></li>
@@ -111,12 +107,6 @@ $(document).ready(function(){
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
  --%>			
- 
- 				
- 	
-
- 				
 			</ul>
-		</div>
 	</div>
 </header>

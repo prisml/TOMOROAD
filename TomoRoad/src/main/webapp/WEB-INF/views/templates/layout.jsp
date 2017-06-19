@@ -39,24 +39,17 @@
 <body>
 	<section class="wrapper container">
 		<tiles:insertAttribute name="header" />
-		<%-- <section id="page_head" class="row">
+		<section id="page_head" class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="page_title">
 					<h2>
 						<tiles:insertAttribute name="subtitle" ignore="true" />
 					</h2>
-					<span class="sub_heading">We are here for you 24/7</span>
+					<span class="sub_heading">TOMOROAD always support your trip.</span>
 				</div>
-				<nav id="breadcrumbs">
-					<ul>
-						<li>Explain :</li>
-						<li><a href="${pageContext.request.contextPath}/home.do"><tiles:insertAttribute
-									name="title" ignore="true" /></a></li>
-					</ul>
-				</nav>
 			</div>
-		</section> --%>
-		<section class="content">
+		</section>
+		<section id="mainSection" class="content">
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -68,6 +61,16 @@
 		<tiles:insertAttribute name="footer" />
 	</section>
 	<!--start footer-->
+	<script type="text/javascript">
+		function funLoad() {
+			var Cheight = $(window).height() - 326;
+			$('#mainSection').css({
+				'min-height' : Cheight + 'px'
+			});
+		}
+		window.onload = funLoad;
+		window.onresize = funLoad;
+	</script>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
@@ -131,13 +134,16 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- jQuery ui library -->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-	
+
 	<!-- 사진 화살표 버튼 클릭 시 발생하는 이벤트 -->
-	<script src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
 
 	<!-- Start Style Switcher -->
 	<!-- <div class="switcher"></div> -->
 	<!-- End Style Switcher -->
+
+
 </body>
 </html>
 

@@ -111,6 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}		
 	</update>
 	<select id = "totalFriend" resultType="int">
-		select count(*) from friend where sender_id in (#{id}) and receiver_id in(#{id}) and state = '수락'
+		select count(*) from friend where (sender_id = #{value} or receiver_id = #{value}) and state = '수락'
+
 	</select>
 </mapper>

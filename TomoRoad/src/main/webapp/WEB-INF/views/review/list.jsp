@@ -4,14 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:if test="${mvo!=null }">
 	<a class="btn btn-small btn-default"
-		href="${pageContext.request.contextPath}/review/register_form.do">Register</a>
+		href="${pageContext.request.contextPath}/review/register_form.do">일지작성</a>
 </c:if>
+<br><br>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="blog_medium">
-		<c:if test="${mvo!=null }">
-			<a href="${pageContext.request.contextPath}/review/register_form.do"
-				role="button" class="btn">register</a>
-		</c:if>
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">
 				<div class="post_date">
