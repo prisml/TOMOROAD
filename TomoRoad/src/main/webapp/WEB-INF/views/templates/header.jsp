@@ -14,7 +14,7 @@ $(document).ready(function(){
 	setInterval(() => {
 		$.ajax({
 			type:"get",
-			url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
+			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
 			success:function(data){
 				if(data != 0){
 					$("#bubble").empty(); 
@@ -111,11 +111,6 @@ $(document).ready(function(){
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
  --%>			
- 
- 				
- 	
-
- 				
 			</ul>
 		</div>
 	</div>
