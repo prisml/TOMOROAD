@@ -5,11 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<c:if test="{mvo!=null">
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
-
 $(document).ready(function(){
 	setInterval(() => {
 		$.ajax({
@@ -27,6 +27,7 @@ $(document).ready(function(){
 	},1000);
 }) 
 </script>
+</c:if>
 <style>
 </style>
 <header id="header">
