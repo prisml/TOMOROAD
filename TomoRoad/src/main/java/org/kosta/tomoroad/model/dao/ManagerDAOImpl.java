@@ -34,4 +34,10 @@ public class ManagerDAOImpl implements ManagerDAO{
 		template.delete("manager.deleteMemberByManager",id);	
 		
 	}
+
+	@Override
+	public MemberVO getIdFromMember(String id) {
+		MemberVO vo = template.selectOne("manager.getIdFromMember",id);
+		return vo;
+	}
 }
