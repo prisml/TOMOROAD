@@ -72,7 +72,11 @@ create table manager(
 	password varchar2(100) not null
 );
 
+<<<<<<< HEAD
+select * from member;
+=======
 insert into manager values('abc',1234)
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -213,12 +217,7 @@ create table station_reported(
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 );
---역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
-create table stationcityname(
-	name varchar2(100) primary key,
-	cityname varchar2(100) not null,
-	constraint fk_station_cityname foreign key(name) references station(name) 
-);
+
 
 create table bucket(
 	id varchar2(100),
@@ -443,6 +442,10 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
+select count(*) from friend where (sender_id = 'java' or receiver_id = 'java') and state = '수락'
+
+select * from friend
+
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
 select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
@@ -462,11 +465,15 @@ select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
+select state from friend where sender_id in ('java','asdf') and receiver_id in('java','asdf');
+
 select * from friend
 
 update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
 
-delete from friend
+delete from friend where sender sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+
+delete from friend where sender_id = 'qwer' and receiver_id = 'java'
 
 select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
@@ -485,6 +492,8 @@ select * from friend where sender_id in ('abcd','java') and receiver_id in('abcd
 update friend set state = '차단' where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
+
+update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
 delete from friend where sender_id = 'asdf'
 

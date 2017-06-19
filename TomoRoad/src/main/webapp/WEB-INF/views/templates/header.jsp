@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 <script type="text/javascript">
 function reqeustList(){
@@ -13,20 +11,20 @@ function reqeustList(){
 }
 
 $(document).ready(function(){
-	$.ajax({
-		type:"get",
-		url:"${pageContext.request.contextPath}/friend_RequestInfo.do",
-		success:function(data){
+	setInterval(() => {
+		$.ajax({
+			type:"get",
+			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+			success:function(data){
 				if(data != 0){
+					$("#bubble").empty(); 
 					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-					$("#requestCount").text(data);
+					$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
 					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-			 	}else{
-					$("#requestFriend").html("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png>");
-					
-				}
+			 	}
 			}
-	})
+		})
+	},1000);
 })
 </script>
 <style>
@@ -100,10 +98,10 @@ $(document).ready(function(){
 				
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
-				<li><span id = "requestFriend"></span></li>
+				<li><span id = "requestFriend"><img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png></span></li>
 				<div id = "bubble" style="position: absolute; top: -25px; left: 894px;">
-				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
-					<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
+				<!-- <span id = "requestCount" style = "position: absolute; top:8px; left:13px;">3</span> -->
+				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
