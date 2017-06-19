@@ -44,10 +44,14 @@ $(document).ready(function(){
 	<!-- Navigation
     ================================================== -->
 
-	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
-		role="navigation">
-		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="text-align:center">
+	<div class="navbar navbar-default navbar-static-top">
+			<ul class="nav navbar-nav">
+				<li>　</li>
+				
+				<li><a href="${pageContext.request.contextPath}/home.do">
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
+					style="height:40px; margin-top:-10px;"/>
+				</a></li>
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
@@ -61,12 +65,6 @@ $(document).ready(function(){
 					
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
-				<li>　</li>
-				
-				<li><a href="${pageContext.request.contextPath}/home.do">
-				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
-					style="height:40px; margin-top:-10px;"/>
-				</a></li>
 				<li>　</li>
 
 				<li><a
@@ -96,8 +94,6 @@ $(document).ready(function(){
 				</li>
 				<li>　</li>
 
-
-
 				<c:if test="${mvo != null }">
 				
 				<li><jsp:include page="messagetap.jsp"/></li>
@@ -107,18 +103,12 @@ $(document).ready(function(){
 				<li><span id = "requestFriend"></span></li>
 				<div id = "bubble" style="position: absolute; top: -25px; left: 894px;">
 				<span id = "requestCount"style = "position: absolute; top:8px; left:13px;"></span>
-				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
+					<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
 				</c:if>
 <%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
 				<li> </li>
  --%>			
- 
- 				
- 	
-
- 				
 			</ul>
-		</div>
 	</div>
 </header>

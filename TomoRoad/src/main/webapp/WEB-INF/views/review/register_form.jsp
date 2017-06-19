@@ -52,7 +52,7 @@
 		});
 	});
 </script>
-<div class="col-lg-8 col-md-8 col-sm-8">
+<div class="col-lg-12 col-md-12 col-sm-12">
 	<div class="dividerHeading">
 		<h4>
 			<span>글 쓰기</span>
@@ -139,7 +139,7 @@
 		</div>
 	</form>
 </div>
-<div class="col-lg-4 col-md-4 col-sm-4">
+<!-- <div class="col-lg-4 col-md-4 col-sm-4">
 	<div class="sidebar">
 		<div class="widget_info">
 			<div class="dividerHeading">
@@ -210,4 +210,4 @@
 			</ul>
 		</div>
 	</div>
-</div>
+</div> -->
