@@ -212,12 +212,7 @@ create table station_reported(
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 );
---역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
-create table stationcityname(
-	name varchar2(100) primary key,
-	cityname varchar2(100) not null,
-	constraint fk_station_cityname foreign key(name) references station(name) 
-);
+
 
 create table bucket(
 	id varchar2(100),
