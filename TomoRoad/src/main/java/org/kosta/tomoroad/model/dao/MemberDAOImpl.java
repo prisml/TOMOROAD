@@ -129,5 +129,10 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("member.updateMemberByManager",vo);
 		
 	}
+	@Override
+	public int totalFrined(String id) {
+		template.selectOne("member.totalFriend",id);
+		return template.selectOne("member.totalFriend",id);
+	}
 
 }

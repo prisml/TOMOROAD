@@ -9,7 +9,7 @@
 	var polys=[];
 	var infoList= [];
 	var windowNames = [];
-	$(document).ready(function(){
+ 	$(document).ready(function(){
 		function doInfo(marker, windowName,windowNames) {
 	        google.maps.event.addListener(marker, 'click', function() {
 	        	for(var z=0;z<windowNames.length;z++){
@@ -18,7 +18,7 @@
 	        	windowName.open(map, marker);
 	        });
 	    }
-		<c:forEach items="${locationNames}" var="list">
+		<c:forEach items="${names}" var="list">
 		names.push("${list}");
 		</c:forEach>
 		$.ajax({
@@ -34,12 +34,10 @@
 						title: data[i].name
 					});
 					infoList[i] += '<div>';
+					infoList[i] += '<div id="siteNotice"></div>'
 					infoList[i] +='<h1 class="firstHeading">'+data[i].name+'</h1>';
 					infoList[i] +='<div class="bodyContent">';
-					infoList[i] +='<p>'+data[i].detail+'</p>';
 					infoList[i] +='<br>';
-		            infoList[i] +='<a href='+"${pageContext.request.contextPath}/station/getDetailInfo.do?name="+data[i].name+'>'+data[i].name+'정보 보러가기'+'</a>';
-		            infoList[i] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName="+data[i].name+'> 번개시판가기</a>';
 					infoList[i] +='</div>';
 					infoList[i] +='</div>';
 		            windowNames[i] = new google.maps.InfoWindow({
@@ -59,7 +57,8 @@
 			        flightPath.setMap(map);
 			}	
 		});
-	});
+	}); 
+	
 </script>
 
 <!-- map띄우기 -->

@@ -11,11 +11,15 @@
 <p align="center" style = "font-size:25px">${memberInfo.id}(${memberInfo.name})</p>
 <!-- 친구면 친구버튼, 아니면 친구신청 버튼 -->
 <c:choose>
-	<c:when test="${friend != null}">
+	<c:when test="${friend eq '수락'}">
 		<!-- <input style = color:white; class="btn btn-danger"  type = "text" value = "친구"> -->
 		<button style = color:white; class="btn btn-danger">
-			<i style = "width:165px" class = "fa fa-user">친구
-			</i>
+			<i style = "width:165px" class = "fa fa-user">${friend}</i>
+		</button>
+	</c:when>
+	<c:when test="${friend eq '차단' }">
+		<button style = color:white; class="btn btn-danger">
+			<i style = "width:165px" class = "fa fa-user">비활성화 계정</i>
 		</button>
 	</c:when>
 	<c:otherwise>

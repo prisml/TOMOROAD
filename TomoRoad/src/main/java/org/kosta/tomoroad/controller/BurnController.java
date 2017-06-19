@@ -137,6 +137,12 @@ public class BurnController {
 		return burnService.isNewMsg(receiver);
 	}
 	
+	@RequestMapping("findId.do")
+	@ResponseBody
+	public String findId(String id){
+		return burnService.findId(id);
+	}
+	
 }
 
 

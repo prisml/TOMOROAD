@@ -1,6 +1,9 @@
 package org.kosta.tomoroad;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,6 +16,7 @@ import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.RankingService;
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.service.StationService;
+import org.kosta.tomoroad.model.service.TomoroadingService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -41,6 +45,10 @@ public class TestUnit {
 	
 	@Resource(name="mapServiceImpl")
 	private MapService mapservice;
+	
+	@Resource(name="tomoroadingServiceImpl")
+	private TomoroadingService tomoService;
+	
 	@Test
 	public void test() throws IOException{
 		// 역 정보 얻어오기
@@ -101,6 +109,13 @@ public class TestUnit {
 /*		List<RankingVO> list=rankingservice.rankingInfo();
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
-		System.out.println(mapservice.getAllStationInfo(""));
+		//System.out.println(mapservice.getAllStationInfo(""));
+		String[] station = {"부산역", "밀양역", "전주역", "순천역"};
+		List<String> list = new ArrayList<String>();
+		list.add("서울역");
+		System.out.println(station.length);
+		System.out.println(list);
+		System.out.println(tomoService.makeRoute(station, "서울역", "서울역"));
+		
 	}
 }

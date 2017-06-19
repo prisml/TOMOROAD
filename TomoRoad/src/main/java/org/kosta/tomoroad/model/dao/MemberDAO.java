@@ -58,4 +58,5 @@ public interface MemberDAO {
 
 	public void updateMemberByManager(MemberVO vo);
 
+	public int totalFrined(String id);
 }

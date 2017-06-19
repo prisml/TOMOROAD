@@ -57,11 +57,16 @@ $(document).ready(function(){
 	
 	
 	
-	$(document).on("click",".sendMsg",function(){		
-		$("#msg-drop").trigger("toggle");
+	$(document).on("click",".message",function(){		
+		openNav();
 	});
 	
+	
+	     
+	      
 });
+	
+
 
 </script>
 
@@ -81,7 +86,7 @@ $(document).ready(function(){
 						var list="";
 						list += "<table class='table table-hover'>";
 						list += "<tr>";
-						list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+						list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 						list += "</tr>";
 												 
 						for(var i=0; i<data.list.length; i++){	
@@ -140,7 +145,7 @@ $(document).ready(function(){
 					var list="";
 					list += "<table class='table table-hover'>";
 					list += "<tr>";
-					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 					list += "</tr>";
 											 
 					for(var i=0; i<data.list.length; i++){	
@@ -205,7 +210,7 @@ $(document).ready(function(){
 					var list="";
 					list += "<table class='table table-hover'>";
 					list += "<tr>";
-					list += "<th width='100px'>번호</th> <th>제목</th><th width='100px'>역이름</th><th width='120px'>작성자</th> <th width='200px'>작성시간</th><th width='100px'>조회수</th>";
+					list += "<th width='100px' style='text-align:center;'>번호</th> <th style='text-align:center;'>제목</th><th width='100px' style='text-align:center;'>역이름</th><th width='120px' style='text-align:center;'>작성자</th> <th width='200px' style='text-align:center;'>작성시간</th><th width='100px' style='text-align:center;'>조회수</th>";
 					list += "</tr>";
 											 
 					for(var i=0; i<data.list.length; i++){	
@@ -271,7 +276,7 @@ input {
 <br><br>
 <div class="row"> 
 	<div class="col-md-4">
-		<a href="#" class="btn"style="backhground-color:#ED4B4B;" id="write">글쓰기</a>
+		<a href="#" class="btn" style="background-color:#ED4B4B;" id="write">글쓰기</a>
 	</div> 
 	<div class="col-md-4 col-md-offset-4">
 	
@@ -285,12 +290,12 @@ input {
 <div id="listOutput">
 <table class="table table-hover" >
   <tr>
-    <th width="100px">번호</th>
-    <th>제목</th>
-    <th width="100px">역이름</th>
-    <th width="120px">작성자</th>
-    <th width="200px">작성시간</th>
-    <th width="100px">조회수</th>
+    <th width="100px" style="text-align:center;">번호</th>
+    <th style="text-align:center;">제목</th>
+    <th width="100px" style="text-align:center;">역이름</th>
+    <th width="120px" style="text-align:center;">작성자</th>
+    <th width="200px" style="text-align:center;">작성시간</th>
+    <th width="100px" style="text-align:center;">조회수</th>
   </tr>
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">

@@ -22,7 +22,7 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	private TomoroadingDAO dao;
 	// 역 연결정보 list
 	private List<ConnectionVO> connectionList;
-	
+
 	// 역 연결 그래프
 	private Map<String, Integer>[] map;
 
@@ -46,7 +46,9 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	public List<String> makeRoute(String[] bucket, String depart, String arrived) {
 		connectionList = dao.getConnectionList();
 		map = new HashMap[dao.getNumberOfStation()];
-		List<String> result = new ArrayList<String>();
+		List<String> result1 = new ArrayList<String>();
+		List<String> result2 = new ArrayList<String>();
+		List<String> result3 = new ArrayList<String>();
 		List<StationVO> stationList = dao.getStationList();
 		for (int i = 0; i < stationList.size(); i++) { // 역 index setting
 			stationIdx.put(stationList.get(i).getName(), i);
@@ -64,36 +66,48 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 			bucketSet.add(station);
 
 		StationVO path = getMaxViaStation(depart, bucketSet);
-		appendStation(result, path);
+		System.out.println(path);
+		String depart1=path.getName();
+		appendStation(result1, path);
 		deleteBucket(bucketSet, path);
-		path = getMaxViaStation(path.getName(), bucketSet);
-		appendStation(result,path);
+		
+		path = getMaxViaStation(depart1, bucketSet);
+		appendStation(result2, path);
 		stationList = getShortestPath(path.getName());
+		
 		path = stationList.get(stationIdx.get(arrived));
-		appendStation(result,path);
-		result.add(arrived);
-		// to do!!!!!@@@@
-		return result;
+		appendStation(result3, path);
+		System.out.println(result1);
+		System.out.println(result2);
+		System.out.println(result3);
+		for(String station : result2)
+			result3.add(station);
+		for(String station : result1)
+			result3.add(station);
+		result3.add(depart);
+
+		return result3;
 	}
 
 	private void deleteBucket(Set<String> bucketSet, StationVO path) {
-		while(path.getChild()!=null){
-			if(bucketSet.contains(path.getName()))
+		while (path.getChild() != null) {
+			if (bucketSet.contains(path.getName()))
 				bucketSet.remove(path.getName());
+			path = path.getChild();
 		}
 	}
 
 	private void appendStation(List<String> result, StationVO path) {
-		while(path.getChild()!=null)
+		while (path.getChild() != null) {
 			result.add(path.getName());
+			path = path.getChild();
+		}
 	}
 
 	private StationVO getMaxViaStation(String depart, Set<String> bucketSet) {
 		// stationIdx와 map으로 2중 map 구현 -> 출발지를 stationIdx에서 구하고 map에서 해당 도착지를
 		// 넣으면 걸리는 시간을 구한다.
-		
-		StationVO svo = dao.getStationInfo(depart); // 출발지를 0 으로 세팅
-		svo.setSpendTime(0);
+
 		List<StationVO> stationList = getShortestPath(depart);
 
 		int maxStation = 0;
@@ -116,10 +130,11 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	private List<StationVO> getShortestPath(String depart) {
 		// 역 list
 		List<StationVO> stationList = dao.getStationList();
-		
+
 		// 경로 찾는 queue
 		Queue<ConnectionVO> route = new LinkedList<ConnectionVO>();
 
+		stationList.get(stationIdx.get(depart)).setSpendTime(0);
 		route.add(new ConnectionVO(null, new StationVO(depart), 0));
 		// 출발지로부터 모든 역까지 소요되는 시간을 구하여 stationList.spendTime에 넣는다
 		while (!route.isEmpty()) {
