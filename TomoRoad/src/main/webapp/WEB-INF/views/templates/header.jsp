@@ -9,7 +9,7 @@
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
-/* 
+
 $(document).ready(function(){
 	setInterval(() => {
 		$.ajax({
@@ -25,7 +25,7 @@ $(document).ready(function(){
 			}
 		})
 	},1000);
-}) */
+}) 
 </script>
 <style>
 </style>
