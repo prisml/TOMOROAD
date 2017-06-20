@@ -107,6 +107,8 @@ create table review(
 	constraint fk_place_no foreign key(place_no) references place(no),
 	constraint fk_member_id foreign key(member_id) references member(id)
 );
+--추가해주세엿. 리뷰에 등록된 이미지 개수입니다
+alter table review add(img_count number(38) default 0);  
 
 create sequence review_seq nocache;
 

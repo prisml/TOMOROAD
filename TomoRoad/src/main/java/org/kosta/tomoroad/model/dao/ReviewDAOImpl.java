@@ -136,4 +136,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return template.selectOne("review.getTotalContentsByMember",id);
 	}
 
+	@Override
+	public void updateImgCount(int imgCount, int no) {
+		ReviewVO vo=new ReviewVO(imgCount,no);
+		template.update("review.updateImgCount",vo);
+	}
+
 }
