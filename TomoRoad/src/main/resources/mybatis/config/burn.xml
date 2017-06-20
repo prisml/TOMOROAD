@@ -89,12 +89,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select distinct name from station order by name asc
 	</select>
 	
+	
+	
+	<resultMap type="messageVO" id="messageRM">
+		<result property="no" column="m_no" />
+		<result property="time" column="m_time" />
+		<result property="sender" column="m_sender" />
+		<result property="receiver" column="m_receiver" />
+		<result property="text" column="m_content" />
+		<result property="checked" column="m_checked" />
+	</resultMap>
+	
 	<select id="isNewMsg" resultType="int" parameterType="string">
 		select count(*) from message where m_receiver = #{value} and m_checked =1 
 	</select>
 	
 	<select id="findId" resultType="string">
 		select id from member where id like '%' || #{value} || '%'
+	</select>	
+	
+	<select id="getMessageList" resultMap="messageRM" resultType="messageVO">
+		select * from message where m_sender in(#{sender},#{receiver}) and m_receiver in (#{sender},#{receiver}) order by m_time asc
 	</select>
 	
+	<insert id="sendMessage" parameterType="map">
+		insert into message(m_no, m_sender, m_receiver, m_time, m_content, m_checked) values(message_sequence.nextval,#{sender},#{receiver},sysdate,#{text},1)
+	</insert>
 </mapper>

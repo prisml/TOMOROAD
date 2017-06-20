@@ -128,8 +128,19 @@ public class BurnServiceImpl implements BurnService {
 	}
 
 	@Override
-	public String findId(String id) {
+	public List<String> findId(String id) {
 		return burnDAO.findId(id);
+	}
+
+	@Override
+	public Object getMessageList(String sender, String receiver) {		
+		return burnDAO.getMessageList(sender, receiver);
+	}
+
+	@Override
+	public Object sendMessage(String sender, String receiver, String text) {
+		burnDAO.sendMessage(sender, receiver, text);		
+		return burnDAO.getMessageList(sender, receiver);
 	}
 
 }

@@ -130,6 +130,7 @@ public class BurnController {
 		return new ModelAndView("burn/register_form.tiles","station",burnService.getStationNameList());
 	}
 	
+	// 메세지
 	@RequestMapping("isNewMsg.do")
 	@ResponseBody
 	public int isNewMsg(String receiver){
@@ -137,10 +138,22 @@ public class BurnController {
 		return burnService.isNewMsg(receiver);
 	}
 	
-	@RequestMapping("findId.do")
+	@RequestMapping("burn/findId.do")
 	@ResponseBody
-	public String findId(String id){
+	public Object findId(String id){				
 		return burnService.findId(id);
+	}	
+
+	@RequestMapping("getMessageList.do")
+	@ResponseBody
+	public Object getMessageList(String sender, String receiver){
+		return burnService.getMessageList(sender, receiver);
+	}
+	
+	@RequestMapping("sendMessage.do")
+	@ResponseBody
+	public Object sendMessage(String sender, String receiver, String text){			
+		return burnService.sendMessage(sender, receiver, text);
 	}
 	
 }

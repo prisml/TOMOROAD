@@ -104,9 +104,29 @@ public class BurnDAOImpl implements BurnDAO{
 	}
 
 	@Override
-	public String findId(String id) {
-		return template.selectOne("burn.findId",id);
+	public List<String> findId(String id) {
+		return template.selectList("burn.findId",id);
 	}
+
+	@Override
+	public Object getMessageList(String sender, String receiver) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("sender", sender);
+		map.put("receiver", receiver);
+		return template.selectList("burn.getMessageList",map);
+	}
+
+	@Override
+	public void sendMessage(String sender, String receiver, String text) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("sender", sender);
+		map.put("receiver", receiver);
+		map.put("text", text);
+		
+		template.insert("burn.sendMessage",map);		
+	}
+	
+	
 	
 	
 }

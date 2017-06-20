@@ -1,9 +1,7 @@
 package org.kosta.tomoroad.model.vo;
 
-import com.google.gson.Gson;
-
 public class MessageVO {
-/*
+
 	private int no;
 	private String sender;
 	private String receiver;
@@ -11,58 +9,89 @@ public class MessageVO {
 	private String text;
 	private int checked;
 
-}
-*/
-private String message;
-private String type;
-private String to;
-
  
 public MessageVO() {
 	super();
 }
 
-public MessageVO(String message, String type, String to) {
+
+public MessageVO(int no, String sender, String receiver, String time, String text, int checked) {
 	super();
-	this.message = message;
-	this.type = type;
-	this.to = to;
+	this.no = no;
+	this.sender = sender;
+	this.receiver = receiver;
+	this.time = time;
+	this.text = text;
+	this.checked = checked;
 }
 
 
-
-public static MessageVO converMessage(String source) {
-    MessageVO message = new MessageVO();   
-    Gson gson = new Gson();
-  
-    message = gson.fromJson(source, MessageVO.class);
- 
-    return message;
+public int getNo() {
+	return no;
 }
 
-public String getMessage() {
-	return message;
+
+public void setNo(int no) {
+	this.no = no;
 }
 
-public void setMessage(String message) {
-	this.message = message;
+
+public String getSender() {
+	return sender;
 }
 
-public String getType() {
-	return type;
+
+public void setSender(String sender) {
+	this.sender = sender;
 }
 
-public void setType(String type) {
-	this.type = type;
+
+public String getReceiver() {
+	return receiver;
 }
 
-public String getTo() {
-	return to;
+
+public void setReceiver(String receiver) {
+	this.receiver = receiver;
 }
 
-public void setTo(String to) {
-	this.to = to;
+
+public String getTime() {
+	return time;
 }
+
+
+public void setTime(String time) {
+	this.time = time;
+}
+
+
+public String getText() {
+	return text;
+}
+
+
+public void setText(String text) {
+	this.text = text;
+}
+
+
+public int getChecked() {
+	return checked;
+}
+
+
+public void setChecked(int checked) {
+	this.checked = checked;
+}
+
+
+@Override
+public String toString() {
+	return "MessageVO [no=" + no + ", sender=" + sender + ", receiver=" + receiver + ", time=" + time + ", text=" + text
+			+ ", checked=" + checked + "]";
+}
+
 
 
 }

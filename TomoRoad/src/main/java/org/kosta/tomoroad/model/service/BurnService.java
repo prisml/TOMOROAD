@@ -43,5 +43,9 @@ public interface BurnService {
 
 	int isNewMsg(String receiver);
 
-	String findId(String id);
+	List<String> findId(String id);
+
+	Object getMessageList(String sender, String receiver);
+
+	Object sendMessage(String sender, String receiver, String text);
 }
