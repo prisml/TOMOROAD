@@ -765,3 +765,5 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('조치원역','�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조치원역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
+
+select name,simple_detail,detail,section,img,lat,lng from station order by name ASC

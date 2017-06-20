@@ -8,12 +8,11 @@
         </div>
         
 <ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 894.563px;">
-	 	<c:forEach items="${getTourInfoList}" var="vo">
+	 	<c:forEach items="${station}" var="vo">
 			<!--begin List Item -->
 			<li class="list_item col-lg-4 col-md-6 col-sm-6 ${vo.section} isotope-item" style="">
 				<figure class="touching effect-bubba">
 					<img src="${pageContext.request.contextPath}/resources/images/symbol/${vo.img}.png" alt="">
-	
 					<div class="option">
 						<a href="${pageContext.request.contextPath}/station/getDetailInfo.do?name=${vo.name}" class="fa fa-link"></a>
 					</div>
@@ -28,11 +27,10 @@
 	</ul>
 	
 	 <form method="post" action="${pageContext.request.contextPath}/updateStation.do" id="registerForm">
- 
 	 <div class="comment_form">
     	 <div class="row">
     	     <div class="col-sm-4">
-               	 역이름<select class="col-lg-4 col-md-4 form-control" name="name" id="name"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach></select>
+               	 역이름<select class="col-lg-4 col-md-4 form-control" name="name" id="name"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${sname.name}">${sname.name}</option></c:forEach></select>
              </div>
               <div class="col-sm-4">
                	역 간단 설명<input class="col-lg-4 col-md-4 form-control" name="simpleDetail" id="simpleDetail" type="text" size="30" value="${station.simpleDetail}" >
@@ -52,7 +50,7 @@
                	 행정구역<input class="col-lg-4 col-md-4 form-control" name="section" id="section" type="text" value="${station.section}" >
              </div>
               <div class="col-sm-4">
-               	이미지파일<input class="col-lg-4 col-md-4 form-control" name="img" id="img" type="text" value="${station.img}" >
+               	이미지파일<input type = "file" name = "file" id = "file">
              </div>
     	     <div class="col-sm-4">
                	 위도<input class="col-lg-4 col-md-4 form-control" name="lat" id="lat" type="text" value="${station.lat}" >

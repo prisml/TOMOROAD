@@ -63,7 +63,7 @@ public class ManagerController {
 	public String update_member_manager() {
 		return "update_member_manager.tiles";
 	}
-	   
+	  
 	@RequestMapping("getStationListManager.do")
 	public String getStationListManager(Model model){
 		model.addAttribute("station", managerService.getStationListManager());

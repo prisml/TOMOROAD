@@ -50,7 +50,6 @@ public class ManagerDAOImpl implements ManagerDAO{
 	@Override
 	public void updateStation(StationVO vo) {
 		template.update("manager.updateStation",vo);
-		
 	}
 
 	@Override
