@@ -292,6 +292,7 @@ select f.sender_id,m.profile from friend f,member m where f.sender_id=m.id and f
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id
 
 select * from member
+select * from travel;
 
 
 -----< Station 정보 >-----
