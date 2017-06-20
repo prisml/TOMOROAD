@@ -49,5 +49,7 @@ public interface ReviewService {
 
 	int getTotalContentsByMember(String id);
 
+	void updateImgCount(int imgCount, int no);
+
 
 }

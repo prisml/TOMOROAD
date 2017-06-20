@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kosta.tomoroad.model.dao.ManagerDAO;
 import org.kosta.tomoroad.model.dao.MemberDAO;
 import org.kosta.tomoroad.model.service.MapService;
 import org.kosta.tomoroad.model.service.MemberService;
@@ -48,6 +49,9 @@ public class TestUnit {
 	
 	@Resource(name="tomoroadingServiceImpl")
 	private TomoroadingService tomoService;
+	
+	@Resource
+	private ManagerDAO mdao;
 	
 	@Test
 	public void test() throws IOException{
@@ -110,12 +114,13 @@ public class TestUnit {
 		System.out.println(list);
 		memberdao.friend_RequestList("java");*/
 		//System.out.println(mapservice.getAllStationInfo(""));
-		String[] station = {"부산역", "밀양역", "전주역", "순천역"};
+/*		String[] station = {"부산역", "밀양역", "전주역", "순천역"};
 		List<String> list = new ArrayList<String>();
 		list.add("서울역");
 		System.out.println(station.length);
 		System.out.println(list);
 		System.out.println(tomoService.makeRoute(station, "서울역", "서울역"));
-		
+		*/
+		mdao.getStationListManager();
 	}
 }

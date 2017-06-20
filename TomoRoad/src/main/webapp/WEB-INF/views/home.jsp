@@ -65,7 +65,7 @@ function initMap() {
 			position: {lat: ${station.lat},lng: ${station.lng}},
 			title: "${station.name}",
 			icon : icons[${status.index}]
-		});
+		}); 
 		google.maps.event.addListener(markers[${status.index}],'click',function(){
 			for(var z=0;z<windowNames.length;z++){
 				if(windowNames[z]!=null){

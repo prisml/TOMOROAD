@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.ConnectionVO;
 import org.kosta.tomoroad.model.vo.StationVO;
+import org.kosta.tomoroad.model.vo.TravelVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +44,21 @@ public class TomoroadingDAOImpl implements TomoroadingDAO {
 	@Override
 	public int getNumberOfStation() {
 		return template.selectOne("station.getNumberOfStation");
+	}
+	@Override
+	public void travel(TravelVO tvo){
+		template.insert("tomoroading.travel",tvo);
+	}
+	@Override
+	public TravelVO travelChecking(TravelVO tvo){
+		return template.selectOne("tomoroading.travelChecking", tvo);
+	}
+	@Override
+	public void reTravel(TravelVO tvo){
+		template.update("tomoroading.reTravel",tvo);
+	}
+	@Override
+	public void endTravel(TravelVO tvo){
+		template.update("tomoroading.endTravel",tvo);
 	}
 }

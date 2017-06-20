@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import org.kosta.tomoroad.model.dao.TomoroadingDAO;
 import org.kosta.tomoroad.model.vo.ConnectionVO;
 import org.kosta.tomoroad.model.vo.StationVO;
+import org.kosta.tomoroad.model.vo.TravelVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -66,20 +67,14 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 			bucketSet.add(station);
 
 		StationVO path = getMaxViaStation(depart, bucketSet);
-		System.out.println(path);
 		String depart1=path.getName();
 		appendStation(result1, path);
-		deleteBucket(bucketSet, path);
-		
+		deleteBucket(bucketSet, path);		
 		path = getMaxViaStation(depart1, bucketSet);
 		appendStation(result2, path);
-		stationList = getShortestPath(path.getName());
-		
+		stationList = getShortestPath(path.getName());		
 		path = stationList.get(stationIdx.get(arrived));
 		appendStation(result3, path);
-		System.out.println(result1);
-		System.out.println(result2);
-		System.out.println(result3);
 		for(String station : result2)
 			result3.add(station);
 		for(String station : result1)
@@ -162,5 +157,18 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 			stationVO = stationVO.getChild();
 		}
 		return count;
+	}
+	
+	@Override
+	public void travel(String id,String list){
+		TravelVO tvo= new TravelVO();
+		tvo.setId(id);
+		tvo.setRoute(list);
+		if(dao.travelChecking(tvo)==null){
+			dao.travel(tvo);	
+		}else{
+			dao.reTravel(tvo);
+		}
+		
 	}
 }

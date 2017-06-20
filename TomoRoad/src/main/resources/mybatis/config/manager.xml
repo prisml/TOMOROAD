@@ -28,6 +28,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</select>
 	
+	<select id="getStationListManager" resultType="stationvo">
+		select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
+	</select>
+    <update id="updateStation" parameterType="stationVO">
+        update station set
+		simple_detail=#{simple_detail}, detail=#{detail}, section=#{section}, img=#{img}, lat=#{lat}, lng=#{lng}
+		where name=#{name}		
+	</update>
 </mapper>
 
 

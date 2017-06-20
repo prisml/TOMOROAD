@@ -20,7 +20,7 @@
 	<c:forEach items="${friend_RequestList }" var="requestList">
 		<tr>
 			<td>
-				<img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" width = "100" height="100" src = "${requestList.PROFILE}"> 	
+				<img style="width: 100px; border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" width = "100" height="100" src = "${requestList.PROFILE}"> 	
 			</td>
 			<td>
     					<a href ="${pageContext.request.contextPath}/memberpage.do?selectId=${requestList.SENDER_ID}"  style = "font-size:25px">${requestList.SENDER_ID}(${requestList.NAME})</a>

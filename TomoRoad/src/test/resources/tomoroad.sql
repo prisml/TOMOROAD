@@ -49,6 +49,7 @@ drop table station;
 drop table member;
 drop table manager;
 drop table bucket;
+drop table travel;
 ---------- drop sequence -----------
 drop sequence place_seq;
 drop sequence review_seq;
@@ -111,6 +112,8 @@ create table review(
 	constraint fk_place_no foreign key(place_no) references place(no),
 	constraint fk_member_id foreign key(member_id) references member(id)
 );
+--추가해주세엿. 리뷰에 등록된 이미지 개수입니다
+alter table review add(img_count number(38) default 0);  
 
 create sequence review_seq nocache;
 
@@ -226,8 +229,14 @@ create table bucket(
 	constraint fk_bucket_id foreign key(id) references member(id),
 	constraint fk_bucket_name foreign key(name) references station(name)
 );
+create table travel(
+ 	id varchar2(100),
+ 	route varchar2(100),
+	flag varchar2(100) not null ,
+ 	constraint fk_travel_id foreign key(id) references member(id),
+ 	primary key (id,route)
+);
 --------------------------------------------------연습장-------------------------------------------------
-
 select * from STATION_CONNECT
 
 insert into station_reported (name) values ('서울역');
@@ -760,3 +769,9 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('조치원역','�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조치원역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
+
+select name,simple_detail,detail,section,img,lat,lng from station order by name ASC
+
+select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
+
+select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
