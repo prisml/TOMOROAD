@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
+import org.kosta.tomoroad.model.service.TomoroadingService;
 import org.kosta.tomoroad.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,10 @@ public class MemberController {
 	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
+	
+	@Resource(name = "tomoroadingServiceImpl")
+	private TomoroadingService tomoroadingService;
+	
 	
 	@Resource
 	private ReviewService reviewService;
@@ -259,6 +264,11 @@ public class MemberController {
 		model.addAttribute("profile",  memberService.getProfileById(id));
 		model.addAttribute("totalfriend", memberService.totalFriend(id));
 		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
+		
+		model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
+		/*String[] arr = {"여의역","여의도역","여의나무역","여수엑스포역"};
+		model.addAttribute("travelRoute", arr);*/
+		model.addAttribute("totalTravel", tomoroadingService.getTravelRoute(id).split(",").length);
 		return "mypage/mypage.tiles";
 	}
 

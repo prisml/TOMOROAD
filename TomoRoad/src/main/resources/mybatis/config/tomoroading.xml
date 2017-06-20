@@ -7,15 +7,18 @@
 		select * from station where name=#{value}
 	</select>
 	<insert id="travel" parameterType="travelVO">
-		insert into travel (id,route,flag) values (#{id},#{route},"true")
+		insert into travel (id,route,flag) values (#{id},#{route},'true')
 	</insert>
 	<select id="travelChecking" parameterType="travelVO" resultType="travelVO">
-		select * from travel where id=#{id} and route=#{route} and flag=#{flag}
+		select * from travel where id=#{id} and route=#{route}
 	</select>
 	<update id="reTravel" parameterType="travelVO">
-		update travel set flag="true" where id=#{id} and route=#{route}
+		update travel set flag='true' where id=#{id} and route=#{route}
 	</update>
 	<update id="endTravel" parameterType="travelVO">
-		update travel set flag = "false" where id=#{id} and route = #{route}
+		update travel set flag ='false' where id=#{id} and route = #{route}
 	</update>
+	<select id = "getTravelRoute" resultType="string">
+		select route from travel where id = #{value}
+	</select>
 </mapper>

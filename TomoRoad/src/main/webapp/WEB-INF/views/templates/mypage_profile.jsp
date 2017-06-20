@@ -40,7 +40,7 @@
 <div align="right" style="position: absolute; top: 150px; left: 165px;">
 <input type= "image" class = "img-thumbnail img-responsive"  width = "50px" height="45px" src = "${pageContext.request.contextPath}/resources/images/upload.png" onclick = "upload()">
 </div>
-<div>0
+<div>
 <input style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" type = "image" width="200" height="200" src = "${profile}" id = "blah" onclick = "upload()">
 </div>
 <form id = "profileUpload" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/profileFileUpload.do" method="post">

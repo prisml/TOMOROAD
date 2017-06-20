@@ -25,5 +25,7 @@ public interface TomoroadingDAO {
 	void endTravel(TravelVO tvo);
 
 	void reTravel(TravelVO tvo);
+	
+	String getTravelRoute(String id);
 
 }

@@ -162,9 +162,18 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	@Override
 	public void travel(String id,String list){
 		TravelVO tvo= new TravelVO();
-		TravelVO stvo= new TravelVO();
 		tvo.setId(id);
 		tvo.setRoute(list);
+		if(dao.travelChecking(tvo)==null){
+			dao.travel(tvo);	
+		}else{
+			dao.reTravel(tvo);
+		}
 		
+	}
+	
+	@Override
+	public String getTravelRoute(String id){
+		return dao.getTravelRoute(id);
 	}
 }

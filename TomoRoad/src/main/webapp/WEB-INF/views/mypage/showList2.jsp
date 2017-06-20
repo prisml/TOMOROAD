@@ -8,7 +8,7 @@
 		<div class="dividerHeading">
 			<h4>
 				<span> 작성한 리뷰보기 </span>
-			</h4>
+			</h4><br>
 		</div>
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">

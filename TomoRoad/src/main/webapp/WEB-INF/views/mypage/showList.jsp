@@ -74,6 +74,12 @@
 							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
 							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
 							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
 						TimeLine+="</div>";	
 						//화살표
 						

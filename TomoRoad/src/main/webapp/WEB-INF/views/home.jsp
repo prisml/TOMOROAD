@@ -223,9 +223,4 @@ function initMap() {
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
 	async defer></script>
-	<div class="dividerHeading">
-		<h4>
-			<span>투모로딩</span>
-		</h4>
-	</div>
 <div>

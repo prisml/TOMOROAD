@@ -5,29 +5,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<c:if test="${mvo!=null}">
+<%-- <c:if test="${sessionScope.mvo!=null}">
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
 $(document).ready(function(){
-	setInterval(() => {
-		$.ajax({
-			type:"get",
-			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
-			success:function(data){
-				if(data != 0){
-					$("#bubble").empty(); 
-					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-					$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
-					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-			 	}
-			}
-		})
-	},1000);
-}) 
+	if("" != "${sessionScope.mvo.id}"){
+		setInterval(() => {
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+				success:function(data){
+					if(data != 0){
+						$("#bubble").empty(); 
+						$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+						$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
+						$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+				 	}
+				}
+			})
+		},1000);
+	}
+});
 </script>
-</c:if>
+</c:if> --%>
+
+<script type="text/javascript">
+
+function reqeustList(){
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
+}
+
+$(document).ready(function(){
+	$.ajax({
+		type:"get",
+		url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+		success:function(data){
+			if(data != 0){
+				$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+				$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
+				$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+		 	}
+		}
+	})
+})
+</script>
 <style>
 </style>
 <header id="header">
@@ -73,9 +96,9 @@ $(document).ready(function(){
 
 				<li>
 				<c:choose>
-                  <c:when test="${not empty mvo}">
+                  <c:when test="${!empty sessionScope.mvo}">
                      <a href="${pageContext.request.contextPath}/logout.do">
-                        ${mvo.name}님 LogOut </a>
+                        ${sessionScope.mvo.name}님 LogOut </a>
                         <li><a href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">버킷리스트</a>
 							</li>
                   </c:when>
@@ -93,14 +116,14 @@ $(document).ready(function(){
 				</li>
 				<li>　</li>
 
-				<c:if test="${mvo != null }">
+				<c:if test="${sessionScope.mvo != null }">
 				
 				<li><jsp:include page="messagetap.jsp"/></li>
 				
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
 				<li><span id = "requestFriend"><img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/99.png></span></li>
-				<div id = "bubble" style="position: absolute; top: -25px; left: 894px;">
+				<div id = "bubble" style="position: absolute; top: -25px; left: 1060px;">
 				<!-- <span id = "requestCount" style = "position: absolute; top:8px; left:13px;">3</span> -->
 				<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>

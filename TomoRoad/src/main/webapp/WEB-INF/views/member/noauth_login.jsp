@@ -5,13 +5,13 @@
 <script type="text/javascript">
 var key = "qwe";
 var input = "";
-	  $(document).keypress(function(e) {
-		  if (e.which !== 0) {
+	  $(document).keypress(function(e) {		  
+		 if (e.which !== 0) {
 		        input += String.fromCharCode(e.which);
 		        if(key.length == input.length && key == input)
 		        	location.href="/tomoroad/member/noauth_manager_login.do"; 
 		          else if(key.length == input.length && key != input)
-		        	key = "";  
+		        	key = "";   
 		        
 		    }
 	  });
