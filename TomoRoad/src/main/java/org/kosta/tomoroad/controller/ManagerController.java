@@ -1,7 +1,5 @@
 package org.kosta.tomoroad.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,7 +67,7 @@ public class ManagerController {
 	@RequestMapping("getStationListManager.do")
 	public String getStationListManager(Model model){
 		model.addAttribute("station", managerService.getStationListManager());
-		return "manager/manager_station_form.do";
+		return "manager/manager_station_form.tiles";
 	}
 
 	@RequestMapping("updateStation.do")
