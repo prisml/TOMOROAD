@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 body, h1, h2, h3, h4, h5, h6, .button, input[type="button"], input[type="submit"],
 	input[type="text"], input[type="password"], input[type="email"],
 	textarea, select {
-	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif, "Nanum Gothic";
 	font-size: 15px;
 	line-height: 25px;
 	color: #555;
@@ -645,7 +645,7 @@ a:focus {
 
 .navbar-nav .dropdown-menu>li>a {
 	white-space: normal;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 12px 20px;
 	border-bottom: 1px solid #e4e4e4;
 }
@@ -6707,29 +6707,12 @@ nav.tm_navbar li.active>a {
 	margin-bottom: 0;
 }
 
-.input-group { <<<<<<<
-	HEAD position: relative;
-	display: table;
-	border-collapse: separate;
-	width: 236px;
-	margin: 0 auto; =======
+.input-group {
 	position: relative;
 	display: table;
 	border-collapse: separate;
-	margin-left: 334px;
-	>>>>>>>
-	branch
-	'master'
-	of
-	https
-	:
-	/
-	/
-	github.com
-	/
-	prisml
-	/
-	TOMOROAD.git
+	width: 236px;
+	margin: 0 auto;
 }
 
 .star_rating {

@@ -7,7 +7,6 @@
 	var paths=[];
 	var names = [];
 	var markers=[];
-	var polys=[];
 	var infoList= [];
 	var windowNames = [];
 	var icons = [];
