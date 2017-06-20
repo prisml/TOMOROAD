@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<section class = "row counter-parallax sub_content">
+<section class = "row counter-parallax sub_content" style="height:180px;">
 	<div class = "col-lg-4 col-md-4 col-sm-6 text-center">
 		<div class = "count-box">
 			<span class = "icon">
@@ -18,7 +17,7 @@
 	<div class = "col-lg-4 col-md-4 col-sm-6 text-center">
 		<div class = "count-box">
 			<span class = "icon">
-				<i class = "fa fa-briefcase "></i>
+				<i class = "fa fa-pencil "></i>
 			</span>
 			<p>
 				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/showListByMember2.do">${totalContents}</a></b>
@@ -32,8 +31,7 @@
 				<i class = "fa fa-briefcase "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "#">100</a></b>
-			%</p>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "#">100</a></b>%</p>
 			<span class = "title">여행지</span>
 		</div>
 	</div>

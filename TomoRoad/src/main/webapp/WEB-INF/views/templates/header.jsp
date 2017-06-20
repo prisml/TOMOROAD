@@ -9,22 +9,23 @@
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
-
 $(document).ready(function(){
-	setInterval(() => {
-		$.ajax({
-			type:"get",
-			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
-			success:function(data){
-				if(data != 0){
-					$("#bubble").empty(); 
-					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-					$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
-					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-			 	}
-			}
-		})
-	},1000);
+	if("" != "${mvo.id}"){
+ 		setInterval(() => {
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+				success:function(data){
+					if(data != 0){
+						$("#bubble").empty(); 
+						$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+						$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
+						$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+				 	}
+				}
+			})
+		},1000);
+	}
 })
 </script>
 <style>
