@@ -107,7 +107,7 @@
 				</div>
 				<div class="col-md-2">
 					<input id="addPicture" class="btn btn-default btn-lg"
-					value="Add" type="button">
+					value="사진추가" type="button">
 				</div>
 				<div class="col-md-5">
 					<input id="star" name="star" value="5" type="hidden">
@@ -134,7 +134,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<input data-loading-text="Loading..." class="btn btn-default btn-lg"
-					value="Register" type="submit" onsubmit="starCount()">
+					value="일지 작성" type="submit" onsubmit="starCount()">
 			</div>
 		</div>
 	</form>
@@ -144,13 +144,12 @@
 		<div class="widget_info">
 			<div class="dividerHeading">
 				<h4>
-					<span>Contact Info</span>
+					<span>Info</span>
 				</h4>
 			</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-				veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-				ea commodo consequat.</p>
+			<p>방문한 역을 선택하세요. 역을 선택하시면 해당 역의 관광지 정보가 오른쪽에 생기게 됩니다.
+			방문한 관광지를 선택하신 후 리뷰를 작성해 주세요. 방문한 관광지의 사진을 찍어보세요!
+			 나만의 추억이 담긴 사진을 등록할 수 있습니다. </p>
 			<ul class="widget_info_contact">
 				<li><i class="fa fa-map-marker"></i>
 					<p>

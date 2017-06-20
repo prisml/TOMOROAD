@@ -149,5 +149,9 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.updateMemberByManager(vo);	
 		
 	}
+	@Override
+	public int totalFriend(String id) {
+		return memberDAO.totalFrined(id);
+	}
 
 }

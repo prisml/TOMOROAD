@@ -15,5 +15,8 @@ public interface ManagerService {
 	void updateMemberByManager(MemberVO vo);
 
 	void deleteMemberByManager(String id);
+
+	MemberVO getIdFromMember(String id);
+
 	
 }

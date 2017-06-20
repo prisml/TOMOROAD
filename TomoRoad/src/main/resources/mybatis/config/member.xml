@@ -56,7 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update friend set state = '수락' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
 	</update>
 	<update id = "friend_Refuse" parameterType="map">
-		update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+		<!-- update friend set state = '거절' where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기' -->
+		delete from friend where sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
 	</update>
 	<update id = "friend_Block" parameterType="map">
 		update friend set sender_id = #{id}, receiver_id=#{blockId}, state = '차단' where receiver_id in (#{id},#{blockId}) and sender_id in (#{id},#{blockId})
@@ -77,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select m.profile,m.name,f.sender_id as friend from member m,friend f where f.sender_id = m.id and receiver_id = #{value} and state = '차단'
 	</select> -->
 	<select id="getFriendId" parameterType="map" resultType="string">
-		select sender_id from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId}) and state = '수락'
+		select state from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId})
 	</select>
 	<delete id="deleteFriend" parameterType="map">
 		delete from friend where sender_id in (#{id},#{selectId}) and receiver_id in (#{id},#{selectId})
@@ -95,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="profileReset">
 		update member set profile = #{profileReset} where id = #{id}
 	</update>
-	<select id="getFriendById" resultType="memberVo">
+	<select id="getFriendById" resultType="membervo">
 		select * from friend where sender_id in (#{id},#{selectId}) and receiver_id in(#{id},#{selectId}) and state = '수락'
 	</select>
 	<select id = "checkFriend" parameterType = "map" resultType="int">
@@ -104,11 +105,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="friend_RequestInfo" resultType="int">
 		select count(*) from friend where receiver_id = #{value} and state = '대기'
 	</select>
- 	
- 	    <update id="updateMemberByManager" parameterType="memberVO">
+ 	<update id="updateMemberByManager" parameterType="memberVO">
         update member set
 		password=#{password}, name=#{name}, sex=#{sex}, tel=#{tel}
 		where id=#{id}		
 	</update>
-	
+	<select id = "totalFriend" resultType="int">
+		select count(*) from friend where (sender_id = #{value} or receiver_id = #{value}) and state = '수락'
+
+	</select>
 </mapper>
