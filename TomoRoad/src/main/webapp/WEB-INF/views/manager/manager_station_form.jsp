@@ -7,7 +7,7 @@
             <h4><span>수정 해주세요</span></h4>
         </div>
         
-<ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 894.563px;">
+<%-- <ul id="list" class="portfolio_list clearfix isotope" style="position: relative; overflow: hidden; height: 894.563px;">
 	 	<c:forEach items="${station}" var="vo">
 			<!--begin List Item -->
 			<li class="list_item col-lg-4 col-md-6 col-sm-6 ${vo.section} isotope-item" style="">
@@ -24,13 +24,12 @@
 				</figure>
 			</li>
 		</c:forEach>
-	</ul>
-	
+	</ul> --%>
 	 <form method="post" action="${pageContext.request.contextPath}/updateStation.do" id="registerForm">
 	 <div class="comment_form">
     	 <div class="row">
     	     <div class="col-sm-4">
-               	 역이름<select class="col-lg-4 col-md-4 form-control" name="name" id="name"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${sname.name}">${sname.name}</option></c:forEach></select>
+               	 역이름<input  class="col-lg-4 col-md-4 form-control" type="text" id="name" name="name" value="${station.name}" readonly>
              </div>
               <div class="col-sm-4">
                	역 간단 설명<input class="col-lg-4 col-md-4 form-control" name="simpleDetail" id="simpleDetail" type="text" size="30" value="${station.simpleDetail}" >
@@ -40,7 +39,7 @@
      <div class="comment-box row">
        <div class="col-sm-12">
          <p>
-           <textarea id="detail" name="detail" style="height:300px;" value="${station.detail}" required></textarea>
+           <textarea id="detail" name="detail" style="height:300px;" required>${station.detail}</textarea>
          </p>
       </div>
      </div>
@@ -53,10 +52,10 @@
                	이미지파일<input type = "file" name = "file" id = "file">
              </div>
     	     <div class="col-sm-4">
-               	 위도<input class="col-lg-4 col-md-4 form-control" name="lat" id="lat" type="text" value="${station.lat}" >
+               	 위도<input class="col-lg-4 col-md-4 form-control" name="lat" id="lat" type="text" value="${station.lat}"  readonly="readonly">
              </div>
               <div class="col-sm-4">
-               	경도<input class="col-lg-4 col-md-4 form-control" name="lng" id="lng" type="text" value="${station.lng}"  >
+               	경도<input class="col-lg-4 col-md-4 form-control" name="lng" id="lng" type="text" value="${station.lng}"  readonly="readonly">
              </div>
          </div>
      </div>

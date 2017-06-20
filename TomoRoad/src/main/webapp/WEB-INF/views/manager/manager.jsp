@@ -31,10 +31,28 @@
 			        });			        
 			    });
 			    $(document).ready(function(){
-			        $("#managerStation").click(function(){		       
-						location.href = "${pageContext.request.contextPath}/manager/manager_station_form.do";
+			        $("#managerStation").click(function(){		
+			        	var optionValue = $("#st").val();
+			        	//alert(optionValue);
+						location.href = "${pageContext.request.contextPath}/getStationListManager.do?name="+optionValue;
 			        });			        
 			    });
+			    $(document).ready(function(){
+			       /*  $("#listStation").click(function(){		
+						location.href = "${pageContext.request.contextPath}/getStationNameListManager.do";
+			        });		 */	        
+			    });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+     $("#showStation").click(function(){
+    	// location.href="${pageContext.request.contextPath}/getMemberList.do"; 
+         $("#listStation").animate({
+            height: 'toggle'
+            	
+        });
+    });	 
+});
 </script>
 
     <div class="col-lg-12 col-sm-12"> 
@@ -47,6 +65,20 @@
 <button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
 
 <button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button>
+
+<button id="showStation" class="btn btn-default btn-lg button" >역정보 보기</button>
+
+    	     <div id="listStation" class="col-sm-4" style="display:none;">
+              <%--  	 역이름<select class="col-lg-4 col-md-4 form-control" name="name" id="name">
+               	 <option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${sname.name}">${sname.name}
+               	 </option></c:forEach></select> --%>
+               	 <select class="col-sm-4 form-control" name=stationName id="st">
+	<option value="all">전체보기</option>
+	<c:forEach items="${station}" var="sname">
+	<option value="${sname.name}">${sname.name}</option>
+	</c:forEach>
+	</select>
+             </div>
 
 <button id="managerStation" class="btn btn-default btn-lg button" >역정보 수정</button>
 <br>

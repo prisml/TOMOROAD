@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-var key = "tomoroad";
+var key = "qwe";
 var input = "";
 	  $(document).keypress(function(e) {
 		  if (e.which !== 0) {

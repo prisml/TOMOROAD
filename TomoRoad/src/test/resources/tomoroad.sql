@@ -73,11 +73,9 @@ create table manager(
 	password varchar2(100) not null
 );
 
-<<<<<<< HEAD
 select * from member;
-=======
 insert into manager values('abc',1234)
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -774,3 +772,7 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
 
 select name,simple_detail,detail,section,img,lat,lng from station order by name ASC
+
+
+select name,simple_detail as simpleDetail,detail,section,img,lat,lng from station
+		where name='구포역'

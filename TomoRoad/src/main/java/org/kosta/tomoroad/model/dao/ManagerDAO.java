@@ -19,9 +19,9 @@ public interface ManagerDAO {
 
 	MemberVO getIdFromMember(String id);
 
-	List<StationVO> getStationListManager(StationVO stationVO);
-
 	void updateStation(StationVO vo);
+	
+	List<StationVO> getStationNameListManager();
 
-	List<StationVO> getStationListManager();
+	StationVO getStationListManager(String name);
 }

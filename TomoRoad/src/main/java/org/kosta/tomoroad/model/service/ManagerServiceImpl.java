@@ -45,8 +45,13 @@ public class ManagerServiceImpl implements ManagerService{
 		
 	}
 	@Override
-	public List<StationVO> getStationListManager() {
-		return managerDAO.getStationListManager();
+	public StationVO getStationListManager(String name) {
+		//System.out.println("service");
+		return managerDAO.getStationListManager(name);
+	}
+	@Override
+	public List<StationVO> getStationNameListManager() {
+		return managerDAO.getStationNameListManager();
 	}
 
 

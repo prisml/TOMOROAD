@@ -43,17 +43,18 @@ public class ManagerDAOImpl implements ManagerDAO{
 	}
 
 	@Override
-	public List<StationVO> getStationListManager(StationVO stationVO) {
-		return template.selectList("manager.getStationListManager");
-	}
-
-	@Override
 	public void updateStation(StationVO vo) {
 		template.update("manager.updateStation",vo);
 	}
 
 	@Override
-	public List<StationVO> getStationListManager() {
-		return template.selectList("manager.getStationListManager");
+	public StationVO getStationListManager(String name) {
+	//	System.out.println(template.selectOne("manager.getStationListManager",name).toString());
+		return template.selectOne("manager.getStationListManager",name);
+	}
+
+	@Override
+	public List<StationVO> getStationNameListManager() {
+		return template.selectList("manager.getStationNameListManager");
 	}
 }

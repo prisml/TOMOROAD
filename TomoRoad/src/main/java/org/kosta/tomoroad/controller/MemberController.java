@@ -132,12 +132,12 @@ public class MemberController {
 		}
 	} 
 	@RequestMapping("member/noauth_findpw2.do")
-	public String checkId(MemberVO vo){
+	public String checkId(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
-		System.out.println(vo);
 		if (id.equals("")) 	
 			return "member/noauth_findpw_fail";
 		else {
+			model.addAttribute("mmvo",vo.getId());
 			return "member/noauth_findpw2.tiles";
 		}
 	}

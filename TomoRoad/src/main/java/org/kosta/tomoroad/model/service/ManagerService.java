@@ -21,7 +21,9 @@ public interface ManagerService {
 
 	void updateStation(StationVO vo);
 
-	List<StationVO> getStationListManager();
+	List<StationVO> getStationNameListManager();
+
+	StationVO getStationListManager(String name);
 
 	
 }

@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.service.ManagerService;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.vo.ManagerVO;
@@ -24,6 +25,8 @@ public class ManagerController {
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	
+	@Resource(name = "burnServiceImpl")
+	private BurnService burnService;
 	
 	@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")
 	public String managerLogin(ManagerVO managerVO, HttpServletRequest request, HttpSession session,Model model) {
@@ -39,8 +42,10 @@ public class ManagerController {
 	@RequestMapping("getMemberList.do")
 	public String getMemberList(Model model){
 		model.addAttribute("list", managerService.getMemberList());
+		model.addAttribute("station", managerService.getStationNameListManager());
 		return "manager/manager.tiles";
 	}
+	
 	@RequestMapping("updateMemberByManagerForm.do")
 	public ModelAndView updateMemberByManagerForm(String id) {
 		MemberVO vo =managerService.getIdFromMember(id);
@@ -65,14 +70,24 @@ public class ManagerController {
 	}
 	  
 	@RequestMapping("getStationListManager.do")
-	public String getStationListManager(Model model){
-		model.addAttribute("station", managerService.getStationListManager());
+	public String getStationListManager(String name,Model model){
+		model.addAttribute("station", managerService.getStationListManager(name));
+		//System.out.println(managerService.getStationListManager(name));
 		return "manager/manager_station_form.tiles";
+	}
+	
+	@RequestMapping("getStationNameListManager.do")
+	public String getStationNameListManager(Model model){
+		model.addAttribute("station", managerService.getStationNameListManager());
+		//System.out.println(managerService.getStationNameListManager());
+		return "manager/manager.tiles";
 	}
 
 	@RequestMapping("updateStation.do")
 	public ModelAndView updateStation(StationVO vo) {
+		vo.setImg("0");
 		managerService.updateStation(vo);
-		return new ModelAndView("redirect:manager_station_result.do");
+		//System.out.println(vo);
+		return new ModelAndView("redirect:getMemberList.do");
 	}
 }
