@@ -150,19 +150,17 @@ body {font-family: "Lato", sans-serif;}
 		<br>  		
   		<input type="text" style="color:black; width:80%;" id="searchbox">&nbsp;<i class="fa fa-search" id="searchicon"></i>
   		<br><br>  		
-  		<div id="mlist" style="width:100%; height:200px; overflow-y: auto; overflow-x:hidden;">
+  		<div id="mlist" style="width:100%; height:190px; overflow-y: auto; overflow-x:hidden;">
   		</div>  	
 	</div>
 	
 
 	<div id="mBox" class="tabcontent" style="width:100%; text-align:left;">
 		<br><br>  		
-  		<div id="messageList" style="width:100%; overflow-y: auto; overflow-x:hidden; max-height: 220px;">
+  		<div id="messageList" style="width:100%; height:210px; overflow-y: auto; overflow-x:hidden; max-height: 220px;">
   		
   		</div>
-  		<div>
-  		<input type="text" id="inputbar">&nbsp;<input type="button" class="btn" id="sendMessage" value="전송" style="width:15px; height:10px; background-color:red; color:white; text-aling:center;">  		
-  		</div>
+  		<input type="text" id="inputbar">&nbsp;<input type="button" class="btn" id="sendMessage" value="전송" style="width:15px; height:10px; background-color:red; color:white; text-aling:center;">
   		 
 	</div>
 	
@@ -230,7 +228,7 @@ $(document).ready(function(){
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";
 					}else{
-						messages += "<br><div style='text-align:right; margin-right:3px;'><strong>";
+						messages += "<br><div style='text-align:right; margin-right:5px;'><strong>";
 						messages += data[i].sender+"</strong>";
 						messages += "<br><span style='background-color:green;'>";
 						messages += data[i].text;
@@ -247,6 +245,12 @@ $(document).ready(function(){
 	
 	$(document).on("click","#sendMessage",function(){
 		var text = $(this).prev().val();
+		if($.trim(text)==""){
+			alert("내용을 입력해 주세요!")
+			$(this).prev().focus();
+			return false;
+		}
+			
 		$(this).prev().val("");		
 		
 		var messages = "";
