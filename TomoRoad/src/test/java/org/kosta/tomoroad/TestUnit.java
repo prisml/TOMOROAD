@@ -121,6 +121,6 @@ public class TestUnit {
 		System.out.println(list);
 		System.out.println(tomoService.makeRoute(station, "서울역", "서울역"));
 		*/
-		mdao.getStationListManager();
+		tomoService.getTravelRoute("java");
 	}
 }

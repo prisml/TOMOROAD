@@ -171,4 +171,9 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 		}
 		
 	}
+	
+	@Override
+	public String getTravelRoute(String id){
+		return dao.getTravelRoute(id);
+	}
 }

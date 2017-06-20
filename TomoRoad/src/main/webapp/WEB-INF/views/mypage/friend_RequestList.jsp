@@ -16,6 +16,11 @@
 		location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList_Block.do?id=${mvo.id}&blockId="+id;
 	}
 </script>
+		<div class="dividerHeading">
+			<h4>
+				<span> 친구요청 목록 </span>
+			</h4>
+		</div>
 <table style = "border-spacing: 10px; border-collapse: separate;">
 	<c:forEach items="${friend_RequestList }" var="requestList">
 		<tr>

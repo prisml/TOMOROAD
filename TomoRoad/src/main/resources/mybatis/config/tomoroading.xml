@@ -18,4 +18,7 @@
 	<update id="endTravel" parameterType="travelVO">
 		update travel set flag ='false' where id=#{id} and route = #{route}
 	</update>
+	<select id = "getTravelRoute" resultType="string">
+		select route from travel where id = #{value}
+	</select>
 </mapper>

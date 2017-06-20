@@ -776,3 +776,7 @@ select name,simple_detail,detail,section,img,lat,lng from station order by name 
 select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
 
 select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
+
+select route from travel where id = 'java'
+
+select route from travel where id = 'java'
