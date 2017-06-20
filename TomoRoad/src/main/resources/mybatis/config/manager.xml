@@ -28,9 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</select>
 	
-	<select id="getStationListManager" resultType="stationVO">
-		select name,simple_detail,detail,section,img,lat,lng from station
-		order by name ASC
+	<select id="getStationListManager" resultType="stationvo">
+		select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
 	</select>
     <update id="updateStation" parameterType="stationVO">
         update station set
