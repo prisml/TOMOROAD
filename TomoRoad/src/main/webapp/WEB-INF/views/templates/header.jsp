@@ -25,7 +25,7 @@ $(document).ready(function(){
 			}
 		})
 	},1000);
-}) 
+});
 </script>
 </c:if>
 <style>
