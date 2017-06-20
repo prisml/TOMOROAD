@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.tomoroad.model.vo.ConnectionVO;
 import org.kosta.tomoroad.model.vo.StationVO;
+import org.kosta.tomoroad.model.vo.TravelVO;
 
 public interface TomoroadingDAO {
 
@@ -16,5 +17,13 @@ public interface TomoroadingDAO {
 	List<StationVO> getStationList();
 
 	int getNumberOfStation();
+
+	void travel(TravelVO tvo);
+
+	TravelVO travelChecking(TravelVO tvo);
+
+	void endTravel(TravelVO tvo);
+
+	void reTravel(TravelVO tvo);
 
 }
