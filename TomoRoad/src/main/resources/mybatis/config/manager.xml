@@ -23,6 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMemberByManager">
 		delete from member where id=#{id}	
 	</delete>
+	<select id="getIdFromMember" resultType="memberVO">
+		select id, password, name, sex, tel from member
+		where id=#{id}
+	</select>
+	
 </mapper>
 
 

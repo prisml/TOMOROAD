@@ -211,7 +211,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("friend_RequestInfo.do")
+	@RequestMapping("noauth_friend_RequestInfo.do")
 	public int friend_RequestInfo(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
@@ -251,6 +251,17 @@ public class MemberController {
 		return new ModelAndView("mypage/"+viewName + ".tiles", "profile",profile);
 	}
 	
+	@RequestMapping("mypage/mypage.do")
+	public String mypage(HttpServletRequest request,Model model){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
+		model.addAttribute("profile",  memberService.getProfileById(id));
+		model.addAttribute("totalfriend", memberService.totalFriend(id));
+		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
+		return "mypage/mypage.tiles";
+	}
+
 	@RequestMapping(value = "profileFileUpload.do", method = RequestMethod.POST)
 	public String profileFileUpload(MultipartFile uploadfile,HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -340,6 +351,7 @@ public class MemberController {
 			}else{
 				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
 				model.addAttribute("friend", memberService.getFriendId(id, selectId));
+				System.out.println(memberService.getFriendId(id, selectId));
 				return "memberpage/memberpage.tiles";
 			}
 	   }

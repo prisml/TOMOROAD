@@ -64,8 +64,8 @@ body, h1, h2, h3, h4, h5, h6, .button, input[type="button"], input[type="submit"
 	input[type="text"], input[type="password"], input[type="email"],
 	textarea, select {
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	line-height: 20px;
+	font-size: 15px;
+	line-height: 25px;
 	color: #555;
 }
 
@@ -78,7 +78,6 @@ body {
 	background: #FFFFFF;
 	margin-top: 10px;
 	border-top: 7px solid #ED4B4B;
-	border-radius: 19px;
 }
 
 .hidden {
@@ -86,32 +85,32 @@ body {
 }
 
 h1 {
-	font-size: 28px;
+	font-size: 32px;
 	line-height: 50px;
 }
 
 h2 {
-	font-size: 22px;
+	font-size: 26px;
 	line-height: 30px;
 }
 
 h3 {
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 30px;
 }
 
 h4 {
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 30px;
 }
 
 h5 {
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 24px;
 }
 
 h6 {
-	font-size: 10px;
+	font-size: 14px;
 	line-height: 20px;
 }
 
@@ -220,8 +219,8 @@ a:focus {
 
 .super_sub_content {
 	padding: 20px 10px;
-    margin-left: 18px;
-    margin-right: -170px;
+	margin-left: 18px;
+	margin-right: -170px;
 }
 
 .grey_bg {
@@ -234,7 +233,7 @@ a:focus {
 #header {
 	z-index: 999;
 	background: #fff;
-	padding: 30px 0 25px;
+	padding: 30px 0 10px;
 }
 
 #header:after {
@@ -325,7 +324,7 @@ a:focus {
 /* Logo
 ====================================*/
 #logo {
-	margin: 0 0 60px;
+	margin: 0 0 0px;
 }
 
 #logo>h1 {
@@ -477,7 +476,7 @@ a:focus {
 	border: none;
 }
 
-/* sub menus arrows */ 
+/* sub menus arrows */
 .sub-arrow, .navbar-nav .collapsible .sub-arrow {
 	position: static;
 	margin-top: 0;
@@ -492,7 +491,7 @@ a:focus {
 	border-right: 4px dashed transparent;
 	border-bottom: 4px dashed transparent;
 	border-left: 4px dashed transparent;
-	text-align: center;	
+	text-align: center;
 }
 
 .navbar-nav>li>.has-submenu .sub-arrow {
@@ -579,7 +578,7 @@ a:focus {
 .navbar-default .navbar-nav li a {
 	color: #555;
 	text-transform: uppercase;
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: 500;
 	line-height: 15px;
 }
@@ -646,7 +645,7 @@ a:focus {
 
 .navbar-nav .dropdown-menu>li>a {
 	white-space: normal;
-	font-size: 13px;
+	font-size: 16px;
 	padding: 12px 20px;
 	border-bottom: 1px solid #e4e4e4;
 }
@@ -717,23 +716,35 @@ ul.sm li *, ul.sm li *:before, ul.sm li *:after {
 100%
 {
 opacity
+
+
 :
+
  
+
 1;
 -webkit-transform
-:
- 
-translateY
-(0);
 
-        
+
+:
+
+ 
+
+translateY
+
+
+(0);
 transform
-:
- 
-translateY
-(0);
 
-    
+
+:
+
+ 
+
+translateY
+
+
+(0);
 }
 }
 @
@@ -747,30 +758,46 @@ keyframes fadeInUp { 0% {
 100%
 {
 opacity
+
+
 :
+
  
+
 1;
 -webkit-transform
-:
- 
-translateY
-(0);
 
-        
+
+:
+
+ 
+
+translateY
+
+
+(0);
 -ms-transform
-:
- 
-translateY
-(0);
 
-        
+
+:
+
+ 
+
+translateY
+
+
+(0);
 transform
-:
- 
-translateY
-(0);
 
-    
+
+:
+
+ 
+
+translateY
+
+
+(0);
 }
 }
 .fadeInUp {
@@ -3143,48 +3170,63 @@ input[type="submit"] {
 	margin-bottom: 80px;
 }
 
-.content_3 .form-control {
-<<<<<<< HEAD
-    border-radius: 0;
-    height: 36px;
-    margin-bottom: 10px;
-    padding:0 12px ;
+.content_3 .form-control { <<<<<<<
+	HEAD border-radius: 0;
+	height: 36px;
+	margin-bottom: 10px;
+	padding: 0 12px;
 }
-.content_3 textarea.form-control{
-    height: 230px;
+
+.content_3 textarea.form-control {
+	height: 230px;
 }
+
 .content_3 .form-group label {
-    color: #6f6f6f;
-    font-size: 13px;
-    font-weight: normal;
-    margin-bottom: 4px;
-    width: 236px;
-    margin: 0 auto;
+	color: #6f6f6f;
+	font-size: 13px;
+	font-weight: normal;
+	margin-bottom: 4px;
+	width: 236px;
+	margin: 0 auto;
 }
+
 .content_3 .widget_info_contact {
-    margin-top: 20px;
-    display: inline-block;
+	margin-top: 20px;
+	display: inline-block;
 }
+
 .content_3 .widget_info_contact strong {
-    display: block;
-    font-size: 18px;
-    line-height: 20px;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: 10px;
+	display: block;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: normal;
+	text-align: center;
+	margin-bottom: 10px;
 }
+
 .content_3 .widget_info_contact li i {
-    color: #647382;
-    font-size: 24px;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 17px;
-=======
+	color: #647382;
+	font-size: 24px;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 17px; =======
 	border-radius: 0;
 	height: 36px;
 	margin-bottom: 10px;
 	padding: 0 12px;
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+	>>>>>>>
+	branch
+	'master'
+	of
+	https
+	:
+	/
+	/
+	github.com
+	/
+	prisml
+	/
+	TOMOROAD.git
 }
 
 .content_3 textarea.form-control {
@@ -5083,8 +5125,6 @@ h5.circular-title {
 	background-color: #ED4B4B;
 }
 
-
-
 .widget_title {
 	padding: 0 10px;
 }
@@ -6124,7 +6164,7 @@ ul {
 
 @media only screen and (min-width: 768px) and (max-width: 989px) {
 	#header {
-		padding: 30px 0 30px;
+		padding: 30px 0 10px;
 	}
 	#logo {
 		margin: 0 0 35px;
@@ -6583,7 +6623,7 @@ ul {
 		width: 100%;
 	}
 	#header {
-		padding: 30px 0 15px;
+		padding: 30px 0 10px;
 	}
 	.nav-caption {
 		text-align: left;
@@ -6636,16 +6676,12 @@ nav.tm_navbar li.active>a {
 }
 
 #my-navbar {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
 	text-align: center;
 }
 
 #my-navbar>ul {
-	margin:auto;
+	margin: 0 auto;
 	display: inline-block;
-	text-align: center;
 }
 
 #my-navbar>ul>li {
@@ -6656,8 +6692,8 @@ nav.tm_navbar li.active>a {
 .input-group .form-control:last-child, .input-group-addon:last-child,
 	.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn,
 	.input-group-btn:last-child>.dropdown-toggle, .input-group-btn:first-child>.btn:not
-	(:first-child ), .input-group-btn:first-child>.btn-group:not (:first-child
-	) >.btn {
+	 (:first-child ), .input-group-btn:first-child>.btn-group:not (:first-child
+	 ) >.btn {
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	font-size: 20px;
@@ -6671,19 +6707,29 @@ nav.tm_navbar li.active>a {
 	margin-bottom: 0;
 }
 
-.input-group {
-<<<<<<< HEAD
-  position: relative;
-  display: table;
-  border-collapse: separate;
-  width: 236px;
-  margin: 0 auto;
-=======
+.input-group { <<<<<<<
+	HEAD position: relative;
+	display: table;
+	border-collapse: separate;
+	width: 236px;
+	margin: 0 auto; =======
 	position: relative;
 	display: table;
 	border-collapse: separate;
 	margin-left: 334px;
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+	>>>>>>>
+	branch
+	'master'
+	of
+	https
+	:
+	/
+	/
+	github.com
+	/
+	prisml
+	/
+	TOMOROAD.git
 }
 
 .star_rating {
@@ -6712,18 +6758,17 @@ nav.tm_navbar li.active>a {
 	content: "\f03e";
 }
 
-
-.btn-default{
-    background:#ED4B4B;
-    color:#fff;
-    border:none;
-    transition:all 0.3s ease-in-out;
-    -webkit-transition:all 0.3s ease-in-out;
-    -moz-transition:all 0.3s ease-in-out;
-    -ms-transition:all 0.3s ease-in-out;
-    -o-transition:all 0.3s ease-in-out;
+.btn-default {
+	background: #ED4B4B;
+	color: #fff;
+	border: none;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
 }
-    
+
 #nav {
 	border: 1px solid #ccc;
 	border-width: 1px 0;
@@ -6740,4 +6785,16 @@ nav.tm_navbar li.active>a {
 #nav a {
 	display: inline-block;
 	padding: 10px;
+}
+
+html, body {
+	min-height: 100%;
+}
+
+.navbar-nav {
+	float: none;
+	margin: 0 auto;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
 }

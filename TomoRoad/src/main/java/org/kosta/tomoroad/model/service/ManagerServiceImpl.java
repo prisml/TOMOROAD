@@ -32,6 +32,11 @@ public class ManagerServiceImpl implements ManagerService{
 		managerDAO.deleteMemberByManager(id);	
 		
 	}
+	@Override
+	public MemberVO getIdFromMember(String id) {
+		return managerDAO.getIdFromMember(id);
+		
+	}
 
 
 

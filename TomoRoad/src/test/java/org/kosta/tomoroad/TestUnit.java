@@ -2,6 +2,7 @@ package org.kosta.tomoroad;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -115,5 +116,6 @@ public class TestUnit {
 		System.out.println(station.length);
 		System.out.println(list);
 		System.out.println(tomoService.makeRoute(station, "서울역", "서울역"));
+		
 	}
 }

@@ -72,7 +72,11 @@ create table manager(
 	password varchar2(100) not null
 );
 
+<<<<<<< HEAD
+select * from member;
+=======
 insert into manager values('abc',1234)
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -215,12 +219,7 @@ create table station_reported(
   hit number default 1, --검색된 수
   constraint fk_station_reported_name foreign key(name) references station(name)  
 );
---역들의 지역정보 테이블 (날씨 정보때문에 만듭니다.)
-create table stationcityname(
-	name varchar2(100) primary key,
-	cityname varchar2(100) not null,
-	constraint fk_station_cityname foreign key(name) references station(name) 
-);
+
 
 create table bucket(
 	id varchar2(100),
@@ -445,6 +444,10 @@ select m.profile,f.sender_id as friend from member m,friend f where f.sender_id 
 
 select * from member
 
+select count(*) from friend where (sender_id = 'java' or receiver_id = 'java') and state = '수락'
+
+select * from friend
+
 select receiver_id as friend from friend where sender_id = 'java' and state = '수락'
 
 select sender_id as friend from friend where receiver_id = 'java' and state = '수락'
@@ -464,11 +467,15 @@ select * from friend where semder_Id = 'asdf'
 
 select sender_id from friend where receiver_id = 'java' and state = '대기'
 
+select state from friend where sender_id in ('java','asdf') and receiver_id in('java','asdf');
+
 select * from friend
 
 update friend set sender_id = 'spring', receiver_id='java', state = '차단' where receiver_id = 'spring' and sender_id = 'java' and state = '대기'
 
-delete from friend
+delete from friend where sender sender_id = #{senderID} and receiver_id = #{receiverID} and state = '대기'
+
+delete from friend where sender_id = 'qwer' and receiver_id = 'java'
 
 select count(*) from friend where sender_id in ('java','qwer') and receiver_id in('java','qwer') and state in('대기','차단')
 
@@ -683,7 +690,6 @@ insert into station values('경주역','1','1','1','1',35.844583, 129.217902);
 insert into station values('포항역','1','1','1','1',36.071978, 129.341936);
 insert into station values('부전역','1','1','1','1',35.164922, 129.060131);
 insert into station values('부산역','1','1','1','1',35.115389, 129.042195);
-
 insert into station values('삼랑진역','1','1','1','1', 35.399625,128.843228);
 insert into station values('밀양역','1','1','1','1',35.474696, 128.771146);
 insert into station values('동대구역','1','1','1','1',35.879850, 128.628476);
@@ -691,7 +697,6 @@ insert into station values('대구역','1','1','1','1',35.943692, 126.811000);
 insert into station values('김천역','1','1','1','1',36.123648, 128.114656);
 insert into station values('영동역','1','1','1','1',36.172376, 127.786233);
 insert into station values('대전역','1','1','1','1',36.331315, 127.433052);
-
 insert into station values('조치원역','1','1','1','1',36.601360, 127.296260);
 insert into station values('천안역','1','1','1','1',36.809507, 127.146231);
 insert into station values('수원역','1','1','1','1', 37.266213,126.999842);
@@ -760,6 +765,3 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('조치원역','�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조치원역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
-
-select * from STATION_CONNECT 
-
