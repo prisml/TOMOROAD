@@ -34,19 +34,19 @@
                     <label>성별</label>
 					<br>
                                 <label>
-                                <c:choose>
+                      <%--   <c:choose>
                                 <c:when test="${mmvo.sex=='여자'}">
                                  <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required" checked="checked">여자
                                 </c:when>
                                 <c:when test="${mmvo.sex=='남자'}">
                                 <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required" checked="checked">남자
                                 </c:when>
-                                </c:choose>
-                            <%--     <input type="text"   class="form-control"  value="${mmvo.sex}" readonly>   --%>
+                                </c:choose> --%>
+                                <input type="text"   class="form-control"  value="${mmvo.sex}" readonly>  
                                 <br>
-                    <!--                 <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
+                                   <input type="radio" name="sex"  id="sex" value="여자" placeholder="여자" required="required">여자
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자 -->
+                                    <input type="radio" name="sex"  id="sex" value="남자" placeholder="남자" required="required">남자 
                                 </label>
                 </div> 
                 
@@ -61,11 +61,12 @@
             <input class="btn btn-danger" type="submit" style="width: 500px; height: 35px; margin: 0 auto; align:center;" value="수정">
            </div>
             <div class="form-group" align="center">
-            <a class="btn btn-danger" href="${pageContext.request.contextPath}/home.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">시작화면</a>
+            <a class="btn btn-danger" href="${pageContext.request.contextPath}/getMemberList.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">관리자 화면</a>
            </div>
            <br>
            <br>
-            <br>            
+            <br>  
+                     
         </div>
       </form>
     </div>

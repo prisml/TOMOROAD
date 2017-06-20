@@ -66,9 +66,9 @@ var input = "";
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required" style="font-size: 16px; margin: 0 auto; align:center;">
                 </div>
-            	<div class="form-group" style="margin: 0 auto; align:center;">
+<!--             	<div class="form-group" style="margin: 0 auto; align:center;">
                 	<div class="col-lg-4 col-sm-4" style="margin: 0 auto; align:center;"></div>
-            	</div>
+            	</div> -->
             		<div class="checkbox" align="ceneter">
                         <!-- <input type="checkbox"> Remember me
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
