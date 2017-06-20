@@ -102,7 +102,7 @@
     <div class="col-lg-12 col-sm-12"> 
 	
 	 <div class="dividerHeading" >
-            <h4><span>수정 해주세요╹◡╹)ﾉ</span></h4>
+            <h4><span>수정 해주세요</span></h4>
         </div>
         
       <form method="post" action="${pageContext.request.contextPath}/mypage/updateMember.do" id="updateForm" onsubmit="return samePw()">      

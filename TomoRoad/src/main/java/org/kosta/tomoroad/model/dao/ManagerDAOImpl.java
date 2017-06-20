@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -39,5 +40,21 @@ public class ManagerDAOImpl implements ManagerDAO{
 	public MemberVO getIdFromMember(String id) {
 		MemberVO vo = template.selectOne("manager.getIdFromMember",id);
 		return vo;
+	}
+
+	@Override
+	public List<StationVO> getStationListManager(StationVO stationVO) {
+		return template.selectList("manager.getStationListManager");
+	}
+
+	@Override
+	public void updateStation(StationVO vo) {
+		template.update("manager.updateStation",vo);
+		
+	}
+
+	@Override
+	public List<StationVO> getStationListManager() {
+		return template.selectList("manager.getStationListManager");
 	}
 }

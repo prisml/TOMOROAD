@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface ManagerService {
 
@@ -17,6 +18,10 @@ public interface ManagerService {
 	void deleteMemberByManager(String id);
 
 	MemberVO getIdFromMember(String id);
+
+	void updateStation(StationVO vo);
+
+	List<StationVO> getStationListManager();
 
 	
 }
