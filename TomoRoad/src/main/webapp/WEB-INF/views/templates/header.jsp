@@ -5,29 +5,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<c:if test="${sessionScope.mvo!=null}">
+<%-- <c:if test="${sessionScope.mvo!=null}">
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
 $(document).ready(function(){
-	setInterval(() => {
-		$.ajax({
-			type:"get",
-			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
-			success:function(data){
-				if(data != 0){
-					$("#bubble").empty(); 
-					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-					$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
-					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-			 	}
-			}
-		})
-	},1000);
+	if("" != "${sessionScope.mvo.id}"){
+		setInterval(() => {
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+				success:function(data){
+					if(data != 0){
+						$("#bubble").empty(); 
+						$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+						$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
+						$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+				 	}
+				}
+			})
+		},1000);
+	}
 });
 </script>
-</c:if>
+</c:if> --%>
+
+<script type="text/javascript">
+
+function reqeustList(){
+	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
+}
+
+$(document).ready(function(){
+	$.ajax({
+		type:"get",
+		url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+		success:function(data){
+			if(data != 0){
+				$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+				$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
+				$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+		 	}
+		}
+	})
+})
+</script>
 <style>
 </style>
 <header id="header">
