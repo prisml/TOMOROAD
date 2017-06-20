@@ -16,7 +16,7 @@
 	<c:forEach items="${friendList}" var="list">
 		<tr>
 			<td>
-				<img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" src = "${list.PROFILE}">
+				<img style="width: 100px; border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width = "125" height="100" src = "${list.PROFILE}">
 			</td>
 			<td>
     				<a href = "${pageContext.request.contextPath}/memberpage.do?selectId=${list.FRIEND}" style = "font-size:25px">${list.FRIEND}(${list.NAME})</a>
