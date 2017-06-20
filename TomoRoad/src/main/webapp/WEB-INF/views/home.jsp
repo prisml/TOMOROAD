@@ -218,7 +218,7 @@ function initMap() {
 </div>
 <div id="forecastInfo"></div>
 <!-- 지도 -->
-<div class='map' id='map' style="width: 100%; height: 600px"></div>
+<div class='map' id='map' style="width: 100%; min-height: 600px; height:100%"></div>
 <!-- google map API KEY -->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
