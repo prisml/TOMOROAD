@@ -218,10 +218,13 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("noauth_friend_RequestInfo.do")
 	public int friend_RequestInfo(HttpServletRequest request){
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
-		String id = vo.getId();
-		return memberService.friend_RequestInfo(id);
+		if(vo != null){
+			String id = vo.getId();
+			return memberService.friend_RequestInfo(id);
+		}
+		return 0;
 	}
 
 	@RequestMapping("getFriendId.do")

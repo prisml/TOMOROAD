@@ -1,5 +1,8 @@
 package org.kosta.tomoroad.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -83,11 +87,21 @@ public class ManagerController {
 		return "manager/manager.tiles";
 	}
 
-	@RequestMapping("updateStation.do")
-	public ModelAndView updateStation(StationVO vo) {
-		vo.setImg("0");
+	@RequestMapping(value = "updateStation.do", method = RequestMethod.POST)
+	public ModelAndView updateStation(MultipartFile uploadfile,StationVO vo) {
+		String fileName = uploadfile.getOriginalFilename();
+		System.out.println(fileName);
+		String uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\";
+		File file = new File(uploadPath+fileName);
+		try {
+			uploadfile.transferTo(file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		vo.setImg(uploadPath+fileName);
 		managerService.updateStation(vo);
-		//System.out.println(vo);
 		return new ModelAndView("redirect:getMemberList.do");
 	}
 }
