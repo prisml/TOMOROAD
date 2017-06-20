@@ -6707,29 +6707,12 @@ nav.tm_navbar li.active>a {
 	margin-bottom: 0;
 }
 
-.input-group { <<<<<<<
-	HEAD position: relative;
-	display: table;
-	border-collapse: separate;
-	width: 236px;
-	margin: 0 auto; =======
+.input-group {
 	position: relative;
 	display: table;
 	border-collapse: separate;
-	margin-left: 334px;
-	>>>>>>>
-	branch
-	'master'
-	of
-	https
-	:
-	/
-	/
-	github.com
-	/
-	prisml
-	/
-	TOMOROAD.git
+	width: 236px;
+	margin: 0 auto;
 }
 
 .star_rating {
