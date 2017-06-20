@@ -273,7 +273,6 @@ input {
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<br><br>
 <div class="row"> 
 	<div class="col-md-4">
 		<a href="#" class="btn" style="background-color:#ED4B4B;" id="write">글쓰기</a>

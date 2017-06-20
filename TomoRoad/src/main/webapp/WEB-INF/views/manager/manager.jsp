@@ -16,9 +16,10 @@
 			        $("#updateMember").click(function(){
 			            var radioValue = $("input[name='radio']:checked").val();
 			            if(radioValue){
-			            	alert(radioValue);
+			            	/* alert(radioValue); */
 			            		/* confirm("회원정보를 수정하시겠습니까?"); */
-							 location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?vo=${mvo}"; 
+							/*  location.href = "${pageContext.request.contextPath}/updateMemberByManagerForm.do?id="+radioValue;  */
+							 location.href = "${pageContext.request.contextPath}/updateMemberByManagerForm.do?id="+radioValue; 
 						}
 			        });			        
 			    });
@@ -27,7 +28,7 @@
 			            var radioValue = $("input[name='radio']:checked").val();
 			            if(radioValue){
 			            	/* confirm("회원을 삭제하시겠습니까?"); */
-						location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=${mvo.id}";
+						location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id="+radioValue;
 			            }
 			        });			        
 			    });
@@ -56,7 +57,7 @@
 	<tbody>
 	<c:forEach items="${list}" var="mvo">
 		<tr>
-    <td><input type="radio" name="radio" value="${mvo}" required="required"/></td>
+    <td><input type="radio" name="radio" value="${mvo.id}" required="required"/></td>
 	<td><input type="text" value="${mvo.id}" readonly></td>
 	<td><input type="password" value="${mvo.password}"></td>
 	<td><input type="text" value="${mvo.name}"></td>

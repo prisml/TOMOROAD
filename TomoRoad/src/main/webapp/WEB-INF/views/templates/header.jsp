@@ -5,29 +5,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<c:if test="{mvo!=null">
 <script type="text/javascript">
 function reqeustList(){
 	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
 }
 $(document).ready(function(){
-	if("" != "${mvo.id}"){
- 		setInterval(() => {
-			$.ajax({
-				type:"get",
-				url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
-				success:function(data){
-					if(data != 0){
-						$("#bubble").empty(); 
-						$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-						$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
-						$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-				 	}
-				}
-			})
-		},1000);
-	}
-})
+	setInterval(() => {
+		$.ajax({
+			type:"get",
+			url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
+			success:function(data){
+				if(data != 0){
+					$("#bubble").empty(); 
+					$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+					$("#bubble").append("<span id = requestCount style = 'position: absolute; top:8px; left:13px;'>"+data+"</span>");
+					$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
+			 	}
+			}
+		})
+	},1000);
+}) 
 </script>
+</c:if>
 <style>
 </style>
 <header id="header">
@@ -43,10 +43,14 @@ $(document).ready(function(){
 	<!-- Navigation
     ================================================== -->
 
-	<div style="border-bottom-color : #fff; background-color:#fff;" class="navbar navbar-default navbar-static-top col-sm-12"
-		role="navigation">
-		<div id="my-navbar" class="navbar-collapse collapse col-sm-12">
-			<ul class="nav navbar-nav" style="text-align:center">
+	<div class="navbar navbar-default navbar-static-top">
+			<ul class="nav navbar-nav">
+				<li>　</li>
+				
+				<li><a href="${pageContext.request.contextPath}/home.do">
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
+					style="height:40px; margin-top:-10px;"/>
+				</a></li>
 				<li>　</li>
 
 				<li><a href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
@@ -60,12 +64,6 @@ $(document).ready(function(){
 					
 				<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">
 						MYPAGE </a></li>
-				<li>　</li>
-				
-				<li><a href="${pageContext.request.contextPath}/home.do">
-				<img src="${pageContext.request.contextPath}/resources/images/logo.png" 
-					style="height:40px; margin-top:-10px;"/>
-				</a></li>
 				<li>　</li>
 
 				<li><a
@@ -95,8 +93,6 @@ $(document).ready(function(){
 				</li>
 				<li>　</li>
 
-
-
 				<c:if test="${mvo != null }">
 				
 				<li><jsp:include page="messagetap.jsp"/></li>
@@ -113,6 +109,5 @@ $(document).ready(function(){
 				<li> </li>
  --%>			
 			</ul>
-		</div>
 	</div>
 </header>

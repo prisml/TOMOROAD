@@ -217,6 +217,3 @@ create table bucket(
 	constraint fk_bucket_id foreign key(id) references member(id) on delete cascade,
 	constraint fk_bucket_name foreign key(name) references station(name) on delete cascade
 );
-
-select distinct name from station order by name asc
-
