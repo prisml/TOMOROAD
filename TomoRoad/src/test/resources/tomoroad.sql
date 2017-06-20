@@ -767,3 +767,7 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
 
 select name,simple_detail,detail,section,img,lat,lng from station order by name ASC
+
+select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
+
+select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
