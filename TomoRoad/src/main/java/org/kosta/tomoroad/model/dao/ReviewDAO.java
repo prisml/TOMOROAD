@@ -51,4 +51,6 @@ public interface ReviewDAO {
 
 	int getTotalContentsByMember(String id);
 
+	void updateImgCount(int imgCount, int no);
+
 }

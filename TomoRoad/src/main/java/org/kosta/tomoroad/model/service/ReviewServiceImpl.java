@@ -159,4 +159,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.getTotalContentsByMember(id);
 	}
 
+	@Override
+	public void updateImgCount(int imgCount, int no) {
+		dao.updateImgCount(imgCount,no);
+	}
+
 }

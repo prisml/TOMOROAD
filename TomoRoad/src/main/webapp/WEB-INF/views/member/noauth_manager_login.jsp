@@ -4,7 +4,15 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+    $("#memberButton").click(function(){
+    	/* location.href="${pageContext.request.contextPath}/getMemberList.do"; */
+        $("#listMember").animate({
+            height: 'toggle'
+            	
+        });
+    });	
+});
 </script>
  
     <div class="col-lg-12 col-sm-12"> 
@@ -12,16 +20,24 @@
 		        <div class="dividerHeading">
             <h4><span>안녕 관리자님</span></h4>
         </div>
-        
-	  <form method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do">
+        <br>
+        <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button>
+        <br>
+	  <form id="listMember" method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do" style="display:none;">
   <fieldset>
-      <label for="id">아이디</label>
-      <input type="text" name="id" id="id" autofocus required="required">
-      <br>
-      <label for="password">패스워드</label>
-      <input type="password" name="password" id="password" required="required">
- 	<br>
-      <input type="submit" class="btn btn-default btn-lg button">
+       		<div class="input-group" align="center">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="id"  id="id" placeholder="아이디" autofocus required="required" style="font-size: 16px; margin: 0 auto; align:center;">
+            	</div>
+            	<br>
+            	<div class="input-group" align="center">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required" style="font-size: 16px; margin: 0 auto; align:center;">
+                </div>
+                <br>
+                  <div class="form-group" align="center">
+                <button type="submit" class="btn btn-default btn-lg button" style="width: 400px; height: 40px; margin: 0 auto; align:center;">로그인</button>
+            </div>
       </fieldset>
   </form>
   

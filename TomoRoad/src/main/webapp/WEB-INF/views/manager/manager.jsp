@@ -3,16 +3,6 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script> 
-$(document).ready(function(){
-    $("#memberButton").click(function(){
-    	/* location.href="${pageContext.request.contextPath}/getMemberList.do"; */
-        $("#listOutput").animate({
-            height: 'toggle'
-            	
-        });
-    });	
-});
-
  $(document).ready(function(){
     $('input[type=radio]').prop('checked', false);
 
@@ -22,38 +12,47 @@ $(document).ready(function(){
 }); 
 </script> 
 <script>
-var checked = $('input[type=radio]:checked').val();
-$(document).ready(function() {  
-	$("#updateMember").click(function() {
-
-						if (confirm("회원정보를 수정하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/updateMemberByManager.do?id=checked";
+			    $(document).ready(function(){
+			        $("#updateMember").click(function(){
+			            var radioValue = $("input[name='radio']:checked").val();
+			            if(radioValue){			            	
+			            		 confirm("회원정보를 수정하시겠습니까?"); 					
+							 location.href = "${pageContext.request.contextPath}/updateMemberByManagerForm.do?id="+radioValue; 
 						}
-					});
-	$("#deleteMember").click(function() {
-		
-						if (confirm("회원을 삭제하시겠습니까?")){
-							location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id=checked";
-						} 
-					});
-				});
+			        });			        
+			    });
+			    $(document).ready(function(){
+			        $("#deleteMember").click(function(){
+			            var radioValue = $("input[name='radio']:checked").val();
+			            if(radioValue){
+			            	 confirm("회원을 삭제하시겠습니까?"); 
+						location.href = "${pageContext.request.contextPath}/deleteMemberByManager.do?id="+radioValue;
+			            }
+			        });			        
+			    });
+			    $(document).ready(function(){
+			        $("#managerStation").click(function(){		       
+						location.href = "${pageContext.request.contextPath}/manager/manager_station_form.do";
+			        });			        
+			    });
 </script>
 
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
-            <h4><span>관리자 페이지</span></h4>
+            <h4><span>관리자 화면</span></h4>
         </div>
-        
-<button id="memberButton" class="btn btn-default btn-lg button" >회원님들</button>
+        <br>
 
-<!-- <button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
+<button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
 
-<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button> -->
+<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button>
 
- <div>
-<form  id="listOutput" method="post"  action="${pageContext.request.contextPath}/getMemberList.do" style="display:none">
-<table>
+<button id="managerStation" class="btn btn-default btn-lg button" >역정보 수정</button>
+<br>
+ <div id="listOutput" >
+<form id="myForm" style="width: 100%; height: 250px; overflow-y: scroll; display: block;">
+<table style="width:100px; height:200px;">
 	<thead>
 		<tr>
 		<th width="25px"></th><th width="100px">아이디</th><th width="100px">비밀번호</th>
@@ -63,19 +62,24 @@ $(document).ready(function() {
 	<tbody>
 	<c:forEach items="${list}" var="mvo">
 		<tr>
-    <td><input type="radio" value="${mvo.id}" required="required"></td>
+    <td><input type="radio" name="radio" value="${mvo.id}" required="required"/></td>
 	<td><input type="text" value="${mvo.id}" readonly></td>
-	<td><input type="text" value="${mvo.password}"></td>
-	<td><input type="text" value="${mvo.name}"></td>
-	<td><input type="text" value="${mvo.sex}"></td>
-	<td><input type="text" value="${mvo.tel}"></td>
+	<td><input type="password" value="${mvo.password}" readonly></td>
+	<td><input type="text" value="${mvo.name}" readonly></td>
+	<td><input type="text" value="${mvo.sex}" readonly></td>
+	<td><input type="text" value="${mvo.tel}" readonly></td>
 		</tr>
 		</c:forEach>
 	</tbody>
 </table>
-<a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>
-</form>
-</div>
 
-        </div> 
+</form>
+ <a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a> 
+</div>
+<br>
+</div>
+    
+        
+
+        
        

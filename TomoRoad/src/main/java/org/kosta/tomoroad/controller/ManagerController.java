@@ -8,6 +8,7 @@ import org.kosta.tomoroad.model.service.ManagerService;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,31 +41,38 @@ public class ManagerController {
 		model.addAttribute("list", managerService.getMemberList());
 		return "manager/manager.tiles";
 	}
-	
-	/*@RequestMapping(value = "manager/updateMemberByManager.do", method = RequestMethod.POST)
-	public String updateMemberByManager(MemberVO vo,HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		managerService.updateMemberByManager(vo);
-		session.setAttribute("mvo", vo);
-		return "redirect:manager/updateResultViewByManager.do?id=" + vo.getId();
+	@RequestMapping("updateMemberByManagerForm.do")
+	public ModelAndView updateMemberByManagerForm(String id) {
+		MemberVO vo =managerService.getIdFromMember(id);
+		return new ModelAndView("manager/update_member_manager.tiles","mmvo",vo);
 	}
-
-	@RequestMapping("manager/updateResultViewByManager.do")
-	public ModelAndView updateMemberByManager(String id) {
-		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("manager/manager_update_result.do", "mvo", vo);
-	}*/
-	
-	@RequestMapping(value = "updateMemberByManager.do", method = RequestMethod.POST)
+	@RequestMapping("updateMemberByManager.do")
 	public ModelAndView updateMemberByManager(MemberVO vo) {
-		memberService.updateMemberByManager(vo);
-		return new ModelAndView("redirect:manager/manager_update_result.do");
+		managerService.updateMemberByManager(vo);
+		return new ModelAndView("redirect:getMemberList.do");
 	}
 	
 	@RequestMapping("deleteMemberByManager.do")
 	public String deleteMemberByManager(String id) {
+		/*System.out.println(id);*/
 		managerService.deleteMemberByManager(id);
 		return "redirect:manager/manager_delete_result.do";
 	}
-	   
+	
+	@RequestMapping("update_member_manager.do")
+	public String update_member_manager() {
+		return "update_member_manager.tiles";
+	}
+	  
+	@RequestMapping("getStationListManager.do")
+	public String getStationListManager(Model model){
+		model.addAttribute("station", managerService.getStationListManager());
+		return "manager/manager_station_form.tiles";
+	}
+
+	@RequestMapping("updateStation.do")
+	public ModelAndView updateStation(StationVO vo) {
+		managerService.updateStation(vo);
+		return new ModelAndView("redirect:manager_station_result.do");
+	}
 }

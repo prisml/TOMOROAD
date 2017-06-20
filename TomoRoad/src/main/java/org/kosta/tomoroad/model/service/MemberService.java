@@ -57,6 +57,6 @@ public interface MemberService {
 
 	void updateMemberByManager(MemberVO vo);
 
-
+	int totalFriend(String id);
 
 }

@@ -10,6 +10,18 @@ public class ReviewVO {
 	private double star;
 	private PlaceVO place;
 	private MemberVO member;
+	//내가함
+	private int imgCount; //등록된 사진 개수
+	
+	//내가함
+	public int getImgCount() {
+		return imgCount;
+	}
+	
+	//내가함
+	public void setImgCount(int imgCount) {
+		this.imgCount = imgCount;
+	}
 
 	public ReviewVO() {
 		super();
@@ -28,6 +40,28 @@ public class ReviewVO {
 		this.star = star;
 		this.place = place;
 		this.member = member;
+	}
+	
+	//내가함
+	public ReviewVO(int no, String title, String content, String postedTime, int recommend, int hits, double star,
+			PlaceVO place, MemberVO member, int imgCount) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.postedTime = postedTime;
+		this.recommend = recommend;
+		this.hits = hits;
+		this.star = star;
+		this.place = place;
+		this.member = member;
+		this.imgCount = imgCount;
+	}
+
+	public ReviewVO(int imgCount, int no) {
+		super();
+		this.no = no;
+		this.imgCount = imgCount;
 	}
 
 	public int getNo() {
@@ -139,7 +173,9 @@ public class ReviewVO {
 	public String toString() {
 		return "ReviewVO [no=" + no + ", title=" + title + ", content=" + content + ", postedTime=" + postedTime
 				+ ", recommend=" + recommend + ", hits=" + hits + ", star=" + star + ", place=" + place + ", member="
-				+ member + "]";
+				+ member + ", imgCount=" + imgCount + "]";
 	}
+
+
 
 }

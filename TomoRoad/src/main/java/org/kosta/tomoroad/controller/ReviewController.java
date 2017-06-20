@@ -70,7 +70,7 @@ public class ReviewController {
 			if (fileName.equals("") == false) {
 				try {
 					File file = new File(uploadPath + "review" + vo.getNo() + "_" + i);
-					if(!file.exists())
+					if(!file.getParentFile().exists())
 						file.mkdirs();
 					files.get(i).transferTo(file);
 					nameList.add("review" + vo.getNo() + "_" + i);
@@ -81,6 +81,7 @@ public class ReviewController {
 				}
 			}
 		}
+		service.updateImgCount(nameList.size(),vo.getNo());//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
 		System.out.println("총 사진파일 갯수 : "+nameList.size());
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}

@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <!-- map -->
 <script>
 var map;
@@ -192,7 +194,7 @@ function initMap() {
   }); //function 
 </script>
 -->
-  
+
 <!-- //검색자동완성//
 <select name="searchForm">
 	<option id="all">전체</option>
@@ -213,10 +215,17 @@ function initMap() {
 		<input id="searchkeyword" type="text" readonly="readonly">
 </div>
 -->
+</div>
 <div id="forecastInfo"></div>
 <!-- 지도 -->
-<div id=map style="width:100%;height:600px"></div>
+<div class='map' id='map' style="width: 100%; height: 600px"></div>
 <!-- google map API KEY -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
- async defer></script>
- 
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
+	async defer></script>
+	<div class="dividerHeading">
+		<h4>
+			<span>투모로딩</span>
+		</h4>
+	</div>
+<div>

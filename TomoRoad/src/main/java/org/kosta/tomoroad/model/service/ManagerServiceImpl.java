@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.kosta.tomoroad.model.dao.ManagerDAO;
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,6 +32,21 @@ public class ManagerServiceImpl implements ManagerService{
 	public void deleteMemberByManager(String id) {
 		managerDAO.deleteMemberByManager(id);	
 		
+	}
+	@Override
+	public MemberVO getIdFromMember(String id) {
+		return managerDAO.getIdFromMember(id);
+		
+	}
+
+	@Override
+	public void updateStation(StationVO vo) {
+		managerDAO.updateStation(vo);
+		
+	}
+	@Override
+	public List<StationVO> getStationListManager() {
+		return managerDAO.getStationListManager();
 	}
 
 

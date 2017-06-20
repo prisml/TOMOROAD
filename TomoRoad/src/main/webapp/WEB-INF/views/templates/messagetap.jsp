@@ -19,7 +19,7 @@ function closeNav() {
 	            if ($(this).css('display') == 'block') {
 	               var l_position = $(this).offset();
 	               l_position.right = parseInt(l_position.left)+ ($(this).width());
-	               l_position.bottom = parseInt(l_position.top)+ parseInt($(this).height());
+	               l_position.bottom = parseInt(l_position.top)+ parseInt($(this).height())+40;
 	               if ((l_position.left <= e.pageX && e.pageX <= l_position.right)&& (l_position.top <= e.pageY && e.pageY <= l_position.bottom)) {
 	               		
 	               } else {	                 
@@ -71,7 +71,7 @@ body {
     background-color: LavenderBlush;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 .sidenav a {	
@@ -91,7 +91,7 @@ body {
     position: absolute;
     top: 0;
     right: 5px;
-    font-size: 36px;
+    font-size: 40px;
     margin-left: 50px;
 }
 
@@ -115,7 +115,7 @@ body {font-family: "Lato", sans-serif;}
     cursor: pointer;
     padding: 14px 16px;
     font-size: 17px;
-    width: 93px;
+    /* width: 45%; */ 
 }
 
 .tablink:hover {
@@ -126,8 +126,8 @@ body {font-family: "Lato", sans-serif;}
 .tabcontent {
     color: white;
     display: none;
-    padding: 50px;
-    text-align: center;
+    padding: 8px;
+    /* text-align: center; */
 }
 
 #fList {background-color:pink;}
@@ -140,18 +140,30 @@ body {font-family: "Lato", sans-serif;}
 <div id="mySidenav" class="sidenav">
 
  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
- 	
- 	<button class="tablink" onclick="openCity('fList', this, 'pink')" id="defaultOpen">친구</button>
-	<button class="tablink" onclick="openCity('mBox', this, 'salmon')">쪽지</button>		
-
-	<div id="fList" class="tabcontent">  		
-  		<input type="text">
+ 	<div>
+ 	<button class="tablink" onclick="openCity('fList', this, 'pink')" id="defaultOpen" style="width:36%;"> 사람 찾기 </button>
+	<button class="tablink" onclick="openCity('mBox', this, 'salmon')" style="width:36%;" id="chatOpen">쪽지</button>		
 	</div>
+	
+	
+	<div id="fList" class="tabcontent" style="width:100%; text-align: left;">	
+		<br>  		
+  		<input type="text" style="color:black; width:80%;" id="searchbox">&nbsp;<i class="fa fa-search" id="searchicon"></i>
+  		<br><br>  		
+  		<div id="mlist" style="width:100%; height:200px; overflow-y: auto; overflow-x:hidden;">
+  		</div>  	
+	</div>
+	
 
-	<div id="mBox" class="tabcontent">  		
-  		<p style="word-break:break-all;">
-  			쪽지함
-  		</p> 
+	<div id="mBox" class="tabcontent" style="width:100%; text-align:left;">
+		<br><br>  		
+  		<div id="messageList" style="width:100%; overflow-y: auto; overflow-x:hidden; max-height: 220px;">
+  		
+  		</div>
+  		<div>
+  		<input type="text" id="inputbar">&nbsp;<input type="button" class="btn" id="sendMessage" value="전송" style="width:15px; height:10px; background-color:red; color:white; text-aling:center;">  		
+  		</div>
+  		 
 	</div>
 	
 	
@@ -175,9 +187,100 @@ body {font-family: "Lato", sans-serif;}
 	});
 
 </script> -->
+<script>
+	$(document).ready(function(){
+		$("#searchicon").click(function(){
+			var mlist = "";
+			var msearch = $("#searchbox").val();
+			$.ajax({
+				type :"get",
+				url : "burn/findId.do",
+				data:"id="+msearch,
+				success: function(data){
+					for(var i=0; i<data.length; i++){
+						mlist += "<a href='#.' class=mm>"+data[i]+"</a><br>";
+					}
+					$("#mlist").html(mlist);					
+				}			
+			}); // ajax				
+		})// click
+	}); // ready
+
+</script>
+
+<script>
+$(document).ready(function(){
+	var receiver = "";
+
+	$(document).on("click",".mm",function(){
+		receiver = $(this).text();		
+		$("#chatOpen").trigger("click");
+		var messages = "";
+		
+		$.ajax({
+			type :"post",
+			url : "getMessageList.do",
+			data : "sender=${mvo.id}&receiver="+receiver,
+			success : function(data){
+				for(var i=0; i<data.length; i++){
+					if(data[i].sender == "${mvo.id}"){
+						messages += "<br><div style='text-align:left;'><strong>";
+						messages += data[i].sender+"</strong>";
+						messages += "<br><span style='background-color:blue;'>";
+						messages += data[i].text;
+						messages += "</span><br>"+data[i].time+"</div>";
+					}else{
+						messages += "<br><div style='text-align:right; margin-right:3px;'><strong>";
+						messages += data[i].sender+"</strong>";
+						messages += "<br><span style='background-color:green;'>";
+						messages += data[i].text;
+						messages += "</span><br>"+data[i].time+"</div>";						
+					}											
+				}
+				$("#messageList").html(messages);
+				$("#messageList").scrollTop($("#messageList")[0].scrollHeight);
+			}
+		});		
+		
+	});
+	
+	
+	$(document).on("click","#sendMessage",function(){
+		var text = $(this).prev().val();
+		$(this).prev().val("");		
+		
+		var messages = "";
+		
+		$.ajax({
+			type: "post",
+			url : "sendMessage.do",
+			data : "sender=${mvo.id}&receiver="+receiver+"&text="+text,
+			success : function(data){
+				for(var i=0; i<data.length; i++){
+					if(data[i].sender == "${mvo.id}"){
+						messages += "<br><div style='text-align:left;'><strong>";
+						messages += data[i].sender+"</strong>";
+						messages += "<br><span style='background-color:blue;'>";
+						messages += data[i].text;
+						messages += "</span><br>"+data[i].time+"</div>";
+					}else{
+						messages += "<br><div style='text-align:right;'><strong>";
+						messages += data[i].sender+"</strong>";
+						messages += "<br><span style='background-color:green;'>";
+						messages += data[i].text;
+						messages += "</span><br>"+data[i].time+"</div>";						
+					}											
+				}
+				$("#messageList").html(messages);
+				$("#messageList").scrollTop($("#messageList")[0].scrollHeight);
+			}
+		});		
+	});
+	
+});
+</script>
 
 
 
-
-<span style="font-size:30px;cursor:pointer" onclick="openNav()"><i id="mm" class="fa fa-envelope-o"></i></span>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()"><i id="messageicon" class="fa fa-envelope-o"></i></span>
 
