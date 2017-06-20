@@ -24,18 +24,18 @@ var text ="";
                }
                $("#stationList").html(text);
               }
-         });
-         
+         });         
       });
    });
 </script>
 <form action="${pageContext.request.contextPath}/tomoroad/makeRoute.do">
-   출발역 <input name="depart" type="text">
+   출발역 <input name="depart" type="text" required="required">
+   도착역<input name="destination" type="text" required="required">
    <div id="stationList">
    <c:forEach items="${bvo}" var="svo">
       <input type="checkbox" name="station" value="${svo.name }">${svo.name }<br>
    </c:forEach>
    </div>
-   <input type="submit" value="투모로딩"> <input id="deleteStation"
+   <input id="tomoroading" type="submit" value="투모로딩"> <input id="deleteStation"
       type="button" value="선택삭제">
 </form>

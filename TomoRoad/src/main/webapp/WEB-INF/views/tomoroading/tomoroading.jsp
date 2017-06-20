@@ -21,7 +21,7 @@
 		});
 	});
 </script>
-<form action="tomoroad/makeRoute.do">
+<form action="${pageContext.request.contextPath}/tomoroad/makeRoute.do"> 	
 	출발역 <input name="depart" type="text">
 	<div id="stationList">
 	<c:forEach items="${cart}" var="svo">

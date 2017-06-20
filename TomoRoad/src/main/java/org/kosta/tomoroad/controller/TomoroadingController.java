@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.tomoroad.model.service.TomoroadingService;
 import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TomoroadingController {
@@ -31,26 +28,38 @@ public class TomoroadingController {
 		return "tomoroading/tomoroading_result.tiles";
 	}
 	
-	@RequestMapping("tomoroading/route.do")
-	@ResponseBody
-	public List<StationVO> Tomoroading(HttpServletRequest request,String names){
-		System.out.println(names+"1");
-		String[] listarray=names.split(",");
-		List<String> namelist= new ArrayList<String>();
-		List<StationVO> list=new ArrayList<StationVO>();
-		for(int i=0;i<listarray.length;i++){
-			System.out.println(listarray[i]);
-			namelist.add(listarray[i]);
-			
-		}
-		for(int i=0;i<namelist.size();i++){
-			list.add(service.locationInfo(namelist.get(i)));
-		}
-		return list;
-	}
-	
 	@RequestMapping("tomoroad/makeRoute.do")
-	public ModelAndView makeRoute(String station[],String depart){
-		return new ModelAndView("tomoroading/tomoroading_result.tiles","names",service.makeRoute(station,depart,depart));
+	public String makeRoute(String station[],String depart,String destination,Model model){
+		List<String> list= service.makeRoute(station, depart, destination);
+		List<StationVO> stationList= new ArrayList<StationVO>();
+		if(list.isEmpty()){
+			return "tomoroading/fail.tiles";
+		}else{
+			for(int i=list.size()-1;i>=0;i--){
+				stationList.add(service.locationInfo(list.get(i)));
+			}
+			model.addAttribute("station",station);
+			model.addAttribute("names",stationList);
+			return "tomoroading/tomoroading_result.tiles";
+		}
+	}
+	@RequestMapping("tomoroading/travel.do")
+	public String travel(String names,String waypoint,String depart,String destination,String id){
+		String[] nameslist = names.split(",");
+		String[] waypoints = waypoint.split(",");
+		String list = "";
+ 		list += depart+",";
+		for(int a=0;a<waypoints.length;a++){
+				for(int i=0;i<nameslist.length;i++){
+				if(nameslist[i].equals(waypoints[a])){
+					list += waypoints[a]+",";
+				}else{
+					
+				}
+			}
+		}
+		list += destination;
+		service.travel(id, list);
+		return "redirect:travelStart.do";
 	}
 }

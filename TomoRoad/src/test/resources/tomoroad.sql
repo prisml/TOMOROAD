@@ -49,6 +49,7 @@ drop table station;
 drop table member;
 drop table manager;
 drop table bucket;
+drop table travel;
 ---------- drop sequence -----------
 drop sequence place_seq;
 drop sequence review_seq;
@@ -227,8 +228,14 @@ create table bucket(
 	constraint fk_bucket_id foreign key(id) references member(id),
 	constraint fk_bucket_name foreign key(name) references station(name)
 );
+create table travel(
+ 	id varchar2(100),
+ 	route varchar2(100),
+	flag varchar2(100) not null ,
+ 	constraint fk_travel_id foreign key(id) references member(id),
+ 	primary key (id,route)
+);
 --------------------------------------------------연습장-------------------------------------------------
-
 select * from STATION_CONNECT
 
 insert into station_reported (name) values ('서울역');
