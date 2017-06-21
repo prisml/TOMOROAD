@@ -28,4 +28,6 @@ public interface TomoroadingDAO {
 	
 	String getTravelRoute(String id);
 
+	int traveling(String id);
+
 }

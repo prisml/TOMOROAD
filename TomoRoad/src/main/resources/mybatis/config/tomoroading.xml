@@ -19,6 +19,9 @@
 		update travel set flag ='false' where id=#{id} and route = #{route}
 	</update>
 	<select id = "getTravelRoute" resultType="string">
-		select route from travel where id = #{value}
+		select route from travel where id = #{value} and flag='true'
+	</select>
+	<select id = "traveling" parameterType="string" resultType="int">
+		select count(*) from travel where id=#{value} and flag='true' 
 	</select>
 </mapper>

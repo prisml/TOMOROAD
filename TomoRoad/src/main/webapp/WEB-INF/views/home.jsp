@@ -33,18 +33,7 @@ function buttonClick(id,marker,windowName){
 	});
 	
 }
-function weaterDetail(id,lat,lng){
-	$(document).on("click","#"+id+"weather",function(){
-		$.ajax({
-			type:"GET",
-			url:"http://api.wunderground.com/api/5e1e5a83789f94e3/forecast/lang:KR/q/"+lat+","+lng+".json",
-			dataType:"jsonp",
-			success:function(data){
-				alert(1);
-			}
-		});
-	});	
-}
+
 function initMap() {
 	    var directionsDisplay = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
@@ -107,7 +96,6 @@ function initMap() {
 					//windowNames.close();
 					windowNames[${status.index}].open(map,markers[${status.index}]);				
 				    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);
-				    weaterDetail("${station.name}",${station.lat},${station.lng});
 				}//success
 			});//ajax
 				
