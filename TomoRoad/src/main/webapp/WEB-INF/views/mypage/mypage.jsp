@@ -38,7 +38,7 @@ function end(){
 				<i class = "fa fa-briefcase "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "#">${totalTravel}</a></b></p>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/myTravelRoute.do">${totalTravel}%</a></b></p>
 			<span class = "title">여행지</span>
 		</div>
 	</div>
@@ -76,7 +76,7 @@ ${route}
 				<img src = "${pageContext.request.contextPath}/resources/images/arrow.png">
 			</c:when>
 			<c:otherwise>
-				<br>
+				<br><br>
 				<input class = "btn btn-danger" style = "color:white; float:right;" type = "button" value = "여행종료" onclick = "end()">
 			</c:otherwise>
 		</c:choose>

@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -262,6 +266,15 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
+		HashSet<String> routeList = new HashSet<String>();
+		
+		List<String> list = tomoroadingService.getTotalRoute(id);
+		for(int i = 0;i<list.size();i++){
+			String[] route = list.get(i).split(",");
+			for(int j = 0;j<route.length;j++){
+				routeList.add(route[j]);
+			}
+		}
 		model.addAttribute("profile",  memberService.getProfileById(id));
 		model.addAttribute("totalfriend", memberService.totalFriend(id));
 		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
@@ -269,10 +282,10 @@ public class MemberController {
 		if(tomoroadingService.getTravelRoute(id) == null){
 			String[] arr = {};
 			model.addAttribute("travelRoute", arr);
-			model.addAttribute("totalTravel", 0);
+			model.addAttribute("totalTravel", routeList.size());
 		}else{
 			model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
-			model.addAttribute("totalTravel", tomoroadingService.getTravelRoute(id).split(",").length);
+			model.addAttribute("totalTravel", (int)Math.ceil(routeList.size()*2.38));
 		}
 		return "mypage/mypage.tiles";
 	}
@@ -372,12 +385,27 @@ public class MemberController {
 	   
 	   @RequestMapping("end.do")
 	   public String end(HttpServletRequest request){
-		   System.out.println("end");
 		   HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getId();
 		   tomoroadingService.updateTravelFlag(id);
 		   return "redirect:mypage/mypage.do";
+	   }
+	   
+	   @RequestMapping("mypage/myTravelRoute.do")
+	   public String myTravelRoute(HttpServletRequest request,Model model){
+		   HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+			List<String> list = tomoroadingService.getTotalRoute(id);
+			ArrayList<List<String>> OutputList = new ArrayList<List<String>>(); 
+			for(int i = 0;i<list.size();i++){
+				List<String> splitRouteList  = Arrays.asList(list.get(i).split(","));
+				OutputList.add(splitRouteList);
+			}
+			model.addAttribute("travelRoute", OutputList);
+			model.addAttribute("profile",  memberService.getProfileById(id));
+			return "mypage/travelRoute.tiles";
 	   }
 	   
 /*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")

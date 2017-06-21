@@ -32,4 +32,6 @@ public interface TomoroadingDAO {
 	int traveling(String id);
 	
 	void updateTravelFlag(String id);
+	
+	List<String> getTotalRoute(String id);
 }

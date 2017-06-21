@@ -1,5 +1,7 @@
 -- 변경해주세요! STATION IMG 값 --
 alter table station modify(img varchar2(200))
+
+select route from travel where id = 'java'
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -705,6 +707,8 @@ insert into station values('쌍룡역','1','1','1','1', 36.793934,127.121288);
 insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
+
+select count(*) from station
 
 select * from travel where id = 'java' and flag = 'true'
 

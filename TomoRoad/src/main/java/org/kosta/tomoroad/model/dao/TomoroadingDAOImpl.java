@@ -75,4 +75,9 @@ public class TomoroadingDAOImpl implements TomoroadingDAO {
 	public void updateTravelFlag(String id) {
 		template.update("tomoroading.updateTravelFlag", id);
 	}
+
+	@Override
+	public List<String> getTotalRoute(String id) {
+		return template.selectList("getTotalRoute", id);
+	}
 }
