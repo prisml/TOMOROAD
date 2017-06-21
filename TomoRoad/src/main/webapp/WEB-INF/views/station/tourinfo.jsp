@@ -60,7 +60,7 @@ function keywordSearch() {
 			<!--begin List Item -->
 			<li class="list_item col-lg-4 col-md-6 col-sm-6 ${vo.section} isotope-item" style="">
 				<figure class="touching effect-bubba">
-					<img src="${pageContext.request.contextPath}/resources/images/symbol/${vo.img}.png" alt="">
+					<img src="${pageContext.request.contextPath}/resources/images/symbol/${vo.img}" alt="">
 	
 					<div class="option">
 						<a href="${pageContext.request.contextPath}/station/getDetailInfo.do?name=${vo.name}" class="fa fa-link"></a>

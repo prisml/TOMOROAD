@@ -10,6 +10,7 @@ import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TomoroadingController {
@@ -52,8 +53,10 @@ public class TomoroadingController {
 		for(int a=0;a<waypoints.length;a++){
 				for(int i=0;i<nameslist.length;i++){
 				if(nameslist[i].equals(waypoints[a])){
+					if(list.contains(waypoints[a])){
+					}else
 					list += waypoints[a]+",";
-				}else{
+					}else{
 					
 				}
 			}
@@ -61,5 +64,11 @@ public class TomoroadingController {
 		list += destination;
 		service.travel(id, list);
 		return "redirect:travelStart.do";
+	}
+	@RequestMapping("tomoroading/check.do")
+	@ResponseBody
+	public int check(String id){
+		System.out.println(id);
+		return service.traveling(id);
 	}
 }

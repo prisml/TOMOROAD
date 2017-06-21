@@ -1,5 +1,7 @@
--- 변경해주세요! profile default 값 --
-alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
+-- 변경해주세요! STATION IMG 값 --
+alter table station modify(img varchar2(200))
+
+select route from travel where id = 'java'
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -29,7 +31,7 @@ alter table burn_board add constraint fk_burn_station_name
 	foreign key (station_name)
 	references station(name);
 ------------------------------------------------
-  select * from member
+select * from member
 
 ---------- drop table ------------
 drop table station_connect;
@@ -73,6 +75,8 @@ create table manager(
 	password varchar2(100) not null
 );
 
+select * from station
+
 select * from member;
 insert into manager values('abc',1234)
 
@@ -87,6 +91,8 @@ create table station(
 	lat number not null,
 	lng number not null
 );
+
+alter table station modify(img varchar2(200))
 
 create table place(
 	no number primary key,
@@ -291,6 +297,8 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select * from member
 select * from travel;
+
+update 
 
 
 -----< Station 정보 >-----
@@ -503,6 +511,28 @@ delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd',
 
 update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
+update travel set flag = 'true' where id = 'java' and flag = 'false'
+
+select * from travel
+
+update station set img = '강릉역.png' where name = '강릉역'
+update station set img = '광주역.png' where name = '광주역';
+update station set img = '구미역.png' where name = '구미역';
+update station set img = '남원역.png' where name = '남원역';
+update station set img = '대구역.png' where name = '대구역';
+update station set img = '대전역.png' where name = '대전역';
+update station set img = '동대구역.jpg' where name = '동대구역';
+update station set img = '동해역.jpg' where name = '동해역';
+update station set img = '부산역.png' where name = '부산역';
+update station set img = '서울역.png' where name = '서울역';
+update station set img = '양평역.jpg' where name = '양평역';
+update station set img = '여수역.png' where name = '여수역';
+update station set img = '울산역.png' where name = '울산역';
+
+
+
+
+
 delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
@@ -677,6 +707,10 @@ insert into station values('쌍룡역','1','1','1','1', 36.793934,127.121288);
 insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
+
+select count(*) from station
+
+select * from travel where id = 'java' and flag = 'true'
 
 select count(*) from review where member_id='asdf';
 select count(*) from station;
