@@ -1,5 +1,8 @@
--- 변경해주세요! profile default 값 --
-alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
+-- 변경해주세요! STATION IMG 값 --
+alter table station modify(img varchar2(200))
+
+select * from station
+
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -73,6 +76,8 @@ create table manager(
 	password varchar2(100) not null
 );
 
+select * from station
+
 select * from member;
 insert into manager values('abc',1234)
 
@@ -87,6 +92,8 @@ create table station(
 	lat number not null,
 	lng number not null
 );
+
+alter table station modify(img varchar2(200))
 
 create table place(
 	no number primary key,
@@ -291,6 +298,8 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select * from member
 select * from travel;
+
+update 
 
 
 -----< Station 정보 >-----
@@ -502,6 +511,24 @@ update friend set state = '차단' where sender_id in ('abcd','java') and receiv
 delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd','java')
 
 update review set content ='혹시 사진 속 자전거 보신분 계시면'
+
+update station set img = '강릉역.png' where name = '강릉역'
+update station set img = '광주역.png' where name = '광주역';
+update station set img = '구미역.png' where name = '구미역';
+update station set img = '남원역.png' where name = '남원역';
+update station set img = '대구역.png' where name = '대구역';
+update station set img = '대전역.png' where name = '대전역';
+update station set img = '동대구역.jpg' where name = '동대구역';
+update station set img = '동해역.jpg' where name = '동해역';
+update station set img = '부산역.png' where name = '부산역';
+update station set img = '서울역.png' where name = '서울역';
+update station set img = '양평역.jpg' where name = '양평역';
+update station set img = '여수역.png' where name = '여수역';
+update station set img = '울산역.png' where name = '울산역';
+
+
+
+
 
 delete from friend where sender_id = 'asdf'
 
