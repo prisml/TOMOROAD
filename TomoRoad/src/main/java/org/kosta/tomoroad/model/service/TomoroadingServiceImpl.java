@@ -171,7 +171,6 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 		}else{
 			dao.reTravel(tvo);
 		}
-		
 	}
 	
 	@Override
@@ -181,5 +180,15 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	@Override
 	public int traveling(String id){
 		return dao.traveling(id);
+	}
+
+	@Override
+	public void updateTravelFlag(String id) {
+		dao.updateTravelFlag(id);
+	}
+
+	@Override
+	public List<String> getTotalRoute(String id) {
+		return dao.getTotalRoute(id);
 	}
 }

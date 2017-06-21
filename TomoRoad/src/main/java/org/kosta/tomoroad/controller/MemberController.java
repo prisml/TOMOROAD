@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -115,11 +119,22 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
+/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+	public String findId(MemberVO memberVO, HttpServletRequest request) {
+		MemberVO vo = memberService.findId(memberVO);
+		if (vo == null)
+			return "member/noauth_findid_fail";
+		else {
+			HttpSession session = request.getSession();
+			session.setAttribute("mvo", vo);
+			return "member/noauth_findid_result.tiles";
+		}
+	} */
 	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public ModelAndView findId(MemberVO memberVO) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
-			return new ModelAndView("member/noauth_fail");
+			return new ModelAndView("member/noauth_findid_fail");
 		else {                   
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
@@ -128,7 +143,7 @@ public class MemberController {
 	public String checkId(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
 		if (id.equals("")) 	
-			return "member/noauth_fail";
+			return "member/noauth_findpw_fail";
 		else {
 			model.addAttribute("mmvo",vo.getId());
 			return "member/noauth_findpw2.tiles";
@@ -139,6 +154,12 @@ public class MemberController {
 		memberService.findPw2(vo);
 		return new ModelAndView("redirect:member/noauth_findpw2_result.do");
 	}
+/*	@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
+	public ModelAndView findPw(MemberVO vo) {
+		memberService.findPw2(vo);
+		return ModelAndView ("member/noauth_findpw2_result.tiles";)
+	}*/
+
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {
 		memberService.friend_Request(senderId, receiverId);
@@ -225,6 +246,11 @@ public class MemberController {
 		memberService.unBlockFriend(id, unBlockId);
 		return "redirect:mypage/friend_BlockList.do";
 	}
+
+	@RequestMapping("noauth_weather.do")
+	public String weather() {
+		return "noauth_weather.tiles";
+	}
 	
 	@RequestMapping("mypage/{viewName}.do")
 	public ModelAndView showMypage(@PathVariable String viewName,HttpServletRequest request,Model model){
@@ -240,14 +266,27 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		String id = vo.getId();
+		HashSet<String> routeList = new HashSet<String>();
+		
+		List<String> list = tomoroadingService.getTotalRoute(id);
+		for(int i = 0;i<list.size();i++){
+			String[] route = list.get(i).split(",");
+			for(int j = 0;j<route.length;j++){
+				routeList.add(route[j]);
+			}
+		}
 		model.addAttribute("profile",  memberService.getProfileById(id));
 		model.addAttribute("totalfriend", memberService.totalFriend(id));
 		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
 		
-		model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
-		/*String[] arr = {"여의역","여의도역","여의나무역","여수엑스포역"};
-		model.addAttribute("travelRoute", arr);*/
-		model.addAttribute("totalTravel", tomoroadingService.getTravelRoute(id).split(",").length);
+		if(tomoroadingService.getTravelRoute(id) == null){
+			String[] arr = {};
+			model.addAttribute("travelRoute", arr);
+			model.addAttribute("totalTravel", routeList.size());
+		}else{
+			model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
+			model.addAttribute("totalTravel", (int)Math.ceil(routeList.size()*2.38));
+		}
 		return "mypage/mypage.tiles";
 	}
 
@@ -340,9 +379,43 @@ public class MemberController {
 			}else{
 				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
 				model.addAttribute("friend", memberService.getFriendId(id, selectId));
-				System.out.println(memberService.getFriendId(id, selectId));
 				return "memberpage/memberpage.tiles";
 			}
 	   }
 	   
+	   @RequestMapping("end.do")
+	   public String end(HttpServletRequest request){
+		   HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+		   tomoroadingService.updateTravelFlag(id);
+		   return "redirect:mypage/mypage.do";
+	   }
+	   
+	   @RequestMapping("mypage/myTravelRoute.do")
+	   public String myTravelRoute(HttpServletRequest request,Model model){
+		   HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+			List<String> list = tomoroadingService.getTotalRoute(id);
+			ArrayList<List<String>> OutputList = new ArrayList<List<String>>(); 
+			for(int i = 0;i<list.size();i++){
+				List<String> splitRouteList  = Arrays.asList(list.get(i).split(","));
+				OutputList.add(splitRouteList);
+			}
+			model.addAttribute("travelRoute", OutputList);
+			model.addAttribute("profile",  memberService.getProfileById(id));
+			return "mypage/travelRoute.tiles";
+	   }
+	   
+/*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")
+		public String managerLogin(ManagerVO managerVO, HttpSession session) {
+			ManagerVO vo = memberService.managerLogin(managerVO);
+			if (vo == null)
+				return "member/noauth_login_fail";
+			else {
+				session.setAttribute("manager", vo);
+			return "redirect:manager.tiles";
+		}
+}*/
 }
