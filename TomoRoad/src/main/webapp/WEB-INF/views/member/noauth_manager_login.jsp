@@ -7,8 +7,7 @@
 $(document).ready(function(){
     $("#memberButton").click(function(){
         $("#listMember").animate({
-            height: 'toggle'
-            	
+            height: 'toggle'           	
         });
     });	
 });
