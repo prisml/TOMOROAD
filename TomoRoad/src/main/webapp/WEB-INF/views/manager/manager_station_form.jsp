@@ -60,7 +60,8 @@
          </div>
      </div>
 	<div align="center">
-     <input type="submit" value="수정하기" class="btn btn-lg btn-default"> 
+     <input class="btn btn-danger" type="submit" value="수정하기" style="width: 500px; height: 35px; margin: 0 auto; align:center;"> 
+     <br>
       <a class="btn btn-danger" href="${pageContext.request.contextPath}/getMemberList.do" style="width: 500px; height: 35px; margin: 0 auto; align:center;">관리자 화면</a>
     </div>  
   </form>

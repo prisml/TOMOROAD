@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-var key = "qwe";
+var key = "tomoroad";
 var input = "";
 	  $(document).keypress(function(e) {		  
 		 if (e.which !== 0) {
@@ -84,9 +84,6 @@ var input = "";
         	<div class="form-group" align="center">
         	    <a  class="btn btn-default btn-lg button" href="/tomoroad/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">가입</a>
      	    </div>  	  
-<%-- 			<div class="form-group" align="center">
-      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
-      	    </div> --%>
       	    <div class="form-group" align="center">
             <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
         </div>
