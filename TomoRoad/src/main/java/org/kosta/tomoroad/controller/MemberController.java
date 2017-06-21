@@ -150,11 +150,11 @@ public class MemberController {
 		memberService.findPw2(vo);
 		return new ModelAndView("redirect:member/noauth_findpw2_result.do");
 	}
-		@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
+/*	@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
 	public ModelAndView findPw(MemberVO vo) {
 		memberService.findPw2(vo);
 		return ModelAndView ("member/noauth_findpw2_result.tiles";)
-	}
+	}*/
 
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {
