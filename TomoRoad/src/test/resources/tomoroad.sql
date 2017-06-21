@@ -32,7 +32,7 @@ alter table burn_board add constraint fk_burn_station_name
 	foreign key (station_name)
 	references station(name);
 ------------------------------------------------
-  select * from member
+select * from member
 
 ---------- drop table ------------
 drop table station_connect;

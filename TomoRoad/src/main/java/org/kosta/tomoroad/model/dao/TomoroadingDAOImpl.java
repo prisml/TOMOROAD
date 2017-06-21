@@ -65,4 +65,8 @@ public class TomoroadingDAOImpl implements TomoroadingDAO {
 	public String getTravelRoute(String id){
 		return template.selectOne("tomoroading.getTravelRoute", id);
 	}
+	@Override
+	public int traveling(String id){
+		return template.selectOne("tomoroading.traveling",id);
+	}
 }

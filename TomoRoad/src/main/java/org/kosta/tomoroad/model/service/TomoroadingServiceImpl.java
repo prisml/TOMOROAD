@@ -72,7 +72,7 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 		deleteBucket(bucketSet, path);		
 		path = getMaxViaStation(depart1, bucketSet);
 		appendStation(result2, path);
-		stationList = getShortestPath(path.getName());		
+		stationList = getShortestPath(path.getName());
 		path = stationList.get(stationIdx.get(arrived));
 		appendStation(result3, path);
 		for(String station : result2)
@@ -93,6 +93,8 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	}
 
 	private void appendStation(List<String> result, StationVO path) {
+		if(path == null)
+			return;
 		while (path.getChild() != null) {
 			result.add(path.getName());
 			path = path.getChild();
@@ -107,7 +109,7 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 
 		int maxStation = 0;
 		int minTime = Integer.MAX_VALUE;
-		StationVO result = null;
+		StationVO result = dao.getStationInfo(depart);
 		for (String bucket : bucketSet) {
 			int count = getStationCountByRoute(stationList.get(stationIdx.get(bucket)), bucketSet);
 			if (count > maxStation) {
@@ -175,5 +177,9 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	@Override
 	public String getTravelRoute(String id){
 		return dao.getTravelRoute(id);
+	}
+	@Override
+	public int traveling(String id){
+		return dao.traveling(id);
 	}
 }

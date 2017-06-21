@@ -75,9 +75,20 @@
  alert("${param.station}"); */
  	$("#result").html("<h1>추천경로:"+names+"</h1>")
  }); 
-$(document).on('submit',"#travel",function(){
+$(document).on('click',"#travel",function(){
 	if(confirm("이 경로로 여행을 시작하시겠습니까?")==true){
-		$("#travelForm").submit();
+		$.ajax({
+			type:"GET",
+			url:"${pageContext.request.contextPath}/tomoroading/check.do?id=${mvo.id}",
+			success:function(data){
+				if(data>0){
+					alert("하고계신 여행을 종료후 여행을 시작해주세요!");
+					return false;
+				}else{
+					$("#travelForm").submit();
+				}
+			}
+		});
 	}else{
 		return false;
 	}
@@ -109,7 +120,7 @@ function initMap() {
 		<input type="hidden" name="depart" value="${param.depart}">
 		<input type="hidden" name="destination" value="${param.destination}">
 		<input type="hidden" name="id" value="${mvo.id }">
-		<input type="submit" value="여행시작하기" id="travel">
 </form>
+		<input type="button" value="여행시작하기" id="travel">
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
