@@ -1,7 +1,5 @@
--- 변경해주세요! STATION IMG 값 --
+-- 6.21 변경해주세요! STATION IMG 값 --
 alter table station modify(img varchar2(200))
-
-select route from travel where id = 'java'
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
