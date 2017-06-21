@@ -49,7 +49,7 @@
                	 행정구역<input class="col-lg-4 col-md-4 form-control" name="section" id="section" type="text" value="${station.section}" >
              </div>
               <div class="col-sm-4">
-               	이미지파일<input type = "file" name = "uploadfile" id = "uploadfile">
+               	이미지파일<input type = "file" name = "uploadfile" id = "uploadfile" >
              </div>
     	     <div class="col-sm-4">
                	 위도<input class="col-lg-4 col-md-4 form-control" name="lat" id="lat" type="text" value="${station.lat}"  readonly="readonly">

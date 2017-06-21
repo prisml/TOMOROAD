@@ -90,9 +90,9 @@ public class ManagerController {
 	@RequestMapping(value = "updateStation.do", method = RequestMethod.POST)
 	public ModelAndView updateStation(MultipartFile uploadfile,StationVO vo) {
 		String fileName = uploadfile.getOriginalFilename();
-		System.out.println(fileName);
-		String uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\img\\";
-		File file = new File(uploadPath+fileName);
+		String m = fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
+		String uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\images\\symbol\\";
+		File file = new File(uploadPath+vo.getName()+m);
 		try {
 			uploadfile.transferTo(file);
 		} catch (IllegalStateException e) {
@@ -100,7 +100,7 @@ public class ManagerController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		vo.setImg(uploadPath+fileName);
+		vo.setImg(vo.getName()+m);
 		managerService.updateStation(vo);
 		return new ModelAndView("redirect:getMemberList.do");
 	}
