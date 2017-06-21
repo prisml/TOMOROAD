@@ -36,7 +36,6 @@ public class MemberController {
 	@Resource(name = "tomoroadingServiceImpl")
 	private TomoroadingService tomoroadingService;
 	
-	
 	@Resource
 	private ReviewService reviewService;
 
@@ -268,10 +267,14 @@ public class MemberController {
 		model.addAttribute("totalfriend", memberService.totalFriend(id));
 		model.addAttribute("totalContents", reviewService.getTotalContentsByMember(id));
 		
-		model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
-		/*String[] arr = {"여의역","여의도역","여의나무역","여수엑스포역"};
-		model.addAttribute("travelRoute", arr);*/
-		model.addAttribute("totalTravel", tomoroadingService.getTravelRoute(id).split(",").length);
+		if(tomoroadingService.getTravelRoute(id) == null){
+			String[] arr = {};
+			model.addAttribute("travelRoute", arr);
+			model.addAttribute("totalTravel", 0);
+		}else{
+			model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
+			model.addAttribute("totalTravel", tomoroadingService.getTravelRoute(id).split(",").length);
+		}
 		return "mypage/mypage.tiles";
 	}
 
@@ -364,9 +367,18 @@ public class MemberController {
 			}else{
 				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
 				model.addAttribute("friend", memberService.getFriendId(id, selectId));
-				System.out.println(memberService.getFriendId(id, selectId));
 				return "memberpage/memberpage.tiles";
 			}
+	   }
+	   
+	   @RequestMapping("end.do")
+	   public String end(HttpServletRequest request){
+		   System.out.println("end");
+		   HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String id = vo.getId();
+		   tomoroadingService.updateTravelFlag(id);
+		   return "redirect:mypage/mypage.do";
 	   }
 	   
 /*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")

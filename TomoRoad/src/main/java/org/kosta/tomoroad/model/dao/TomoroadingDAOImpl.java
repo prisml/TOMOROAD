@@ -1,5 +1,6 @@
 package org.kosta.tomoroad.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -68,5 +69,10 @@ public class TomoroadingDAOImpl implements TomoroadingDAO {
 	@Override
 	public int traveling(String id){
 		return template.selectOne("tomoroading.traveling",id);
+	}
+
+	@Override
+	public void updateTravelFlag(String id) {
+		template.update("tomoroading.updateTravelFlag", id);
 	}
 }

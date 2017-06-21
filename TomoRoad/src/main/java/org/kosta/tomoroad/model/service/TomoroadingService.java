@@ -15,5 +15,7 @@ public interface TomoroadingService {
 	String getTravelRoute(String id);
 
 	int traveling(String id);
+	
+	void updateTravelFlag(String id);
 
 }

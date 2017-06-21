@@ -1,5 +1,6 @@
 package org.kosta.tomoroad.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.kosta.tomoroad.model.vo.ConnectionVO;
@@ -29,5 +30,6 @@ public interface TomoroadingDAO {
 	String getTravelRoute(String id);
 
 	int traveling(String id);
-
+	
+	void updateTravelFlag(String id);
 }

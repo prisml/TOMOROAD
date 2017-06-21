@@ -182,4 +182,9 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	public int traveling(String id){
 		return dao.traveling(id);
 	}
+
+	@Override
+	public void updateTravelFlag(String id) {
+		dao.updateTravelFlag(id);
+	}
 }

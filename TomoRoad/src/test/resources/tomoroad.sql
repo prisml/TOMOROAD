@@ -1,8 +1,5 @@
 -- 변경해주세요! STATION IMG 값 --
 alter table station modify(img varchar2(200))
-
-select * from station
-
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -512,6 +509,10 @@ delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd',
 
 update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
+update travel set flag = 'true' where id = 'java' and flag = 'false'
+
+select * from travel
+
 update station set img = '강릉역.png' where name = '강릉역'
 update station set img = '광주역.png' where name = '광주역';
 update station set img = '구미역.png' where name = '구미역';
@@ -704,6 +705,8 @@ insert into station values('쌍룡역','1','1','1','1', 36.793934,127.121288);
 insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
+
+select * from travel where id = 'java' and flag = 'true'
 
 select count(*) from review where member_id='asdf';
 select count(*) from station;
