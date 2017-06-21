@@ -119,8 +119,11 @@ public class StationVO {
 
 	@Override
 	public String toString() {
-		return "StationVO [name=" + name + ", spendTime="
+		return "StationVO [name=" + name + ", detail=" + detail + ", simpleDetail=" + simpleDetail + ", section="
+				+ section + ", img=" + img + ", lat=" + lat + ", lng=" + lng + ", cityurl=" + cityurl + ", spendTime="
 				+ spendTime + ", child=" + child + "]";
 	}
+
+	
 
 }

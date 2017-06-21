@@ -1,5 +1,5 @@
--- 변경해주세요! profile default 값 --
-alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
+-- 6.21 변경해주세요! STATION IMG 값 --
+alter table station modify(img varchar2(200))
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -29,7 +29,7 @@ alter table burn_board add constraint fk_burn_station_name
 	foreign key (station_name)
 	references station(name);
 ------------------------------------------------
-  select * from member
+select * from member
 
 ---------- drop table ------------
 drop table station_connect;
@@ -73,11 +73,11 @@ create table manager(
 	password varchar2(100) not null
 );
 
-<<<<<<< HEAD
+select * from station
+
 select * from member;
-=======
 insert into manager values('abc',1234)
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
+
 
 --station 테이블 컬럼추가(0607).
 create table station(
@@ -89,6 +89,8 @@ create table station(
 	lat number not null,
 	lng number not null
 );
+
+alter table station modify(img varchar2(200))
 
 create table place(
 	no number primary key,
@@ -292,6 +294,9 @@ select f.sender_id,m.profile from friend f,member m where f.sender_id=m.id and f
 select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java' and f.sender_id = m.id
 
 select * from member
+select * from travel;
+
+update 
 
 
 -----< Station 정보 >-----
@@ -504,6 +509,28 @@ delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd',
 
 update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
+update travel set flag = 'true' where id = 'java' and flag = 'false'
+
+select * from travel
+
+update station set img = '강릉역.png' where name = '강릉역'
+update station set img = '광주역.png' where name = '광주역';
+update station set img = '구미역.png' where name = '구미역';
+update station set img = '남원역.png' where name = '남원역';
+update station set img = '대구역.png' where name = '대구역';
+update station set img = '대전역.png' where name = '대전역';
+update station set img = '동대구역.jpg' where name = '동대구역';
+update station set img = '동해역.jpg' where name = '동해역';
+update station set img = '부산역.png' where name = '부산역';
+update station set img = '서울역.png' where name = '서울역';
+update station set img = '양평역.jpg' where name = '양평역';
+update station set img = '여수역.png' where name = '여수역';
+update station set img = '울산역.png' where name = '울산역';
+
+
+
+
+
 delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
@@ -526,7 +553,6 @@ insert into station values('임실역','1','1','1','1',35.633167,127.289824);
 insert into station values('장성역','1','1','1','1',35.300217, 126.780216);
 insert into station values('장항역','1','1','1','1',36.040302, 126.715438);
 insert into station values('전의역','1','1','1','1',36.678644, 127.203144);
-insert into station values('전주역','1','1','1','1',35.849944, 127.161766);
 insert into station values('점촌역','1','1','1','1',36.595687, 128.203222);
 insert into station values('조성역','1','1','1','1',34.767160, 127.081731);
 insert into station values('좌천역','1','1','1','1',35.311913, 129.254886);
@@ -541,7 +567,6 @@ insert into station values('진영역','1','1','1','1',35.303739, 128.728736);
 insert into station values('증평역','1','1','1','1',36.778383, 127.583177);
 insert into station values('창원역','1','1','1','1',35.257695, 128.606539);
 insert into station values('창원중앙역','1','1','1','1',35.242973, 128.701611);
-
 insert into station values('덕소역','1','1','1','1',37.586969, 127.208877);
 insert into station values('덕하역','1','1','1','1',35.495175, 129.305211);
 insert into station values('도계역','1','1','1','1',37.229530, 129.043814);
@@ -582,7 +607,6 @@ insert into station values('광주역','1','1','1','1',35.165509, 126.909211);
 insert into station values('광천역','1','1','1','1',36.501982, 126.622488);
 insert into station values('구례구역','1','1','1','1',35.163619, 127.452611);
 insert into station values('구미역','1','1','1','1',36.128499, 128.330929);
-
 insert into station values('구포역','1','1','1','1',35.205501, 128.997134);
 insert into station values('군북역','1','1','1','1',35.251911, 128.350691);
 insert into station values('극락강역','1','1','1','1',35.176132, 126.829992);
@@ -590,7 +614,6 @@ insert into station values('기장역','1','1','1','1',35.243211, 129.218550);
 insert into station values('김제역','1','1','1','1',35.792582, 126.902896);
 insert into station values('남성현역','1','1','1','1',35.704844, 128.716302);
 insert into station values('남원역','1','1','1','1',35.411234, 127.361369);
-
 insert into station values('남창역','1','1','1','1',35.417630, 129.283260);
 insert into station values('논산역','1','1','1','1',36.207271, 127.092420);
 insert into station values('능주역','1','1','1','1',34.986771, 126.963996);
@@ -683,6 +706,10 @@ insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
 
+select count(*) from station
+
+select * from travel where id = 'java' and flag = 'true'
+
 select count(*) from review where member_id='asdf';
 select count(*) from station;
 
@@ -700,7 +727,7 @@ insert into station values('부산역','1','1','1','1',35.115389, 129.042195);
 insert into station values('삼랑진역','1','1','1','1', 35.399625,128.843228);
 insert into station values('밀양역','1','1','1','1',35.474696, 128.771146);
 insert into station values('동대구역','1','1','1','1',35.879850, 128.628476);
-insert into station values('대구역','1','1','1','1',35.943692, 126.811000);
+insert into station values('대구역','1','1','1','1',35.876695, 128.596245);
 insert into station values('김천역','1','1','1','1',36.123648, 128.114656);
 insert into station values('영동역','1','1','1','1',36.172376, 127.786233);
 insert into station values('대전역','1','1','1','1',36.331315, 127.433052);
@@ -727,6 +754,7 @@ insert into station values('서대전역','1','1','1','1', 36.322636,127.403868)
 insert into station values('오송역','1','1','1','1',36.620729, 127.327399);
 insert into station values('영천역','1','1','1','1',35.959640, 128.939260);
 insert into station values('안동역','1','1','1','1',36.563066, 128.732955);
+insert into station values('전주역','1','1','1','1',35.849944, 127.161766);
 
 insert into STATION_CONNECT(depart,arrived,spent_time) values('서울역','용산역',5);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('청량리역','양평역',35);
@@ -778,3 +806,7 @@ select name,simple_detail,detail,section,img,lat,lng from station order by name 
 select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
 
 select name,detail,section,img,lat,lng,simple_detail as simpleDetail from station order by name ASC
+
+select route from travel where id = 'java'
+
+select route from travel where id = 'java'

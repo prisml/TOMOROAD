@@ -11,6 +11,11 @@
 		location.href = "${pageContext.request.contextPath}/FriendUnBlock.do?id=${sessionScope.mvo.id}&unBlockId="+id;
 	}
 </script>
+		<div class="dividerHeading">
+			<h4>
+				<span> 차단 목록 </span>
+			</h4>
+		</div>
 <table style = "border-spacing: 10px; border-collapse: separate;">
 	<c:forEach items="${friendList}" var="list">
 		<tr>

@@ -6,24 +6,22 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#memberButton").click(function(){
-    	/* location.href="${pageContext.request.contextPath}/getMemberList.do"; */
         $("#listMember").animate({
-            height: 'toggle'
-            	
+            height: 'toggle'           	
         });
     });	
 });
-</script>
+</script> 
  
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
             <h4><span>안녕 관리자님</span></h4>
         </div>
+         <br>
+        <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button> 
         <br>
-        <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button>
-        <br>
-	  <form id="listMember" method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do" style="display:none;">
+	  <form id="listMember" method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do" style="display: none;">
   <fieldset>
        		<div class="input-group" align="center">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>

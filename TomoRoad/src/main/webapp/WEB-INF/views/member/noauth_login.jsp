@@ -11,14 +11,12 @@ var input = "";
 		        if(key.length == input.length && key == input)
 		        	location.href="/tomoroad/member/noauth_manager_login.do"; 
 		          else if(key.length == input.length && key != input)
-		        	key = "";   
-		        
+		        	key = "";   	        
 		    }
 	  });
 	  $(document).ready(function(){
 		  $(".form-control").keypress(function(){
-			  input="";
-			  
+			  input="";			  
 		  });
 	  });
 </script>
@@ -84,9 +82,6 @@ var input = "";
         	<div class="form-group" align="center">
         	    <a  class="btn btn-default btn-lg button" href="/tomoroad/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">가입</a>
      	    </div>  	  
-<%-- 			<div class="form-group" align="center">
-      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
-      	    </div> --%>
       	    <div class="form-group" align="center">
             <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
         </div>

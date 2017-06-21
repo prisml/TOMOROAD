@@ -1,8 +1,6 @@
 package org.kosta.tomoroad;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestMain {
 	public static void main(String[] args) throws FileNotFoundException {
@@ -43,13 +41,5 @@ public class TestMain {
 			if(i%34==0)System.out.println("\n");
 			
 		}*/
-		Map<String, Integer> map[] = new HashMap[2];
-		map[0] = new HashMap<String, Integer>();
-		map[1] = new HashMap<String, Integer>();
-		map[0].put("1", 1);
-		map[0].put("2", 2);
-		map[1].put("1", 1);
-		map[1].put("2", 2);
-		System.out.println(map[0].get("1")+" "+map[1].get("2"));
 	}
 }

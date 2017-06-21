@@ -11,5 +11,12 @@ public interface TomoroadingService {
 	List<String> makeRoute(String[] station, String depart, String arrived);
 
 	void travel(String id, String list);
+	
+	String getTravelRoute(String id);
 
+	int traveling(String id);
+	
+	void updateTravelFlag(String id);
+	
+	List<String> getTotalRoute(String id);
 }

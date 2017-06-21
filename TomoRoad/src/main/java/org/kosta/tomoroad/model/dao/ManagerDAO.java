@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.StationVO;
 
 public interface ManagerDAO {
@@ -19,9 +20,19 @@ public interface ManagerDAO {
 
 	MemberVO getIdFromMember(String id);
 
-	List<StationVO> getStationListManager(StationVO stationVO);
-
 	void updateStation(StationVO vo);
+	
+	List<StationVO> getStationNameListManager();
 
-	List<StationVO> getStationListManager();
+	StationVO getStationListManager(String name);
+
+	List<PlaceVO> getPlaceList();
+
+	PlaceVO getNoFromPlace(int no);
+
+	void updatePlaceMember(PlaceVO vo);
+
+	void insertPlaceManager(PlaceVO vo);
+
+	void deletePlaceManager(int no);
 }

@@ -1,10 +1,5 @@
 package org.kosta.tomoroad.model.utils;
 
-import java.util.List;
-
-import org.kosta.tomoroad.model.vo.ListVO;
-import org.kosta.tomoroad.model.vo.ReviewVO;
-
 /**
  * 페이징 처리를 위한 비즈니스 계층의 클래스 PagingBean method 구현순서 getStartRowNumber()
  * getEndRowNumber()<br> getTotalPage()<br> getTotalPageGroup()<br>

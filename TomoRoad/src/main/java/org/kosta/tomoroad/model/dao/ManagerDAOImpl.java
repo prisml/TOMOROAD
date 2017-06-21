@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -43,18 +44,47 @@ public class ManagerDAOImpl implements ManagerDAO{
 	}
 
 	@Override
-	public List<StationVO> getStationListManager(StationVO stationVO) {
-		return template.selectList("manager.getStationListManager");
-	}
-
-	@Override
 	public void updateStation(StationVO vo) {
 		template.update("manager.updateStation",vo);
 	}
 
 	@Override
-	public List<StationVO> getStationListManager() {
-		System.out.println(template.selectList("manager.getStationListManager"));
-		return template.selectList("manager.getStationListManager");
+	public StationVO getStationListManager(String name) {
+	//	System.out.println(template.selectOne("manager.getStationListManager",name).toString());
+		return template.selectOne("manager.getStationListManager",name);
+	}
+
+	@Override
+	public List<StationVO> getStationNameListManager() {
+		return template.selectList("manager.getStationNameListManager");
+	}
+
+	@Override
+	public List<PlaceVO> getPlaceList() {
+		return template.selectList("manager.getPlaceList");
+	}
+
+	@Override
+	public PlaceVO getNoFromPlace(int no) {
+		PlaceVO vo = template.selectOne("manager.getNoFromPlace",no);
+		return vo;
+	}
+
+	@Override
+	public void updatePlaceMember(PlaceVO vo) {
+		template.update("manager.updatePlaceMember",vo);	
+		
+	}
+
+	@Override
+	public void insertPlaceManager(PlaceVO vo) {
+		template.insert("manager.insertPlaceManager",vo);
+		
+	}
+
+	@Override
+	public void deletePlaceManager(int no) {
+		template.delete("manager.deletePlaceManager",no);	
+		
 	}
 }
