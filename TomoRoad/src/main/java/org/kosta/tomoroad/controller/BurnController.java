@@ -133,15 +133,14 @@ public class BurnController {
 	// 메세지
 	@RequestMapping("isNewMsg.do")
 	@ResponseBody
-	public int isNewMsg(String receiver){
-		System.out.println(receiver);
+	public int isNewMsg(String receiver){		
 		return burnService.isNewMsg(receiver);
 	}
 	
 	@RequestMapping("burn/findId.do")
 	@ResponseBody
-	public Object findId(String id){				
-		return burnService.findId(id);
+	public Object findId(String id, String searcher){				
+		return burnService.findId(id, searcher);
 	}	
 
 	@RequestMapping("getMessageList.do")
@@ -156,6 +155,11 @@ public class BurnController {
 		return burnService.sendMessage(sender, receiver, text);
 	}
 	
+	@RequestMapping("getFilteredMessage.do")
+	@ResponseBody
+	public Object getFilteredMessage(String id){
+		return burnService.getFilteredMessage(id);
+	}	
 }
 
 

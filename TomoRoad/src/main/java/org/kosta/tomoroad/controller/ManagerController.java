@@ -66,6 +66,7 @@ public class ManagerController {
 	  
 	@RequestMapping("getStationListManager.do")
 	public String getStationListManager(Model model){
+		System.out.println(managerService.getMemberList());
 		model.addAttribute("station", managerService.getStationListManager());
 		return "manager/manager_station_form.tiles";
 	}
