@@ -36,6 +36,7 @@ public class MemberController {
 	@Resource(name = "tomoroadingServiceImpl")
 	private TomoroadingService tomoroadingService;
 	
+	
 	@Resource
 	private ReviewService reviewService;
 
@@ -59,7 +60,7 @@ public class MemberController {
 	public String login(MemberVO memberVO, HttpServletRequest request, HttpSession session) {
 		MemberVO vo = memberService.login(memberVO);
 		if (vo == null)
-			return "member/noauth_login_fail";
+			return "member/noauth_fail";
 		else {
 			session.setAttribute("mvo", vo);
 			return "redirect:home.do";
@@ -114,8 +115,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
-
-/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public String findId(MemberVO memberVO, HttpServletRequest request) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
@@ -125,7 +125,7 @@ public class MemberController {
 			session.setAttribute("mvo", vo);
 			return "member/noauth_findid_result.tiles";
 		}
-	} */
+	} 
 	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public ModelAndView findId(MemberVO memberVO) {
 		MemberVO vo = memberService.findId(memberVO);
@@ -150,12 +150,11 @@ public class MemberController {
 		memberService.findPw2(vo);
 		return new ModelAndView("redirect:member/noauth_findpw2_result.do");
 	}
-	
-/*	@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
+		@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
 	public ModelAndView findPw(MemberVO vo) {
 		memberService.findPw2(vo);
 		return ModelAndView ("member/noauth_findpw2_result.tiles";)
-	}*/
+	}
 
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {

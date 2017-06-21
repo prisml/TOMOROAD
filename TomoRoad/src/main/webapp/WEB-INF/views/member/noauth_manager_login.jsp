@@ -3,27 +3,26 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
     $("#memberButton").click(function(){
-    	/* location.href="${pageContext.request.contextPath}/getMemberList.do"; */
         $("#listMember").animate({
             height: 'toggle'
             	
         });
     });	
 });
-</script> -->
+</script> 
  
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
             <h4><span>안녕 관리자님</span></h4>
         </div>
-<!--         <br>
-        <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button> -->
+         <br>
+        <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button> 
         <br>
-	  <form id="listMember" method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do" >
+	  <form id="listMember" method="post" action="${pageContext.request.contextPath}/noauth_managerLogin.do" style="display: none;">
   <fieldset>
        		<div class="input-group" align="center">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>

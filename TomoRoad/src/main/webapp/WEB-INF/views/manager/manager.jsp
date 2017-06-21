@@ -33,7 +33,6 @@
 			    $(document).ready(function(){
 			        $("#managerStation").click(function(){		
 			        	var optionValue = $("#st").val();
-			        	//alert(optionValue);
 						location.href = "${pageContext.request.contextPath}/getStationListManager.do?name="+optionValue;
 			        });			        
 			    });
@@ -55,16 +54,13 @@ $(document).ready(function(){
 });
 </script>
 
+
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
             <h4><span>관리자 화면</span></h4>
         </div>
         <br>
-
-<button id="updateMember" class="btn btn-default btn-lg button" >수정</button>
-
-<button id="deleteMember" class="btn btn-default btn-lg button" >삭제</button>
 
 <button id="showStation" class="btn btn-default btn-lg button" >역정보 보기</button>
 
@@ -81,6 +77,7 @@ $(document).ready(function(){
              </div>
 
 <button id="managerStation" class="btn btn-default btn-lg button" >역정보 수정</button>
+<label>원하시는 역을 선택 해주세요</label>
 <br>
  <div id="listOutput" >
 <form id="myForm" style="width: 100%; height: 250px; overflow-y: scroll; display: block;">
@@ -106,7 +103,12 @@ $(document).ready(function(){
 </table>
 
 </form>
- <a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a> 
+
+<button id="updateMember" class="btn btn-default btn-lg button" >회원수정</button>
+
+<button id="deleteMember" class="btn btn-default btn-lg button" >회원삭제</button>
+<label>원하시는 회원을 선택 해주세요</label>
+<%--  <a href="${pageContext.request.contextPath}/home.do" class="btn btn-default btn-lg button">시작화면</a>  --%>
 </div>
 <br>
 </div>
