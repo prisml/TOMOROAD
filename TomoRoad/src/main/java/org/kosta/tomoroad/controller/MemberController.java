@@ -126,7 +126,7 @@ public class MemberController {
 			return "member/noauth_findid_result.tiles";
 		}
 	} 
-	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public ModelAndView findId(MemberVO memberVO) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
@@ -134,7 +134,7 @@ public class MemberController {
 		else {                   
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
-	} 
+	} */
 	@RequestMapping("member/noauth_findpw2.do")
 	public String checkId(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
