@@ -115,7 +115,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
-	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public String findId(MemberVO memberVO, HttpServletRequest request) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
@@ -125,8 +125,8 @@ public class MemberController {
 			session.setAttribute("mvo", vo);
 			return "member/noauth_findid_result.tiles";
 		}
-	} 
-/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
+	} */
+	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public ModelAndView findId(MemberVO memberVO) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
@@ -134,7 +134,7 @@ public class MemberController {
 		else {                   
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
-	} */
+	} 
 	@RequestMapping("member/noauth_findpw2.do")
 	public String checkId(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
