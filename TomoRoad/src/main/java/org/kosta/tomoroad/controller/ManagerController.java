@@ -83,23 +83,25 @@ public class ManagerController {
 
 	@RequestMapping(value = "updateStation.do", method = RequestMethod.POST)
 	public ModelAndView updateStation(MultipartFile uploadfile,StationVO vo) {
-		if(uploadfile.getOriginalFilename().isEmpty()){
-			StationVO svo = managerService.getStationListManager(vo.getName());
-			vo.setImg(svo.getImg());
-			System.out.println(vo);
+		if(uploadfile.getOriginalFilename().isEmpty()){ //업로드된 파일이 없을시
+			//getOriginalFilename()업로드된 파일명을 반환하며 파일 중복을 피하기 위한 변경전의 이름이다
+			StationVO svo = managerService.getStationListManager(vo.getName()); //역정보 이름으로 반환하기 위해서
+			vo.setImg(svo.getImg()); //역정보의 이미지를 저장한다
 		}else{
 			String fileName = uploadfile.getOriginalFilename();
+			//업로드할 파일의 확장자를 알기 위해서 subString을 사용
 			String m = fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
 			String uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\images\\symbol\\";
 			File file = new File(uploadPath+vo.getName()+m);
 			try {
+				//위에 경로로 업로드를 한다
 				uploadfile.transferTo(file);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			vo.setImg(vo.getName()+m);
+			vo.setImg(vo.getName()+m); //이미지저장시에 확장자 포함
 		}
 		managerService.updateStation(vo);
 		return new ModelAndView("redirect:getMemberList.do");

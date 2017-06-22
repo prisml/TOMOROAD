@@ -8,7 +8,7 @@
                 <br>
                 <br>
 	<fieldset>
-	<legend > 비밀번호찾기 </legend>
+	<legend > 비밀번호 찾기 </legend>
 	<ul id="findID">
 	<br>
 	<li>정확한 정보를 입력 해주세요</li>
