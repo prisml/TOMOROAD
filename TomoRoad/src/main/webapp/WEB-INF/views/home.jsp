@@ -11,7 +11,7 @@ var infoList= new Array(${size});
 var windowNames = new Array(${size});
 var icons = [];
 var names = [];
-
+var zindex = 0;
 function buttonClick(id,marker,windowName){
 	$(document).on("click","#"+id,function(){
 		$.ajax({
@@ -45,15 +45,19 @@ function initMap() {
 	  	<c:forEach items = "${station}" var = "station" varStatus="status">
 		if(${station.member_id==null}){
 		 	icons[${status.index}] = "resources/img/marker/marker.png";
+		 	zindex=100;
 		}else{
 			icons[${status.index}] = "resources/img/marker/visited.png";
+			zindex=1000;
+			
 		}
 	  	markers[${status.index}] = new google.maps.Marker({
 			map: map,
 			animation: google.maps.Animation.DROP,
 			position: {lat: ${station.lat},lng: ${station.lng}},
 			title: "${station.name}",
-			icon : icons[${status.index}]
+			icon : icons[${status.index}],
+			zIndex:zindex
 		}); 
 		google.maps.event.addListener(markers[${status.index}],'click',function(){
 			for(var z=0;z<windowNames.length;z++){
@@ -68,22 +72,27 @@ function initMap() {
 				data: "lat=${station.lat}&lng=${station.lng}&id=${mvo.id}&name=${station.name}",
 				success:function(data){
 					infoList[${status.index}] += '<div>';
-					infoList[${status.index}] += '<div id="siteNotice"></div>'
+					infoList[${status.index}] += '<div id="siteNotice"></div>';
+					infoList[${status.index}] += '<div class="iw-title">${station.name}</div>';
 					if(data.cityurl=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
-					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
+					infoList[${status.index}] +=''+'This area does not provide weather information.';			
 					}else{//if
-					infoList[${status.index}] +='<h1>${station.name}<img src="'+data.cityurl+'">'+'</h1>';			
+					infoList[${status.index}] +='<div>'
+					infoList[${status.index}] +='<img src="'+data.cityurl+'">';
+					infoList[${status.index}] +='</div>'
 					}//else
 					infoList[${status.index}] +='<div>';
 					infoList[${status.index}] +='<br>';
+					infoList[${status.index}] +='<div>';
 			     	if("${mvo.id}"==""){//if
 			     	}else{
-				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보 보러가기</a><br>';
-				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
+				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보</a><br>';
+				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>번개시판</a><br>';
 			  		if(data.result!=0){
-			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}"+'>버킷리스트 보러가기</a><br>';
-			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷리스트에서 삭제하기</a><br>';//버튼으로 수정하자 이거는.
+			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷에서 삭제</a><br>';//버튼으로 수정하자 이거는.
+			     	infoList[${status.index}] +='</div>';
 			  		}else{
+					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
 			  		}
 			     	}//else
@@ -91,16 +100,47 @@ function initMap() {
 					infoList[${status.index}] +='</div>';
 					windowNames[${status.index}] = new google.maps.InfoWindow({
 			       	content: infoList[${status.index}],
-			       	maxWidth:200
+			       	maxWidth:400
 					});//windowNames
 					//windowNames.close();
+					google.maps.event.addListener(windowNames[${status.index}], 'domready', function() {
+						// Reference to the DIV which receives the contents of the infowindow using jQuery
+						var iwOuter = $('.gm-style-iw');
+						/* The DIV we want to change is above the .gm-style-iw DIV.
+						* So, we use jQuery and create a iwBackground variable,
+						* and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+						*/
+						var iwBackground = iwOuter.prev();
+						// Remove the background shadow DIV
+						iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+						// Remove the white background DIV
+						iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+						// Moves the arrow 76px to the left margin 
+						iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+						var iwCloseBtn = iwOuter.next();
+
+						// Apply the desired effect to the close button
+						iwCloseBtn.css({
+						  opacity: '1', // by default the close button has an opacity of 0.7
+						  right: '38px', top: '3px', // button repositioning
+						  border: '7px solid #48b5e9', // increasing button border and new color
+						  'border-radius': '13px', // circular effect
+						  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+						  });
+
+						// The API automatically applies 0.7 opacity to the button after the mouseout event.
+						// This function reverses this event to the desired value.
+						iwCloseBtn.mouseout(function(){
+						  $(this).css({opacity: '1'});
+						});
+					});
+					
 					windowNames[${status.index}].open(map,markers[${status.index}]);				
 				    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);
 				}//success
 			});//ajax
 				
 		});//marker click
-		
 		//doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
 	    </c:forEach>
 			

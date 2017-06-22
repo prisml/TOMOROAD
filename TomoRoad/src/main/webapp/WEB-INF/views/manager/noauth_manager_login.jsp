@@ -7,8 +7,7 @@
 $(document).ready(function(){
     $("#memberButton").click(function(){
         $("#listMember").animate({
-            height: 'toggle'
-            	
+            height: 'toggle'           	
         });
     });	
 });
@@ -17,7 +16,7 @@ $(document).ready(function(){
     <div class="col-lg-12 col-sm-12"> 
 	
 		        <div class="dividerHeading">
-            <h4><span>안녕 관리자님</span></h4>
+            <h4><span>관리자님 로그인</span></h4>
         </div>
          <br>
         <button id="memberButton" class="btn btn-default btn-lg button" >로그인</button> 

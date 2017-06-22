@@ -12,6 +12,7 @@ import org.kosta.tomoroad.model.service.ManagerService;
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.StationVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ public class ManagerController {
 	public String managerLogin(ManagerVO managerVO, HttpServletRequest request, HttpSession session,Model model) {
 		ManagerVO vo = managerService.managerLogin(managerVO);
 		if (vo == null)
-			return "member/noauth_login_fail";
+			return "member/noauth_fail";
 		else {
 			session.setAttribute("manager", vo);
 		return "redirect:getMemberList.do";
@@ -47,13 +48,14 @@ public class ManagerController {
 	public String getMemberList(Model model){
 		model.addAttribute("list", managerService.getMemberList());
 		model.addAttribute("station", managerService.getStationNameListManager());
+		model.addAttribute("placeList", managerService.getPlaceList());
 		return "manager/manager.tiles";
 	}
 	
 	@RequestMapping("updateMemberByManagerForm.do")
 	public ModelAndView updateMemberByManagerForm(String id) {
 		MemberVO vo =managerService.getIdFromMember(id);
-		return new ModelAndView("manager/update_member_manager.tiles","mmvo",vo);
+		return new ModelAndView("manager/manager_member_form.tiles","mmvo",vo);
 	}
 	@RequestMapping("updateMemberByManager.do")
 	public ModelAndView updateMemberByManager(MemberVO vo) {
@@ -63,27 +65,19 @@ public class ManagerController {
 	
 	@RequestMapping("deleteMemberByManager.do")
 	public String deleteMemberByManager(String id) {
-		/*System.out.println(id);*/
 		managerService.deleteMemberByManager(id);
 		return "redirect:manager/manager_delete_result.do";
-	}
-	
-	@RequestMapping("update_member_manager.do")
-	public String update_member_manager() {
-		return "update_member_manager.tiles";
 	}
 	  
 	@RequestMapping("getStationListManager.do")
 	public String getStationListManager(String name,Model model){
 		model.addAttribute("station", managerService.getStationListManager(name));
-		//System.out.println(managerService.getStationListManager(name));
 		return "manager/manager_station_form.tiles";
 	}
 	
 	@RequestMapping("getStationNameListManager.do")
 	public String getStationNameListManager(Model model){
 		model.addAttribute("station", managerService.getStationNameListManager());
-		//System.out.println(managerService.getStationNameListManager());
 		return "manager/manager.tiles";
 	}
 
@@ -110,4 +104,31 @@ public class ManagerController {
 		managerService.updateStation(vo);
 		return new ModelAndView("redirect:getMemberList.do");
 	}
+	@RequestMapping("updatePlaceManagerForm.do")
+	public String updatePlaceManagerForm(int no, Model model) {
+		model.addAttribute("station",managerService.getStationNameListManager());
+		model.addAttribute("place",managerService.getNoFromPlace(no));
+		return "manager/manager_place_form.tiles";
+	}
+	@RequestMapping("updatePlaceMember.do")
+	public ModelAndView updatePlaceMember(PlaceVO vo) {
+		managerService.updatePlaceMember(vo);
+		return new ModelAndView("redirect:getMemberList.do");
+	}
+	@RequestMapping("insertPlaceManagerForm.do")
+	public String insertPlaceManagerForm(Model model) {
+		model.addAttribute("station",managerService.getStationNameListManager());
+		return "manager/manager_register_place_form.tiles";
+	}
+	@RequestMapping("insertPlaceManager.do")
+	public ModelAndView insertPlaceManager(PlaceVO vo) {
+		managerService.insertPlaceManager(vo);
+		return new ModelAndView("redirect:getMemberList.do");
+	}
+	@RequestMapping("deletePlaceManager.do")
+	public String deletePlaceManager(int no) {
+		managerService.deletePlaceManager(no);
+		return "redirect:manager/manager_delete_result.do";
+	}
+	
 }

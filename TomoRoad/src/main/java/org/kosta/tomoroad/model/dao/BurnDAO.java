@@ -5,6 +5,7 @@ import java.util.List;
 import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
+import org.kosta.tomoroad.model.vo.MessageVO;
 
 public interface BurnDAO {
 
@@ -43,10 +44,12 @@ public interface BurnDAO {
 
 	int isNewMsg(String receiver);
 
-	List<String> findId(String id);
+	List<String> findId(String id, String searcher);
 
 	Object getMessageList(String sender, String receiver);
 
 	void sendMessage(String sender, String receiver, String text);
+
+	List<MessageVO> getFilteredMessage(String id);
 
 }

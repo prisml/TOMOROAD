@@ -9,16 +9,14 @@ var input = "";
 		 if (e.which !== 0) {
 		        input += String.fromCharCode(e.which);
 		        if(key.length == input.length && key == input)
-		        	location.href="/tomoroad/member/noauth_manager_login.do"; 
+		        	location.href="/tomoroad/manager/noauth_manager_login.do"; 
 		          else if(key.length == input.length && key != input)
-		        	key = "";   
-		        
+		        	key = "";   	        
 		    }
 	  });
 	  $(document).ready(function(){
 		  $(".form-control").keypress(function(){
-			  input="";
-			  
+			  input="";			  
 		  });
 	  });
 </script>
@@ -49,7 +47,7 @@ var input = "";
 	
                 
         <div class="dividerHeading">
-            <h4><span>로그인 해주세요</span></h4>
+            <h4><span>로그인</span></h4>
         </div>
         
 
