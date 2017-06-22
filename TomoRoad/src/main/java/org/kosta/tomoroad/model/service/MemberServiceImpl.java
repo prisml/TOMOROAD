@@ -128,8 +128,8 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.profileReset(profileInfo);
 	}
 	@Override
-	public void findPw2(MemberVO vo) {
-		memberDAO.findPw2(vo);	
+	public void updatePw(MemberVO vo) {
+		memberDAO.updatePw(vo);	
 		
 	}
 	@Override

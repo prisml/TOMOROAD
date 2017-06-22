@@ -119,46 +119,40 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
-/*	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
-	public String findId(MemberVO memberVO, HttpServletRequest request) {
-		MemberVO vo = memberService.findId(memberVO);
-		if (vo == null)
-			return "member/noauth_findid_fail";
-		else {
-			HttpSession session = request.getSession();
-			session.setAttribute("mvo", vo);
-			return "member/noauth_findid_result.tiles";
-		}
-	} */
 	@RequestMapping(value = "noauth_findId.do", method = RequestMethod.POST)
 	public ModelAndView findId(MemberVO memberVO) {
 		MemberVO vo = memberService.findId(memberVO);
 		if (vo == null)
-			return new ModelAndView("member/noauth_findid_fail");
+			return new ModelAndView("member/noauth_fail");
 		else {                   
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
 	} 
-	@RequestMapping("member/noauth_findpw2.do")
-	public String checkId(MemberVO vo,Model model){
+/*	@RequestMapping("member/noauth_findPw.do")
+	public String findPw(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
 		if (id.equals("")) 	
-			return "member/noauth_findpw_fail";
+			return "member/noauth_fail";
 		else {
 			model.addAttribute("mmvo",vo.getId());
-			return "member/noauth_findpw2.tiles";
+			return "member/noauth_updatepw.tiles";
+		}
+	}*/
+	@RequestMapping("member/noauth_findPw.do")
+	public String findPw(MemberVO vo,Model model){
+		String id = memberService.findPw(vo);
+		if (id != null) 	{
+			model.addAttribute("mmvo",vo.getId());
+		    return "member/noauth_updatepw.tiles";		
+		} else {
+			return "member/noauth_fail";
 		}
 	}
 	@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
-	public ModelAndView findPw(MemberVO vo) {
-		memberService.findPw2(vo);
-		return new ModelAndView("redirect:member/noauth_findpw2_result.do");
+	public ModelAndView updatePw(MemberVO vo) {
+		memberService.updatePw(vo);
+		return new ModelAndView("redirect:member/noauth_updatepw_result.do");
 	}
-/*	@RequestMapping(value = "noauth_updatePw.do", method = RequestMethod.POST)
-	public ModelAndView findPw(MemberVO vo) {
-		memberService.findPw2(vo);
-		return ModelAndView ("member/noauth_findpw2_result.tiles";)
-	}*/
 
 	@RequestMapping("friend_Request.do")
 	public String friend_Request(String senderId, String receiverId) {

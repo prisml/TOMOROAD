@@ -37,7 +37,7 @@ public class ManagerController {
 	public String managerLogin(ManagerVO managerVO, HttpServletRequest request, HttpSession session,Model model) {
 		ManagerVO vo = managerService.managerLogin(managerVO);
 		if (vo == null)
-			return "member/noauth_login_fail";
+			return "member/noauth_fail";
 		else {
 			session.setAttribute("manager", vo);
 		return "redirect:getMemberList.do";

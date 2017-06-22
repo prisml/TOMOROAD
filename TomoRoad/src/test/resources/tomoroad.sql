@@ -111,8 +111,8 @@ create table review(
 	star number not null,
 	place_no number not null,
 	member_id varchar2(100) not null,
-	constraint fk_place_no foreign key(place_no) references place(no),
-	constraint fk_member_id foreign key(member_id) references member(id)
+	constraint fk_place_no foreign key(place_no) references place(no) ON DELETE CASCADE,
+	constraint fk_member_id foreign key(member_id) references member(id) ON DELETE CASCADE
 );
 --추가해주세엿. 리뷰에 등록된 이미지 개수입니다
 alter table review add(img_count number(38) default 0);  
@@ -127,7 +127,7 @@ create table review_comment(
 	review_no number, 
 	member_id varchar2(100) not null,
 	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
-	constraint fk_review_comment_member_id foreign key(member_id) references member(id),
+	constraint fk_review_comment_member_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	state varchar2(100) default 'comment' not null
 );
 create sequence review_comment_seq nocache;
@@ -149,14 +149,14 @@ create table burn_board(
 	member_id varchar2(100) not null,
 	hits number default 0,	 
 	constraint fk_burn_station_name foreign key(station_name) references station(name),
-	constraint fk_burn_board_id foreign key(member_id) references member(id)	
+	constraint fk_burn_board_id foreign key(member_id) references member(id)	 ON DELETE CASCADE
 ); 
 
 create table review_recommend(
 	member_id varchar2(100),
 	review_no number,
 	primary key(member_id, review_no),
-	constraint fk_reivew_recommend_id foreign key(member_id) references member(id),
+	constraint fk_reivew_recommend_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
 );
 
@@ -171,7 +171,7 @@ create table burn_comment(
 	member_id varchar2(100) not null,
 	state varchar2(100) default 'comment',
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
-	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
+	constraint fk_burn_comment_id foreign key(member_id) references member(id)	 ON DELETE CASCADE
 );
 create sequence burn_comment_seq nocache;
 
@@ -186,8 +186,8 @@ create table friend(
 	receiver_id varchar2(100) not null,
 	state varchar2(100) not null,
 	put_date date not null,
-	constraint fk_sender_id foreign key(sender_id) references member(id),
-	constraint fk_receiver_id foreign key(receiver_id) references member(id),
+	constraint fk_sender_id foreign key(sender_id) references member(id) ON DELETE CASCADE,
+	constraint fk_receiver_id foreign key(receiver_id) references member(id) ON DELETE CASCADE,
 	primary key(sender_id,receiver_id)
 );
 
@@ -195,16 +195,16 @@ create table interested_place(
 	member_id varchar2(100),
 	place_no number,
 	primary key(member_id, place_no),
-	constraint fk_interested_id foreign key(member_id) references member(id),
-	constraint fk_interested_no foreign key(place_no) references place(no)	
+	constraint fk_interested_id foreign key(member_id) references member(id) ON DELETE CASCADE,
+	constraint fk_interested_no foreign key(place_no) references place(no)	 ON DELETE CASCADE
 );
 
 create table check_in(
 	member_id varchar2(100),
 	place_no number,
 	primary key(member_id, place_no),
-	constraint fk_check_id foreign key(member_id) references member(id),
-	constraint fk_check_no foreign key(place_no) references place(no)	
+	constraint fk_check_id foreign key(member_id) references member(id) ON DELETE CASCADE,
+	constraint fk_check_no foreign key(place_no) references place(no) ON DELETE CASCADE	
 );
 
 create table station_connect(
@@ -228,14 +228,14 @@ create table bucket(
 	id varchar2(100),
 	name varchar2(100),
 	primary key(id,name),
-	constraint fk_bucket_id foreign key(id) references member(id),
+	constraint fk_bucket_id foreign key(id) references member(id) ON DELETE CASCADE,
 	constraint fk_bucket_name foreign key(name) references station(name)
 );
 create table travel(
  	id varchar2(100),
  	route varchar2(100),
 	flag varchar2(100) not null ,
- 	constraint fk_travel_id foreign key(id) references member(id),
+ 	constraint fk_travel_id foreign key(id) references member(id) ON DELETE CASCADE,
  	primary key (id,route)
 );
 --------------------------------------------------연습장-------------------------------------------------

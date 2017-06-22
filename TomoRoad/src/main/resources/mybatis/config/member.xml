@@ -27,12 +27,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMember">
 		delete from member where id=#{id}	
 	</delete>
-<!-- 	<update id="deleteMember">
-		delete from member where id=#{id}	
-	</update>
-	<update id="deleteMember">
-		drop from member where id=#{id} cascade	
-	</update> -->
 	<select id="idcheck" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
@@ -44,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from member
 		where id=#{id} and name=#{name} and tel=#{tel}
 	</select>
-    <update id="findPw2" parameterType="memberVO">
+    <update id="updatePw" parameterType="memberVO">
         update member set
 		password=#{password}
 		where id=#{id}		
