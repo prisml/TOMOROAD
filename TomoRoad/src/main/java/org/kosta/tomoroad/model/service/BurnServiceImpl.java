@@ -1,5 +1,8 @@
 package org.kosta.tomoroad.model.service;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +12,7 @@ import org.kosta.tomoroad.model.utils.PagingBean;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
+import org.kosta.tomoroad.model.vo.MessageVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -128,8 +132,8 @@ public class BurnServiceImpl implements BurnService {
 	}
 
 	@Override
-	public List<String> findId(String id) {
-		return burnDAO.findId(id);
+	public List<String> findId(String id, String searcher) {
+		return burnDAO.findId(id, searcher);
 	}
 
 	@Override
@@ -143,4 +147,33 @@ public class BurnServiceImpl implements BurnService {
 		return burnDAO.getMessageList(sender, receiver);
 	}
 
+	@Override
+	public List<MessageVO> getFilteredMessage(String id) {
+		HashMap<String, MessageVO> map = new HashMap<String, MessageVO>();
+		List<MessageVO> list = burnDAO.getFilteredMessage(id);
+		for(MessageVO mvo : list){
+			if((mvo.getSender()).equals(id)){
+				mvo.setSender(mvo.getReceiver());
+				mvo.setReceiver(id);				
+			}
+			if(map.containsKey(mvo.getSender())==false){
+				map.put(mvo.getSender(), mvo);
+			}		 
+		}
+		
+		System.out.println(map);
+		list.clear();
+		Iterator<MessageVO> it = map.values().iterator();
+		while(it.hasNext()){
+			list.add(it.next());
+		}
+		
+		System.out.println(list);		
+		
+		return list;
+		
+	}
+
 }
+
+

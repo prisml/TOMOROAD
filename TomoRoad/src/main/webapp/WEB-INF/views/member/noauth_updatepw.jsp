@@ -64,7 +64,7 @@
  } */
  </script>
 <div >	
-	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_updatePw.do" onSubmit="return idSearch()" >
+	<form name="formFindid" method="post" action="${pageContext.request.contextPath}/noauth_updatePw.do" onsubmit="return samePw()" >
 	                <br>
                 <br>
                 <br>

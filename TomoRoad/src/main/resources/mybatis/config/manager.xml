@@ -27,7 +27,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id, password, name, sex, tel from member
 		where id=#{id}
 	</select>
-	
 	<select id="getStationListManager" resultType="stationVO" parameterType="string">
 		select name,simple_detail as simpleDetail,detail,section,img,lat,lng from station
 		where name=#{value}
@@ -37,10 +36,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		simple_detail=#{simpleDetail}, detail=#{detail}, section=#{section}, img=#{img}, lat=#{lat}, lng=#{lng}
 		where name=#{name}		
 	</update>
-	
 		<select id="getStationNameListManager" resultType="stationVO">
-		select name from station order by name asc
+		select name from station order by name ASC
+		</select>
+		<select id="getPlaceList" resultType="placeVO">
+		select no,name,station_name,area from place order by no ASC
+		</select>
+		<select id="getNoFromPlace" resultType="placeVO">
+		select no,name,station_name,area from place
+		where no=#{no}
 	</select>
+	    <update id="updatePlaceMember" parameterType="placeVO">
+        update place set
+		name=#{name}, station_name=#{station_name}, area=#{area}
+		where no=#{no}		
+	</update>
+		<insert id="insertPlaceManager" parameterType="placeVO">
+		insert into place(no,name,station_name,area)
+		values(place_seq.nextval,#{name},#{station_name},#{area})
+	</insert>
+		<delete id="deletePlaceManager">
+		delete from place where no=#{no}	
+	</delete>
 </mapper>
 
 
