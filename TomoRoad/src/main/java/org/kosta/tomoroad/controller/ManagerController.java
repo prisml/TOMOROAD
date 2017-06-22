@@ -65,7 +65,6 @@ public class ManagerController {
 	
 	@RequestMapping("deleteMemberByManager.do")
 	public String deleteMemberByManager(String id) {
-		/*System.out.println(id);*/
 		managerService.deleteMemberByManager(id);
 		return "redirect:manager/manager_delete_result.do";
 	}
@@ -73,14 +72,12 @@ public class ManagerController {
 	@RequestMapping("getStationListManager.do")
 	public String getStationListManager(String name,Model model){
 		model.addAttribute("station", managerService.getStationListManager(name));
-		//System.out.println(managerService.getStationListManager(name));
 		return "manager/manager_station_form.tiles";
 	}
 	
 	@RequestMapping("getStationNameListManager.do")
 	public String getStationNameListManager(Model model){
 		model.addAttribute("station", managerService.getStationNameListManager());
-		//System.out.println(managerService.getStationNameListManager());
 		return "manager/manager.tiles";
 	}
 

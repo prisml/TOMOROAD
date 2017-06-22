@@ -47,7 +47,7 @@ var input = "";
 	
                 
         <div class="dividerHeading">
-            <h4><span>로그인 해주세요</span></h4>
+            <h4><span>로그인</span></h4>
         </div>
         
 

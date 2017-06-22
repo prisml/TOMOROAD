@@ -393,14 +393,4 @@ public class MemberController {
 			return "mypage/travelRoute.tiles";
 	   }
 	   
-/*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")
-		public String managerLogin(ManagerVO managerVO, HttpSession session) {
-			ManagerVO vo = memberService.managerLogin(managerVO);
-			if (vo == null)
-				return "member/noauth_login_fail";
-			else {
-				session.setAttribute("manager", vo);
-			return "redirect:manager.tiles";
-		}
-}*/
 }
