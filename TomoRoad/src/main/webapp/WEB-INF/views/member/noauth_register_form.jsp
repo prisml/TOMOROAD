@@ -29,7 +29,7 @@
 	} else if(isNaN($("#tel").val())){
 		alert("연락처에 숫자를 입력해주세요!");
 	return false;
-	} else if($("#password").val().length < 5){
+	} else if($("#password").val().length < 4){
 		alert("4자 이상 입력해주세요!");
 		return false;
 		}else if($("#id").val().trim().length == 0){
