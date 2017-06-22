@@ -112,9 +112,9 @@ public class ManagerController {
 		model.addAttribute("place",managerService.getNoFromPlace(no));
 		return "manager/manager_place_form.tiles";
 	}
-	@RequestMapping("updatePlaceMember.do")
-	public ModelAndView updatePlaceMember(PlaceVO vo) {
-		managerService.updatePlaceMember(vo);
+	@RequestMapping("updatePlaceManager.do")
+	public ModelAndView updatePlaceManager(PlaceVO vo) {
+		managerService.updatePlaceManager(vo);
 		return new ModelAndView("redirect:getMemberList.do");
 	}
 	@RequestMapping("insertPlaceManagerForm.do")

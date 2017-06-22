@@ -7,7 +7,7 @@
             <h4><span>수정 해주세요</span></h4>
         </div>
 
-	 <form method="post" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/updatePlaceMember.do" id="registerForm">
+	 <form method="post" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/updatePlaceManager.do" id="registerForm">
 	 <div class="comment_form">
     	 <div class="row">
 <!--     	     <div class="col-sm-4">
@@ -15,7 +15,7 @@
              </div>  	 -->
     <div id="listStation" class="col-sm-4" >
     <select class="col-sm-4 form-control" name="station_name" id="st" required="required" >
-	<option value="all">전체보기</option>
+	<option value="all" required="required">전체보기</option>
 	<c:forEach items="${station}" var="sname">
 	<option value="${sname.name}">${sname.name}</option>
 	</c:forEach>

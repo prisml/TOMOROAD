@@ -30,7 +30,7 @@ public interface ManagerDAO {
 
 	PlaceVO getNoFromPlace(int no);
 
-	void updatePlaceMember(PlaceVO vo);
+	void updatePlaceManager(PlaceVO vo);
 
 	void insertPlaceManager(PlaceVO vo);
 
