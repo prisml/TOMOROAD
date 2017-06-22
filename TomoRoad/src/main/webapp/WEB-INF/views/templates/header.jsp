@@ -96,9 +96,18 @@ $(document).ready(function(){
 				href="${pageContext.request.contextPath}/review/noauth_showList.do">
 					REVIEW </a></li>
 
-			<li><a
-				href="${pageContext.request.contextPath}/mypage/mypage.do">
-					MYPAGE </a></li>
+			<li>
+			<c:choose>
+				<c:when test="${sessionScope.mvo != null }">
+					<a href="${pageContext.request.contextPath}/mypage/mypage.do">
+					MYPAGE </a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/getMemberList.do">
+					MYPAGE </a>
+				</c:otherwise>
+			</c:choose>
+			</li>
 
 			<li><a
 				href="${pageContext.request.contextPath}/station/getTourInfoData.do">
