@@ -10,6 +10,7 @@
 	var infoList= [];
 	var windowNames = [];
 	var icons = [];
+	var zindex=0;
  	$(document).ready(function(){
  		function doInfo(marker, windowName,windowNames) {
 	        google.maps.event.addListener(marker, 'click', function() {
@@ -20,23 +21,28 @@
 	        });
 	    }
  		<c:forEach items="${station}" var = "waypoint" varStatus="index">
- 			station.push("${waypoint}");//경유역
+ 			station.push("${waypoint}");//경유역	
  		</c:forEach>
  		<c:forEach items="${names}" var = "list" varStatus="status">
  		names.push("${list.name}");
 		if("${param.depart}" == "${list.name}" && "${param.destination}" == "${list.name}"){
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/startend.png";
+			zindex=1000;
 		}else if("${param.destination}" == "${list.name}"){
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/destination.png";			
+			zindex=1000;
 		}else if("${param.depart}"=="${list.name}"){
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/start.png";
+			zindex=1000;
 		}else{
 			for(var s=0;s<station.length;s++){
 				if("${list.name}"==station[s]){
 					icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/waypoint.png";
+					zindex=1000;
 					break;
 				}else{
 					icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/marker.png";
+					zindex=100;
 				}					
 			}
 		}
@@ -45,7 +51,8 @@
 						animation: google.maps.Animation.DROP,
 						position: {lat: ${list.lat},lng: ${list.lng}},
 						title: "${list.name}",
-						icon: icons[${status.index}]
+						icon: icons[${status.index}],
+						zIndex:zindex
 					});
 					infoList[${status.index}] += '<div>';
 					infoList[${status.index}] += '<div id="siteNotice"></div>'
@@ -73,7 +80,7 @@
 /*  alert("${param.destination}");
  alert("${param.depart}");
  alert("${param.station}"); */
- 	$("#result").html("<h1>추천경로:"+names+"</h1>")
+ 	$("#result").html("<h4>추천경로:"+names+"</h4>")
  }); 
 $(document).on('click',"#travel",function(){
 	if(confirm("이 경로로 여행을 시작하시겠습니까?")==true){
