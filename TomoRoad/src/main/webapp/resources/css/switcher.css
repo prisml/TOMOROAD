@@ -1,4 +1,24 @@
 /* Main Style */
+/*
+map css입니다.*/
+.iw-title {
+	width:300px;
+   font-weight: 400;
+   background-color: #48b5e9;
+   color: white;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+}
+.gm-style-iw {
+   width: 300px !important;
+   top: 15px !important; 
+   left: 0 !important;
+   background-color: #fff;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   border: 1px solid rgba(72, 181, 233, 0.6);
+   border-radius: 2px 2px 0 0;
+}
+/*map css끝입니다.*/
 .switcher h3 {
 	font-size:13px;
 	margin: 1px 0 3px 0;

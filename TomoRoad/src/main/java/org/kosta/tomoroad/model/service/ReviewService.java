@@ -35,7 +35,7 @@ public interface ReviewService {
 	
 	int getRecommendByNo(int review_no);
 
-	Map<String, Object> getUpdateDetail(String no, String name);
+	Map<String, Object> getUpdateDetail(String no);
 
 	Map<String, Object> getDetail(String no);
 
