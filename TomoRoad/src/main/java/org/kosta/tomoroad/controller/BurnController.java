@@ -3,11 +3,13 @@ package org.kosta.tomoroad.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
+import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.MessageVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,7 @@ public class BurnController {
 	private BurnService burnService;
 	
 	@RequestMapping("getBurnList.do")
-	public String getBurnList(String pageNo, Model model, HttpServletRequest request){
+	public String getBurnList(String pageNo, Model model, HttpSession session){		
 		model.addAttribute("station", burnService.getStationNameList());
 		model.addAttribute("lvo",burnService.getBurnList(pageNo));		
 		return "burn/burnlist.tiles";			
@@ -159,7 +161,14 @@ public class BurnController {
 	@ResponseBody
 	public Object getFilteredMessage(String id){
 		return burnService.getFilteredMessage(id);
-	}	
+	}
+	
+	@RequestMapping("getUncheckedMessageCount.do")
+	@ResponseBody
+	public List<MessageVO> getUncheckedMessageCount(String receiver){
+		return burnService.getUncheckedMessageCount(receiver);
+	}
+	
 }
 
 

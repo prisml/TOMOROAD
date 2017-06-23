@@ -126,15 +126,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(message_sequence.nextval,#{sender},#{receiver},sysdate,#{text},1)
 	</insert>
 		
-	<update id="updateCheck">
-		update message set m_checked = 0 where m_no = #{value}
+	<update id="updateCheck" parameterType="map">
+		update message set m_checked = 0 where m_checked=1 and m_sender=#{receiver} and m_receiver=#{sender}
 	</update>
 	
 	<select id="getFilteredMessage" resultMap="messageRM" resultType="messageVO">
 		select m_no,m_sender,m_receiver,m_time,m_content,m_checked from message 
 		where m_sender =#{value} or m_receiver = #{value} order by m_time desc
 	</select>
-
+	
+	<select id="getMessageListUnchecked" resultMap="messageRM" resultType="messageVO">
+		select * from message where m_sender in(#{sender},#{receiver}) and m_receiver in (#{sender},#{receiver}) and m_checked=1 order by m_time desc
+	</select>
+	
+	<select id="getUncheckedMessageCount" resultMap="messageRM" resultType="messageVO">
+		select m_sender, count(*) as m_checked from message where m_receiver = #{value} and m_checked = 1 group by m_sender
+	</select>
 
 </mapper>
 

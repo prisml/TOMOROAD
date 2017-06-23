@@ -134,6 +134,27 @@ public class BurnDAOImpl implements BurnDAO{
 	public List<MessageVO> getFilteredMessage(String id) {		
 		return template.selectList("burn.getFilteredMessage",id);
 	}
+
+	@Override
+	public void updateCheck(String sender, String receiver) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("sender", sender);
+		map.put("receiver", receiver);
+		template.update("burn.updateCheck",map);
+	}
+	
+	@Override
+	public List<MessageVO> getMessageListUnchecked(String sender, String receiver) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("sender", sender);
+		map.put("receiver", receiver);
+		return template.selectList("burn.getMessageListUnchecked",map);
+	}
+
+	@Override
+	public List<MessageVO> getUncheckedMessageCount(String receiver) {
+		return template.selectList("burn.getUncheckedMessageCount",receiver);
+	} 
 	
 	
 	

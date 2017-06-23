@@ -217,3 +217,24 @@ create table bucket(
 	constraint fk_bucket_id foreign key(id) references member(id) on delete cascade,
 	constraint fk_bucket_name foreign key(name) references station(name) on delete cascade
 );
+
+create table travel(
+ 	id varchar2(100),
+ 	route varchar2(100),
+	flag varchar2(100) not null ,
+ 	constraint fk_travel_id foreign key(id) references member(id) on delete cascade,
+ 	primary key (id,route)
+);
+
+
+create table message(
+	m_no number primary key,
+	m_sender varchar2(100) not null,
+	m_receiver varchar2(100) not null,
+	m_time date not null,
+	m_content clob not null,
+	m_checked number default 1,
+	constraint fk_m_sender foreign key(m_sender) references member(id) ON DELETE CASCADE,
+	constraint fk_m_receiver foreign key(m_receiver) references member(id) ON DELETE CASCADE
+);
+create sequence message_sequence nocache;
