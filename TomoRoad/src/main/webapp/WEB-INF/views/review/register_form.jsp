@@ -117,8 +117,8 @@
 						value="" placeholder="사진등록" type="file">
 				</div>
 				<div class="col-md-2">
-					<input id="addPicture" class="btn btn-default btn-lg"
-					value="사진추가" type="button">
+					<!-- <input id="addPicture" class="btn btn-default btn-lg"
+					value="사진추가" type="button"> -->
 				</div>
 				<div class="col-md-4">
 					<input id="star" name="star" value="5" type="hidden">
