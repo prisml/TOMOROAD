@@ -57,25 +57,7 @@
 
 			<li><a
 				href="${pageContext.request.contextPath}/review/noauth_showList.do">
-<<<<<<< HEAD
 					여행일기 </a></li>
-=======
-					REVIEW </a></li>
-
-			<li>
-			<c:choose>
-				<c:when test="${sessionScope.mvo != null }">
-					<a href="${pageContext.request.contextPath}/mypage/mypage.do">
-					MYPAGE </a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/getMemberList.do">
-					MYPAGE </a>
-				</c:otherwise>
-			</c:choose>
-			</li>
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
-
 			<li><a
 				href="${pageContext.request.contextPath}/station/getTourInfoData.do">
 					여행정보 </a></li>
