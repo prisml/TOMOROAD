@@ -33,6 +33,8 @@ $(document).ready(function(){
 </script>
 </c:if> --%>
 
+
+
 <script type="text/javascript">
 	function reqeustList() {
 		location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
