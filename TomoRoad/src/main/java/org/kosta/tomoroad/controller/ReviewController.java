@@ -92,32 +92,45 @@ public class ReviewController {
 	}
 
 	@RequestMapping("review/update_form.do")
-	public ModelAndView updateForm(String no, String name) {
+	public ModelAndView updateForm(String no) {
 		System.out.println("updateForm no=" + no);
-		System.out.println("rvo=" + service.getDetail(no));
-		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no,name));
+		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
-	public ModelAndView update(List<MultipartFile> files, ReviewVO vo, int placeNo, HttpServletRequest req) {
-		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
-		vo.setPlace(new PlaceVO(placeNo));
+	public ModelAndView update(String no, ReviewUploadVO ruvo, HttpServletRequest req) {
+		System.out.println(ruvo);
+		ReviewVO vo = new ReviewVO();
+		vo.setNo(Integer.parseInt(no));
+		vo.setTitle(ruvo.getTitle());
+		vo.setContent(ruvo.getContent());
+		vo.setStar(ruvo.getStar());
+		MemberVO mvo = (MemberVO) req.getSession().getAttribute("mvo");
+		System.out.println(mvo);
+		vo.setMember(mvo);
+		vo.setPlace(new PlaceVO(ruvo.getPlaceNo()));
 		service.update(vo);
+		List<MultipartFile> files = ruvo.getFiles();
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (int i = 0; i < files.size(); i++) {
 			String fileName = files.get(i).getOriginalFilename();
 			if (fileName.equals("") == false) {
 				try {
-					files.get(i).transferTo(new File(uploadPath + "review" + vo.getNo() + "_" + i));
-					nameList.add("review" + vo.getNo() + "_" + i);
+					File file = new File(uploadPath + "review" + no + "_" + i);
+					if(!file.getParentFile().exists())
+						file.mkdirs();
+					files.get(i).transferTo(file);
+					nameList.add("review" + no + "_" + i);
 					System.out.println("업로드 완료 " + fileName);
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
+		service.updateImgCount(nameList.size(),Integer.parseInt(no));//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
+		System.out.println("총 사진파일 갯수 : "+nameList.size());
+		return new ModelAndView("redirect:noauth_detail.do?no=" + no);
 	}
 
 	@RequestMapping("review/noauth_detail.do")

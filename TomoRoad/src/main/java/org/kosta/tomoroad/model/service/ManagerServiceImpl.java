@@ -63,8 +63,8 @@ public class ManagerServiceImpl implements ManagerService{
 		return managerDAO.getNoFromPlace(no);
 	}
 	@Override
-	public void updatePlaceMember(PlaceVO vo) {
-		managerDAO.updatePlaceMember(vo);	
+	public void updatePlaceManager(PlaceVO vo) {
+		managerDAO.updatePlaceManager(vo);	
 		
 	}
 	@Override
