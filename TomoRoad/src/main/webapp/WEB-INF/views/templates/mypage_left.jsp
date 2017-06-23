@@ -10,9 +10,3 @@
     	<li><a href = "${pageContext.request.contextPath}/mypage/update_form.do"><span style = "font-size:18px">회원수정</span></a></li>
     	<li><a href = "${pageContext.request.contextPath}/deleteMember.do?id=${mvo.id}"><span style = "font-size:18px">회원탈퇴</span></a></li>
     </ul>
-   
-	
-	
-<%--  	
-	    	<li><a href= "${pageContext.request.contextPath}/mypage/showListByMember2.do"><span style = "font-size:22px">작성한 리뷰보기2x</span></a></li>
- --%>
