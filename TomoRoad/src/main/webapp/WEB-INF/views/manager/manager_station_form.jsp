@@ -33,6 +33,7 @@
               <div class="col-sm-4">
                	이미지파일<input type = "file" name = "uploadfile" id = "uploadfile" required="required" >
              </div>
+             <br>
     	     <div class="col-sm-4">
                	 위도<input class="col-lg-4 col-md-4 form-control" name="lat" id="lat" type="text" value="${station.lat}"  readonly="readonly">
              </div>
