@@ -55,8 +55,5 @@ public interface BurnDAO {
 
 	void updateCheck(String sender, String receiver);
 
-	List<MessageVO> getMessageListUnchecked(String sender, String receiver);
-
-	List<MessageVO> getUncheckedMessageCount(String receiver);
 
 }

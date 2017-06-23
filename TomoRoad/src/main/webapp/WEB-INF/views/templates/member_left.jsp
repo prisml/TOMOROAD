@@ -5,6 +5,14 @@
 	function friendRequest(id){
 		location.href = "${pageContext.request.contextPath}/friend_Request.do?senderId=${mvo.id}&receiverId="+id;
 	}
+	
+	$(document).ready(function(){
+		$("#message").click(function(){
+			openNav();
+		});
+	});	
+		
+	
 </script>
 
 <img style="border: 1px solid #dddddd; border-radius: 5px; line-height: 1.428571429; padding: 4px;" width="200" height="200" src = "${memberInfo.profile}"><br>
@@ -30,7 +38,7 @@
 			<i style = "width:165px"class = "fa fa-user-plus">친구신청</i>
 		</button> 
 		<button style = "margin-top: 10px; color:white;" class = "btn btn-warning" >
-			<i style = "width:165px" class = "fa fa-envelope-o">메세지 보내기</i>
+			<i style = "width:165px" class = "fa fa-envelope-o" id="message">메세지 보내기</i>
 		</button>
 	</c:otherwise>
 </c:choose>
