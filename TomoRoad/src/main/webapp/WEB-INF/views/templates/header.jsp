@@ -96,9 +96,18 @@ $(document).ready(function(){
 				href="${pageContext.request.contextPath}/review/noauth_showList.do">
 					REVIEW </a></li>
 
-			<li><a
-				href="${pageContext.request.contextPath}/mypage/mypage.do">
-					MYPAGE </a></li>
+			<li>
+			<c:choose>
+				<c:when test="${sessionScope.mvo != null }">
+					<a href="${pageContext.request.contextPath}/mypage/mypage.do">
+					MYPAGE </a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/getMemberList.do">
+					MYPAGE </a>
+				</c:otherwise>
+			</c:choose>
+			</li>
 
 			<li><a
 				href="${pageContext.request.contextPath}/station/getTourInfoData.do">
@@ -131,7 +140,7 @@ $(document).ready(function(){
 				<li> <span id="requestFriend"><img height=35 width=35
 						src=${pageContext.request.contextPath}/resources/images/99.png></span></li>
 				<div id="bubble"
-					style="position: absolute; top: -25px; left: 1060px;">
+					style="position: absolute; top: -25px; left: 1006px;">
 					<!-- <span id = "requestCount" style = "position: absolute; top:8px; left:13px;">3</span> -->
 					<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>

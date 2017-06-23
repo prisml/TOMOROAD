@@ -128,16 +128,7 @@ public class MemberController {
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
 	} 
-/*	@RequestMapping("member/noauth_findPw.do")
-	public String findPw(MemberVO vo,Model model){
-		String id = memberService.findPw(vo);
-		if (id.equals("")) 	
-			return "member/noauth_fail";
-		else {
-			model.addAttribute("mmvo",vo.getId());
-			return "member/noauth_updatepw.tiles";
-		}
-	}*/
+
 	@RequestMapping("member/noauth_findPw.do")
 	public String findPw(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);
@@ -402,14 +393,4 @@ public class MemberController {
 			return "mypage/travelRoute.tiles";
 	   }
 	   
-/*		@RequestMapping(method = RequestMethod.POST, value = "noauth_managerLogin.do")
-		public String managerLogin(ManagerVO managerVO, HttpSession session) {
-			ManagerVO vo = memberService.managerLogin(managerVO);
-			if (vo == null)
-				return "member/noauth_login_fail";
-			else {
-				session.setAttribute("manager", vo);
-			return "redirect:manager.tiles";
-		}
-}*/
 }

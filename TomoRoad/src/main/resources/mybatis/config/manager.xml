@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select no,name,station_name,area from place
 		where no=#{no}
 	</select>
-	    <update id="updatePlaceMember" parameterType="placeVO">
+	    <update id="updatePlaceManager" parameterType="placeVO">
         update place set
 		name=#{name}, station_name=#{station_name}, area=#{area}
 		where no=#{no}		

@@ -4,12 +4,10 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  <script type="text/javascript">
-
  $(document).ready(function(){
   $('#password').keyup(function(){
    $('font[id=check]').text('');
   }); //#user_pass.keyup
-
   $('#chpass').keyup(function(){
    if($('#password').val()!=$('#chpass').val()){
     $('font[id=check]').text('');
@@ -17,55 +15,40 @@
     return false;
    }else{
     $('font[id=check]').text('');
-    $('font[id=check]').html("비밀번호가 같아요╹◡╹)ﾉ");
+    $('font[id=check]').html("비밀번호가 같아요");
    }
    return true;
   }); //#chpass.keyup
  });
-
  </script>
  <script type="text/javascript">
- function checkPassword(password){
-
-	 var pw = password;
-	 var num = pw.search(/[0-9]/g);
-	 var eng = pw.search(/[a-z]/ig);
-	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-	 if(pw.length < 10 || pw.length > 20){
-	  alert("10자리 ~ 20자리 이내로 입력해주세요.");
-	  return false;
-	 }
-
-	 if(pw.search(/₩s/) != -1){
-	  alert("비밀번호는 공백업이 입력해주세요.");
-	  return false;
-	 }
-
-	 if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
-	  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-	  return false;
-	 }
-
-	 return true;
-	}
-
-	if(!checkPassword( $.trim($('#password').val()))){
-	   $('#password').val('');
-	   $('#password').focus();
-	   return false;
-	}
-	
-	 function checkTel(tel){
-
-		 var pw = tel;
-		 var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		 
-		 if(!regExp.tel( $(#tel).val() ) ){
-		  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
-		  return false;
-		 }
-		 </script>
+ function samePw(){
+	if($("#password").val()!=$("#chpass").val()){
+		alert("비밀번호를 똑같이 해주세요!");
+	return false;
+	} else if(isNaN($("#tel").val())){
+		alert("연락처에 숫자를 입력해주세요!");
+	return false;
+	} else if($("#password").val().length < 4){
+		alert("4자 이상 입력해주세요!");
+		return false;
+		}else if($("#id").val().trim().length == 0){
+		alert("공백은 안됍니다!");
+		return false;
+		} else if($("#password").val().trim().length == 0){
+		alert("공백은 안됍니다!");
+		return false;
+		} else if($("#name").val().trim().length == 0){
+			alert("공백은 안됍니다!");
+			return false;
+			} else if($("#tel").val().trim().length == 0){
+				alert("공백은 안됍니다!");
+				return false;
+				} 
+	return true;
+ }
+ </script>
+ 
   <script type="text/javascript">
  $(document).ready(function(){
 		var checkResultId="";		
@@ -100,16 +83,6 @@
 			});//ajax
 		});//keyup
 	});//ready
- </script>
- 
- <script type="text/javascript">
- function samePw(){
-	if($("#password").val()!=$("#chpass").val()){
-		alert("비밀번호를 똑같이 해주세요!");
-	return false;
-	}
-	return true;
- }
  </script>
  
  <style type="text/css">
@@ -147,7 +120,7 @@
             <div class="input-group">
             <span id="idCheckView"></span>
             <br>
-              <input type="text" class="form-control" name="id"  placeholder="아이디" required="required" autofocus
+              <input type="text" class="form-control" name="id" id="id" placeholder="아이디" required="required" autofocus
               style="width: 250px; height: 50px; margin: 0 auto; align:center; font-size: 16px;">           
             </div>
             
