@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.ManagerVO;
 import org.kosta.tomoroad.model.vo.MemberVO;
+import org.kosta.tomoroad.model.vo.PlaceVO;
 import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -56,5 +57,34 @@ public class ManagerDAOImpl implements ManagerDAO{
 	@Override
 	public List<StationVO> getStationNameListManager() {
 		return template.selectList("manager.getStationNameListManager");
+	}
+
+	@Override
+	public List<PlaceVO> getPlaceList() {
+		return template.selectList("manager.getPlaceList");
+	}
+
+	@Override
+	public PlaceVO getNoFromPlace(int no) {
+		PlaceVO vo = template.selectOne("manager.getNoFromPlace",no);
+		return vo;
+	}
+
+	@Override
+	public void updatePlaceManager(PlaceVO vo) {
+		template.update("manager.updatePlaceMember",vo);	
+		
+	}
+
+	@Override
+	public void insertPlaceManager(PlaceVO vo) {
+		template.insert("manager.insertPlaceManager",vo);
+		
+	}
+
+	@Override
+	public void deletePlaceManager(int no) {
+		template.delete("manager.deletePlaceManager",no);	
+		
 	}
 }

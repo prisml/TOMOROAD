@@ -47,7 +47,7 @@ public interface MemberService {
 	
 	void profileReset(String id,String profileReset);
 
-	void findPw2(MemberVO vo);
+	void updatePw(MemberVO vo);
 
 	MemberVO findMember(MemberVO vo);
 

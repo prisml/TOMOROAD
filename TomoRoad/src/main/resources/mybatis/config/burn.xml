@@ -40,30 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
-	<!-- 댓글 -->
-	<select id="findBurnCommentByNo" resultType="burnCommentVO">		
-		select c.no, c.content, c.posted_time, c.recomment, c.burn_no, c.member_id, c.state, m.profile 
-		from BURN_COMMENT c, member m
-		where c.member_id=m.id and c.burn_no=#{value} order by c.no asc	
-	</select>
-	<select id="findCommentMemberId" resultType="String">
-		select member_id from burn_comment where no=#{value}
-	</select>
-	<insert id="registeComment" parameterType="burnCommentVO">
-		insert into burn_comment (no,content,posted_time,burn_no,member_id) 
-		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{member_id}) 
-	</insert>
-	<insert id="replyComment" parameterType="burnCommentVO">
-		insert into burn_comment (no,content,posted_time,burn_no,recomment,member_id) 
-		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{recomment},#{member_id}) 
-	</insert>
-	<update id="deleteComment" parameterType="burnCommentVO">
-		update burn_comment set state=#{state} where no=#{no} and member_id =#{member_id}
-	</update>
-	<update id="updateComment" parameterType="burnCommentVO">
-		update burn_comment set content=#{content} where no=#{no} and member_id =#{member_id}
-	</update>
-	<!-- 댓글끝 -->
+	
 	<update id="updateBurn" parameterType="burnVO">
 		update burn_board
 		set	title = #{title}, content = #{content}, station_name = #{stationName}
@@ -90,6 +67,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
+	<!-- 댓글 -->
+	<select id="findBurnCommentByNo" resultType="burnCommentVO">		
+		select c.no, c.content, c.posted_time, c.recomment, c.burn_no, c.member_id, c.state, m.profile 
+		from BURN_COMMENT c, member m
+		where c.member_id=m.id and c.burn_no=#{value} order by c.no asc	
+	</select>
+	<select id="findCommentMemberId" resultType="String">
+		select member_id from burn_comment where no=#{value}
+	</select>
+	<insert id="registeComment" parameterType="burnCommentVO">
+		insert into burn_comment (no,content,posted_time,burn_no,member_id) 
+		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{member_id}) 
+	</insert>
+	<insert id="replyComment" parameterType="burnCommentVO">
+		insert into burn_comment (no,content,posted_time,burn_no,recomment,member_id) 
+		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{recomment},#{member_id}) 
+	</insert>
+	<update id="deleteComment" parameterType="burnCommentVO">
+		update burn_comment set state=#{state} where no=#{no} and member_id =#{member_id}
+	</update>
+	<update id="updateComment" parameterType="burnCommentVO">
+		update burn_comment set content=#{content} where no=#{no} and member_id =#{member_id}
+	</update>
+	<!-- 댓글끝 -->
+	
+	
 	
 	<resultMap type="messageVO" id="messageRM">
 		<result property="no" column="m_no" />
@@ -105,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findId" resultType="string">
-		select id from member where id like '%' || #{value} || '%'
+		select id from member where id like '%' || #{id} || '%' and id != #{searcher}
 	</select>	
 	
 	<select id="getMessageList" resultMap="messageRM" resultType="messageVO">
@@ -115,4 +118,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="sendMessage" parameterType="map">
 		insert into message(m_no, m_sender, m_receiver, m_time, m_content, m_checked) values(message_sequence.nextval,#{sender},#{receiver},sysdate,#{text},1)
 	</insert>
+		
+	<update id="updateCheck">
+		update message set m_checked = 0 where m_no = #{value}
+	</update>
+	
+	<select id="getFilteredMessage" resultMap="messageRM" resultType="messageVO">
+		select m_no,m_sender,m_receiver,m_time,m_content,m_checked from message where m_sender =#{value} or m_receiver = #{value} order by m_time desc
+	</select>
+
+
 </mapper>
+
+
+

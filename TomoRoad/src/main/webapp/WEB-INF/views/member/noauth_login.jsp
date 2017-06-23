@@ -4,21 +4,19 @@
 
 <script type="text/javascript">
 var key = "tomoroad";
-var input = "";
-	  $(document).keypress(function(e) {		  
-		 if (e.which !== 0) {
-		        input += String.fromCharCode(e.which);
-		        if(key.length == input.length && key == input)
-		        	location.href="/tomoroad/member/noauth_manager_login.do"; 
-		          else if(key.length == input.length && key != input)
-		        	key = "";   
-		        
+var input = ""; //input 초기화
+	  $(document).keypress(function(e) { //keypress 키보드를 눌렀을때 입력된 문자를 알려줍니다		  
+		 if (e.which !== 0) { //키보드를 누른 값이 있을때
+		        input += String.fromCharCode(e.which); //아스키코드 문자 반환String.fromCharCode()
+		        if(key.length == input.length && key == input) //키값과 input값이 같을시
+		        	location.href="/tomoroad/manager/noauth_manager_login.do"; //관리자 로그인 페이지로 이동
+		          else if(key.length == input.length && key != input) //키값과 input값이 같지 않을시
+		        	key = "";  //키값 초기화 	        
 		    }
 	  });
 	  $(document).ready(function(){
 		  $(".form-control").keypress(function(){
-			  input="";
-			  
+			  input="";	//input 초기화 인풋창에서 키를 누르려는 일반회원들과의 차이를 두기 위해서
 		  });
 	  });
 </script>
@@ -49,7 +47,7 @@ var input = "";
 	
                 
         <div class="dividerHeading">
-            <h4><span>로그인 해주세요</span></h4>
+            <h4><span>로그인</span></h4>
         </div>
         
 

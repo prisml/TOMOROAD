@@ -104,8 +104,8 @@ public class MemberDAOImpl implements MemberDAO{
 		template.update("profileReset",profileInfo);
 	}
 	@Override
-	public void findPw2(MemberVO vo) {
-		template.update("member.findPw2",vo);
+	public void updatePw(MemberVO vo) {
+		template.update("member.updatePw",vo);
 		
 	}
 	@Override

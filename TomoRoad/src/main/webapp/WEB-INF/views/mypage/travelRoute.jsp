@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<div class="dividerHeading">
+	<h4><span>다녀온 여행지</span></h4>
+</div><br>
 <c:forEach items="${travelRoute}" var="parent_list">
 	<div id = "myStationInfo">
 		<c:forEach items="${parent_list}" var="route" varStatus="index">
