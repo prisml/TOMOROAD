@@ -22,20 +22,24 @@
 
 
  <div class="dividerHeading">
- 	<h4><span> Write Burn </span></h4>
+ 	<h4><span> 번 게시물 작성 </span></h4>
  </div>
  <form method="post" action="${pageContext.request.contextPath}/writeBurn.do" id="registerForm">
  
 	 <div class="comment_form">
     	 <div class="row">
         	 <div class="col-sm-4">
-             	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30" placeholder="제목을 입력해주세요" required> 
+             	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30" 
+             	placeholder="제목을 입력해주세요" required> 
              </div>
              <div class="col-sm-4">
                	작성자<input class="col-lg-4 col-md-4 form-control" name="memberId" type="text" size="30" value="${mvo.id}" readonly>
              </div>
              <div class="col-sm-4">
-               	 역이름<select class="col-lg-4 col-md-4 form-control" name=stationName id="st"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach></select>
+               	 역이름<select class="col-lg-4 col-md-4 form-control" name=stationName id="st">
+               	 <option value="">---------</option>
+               	 <c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach>
+               	 </select>
              </div>
          </div>
      </div>

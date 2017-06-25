@@ -6,13 +6,14 @@
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    $("#messageicon").css("color","black");
+    $("#messageicon").css("color","black");    
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
+
 <script>
 	$(document).ready(function(){
 		 $(document).mousedown(function(e) {
@@ -28,8 +29,7 @@ function closeNav() {
 	               }
 	            }
 	         });
-	      });
-	      
+	      });	      
 	});
 </script>
 
@@ -38,6 +38,10 @@ function closeNav() {
 <!-- tab header -->
 <script>
 function openCity(cityName,elmnt,color) {
+	if($("#inputDiv").css("display")=="block"){
+		$("#inputDiv").css("display","none");
+	}
+	
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -48,10 +52,8 @@ function openCity(cityName,elmnt,color) {
         tablinks[i].style.backgroundColor = "";
     }
     document.getElementById(cityName).style.display = "block";
-    elmnt.style.backgroundColor = color;
+    elmnt.style.backgroundColor = color;    
 }
-// Get the element with id="defaultOpen" and click on it
-//document.getElementById("defaultOpen").click();
 </script>
 
 
@@ -62,7 +64,7 @@ body {
 }
 
 .sidenav {
-    height: 55%;
+    height: 370px;
     width: 0;
     position: fixed;
     z-index: 1;
@@ -107,7 +109,7 @@ body {
 body {font-family: "Lato", sans-serif;}
 
 .tablink {
-    background-color: mediumorchid;
+    background-color: pink;
     color: white;
     float: left;
     border: none;
@@ -119,7 +121,7 @@ body {font-family: "Lato", sans-serif;}
 }
 
 .tablink:hover {
-    background-color: red;
+    background-color: pink;
 }
 
 /* Style the tab content */
@@ -131,7 +133,7 @@ body {font-family: "Lato", sans-serif;}
 }
 
 #fList {background-color:pink;}
-#mBox {background-color:salmon;}
+#mBox {background-color:pink;}
 
 
 </style>
@@ -143,8 +145,8 @@ body {font-family: "Lato", sans-serif;}
 </script> -->
 <script>
 	$(document).ready(function(){
-			
-			 if(${!empty mvo}){ // 새 메세지 확인
+		if(${!empty sessionScope.mvo}){ // 새 메세지 확인
+			setInterval(() => {	
 				$.ajax({
 					type:"get",
 					url :"isNewMsg.do",
@@ -155,26 +157,26 @@ body {font-family: "Lato", sans-serif;}
 						}
 					}			
 				});
-			}
+			},5000);
+		}		
 		
-		
-		$("#searchicon").click(function(){	// 사람 검색시
+		$("#searchicon").click(function(){	// 아이디 검색시
 			var mlist = "";
-			var target = $("#searchbox").val();
+			var target = $.trim($("#searchbox").val());			
 			$.ajax({
 				type :"get",
 				url : "burn/findId.do",
 				data:"id="+target+"&searcher=${sessionScope.mvo.id}",
 				success: function(data){
 					for(var i=0; i<data.length; i++){
-						mlist += "<a href='#.' class=mm>"+data[i]+"</a><br>";
+						mlist += "<a href='#.' class=mm style='color:white; font-size:18px; height:10px; padding-top: 0px;";
+						mlist += "padding-bottom: 0px;'>"+data[i]+"</a><br>";
 					}
 					$("#mlist").html(mlist);					
 				}			
 			}); // ajax				
 		}); //click
 	});
-
 </script>
 
 <script>
@@ -182,9 +184,9 @@ $(document).ready(function(){
 	var receiver = "";
 
 	$(document).on("click",".mm",function(){ // 검색 후 아이디 클릭시
-		receiver = $(this).text();		
-		//$("#messagesOpen").trigger("click");
-		openCity('mBox', this, 'salmon');
+		receiver = $(this).text();
+	
+		openCity('mBox', this, 'pink');
 		
 		var messages = "";
 		
@@ -196,26 +198,28 @@ $(document).ready(function(){
 				for(var i=0; i<data.length; i++){
 					if(data[i].sender == "${mvo.id}"){
 						messages += "<br><div style='text-align:left;'><strong>";
-						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:blue;'>";
+						messages += data[i].sender+" : </strong>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";
 					}else{
 						messages += "<br><div style='text-align:right; margin-right:5px;'><strong>";
 						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:green;'>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";						
 					}											
 				}
 				$("#messageList").html(messages);
 				$("#messageList").scrollTop($("#messageList")[0].scrollHeight);
+				$("#inputDiv").css("display","block");
 			}
 		});		
 		
 	});
 	
-	$("#messagesOpen").click(function(){ // 쪽지함 클릭시
+	
+	$("#messagesOpen").click(function(){ // 쪽지함탭 클릭시 대화방 리스트 출력
 		var rm = "";
 
 		$.ajax({
@@ -225,18 +229,27 @@ $(document).ready(function(){
 			dataType : "json",
 			success : function(data){
 				rm += "<table>";	
-				for(var i = data.length-1; i>=0; i--){							
-				rm += "<tr style='border-top:1px solid;'><td width='250px;' class='user'>"+data[i].sender+"</td></tr>";								
-				rm += "<tr style='border-bottom:1px solid;'><td>"+data[i].time+"</td></tr>";				
+				for(var i = data.length-1; i>=0; i--){
+					if(data[i].sender=="${mvo.id}"){
+						rm += "<tr style='border-top:1px solid;'><td width='200px;' class='user'>"+data[i].receiver+"</td><td width='50px;'></td>";
+					}else {
+						if(data[i].checked!=0){
+							rm += "<tr style='border-top:1px solid;'><td width='200px;' class='user'>"+data[i].sender+"</td><td width='50px;'>NEW</td>";	
+						}else{
+							rm += "<tr style='border-top:1px solid;'><td width='200px;' class='user'>"+data[i].sender+"</td><td width='50px;'></td>";
+						}
+					}
+					rm += "</tr>";
+					rm += "<tr style='border-bottom:1px solid;'><td width='250px;'>"+data[i].time+"</td><td width='50px;'></tr>";				
 				}
 				rm += "</table>";
-				$("#messageList").html(rm); 
+				$("#messageList").html(rm); 				
 			}		
 		});
 	});
 	
 	
-	$(document).on("click",".user",function(){ // 쪽지 함에서 아이디 클릭 시
+	$(document).on("click",".user",function(){ // 쪽지 함 리스트에서 아이디 클릭 시		
 		receiver = $(this).text();
 		var messages = "";
 		$.ajax({
@@ -247,14 +260,14 @@ $(document).ready(function(){
 				for(var i=0; i<data.length; i++){
 					if(data[i].sender == "${mvo.id}"){
 						messages += "<br><div style='text-align:left;'><strong>";
-						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:blue;'>";
+						messages += data[i].sender+" : </strong>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";
 					}else{
 						messages += "<br><div style='text-align:right; margin-right:5px;'><strong>";
-						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:green;'>";
+						messages += data[i].sender+" : </strong>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";						
 					}											
@@ -288,14 +301,14 @@ $(document).ready(function(){
 				for(var i=0; i<data.length; i++){
 					if(data[i].sender == "${mvo.id}"){
 						messages += "<br><div style='text-align:left;'><strong>";
-						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:blue;'>";
+						messages += data[i].sender+" : </strong>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";
 					}else{
 						messages += "<br><div style='text-align:right;'><strong>";
-						messages += data[i].sender+"</strong>";
-						messages += "<br><span style='background-color:green;'>";
+						messages += data[i].sender+" : </strong>";
+						messages += "<br><span>";
 						messages += data[i].text;
 						messages += "</span><br>"+data[i].time+"</div>";						
 					}											
@@ -303,7 +316,8 @@ $(document).ready(function(){
 				$("#messageList").html(messages);
 				$("#messageList").scrollTop($("#messageList")[0].scrollHeight);
 			}
-		});		
+		});
+		return false;
 	});
 	
 	
@@ -321,13 +335,13 @@ $(document).ready(function(){
  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  	<div>
  	<button class="tablink" onclick="openCity('fList', this, 'pink')" id="defaultOpen" style="width:36.7%;"> 사람 찾기 </button>
-	<button class="tablink" onclick="openCity('mBox', this, 'salmon')" style="width:36.7%;" id="messagesOpen">쪽지</button>		
+	<button class="tablink" onclick="openCity('mBox', this, 'pink')" style="width:36.7%;" id="messagesOpen">쪽지함</button>		
 	</div>
 	
 	
 	<div id="fList" class="tabcontent" style="width:95%; height:100%; text-align: left; ">	
 		<br><br>	 		
-  		<input type="text" style="color:black; width:80%;" id="searchbox">&nbsp;<i class="fa fa-search" id="searchicon"></i>
+  		<input type="text" style="color:black; width:80%;" id="searchbox" placeholder="아이디로 검색">&nbsp;<i class="fa fa-search" id="searchicon"></i>
   		<br><br>  		
   		<div id="mlist" style="width:100%;  overflow-y: auto; overflow-x:hidden; max-height:260px;">  		
   		</div>  	
@@ -336,7 +350,15 @@ $(document).ready(function(){
 
 	<div id="mBox" class="tabcontent" style="width:100%; height:100%; text-align:left;">
 		<br><br>  		
-  		<jsp:include page="message_page.jsp"/>  		  		 
+  		
+	<div id="messageList" style="width:90%; height:250px; overflow-y: auto; overflow-x:hidden;">
+	
+	</div>
+	<div id="inputDiv" style="display:none; padding:0px 0px 0px 0px; margin-left:0px;">
+	<form>
+		<input type="text" style="width:150px;"> <input type="submit" class="btn" id="sendMessage" style="background-color:salmon; height:20px;" value="전송">
+	</form>
+	</div>  		  		 
 	</div>
 	
 	

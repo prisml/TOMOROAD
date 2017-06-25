@@ -21,7 +21,7 @@
 
 
  <div class="dividerHeading">
- 	<h4><span> Update Burn </span></h4>
+ 	<h4><span> 번 게시물 수정 </span></h4>
  </div>
  <form method="post" action="${pageContext.request.contextPath}/updateBurn.do" id="updateForm">
  
@@ -34,15 +34,18 @@
                	제목<input class="col-lg-4 col-md-4 form-control" name="title" type="text" size="30" value="${bvo.title}" required>
              </div>
              <div class="col-sm-4">
-               	 역이름<select class="col-lg-4 col-md-4 form-control" name=st id="st"><option value="">---------</option><c:forEach items="${station}" var="sname"><option name="${name}">${sname}</option></c:forEach></select>
+               	 역이름<select class="col-lg-4 col-md-4 form-control" name="stationName" id="st">
+               	 	<option value="">---------</option>
+               	 	<c:forEach items="${station}" var="sname">
+               	 		<option name="${name}">${sname}</option>
+               	 	</c:forEach>
+               	 	</select>
              </div>
          </div>
      </div>
      <div class="comment-box row">
        <div class="col-sm-12">
-         <p>
-           <textarea name="content" style="height:300px;" required>${bvo.content}</textarea>
-         </p>
+         <p><textarea name="content" style="height:300px;" required>${bvo.content}</textarea></p>
       </div>
      </div>
      

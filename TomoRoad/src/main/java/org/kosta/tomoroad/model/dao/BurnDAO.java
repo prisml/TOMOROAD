@@ -22,6 +22,7 @@ public interface BurnDAO {
 	List<BurnCommentVO> findBurnCommentByNo(String no);
 
 	String findCommentMemberId(int no);
+	
 	void updateBurn(BurnVO bvo);
 
 	void deleteBurn(String no);
@@ -51,5 +52,8 @@ public interface BurnDAO {
 	void sendMessage(String sender, String receiver, String text);
 
 	List<MessageVO> getFilteredMessage(String id);
+
+	void updateCheck(String sender, String receiver);
+
 
 }

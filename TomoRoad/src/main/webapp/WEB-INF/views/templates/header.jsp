@@ -23,7 +23,7 @@
 										if (data != 0) {
 											$("#requestFriend")
 													.html(
-															"<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+													"<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
 											$("#bubble").append(
 													"<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"
 															+ data + "</span>");

@@ -23,8 +23,8 @@
 					});
 </script>
 <script>
-	$(document).ready(function() {
-						$.ajax({
+			$(document).ready(function() {
+								$.ajax({
 									type : "GET",
 									url : "showBurnComment.do",
 									data : "no=${bvo.no}",
@@ -49,7 +49,8 @@
 															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
 															comments += "<div class='comment-body'> <br> <p> "+ data[z].content + "</p> </div><br>";
 															comments += "<div id='buttons'>";
-															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>&nbsp;";
+															comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' ";
+															comments += "style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답답글</button>&nbsp;";
 															
 														
 													}else { // 본댓글일 경우
@@ -61,13 +62,16 @@
 														comments += "<div class='comment-body'> <p>"+ data[z].content + "</p> </div>";
 														comments += "<br>";
 														comments += "<div id='buttons'>";
-														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' name="+ data[z].no +">답글</button>&nbsp;";
+														comments += "<button id='recommentBtn' class='btn btn-sm btn-social-stumbleupon' style='width:70px; ";
+														comments += "background-color:LightSalmon;' name="+ data[z].no +">답글</button>&nbsp;";
 													}
 																										
 														
 													if ("${mvo.id}" == data[z].member_id) { // 자기 댓글일 경우														
-														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='deleteCommentBtn' name="+ data[z].no +">삭제</button>&nbsp;";
-														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;' id='updateCommentBtn' name="+ data[z].no +">수정</button>";														
+														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'";
+														comments += "id='deleteCommentBtn' name="+ data[z].no +">삭제</button>&nbsp;";
+														comments += "<button class='btn btn-sm btn-social-stumbleupon' style='width:70px; background-color:LightSalmon;'";
+														comments += "id='updateCommentBtn' name="+ data[z].no +">수정</button>";														
 													}													
 													
 													comments += "</div>"; // buttons
@@ -145,7 +149,8 @@
 										content.focus();
 									}else{
 										var recontent="<strong>To. "+$(this).parent().parent().children(".comment-author").text()+"   </strong>"+content.val();
-										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="+recontent+"&member_id=${mvo.id}&profile=${mvo.profile}";
+										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="
+												+recontent+"&member_id=${mvo.id}&profile=${mvo.profile}";
 									}
 								}); //답글달기-버튼 클릭 시 
 								
@@ -162,7 +167,8 @@
 										alert("댓글 내용을 입력해주세요!");
 										content.focus();
 									}else{										
-										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+"&member_id=${mvo.id}&burn_no=${bvo.no}&profile=${mvo.profile}";
+										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+
+												"&member_id=${mvo.id}&burn_no=${bvo.no}&profile=${mvo.profile}";
 									}
 								}); // Post Comment 버튼 클릭 시
 							
