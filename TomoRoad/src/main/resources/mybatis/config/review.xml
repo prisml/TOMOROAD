@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="detail" resultMap="detailReviewRM">
 		select
 		r.no,r.title,r.content,to_char(posted_time,'YYYY/MM/DD HH24:MI:SS') as posted_time,
-		r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name, p.station_name
+		r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name, r.img_count, p.station_name
 		from review r, place p, member m where
 		r.no=#{value} and r.place_no=p.no and m.id=r.member_id
 	</select>
@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="pagingBean">
 		select A.*
 		from(select row_number() over(order by r.no	desc) rnum,
-		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
+		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, r.img_count, m.name member_name, p.name place_name,
 		to_char(posted_time,'YYYY/MM/DD HH24:MI:SS') as posted_time, re.recommend
 		from review r, place p, member m, 
 		(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re 
