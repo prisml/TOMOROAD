@@ -253,6 +253,7 @@ public class MemberController {
 		HashSet<String> routeList = new HashSet<String>();
 		
 		List<String> list = tomoroadingService.getTotalRoute(id);
+		System.out.println(list);
 		for(int i = 0;i<list.size();i++){
 			String[] route = list.get(i).split(",");
 			for(int j = 0;j<route.length;j++){
@@ -266,11 +267,10 @@ public class MemberController {
 		if(tomoroadingService.getTravelRoute(id) == null){
 			String[] arr = {};
 			model.addAttribute("travelRoute", arr);
-			model.addAttribute("totalTravel", routeList.size());
 		}else{
 			model.addAttribute("travelRoute", tomoroadingService.getTravelRoute(id).split(","));
-			model.addAttribute("totalTravel", (int)Math.ceil(routeList.size()*2.38));
 		}
+		model.addAttribute("totalTravel", (int)Math.ceil(routeList.size()*2.38));
 		return "mypage/mypage.tiles";
 	}
 
