@@ -17,7 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="detail" resultMap="detailReviewRM">
 		select
-		r.no,r.title,r.content,to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time,r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name
+		r.no,r.title,r.content,to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time,
+		r.star,r.place_no,r.member_id,r.hits,p.name place_name, m.name member_name, p.station_name
 		from review r, place p, member m where
 		r.no=#{value} and r.place_no=p.no and m.id=r.member_id
 	</select>

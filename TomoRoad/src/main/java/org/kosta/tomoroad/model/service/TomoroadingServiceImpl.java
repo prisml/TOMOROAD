@@ -166,10 +166,12 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 		TravelVO tvo= new TravelVO();
 		tvo.setId(id);
 		tvo.setRoute(list);
-		if(dao.travelChecking(tvo)==null){
-			dao.travel(tvo);	
+		if(dao.travelChecking(tvo)==null){//해당아이디에 루트가있는지체크한다.
+			dao.travel(tvo);
+			//없다면 여행을 실행시키고
 		}else{
 			dao.reTravel(tvo);
+			//있다면, 재여행을 사용한다.
 		}
 	}
 	
@@ -179,6 +181,7 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	}
 	@Override
 	public int traveling(String id){
+		//현재 여행중인지 체크하는 서비스
 		return dao.traveling(id);
 	}
 

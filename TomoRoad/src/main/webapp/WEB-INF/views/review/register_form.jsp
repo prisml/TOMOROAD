@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var fileTarget = $('.filebox .upload-hidden'); 
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser 
+				var filename = $(this)[0].files[0].name; 
+			} else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			} // 추출한 파일명 삽입 
+			$(this).siblings('.upload-name').val(filename); 
+		});
 		$("#addPicture").click(function(){
 			var count = $("#fileDiv > input").size();
 			var temp = '<input name="files['+count;
@@ -83,14 +92,14 @@
 						placeholder="Title" type="text">
 				</div>
 				<div class="col-lg-3 ">
-					<select id="stationName" name="stationName" class="from-control">
+					<select id="stationName" name="stationName" class="review-selete-box">
 						<c:forEach items="${stationList}" var="svo">
 							<option value="${svo.name }">${svo.name }</option>
 						</c:forEach>
 					</select>
 				</div>
 				<div class="col-lg-3 ">
-					<select id="placeNo" name="placeNo" class="from-control">
+					<select id="placeNo" name="placeNo" class="review-selete-box">
 						<%-- <c:forEach items="${placeList}" var="pvo">
 							<option value="${pvo.name }">${pvo.name }</option>
 						</c:forEach> --%>
@@ -100,16 +109,18 @@
 		</div>
 		<div class="row">
 			<div class="form-group">
-				<div id="fileDiv" class="col-md-5">
-					<input name="files[0]" class="form-control"
+				<div class="filebox col-md-6" id="fileDiv">
+					<input class="upload-name" value="파일선택" disabled="disabled"> 
+					<label for="ex_filename">업로드</label> 
+					<input name="files[0]" class="upload-hidden" id="ex_filename"
 						maxlength="100" data-msg-required="Please input your picture."
 						value="" placeholder="사진등록" type="file">
 				</div>
 				<div class="col-md-2">
-					<input id="addPicture" class="btn btn-default btn-lg"
-					value="사진추가" type="button">
+					<!-- <input id="addPicture" class="btn btn-default btn-lg"
+					value="사진추가" type="button"> -->
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<input id="star" name="star" value="5" type="hidden">
 					<p class="star_rating">
 					    <a href="#." class="on">★</a>

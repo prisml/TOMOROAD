@@ -6,6 +6,7 @@ import org.kosta.tomoroad.model.vo.BurnCommentVO;
 
 import org.kosta.tomoroad.model.vo.BurnVO;
 import org.kosta.tomoroad.model.vo.ListVO;
+import org.kosta.tomoroad.model.vo.MessageVO;
 
 public interface BurnService {
 
@@ -50,4 +51,5 @@ public interface BurnService {
 	Object sendMessage(String sender, String receiver, String text);
 
 	Object getFilteredMessage(String id);
+	
 }

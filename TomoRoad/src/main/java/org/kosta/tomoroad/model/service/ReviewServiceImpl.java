@@ -124,9 +124,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map<String, Object> getUpdateDetail(String no,String name) {
+	public Map<String, Object> getUpdateDetail(String no) {
 		Map<String, Object> map = getDetail(no);
-		map.put("placeList", getPlaceList(name));
+		map.put("placeList", getPlaceList(((ReviewVO)map.get("rvo")).getPlace().getStation_name()));
+		map.put("stationList", getStaionList());
 		return map;
 	}
 
@@ -134,10 +135,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> getReviewListByPlace(int no) {
 		return dao.getReviewListByPlace(no);
 	}
-	
+
 	public void writeComment(ReviewCommentVO vo, int reviewNo) {
-	vo.setReview(dao.getDetail(reviewNo+""));
-	dao.writeComment(vo);
+		vo.setReview(dao.getDetail(reviewNo + ""));
+		dao.writeComment(vo);
 	}
 
 	@Override

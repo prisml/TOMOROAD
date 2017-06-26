@@ -22,35 +22,16 @@ public class MapServiceImpl implements MapService {
 	 * @see org.kosta.tomoroad.model.service.MapService#getAllStationInfo()
 	 */
 	@Override
-	public List<MapVO> getAllStationInfo(String name){
+	public List<MapVO> getAllStationInfo(String name){ //LIST를 받아오기위한 서비스
 		List<MapVO> list=dao.getAllStationInfo(name);
-		/*StringBuffer sbuf = new StringBuffer();
-		for(int i=0;i<list.size();i++){
-		URL url= new URL("http://api.wunderground.com/api/5e1e5a83789f94e3/conditions/lang:KR/q/"+list.get(i).getLat()+","+list.get(i).getLng()+".json");
-		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-		InputStream is = connection.getInputStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader br = new BufferedReader(isr);
-		String str;
-		while((str=br.readLine()) != null){
-			sbuf.append(str+"\r\n");
-		}
-		String info=sbuf.toString();
-		String[] result = info.replaceAll("\"", "").split(",");
-			for(int r=0;r<result.length;r++){
-				if(result[r].contains("icon_url")){
-					String cityurl = result[r].trim();
-					list.get(i).setCityurl(cityurl.substring(9));
-				}
-			}
-		}*/ //원래 날씨정보를 한번에 다가져오는 아주 좋은 친구였으나,,, 너무 느리기때문에 폐기 결정.
 		return list;
 	}
 	@Override
-	public String weatherInfo(MapVO vo) throws IOException{
+	public String weatherInfo(MapVO vo) throws IOException{//날씨정보를 받아오기위한 서비스
 		String cityurl = "";
 		StringBuffer sbuf = new StringBuffer();
-		URL url= new URL("http://api.wunderground.com/api/5e1e5a83789f94e3/conditions/lang:KR/q/"+vo.getLat()+","+vo.getLng()+".json");
+		URL url= new URL("http://api.wunderground.com/api/0e50036e3457fdb4/conditions/lang:KR/q/"
+		+vo.getLat()+","+vo.getLng()+".json");
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 		InputStream is = connection.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -69,3 +50,4 @@ public class MapServiceImpl implements MapService {
 		return cityurl;
 	}
 }
+
