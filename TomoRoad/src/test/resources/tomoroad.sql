@@ -627,6 +627,8 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('나주역','목�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('광주송정역','보성역',82);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('보성역','순천역',55);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','여수엑스포역',22);
+insert into STATION_CONNECT(depart,arrived,spent_time) values('전주역','익산역',20);
+insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','전주역',73);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','진주역',73);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('진주역','삼랑진역',88);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('영주역','철암역',104);
