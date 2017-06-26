@@ -49,7 +49,19 @@
 			            	 confirm("관광지를 삭제하시겠습니까?"); 
 						location.href = "${pageContext.request.contextPath}/deletePlaceManager.do?no="+radioValue;
 			            }
-			        });			        
+			        });	
+			        $("#deleteStation").click(function(){		
+			        	var optionValue = $("#st").val();
+			        	  if(optionValue){
+				            	 confirm("역정보를 삭제하시겠습니까?"); 
+						location.href = "${pageContext.request.contextPath}/deleteStation.do?name="+optionValue;
+			        	  }
+			        });	
+			        $("#insertStation").click(function(){
+			            if(confirm("역정보를 추가하시겠습니까?")){
+						location.href = "${pageContext.request.contextPath}/manager_station_register.do";
+			            }
+			        });	
 			    });
 </script>
 <script type="text/javascript">
@@ -71,7 +83,6 @@ $(document).ready(function(){
         <br>
 <br>
 <button id="showStation" class="btn btn-default btn-lg button" >역정보 보기</button>
-
     	     <div id="listStation" class="col-sm-4" style="display:none;">
                	 <select class="col-sm-4 form-control" name=stationName id="st">
 	<option value="all">전체보기</option>
@@ -80,10 +91,13 @@ $(document).ready(function(){
 	</c:forEach>
 	</select>
              </div>
-
 <button id="managerStation" class="btn btn-default btn-lg button" >역정보 수정</button>
+
+<button id="deleteStation" class="btn btn-default btn-lg button" >역정보 삭제</button>
+
+<button id="insertStation" class="btn btn-default btn-lg button" >역정보 추가</button>
+
 <label>원하시는 역을 선택 해주세요</label>
-<br>
 <br>
  <div id="listOutputMember" >
 <form id="myForm" style="width: 102%; height: 250px; overflow-y: scroll; display: block;">
@@ -143,9 +157,10 @@ $(document).ready(function(){
 <br>
 <button id="updatePlace" class="btn btn-default btn-lg button" >관광지 수정</button>
 
+<button id="deletePlace" class="btn btn-default btn-lg button" >관광지 삭제</button>
+
 <button id="insertPlace" class="btn btn-default btn-lg button" >관광지 추가</button>
 
-<button id="deletePlace" class="btn btn-default btn-lg button" >관광지 삭제</button>
 <label>원하시는 관광지를 선택 해주세요</label>
 <br>
 <br>

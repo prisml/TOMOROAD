@@ -128,7 +128,6 @@ public class MemberController {
 			return new ModelAndView("member/noauth_findid_result.tiles", "member", vo);
 		}
 	} 
-
 	@RequestMapping("member/noauth_findPw.do")
 	public String findPw(MemberVO vo,Model model){
 		String id = memberService.findPw(vo);

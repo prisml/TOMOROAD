@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <update id="updatePlaceManager" parameterType="placeVO">
         update place set
 		name=#{name}, station_name=#{station_name}, area=#{area}
-		where no=#{no}		
+		where no=#{no}
 	</update>
 		<insert id="insertPlaceManager" parameterType="placeVO">
 		insert into place(no,name,station_name,area)
@@ -57,6 +57,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 		<delete id="deletePlaceManager">
 		delete from place where no=#{no}	
+	</delete>
+			<insert id="insertStation" parameterType="stationVO">
+		insert into station(name,simple_detail,detail,section,img,lat,lng)
+		values(#{name}, #{simpleDetail}, #{detail}, #{section}, #{img}, #{lat}, #{lng})
+	</insert>
+		<delete id="deleteStation">
+		delete from station where name=#{name}	
 	</delete>
 </mapper>
 

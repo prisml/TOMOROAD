@@ -10,18 +10,7 @@ public class ReviewVO {
 	private double star;
 	private PlaceVO place;
 	private MemberVO member;
-	//내가함
 	private int imgCount; //등록된 사진 개수
-	
-	//내가함
-	public int getImgCount() {
-		return imgCount;
-	}
-	
-	//내가함
-	public void setImgCount(int imgCount) {
-		this.imgCount = imgCount;
-	}
 
 	public ReviewVO() {
 		super();
@@ -167,6 +156,14 @@ public class ReviewVO {
 		case 12: return "DEC";
 		default : return "noresult";
 		}
+	}
+	
+	public int getImgCount() {
+		return imgCount;
+	}
+	
+	public void setImgCount(int imgCount) {
+		this.imgCount = imgCount;
 	}
 
 	@Override
