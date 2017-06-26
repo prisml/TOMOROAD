@@ -36,7 +36,8 @@
 		</h4>
 	</div>
 </div>
-
+<br>
+<br>
 <!-- 지도영역 -->
 <div id="map" style="width: 500px; height: 300px;"></div>
 
@@ -73,9 +74,9 @@
 	<div class="col-lg-8 col-md-8 col-sm-8">
 		<div class="project_description">
 			<div class="widget_title"><!-- 제목 -->
-				<h4>
+				<h2>
 					<span>${detailInfoVO.name}</span>
-				</h4>
+				</h2>
 			</div>
 			
 			<!-- 설명 -->
