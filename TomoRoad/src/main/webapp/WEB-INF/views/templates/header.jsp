@@ -96,7 +96,7 @@
 				<li><span id="requestFriend"><img height=35 width=35
 						src=${pageContext.request.contextPath}/resources/images/99.png></span></li>
 				<div id="bubble"
-					style="position: absolute; top: -25px; left: 992px;">
+					style="position: absolute; top: -25px; left: 1060px;">
 				</div>
 			</c:if>
 		</ul>
