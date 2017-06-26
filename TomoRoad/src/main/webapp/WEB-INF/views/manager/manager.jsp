@@ -157,9 +157,10 @@ $(document).ready(function(){
 <br>
 <button id="updatePlace" class="btn btn-default btn-lg button" >관광지 수정</button>
 
+<button id="deletePlace" class="btn btn-default btn-lg button" >관광지 삭제</button>
+
 <button id="insertPlace" class="btn btn-default btn-lg button" >관광지 추가</button>
 
-<button id="deletePlace" class="btn btn-default btn-lg button" >관광지 삭제</button>
 <label>원하시는 관광지를 선택 해주세요</label>
 <br>
 <br>
