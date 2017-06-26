@@ -35,4 +35,8 @@ public interface ManagerDAO {
 	void insertPlaceManager(PlaceVO vo);
 
 	void deletePlaceManager(int no);
+
+	void insertStation(StationVO vo);
+
+	void deleteStation(String name);
 }

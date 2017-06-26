@@ -67,8 +67,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO getDetailHit(String no) {
 		dao.hits(no);
 		ReviewVO vo = dao.getDetail(no);
-		/*vo.setHits(vo.getHits()+1);
-		dao.update(vo);*/
 		System.out.println(vo);
 		return vo;
 	}
@@ -126,7 +124,8 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Map<String, Object> getUpdateDetail(String no) {
 		Map<String, Object> map = getDetail(no);
-		map.put("placeList", getPlaceList(((ReviewVO)map.get("rvo")).getPlace().getStation_name()));
+		map.put("placeList", getPlaceList(((ReviewVO)map.get("rvo"))
+				.getPlace().getStation_name()));
 		map.put("stationList", getStaionList());
 		return map;
 	}

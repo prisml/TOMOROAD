@@ -132,5 +132,44 @@ public class ManagerController {
 		managerService.deletePlaceManager(no);
 		return "redirect:manager/manager_delete_result.do";
 	}
+/*	@RequestMapping("insertStation.do")
+	public ModelAndView insertStation(StationVO vo) {
+		managerService.insertStation(vo);
+		return new ModelAndView("redirect:getMemberList.do");
+	}*/
+	@RequestMapping(value = "insertStation.do", method = RequestMethod.POST)
+	public ModelAndView insertStation(MultipartFile uploadfile,StationVO vo) {
+		if(uploadfile.getOriginalFilename().isEmpty()){ //업로드된 파일이 없을시
+			//getOriginalFilename()업로드된 파일명을 반환하며 파일 중복을 피하기 위한 변경전의 이름이다
+			StationVO svo = managerService.getStationListManager(vo.getName()); //역정보 이름으로 반환하기 위해서
+			vo.setImg(svo.getImg()); //역정보의 이미지를 저장한다
+		}else{
+			String fileName = uploadfile.getOriginalFilename();
+			//업로드할 파일의 확장자를 알기 위해서 subString을 사용
+			String m = fileName.substring(fileName.lastIndexOf("."), fileName.lastIndexOf(".")+4);
+			String uploadPath = "C:\\Users\\Administrator\\git\\TOMOROAD\\TomoRoad\\src\\main\\webapp\\resources\\images\\symbol\\";
+			File file = new File(uploadPath+vo.getName()+m);
+			try {
+				//위에 경로로 업로드를 한다
+				uploadfile.transferTo(file);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			vo.setImg(vo.getName()+m); //이미지저장시에 확장자 포함
+		}
+		managerService.insertStation(vo);
+		return new ModelAndView("redirect:getMemberList.do");
+	}
+	@RequestMapping("deleteStation.do")
+	public String deleteStation(String name) {
+		managerService.deleteStation(name);
+		return "redirect:manager/manager_delete_result.do";
+	}
+	@RequestMapping("manager_station_register.do")
+	public String manager_station_register() {		
+		return "redirect:manager/manager_station_register.do";
+	}
 	
 }

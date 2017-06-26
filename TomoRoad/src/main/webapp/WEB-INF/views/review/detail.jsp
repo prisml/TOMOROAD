@@ -77,6 +77,7 @@
 				<h4>
 					<span>댓글 목록</span>
 				</h4>
+				<br>
 			</div>
 			<div id="comment">
 				<ul id="comment-list">
@@ -91,13 +92,17 @@
 					var temp = '<li class="comment"><div class="avatar">';
 					temp += '<img alt="" src="${cvo.member.profile}"' ;
 					temp += 'class="avatar"></div>';
-					temp += '<div class="comment-container"><h4 class="comment-author">	<a href="#">${cvo.member.name}</a></h4>';
-					temp += '<div class="comment-meta"> <a href="#" class="comment-date link-style1">${cvo.postedTime}</a>';
-					temp += '<div name="${cvo.no}" class="comment-reply-link"><a id="replyBtn"class="link-style3" href="#respond">답글달기</a> ';
-					//<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
+					temp += '<div class="comment-container"><h4 class="comment-author">'	
+							+'<a href="#">${cvo.member.name}</a></h4>';
+					temp += '<div class="comment-meta"> <a href="#"' 
+							+'class="comment-date link-style1">${cvo.postedTime}</a>';
+					temp += '<div name="${cvo.no}" class="comment-reply-link">'
+							+'<a id="replyBtn"class="link-style3" href="#respond">답글달기</a> ';
+					<c:if test="${mvo!=null && mvo.id==cvo.member.id}">
 						temp += '<a id="deleteBtn" class="link-style3" href="#.">x</a>';
-					//</c:if>
-					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p></div></div><ul id="reply${cvo.no}" class="children"></ul></div></li>'
+					</c:if>
+					temp += '</div></div><div class="comment-body"><p>${cvo.content}</p>'
+							+'</div></div><ul id="reply${cvo.no}" class="children"></ul></div></li>'
 					$("#${cvo.recommentId}").append(temp);
 				</c:forEach>
 			});
@@ -108,6 +113,7 @@
 				<h4>
 					<span>댓글 작성</span>
 				</h4>
+				<br>
 			</div>
 			<form method="post" action="${pageContext.request.contextPath}/review/writeComment.do">
 				<div class="comment-box row">

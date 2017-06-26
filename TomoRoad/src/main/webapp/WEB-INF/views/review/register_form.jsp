@@ -89,7 +89,7 @@
 				<div class="col-lg-6 ">
 					<input id="name" name="title" class="form-control" maxlength="100"
 						data-msg-required="Please enter title." value=""
-						placeholder="Title" type="text">
+						placeholder="Title" type="text" required="required">
 				</div>
 				<div class="col-lg-3 ">
 					<select id="stationName" name="stationName" class="review-selete-box">
@@ -137,7 +137,7 @@
 				<div class="col-md-12">
 					<textarea id="message" class="form-control" name="content"
 						rows="10" cols="50" data-msg-required="Please enter your content."
-						maxlength="5000" placeholder="Content"></textarea>
+						maxlength="5000" placeholder="Content" required="required"></textarea>
 
 				</div>
 			</div>
@@ -164,15 +164,15 @@
 			<ul class="widget_info_contact">
 				<li><i class="fa fa-map-marker"></i>
 					<p>
-						<strong>Address</strong>: #2021 Lorem Ipsum
+						<strong>Address</strong>: 오리역 3번출구
 					</p></li>
 				<li><i class="fa fa-user"></i>
 					<p>
-						<strong>Phone</strong>:(+91) 9000-12345
+						<strong>Phone</strong>:010-2369-4284
 					</p></li>
 				<li><i class="fa fa-envelope"></i>
 					<p>
-						<strong>Email</strong>: <a href="#">mail@example.com</a>
+						<strong>Email</strong>: <a href="#">prisml091292@gmail.com</a>
 					</p></li>
 				<li><i class="fa fa-globe"></i>
 					<p>

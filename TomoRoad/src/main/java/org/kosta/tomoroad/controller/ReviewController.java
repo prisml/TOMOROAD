@@ -74,15 +74,12 @@ public class ReviewController {
 						file.mkdirs();
 					files.get(i).transferTo(file);
 					nameList.add("review" + vo.getNo() + "_" + i);
-					System.out.println("업로드 완료 " + fileName);
-					
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 		service.updateImgCount(nameList.size(),vo.getNo());//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
-		System.out.println("총 사진파일 갯수 : "+nameList.size());
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
 
@@ -93,20 +90,17 @@ public class ReviewController {
 
 	@RequestMapping("review/update_form.do")
 	public ModelAndView updateForm(String no) {
-		System.out.println("updateForm no=" + no);
 		return new ModelAndView("review/update_form.tiles", "dvo", service.getUpdateDetail(no));
 	}
 
 	@RequestMapping(value = "review/update.do", method = RequestMethod.POST)
 	public ModelAndView update(String no, ReviewUploadVO ruvo, HttpServletRequest req) {
-		System.out.println(ruvo);
 		ReviewVO vo = new ReviewVO();
 		vo.setNo(Integer.parseInt(no));
 		vo.setTitle(ruvo.getTitle());
 		vo.setContent(ruvo.getContent());
 		vo.setStar(ruvo.getStar());
 		MemberVO mvo = (MemberVO) req.getSession().getAttribute("mvo");
-		System.out.println(mvo);
 		vo.setMember(mvo);
 		vo.setPlace(new PlaceVO(ruvo.getPlaceNo()));
 		service.update(vo);
@@ -122,14 +116,12 @@ public class ReviewController {
 						file.mkdirs();
 					files.get(i).transferTo(file);
 					nameList.add("review" + no + "_" + i);
-					System.out.println("업로드 완료 " + fileName);
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 		service.updateImgCount(nameList.size(),Integer.parseInt(no));//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
-		System.out.println("총 사진파일 갯수 : "+nameList.size());
 		return new ModelAndView("redirect:noauth_detail.do?no=" + no);
 	}
 
@@ -166,10 +158,7 @@ public class ReviewController {
 	@ResponseBody
 	// 검색창에 입력한 단어가 들어가는 키워드를 가져옴
 	public ArrayList<String> getKeyword(String keyword, String reviewFilter) {
-		System.out.println("keyword:" + keyword);
-		System.out.println("컨트롤러에서의 reviewFilter:" + reviewFilter);
 		List<ReviewVO> searchResultList = service.getKeyword(keyword, reviewFilter);
-		System.out.println("리뷰 키워드 갖고온다 : " + searchResultList);
 
 		ArrayList<String> keywordList = new ArrayList<String>();
 
@@ -189,16 +178,13 @@ public class ReviewController {
 	//역정보 게시판-주변관광지에서 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.
 	@RequestMapping("review/getReviewListByPlace.do")
 	public String getReviewListByPlace(int no,Model model){ //no:관광지 번호
-		System.out.println("관광지 번호 :"+no);
 		List<ReviewVO> getReviewListByPlace=service.getReviewListByPlace(no);
-		System.out.println("review에서 역 주변 정보 : "+getReviewListByPlace);
 		model.addAttribute("getReviewListByPlace",getReviewListByPlace);
 		return "review/around_placeReview.tiles";
 	}
 	
 	@RequestMapping("review/writeComment.do")
 	public ModelAndView writeComment(ReviewCommentVO vo, HttpServletRequest req, int reviewNo) {
-		System.out.println(reviewNo+" "+vo);
 		vo.setMember((MemberVO) req.getSession().getAttribute("mvo"));
 		service.writeComment(vo, reviewNo);
 		return new ModelAndView("redirect:noauth_detail.do?no=" + reviewNo);
@@ -208,12 +194,10 @@ public class ReviewController {
 	@RequestMapping(value="review/getListByMemberInMemberPage.do", method=RequestMethod.POST)
 	@ResponseBody
 	public ListVO<ReviewVO> getListByMemberInMemberPageAjax(String page, String id) {
-		System.out.println("페이지랑 아이디"+page+id);
 		if (page == null)
 			page = "1";
 		
 		ListVO<ReviewVO> reviewList=service.getListByMemberInMemberPage(page,id);
-		System.out.println("리뷰리스트"+reviewList);
 
 		return reviewList;
 	}

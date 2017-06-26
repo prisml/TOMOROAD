@@ -55,7 +55,6 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 			stationIdx.put(stationList.get(i).getName(), i);
 			map[i] = new HashMap<String, Integer>();
 		}
-
 		for (int i = 0; i < connectionList.size(); i++) { // 역 연결 그래프 생성
 			ConnectionVO vo = connectionList.get(i);
 			map[stationIdx.get(vo.getDepart().getName())].put(vo.getArrived().getName(), vo.getSpendTime());
@@ -104,7 +103,6 @@ public class TomoroadingServiceImpl implements TomoroadingService {
 	private StationVO getMaxViaStation(String depart, Set<String> bucketSet) {
 		// stationIdx와 map으로 2중 map 구현 -> 출발지를 stationIdx에서 구하고 map에서 해당 도착지를
 		// 넣으면 걸리는 시간을 구한다.
-
 		List<StationVO> stationList = getShortestPath(depart);
 
 		int maxStation = 0;
