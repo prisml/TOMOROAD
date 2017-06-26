@@ -19,11 +19,15 @@
 					<span class="day">${rlist.day }</span> 
 					<span class="month">${rlist.month }</span>
 				</div>
-				<figure class="post_img">
-					<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
-						<img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;">
-					</a>
-				</figure>
+				
+				<c:if test="${rlist.imgCount!=0}">
+					<figure class="post_img">
+						<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
+							<%-- <img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;"> --%><!-- 배표용 -->
+							<img src="C:\\tomoroad\\image\\review\\review${dvo.rvo.no}_0" alt="blog post" style="width:212px; height:212px;"> <!-- 테스트용 -->
+						</a>
+					</figure>
+				</c:if>
 				<div class="post_content">
 					<div class="post_meta">
 						<h2>
