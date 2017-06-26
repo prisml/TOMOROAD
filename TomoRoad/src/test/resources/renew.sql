@@ -84,6 +84,7 @@ create table review(
 	constraint fk_place_no foreign key(place_no) references place(no) on delete cascade,
 	constraint fk_member_id foreign key(member_id) references member(id) on delete cascade
 );
+alter table review add(img_count number(38) default 0);  
 
 create sequence review_seq nocache;
 

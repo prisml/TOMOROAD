@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.BucketVO;
+import org.kosta.tomoroad.model.vo.StationVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,5 +40,10 @@ public class BucketDAOImpl implements BucketDAO {
 	@Override
 	public List<BucketVO> selectBucketList(String id){
 		return template.selectList("bucket.selectBucketList",id);
+	}
+
+	@Override
+	public List<StationVO> getStationList() {
+		return template.selectList("station.getList");
 	}
 }

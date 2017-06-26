@@ -145,7 +145,7 @@ public class ReviewController {
 	@RequestMapping("review/delete.do")
 	public ModelAndView delete(String no, HttpServletRequest req) {
 		service.delete(no);
-		return new ModelAndView("redirect:review/noauth_showList.do");
+		return new ModelAndView("redirect:noauth_showList.do");
 	}
 
 	@RequestMapping("review/recommend")
