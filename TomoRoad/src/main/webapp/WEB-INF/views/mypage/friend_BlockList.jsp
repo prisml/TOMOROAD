@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 	function FriendUnBlock(id){
-		location.href = "${pageContext.request.contextPath}/FriendUnBlock.do?id=${sessionScope.mvo.id}&unBlockId="+id;
+		location.href = "${pageContext.request.contextPath}/friendUnBlock.do?unBlockId="+id;
 	}
 </script>
 		<div class="dividerHeading">

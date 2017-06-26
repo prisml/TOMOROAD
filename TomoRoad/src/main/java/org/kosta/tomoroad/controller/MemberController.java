@@ -225,8 +225,11 @@ public class MemberController {
 		return "redirect:mypage/friendList.do";
 	}
 	
-	@RequestMapping("FriendUnBlock.do")
-	public String FriendUnBlock(String id,String unBlockId){
+	@RequestMapping("friendUnBlock.do")
+	public String FriendUnBlock(HttpServletRequest request,String unBlockId){
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String id = vo.getId();
 		memberService.unBlockFriend(id, unBlockId);
 		return "redirect:mypage/friend_BlockList.do";
 	}
@@ -362,7 +365,7 @@ public class MemberController {
 				return "redirect:mypage/mypage.do";
 			}else{
 				model.addAttribute("memberInfo", memberService.findMemberById(selectId));
-				model.addAttribute("friend", memberService.getFriendId(id, selectId));
+				model.addAttribute("friend", memberService.getFriendInfo(id, selectId));
 				return "memberpage/memberpage.tiles";
 			}
 	   }

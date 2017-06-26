@@ -27,7 +27,7 @@ function end(){
 				<i class = "fa fa-pencil "></i>
 			</span>
 			<p>
-				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/showListByMember2.do">${totalContents}</a></b>
+				<b class = "timer" data-to="100" data-speed = "10000"><a style = "color:white;" href = "${pageContext.request.contextPath}/mypage/showListByMember.do">${totalContents}</a></b>
 			</p>
 			<span class = "title">내가 작성한 리뷰</span>
 		</div>
