@@ -21,7 +21,17 @@
 	<select id = "getTravelRoute" resultType="string">
 		select route from travel where id = #{value} and flag='true'
 	</select>
+	
 	<select id = "traveling" parameterType="string" resultType="int">
 		select count(*) from travel where id=#{value} and flag='true' 
 	</select>
+	
+	<update id="updateTravelFlag">
+		update travel set flag = 'false' where id = #{value} and flag = 'true'
+	</update>
+	
+	<select id="getTotalRoute" resultType="string">
+		select route from travel where id = #{value}
+	</select>
+	
 </mapper>

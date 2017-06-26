@@ -1,5 +1,5 @@
--- 변경해주세요! profile default 값 --
-alter table member modify(profile default '/tomoroad/resources/img/profiles/kakao.jpg')
+-- 6.21 변경해주세요! STATION IMG 값 --
+alter table station modify(img varchar2(200))
 ---------------리뷰 제약조건 수정----------------
 ALTER table review_comment
 DROP CONSTRAINT fk_review_comment_no;
@@ -73,6 +73,8 @@ create table manager(
 	password varchar2(100) not null
 );
 
+select * from station
+
 select * from member;
 insert into manager values('abc',1234)
 
@@ -87,6 +89,8 @@ create table station(
 	lat number not null,
 	lng number not null
 );
+
+alter table station modify(img varchar2(200))
 
 create table place(
 	no number primary key,
@@ -107,8 +111,8 @@ create table review(
 	star number not null,
 	place_no number not null,
 	member_id varchar2(100) not null,
-	constraint fk_place_no foreign key(place_no) references place(no),
-	constraint fk_member_id foreign key(member_id) references member(id)
+	constraint fk_place_no foreign key(place_no) references place(no) ON DELETE CASCADE,
+	constraint fk_member_id foreign key(member_id) references member(id) ON DELETE CASCADE
 );
 --추가해주세엿. 리뷰에 등록된 이미지 개수입니다
 alter table review add(img_count number(38) default 0);  
@@ -123,7 +127,7 @@ create table review_comment(
 	review_no number, 
 	member_id varchar2(100) not null,
 	constraint fk_review_comment_no foreign key(review_no) references review(no) ON DELETE CASCADE,
-	constraint fk_review_comment_member_id foreign key(member_id) references member(id),
+	constraint fk_review_comment_member_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	state varchar2(100) default 'comment' not null
 );
 create sequence review_comment_seq nocache;
@@ -145,17 +149,16 @@ create table burn_board(
 	member_id varchar2(100) not null,
 	hits number default 0,	 
 	constraint fk_burn_station_name foreign key(station_name) references station(name),
-	constraint fk_burn_board_id foreign key(member_id) references member(id)	
+	constraint fk_burn_board_id foreign key(member_id) references member(id)	 ON DELETE CASCADE
 ); 
 
 create table review_recommend(
 	member_id varchar2(100),
 	review_no number,
 	primary key(member_id, review_no),
-	constraint fk_reivew_recommend_id foreign key(member_id) references member(id),
+	constraint fk_reivew_recommend_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
 );
-
 create sequence burn_board_seq nocache;
 
 create table burn_comment(
@@ -167,7 +170,7 @@ create table burn_comment(
 	member_id varchar2(100) not null,
 	state varchar2(100) default 'comment',
 	constraint fk_burn_comment_no foreign key(burn_no) references burn_board(no) ON DELETE CASCADE,
-	constraint fk_burn_comment_id foreign key(member_id) references member(id)	
+	constraint fk_burn_comment_id foreign key(member_id) references member(id)	 ON DELETE CASCADE
 );
 create sequence burn_comment_seq nocache;
 
@@ -182,8 +185,8 @@ create table friend(
 	receiver_id varchar2(100) not null,
 	state varchar2(100) not null,
 	put_date date not null,
-	constraint fk_sender_id foreign key(sender_id) references member(id),
-	constraint fk_receiver_id foreign key(receiver_id) references member(id),
+	constraint fk_sender_id foreign key(sender_id) references member(id) ON DELETE CASCADE,
+	constraint fk_receiver_id foreign key(receiver_id) references member(id) ON DELETE CASCADE,
 	primary key(sender_id,receiver_id)
 );
 
@@ -191,16 +194,16 @@ create table interested_place(
 	member_id varchar2(100),
 	place_no number,
 	primary key(member_id, place_no),
-	constraint fk_interested_id foreign key(member_id) references member(id),
-	constraint fk_interested_no foreign key(place_no) references place(no)	
+	constraint fk_interested_id foreign key(member_id) references member(id) ON DELETE CASCADE,
+	constraint fk_interested_no foreign key(place_no) references place(no)	 ON DELETE CASCADE
 );
 
 create table check_in(
 	member_id varchar2(100),
 	place_no number,
 	primary key(member_id, place_no),
-	constraint fk_check_id foreign key(member_id) references member(id),
-	constraint fk_check_no foreign key(place_no) references place(no)	
+	constraint fk_check_id foreign key(member_id) references member(id) ON DELETE CASCADE,
+	constraint fk_check_no foreign key(place_no) references place(no) ON DELETE CASCADE	
 );
 
 create table station_connect(
@@ -224,14 +227,14 @@ create table bucket(
 	id varchar2(100),
 	name varchar2(100),
 	primary key(id,name),
-	constraint fk_bucket_id foreign key(id) references member(id),
+	constraint fk_bucket_id foreign key(id) references member(id) ON DELETE CASCADE,
 	constraint fk_bucket_name foreign key(name) references station(name)
 );
 create table travel(
  	id varchar2(100),
  	route varchar2(100),
 	flag varchar2(100) not null ,
- 	constraint fk_travel_id foreign key(id) references member(id),
+ 	constraint fk_travel_id foreign key(id) references member(id) ON DELETE CASCADE,
  	primary key (id,route)
 );
 --------------------------------------------------연습장-------------------------------------------------
@@ -291,6 +294,8 @@ select f.sender_id,m.profile from friend f,member m where f.receiver_id = 'java'
 
 select * from member
 select * from travel;
+
+update 
 
 
 -----< Station 정보 >-----
@@ -503,6 +508,28 @@ delete from friend where sender_id in ('abcd','java') and receiver_id in('abcd',
 
 update review set content ='혹시 사진 속 자전거 보신분 계시면'
 
+update travel set flag = 'true' where id = 'java' and flag = 'false'
+
+select * from travel
+
+update station set img = '강릉역.png' where name = '강릉역'
+update station set img = '광주역.png' where name = '광주역';
+update station set img = '구미역.png' where name = '구미역';
+update station set img = '남원역.png' where name = '남원역';
+update station set img = '대구역.png' where name = '대구역';
+update station set img = '대전역.png' where name = '대전역';
+update station set img = '동대구역.jpg' where name = '동대구역';
+update station set img = '동해역.jpg' where name = '동해역';
+update station set img = '부산역.png' where name = '부산역';
+update station set img = '서울역.png' where name = '서울역';
+update station set img = '양평역.jpg' where name = '양평역';
+update station set img = '여수역.png' where name = '여수역';
+update station set img = '울산역.png' where name = '울산역';
+
+
+
+
+
 delete from friend where sender_id = 'asdf'
 
 select * from friend where receiver_id = 'onon22'
@@ -512,175 +539,59 @@ select sender_id from friend where sender_id in ('java1','goni') and receiver_id
 select * from station_connect
 
 
-insert into station values('월내역','1','1','1','1',35.326520,129.275440);
-insert into station values('음성역','1','1','1','1',36.926244,127.703838);
-insert into station values('의성역','1','1','1','1',36.354076,128.693501);
-insert into station values('이양역','1','1','1','1',34.891760,126.989816);
-insert into station values('이원역','1','1','1','1',36.244362,127.617986);
-insert into station values('일로역','1','1','1','1',34.848603,126.477714);
-insert into station values('일신역','1','1','1','1',37.445695,127.688264);
-insert into station values('임기역','1','1','1','1',36.903875,128.999305);
-insert into station values('임성리역','1','1','1','1',34.820867,126.435069);
-insert into station values('임실역','1','1','1','1',35.633167,127.289824);
-insert into station values('장성역','1','1','1','1',35.300217, 126.780216);
-insert into station values('장항역','1','1','1','1',36.040302, 126.715438);
-insert into station values('전의역','1','1','1','1',36.678644, 127.203144);
-insert into station values('점촌역','1','1','1','1',36.595687, 128.203222);
-insert into station values('조성역','1','1','1','1',34.767160, 127.081731);
-insert into station values('좌천역','1','1','1','1',35.311913, 129.254886);
-insert into station values('주덕역','1','1','1','1',36.973657, 127.802364);
-insert into station values('중리역','1','1','1','1',35.249872, 128.518844);
-insert into station values('증평역','1','1','1','1',36.778306, 127.583177);
-insert into station values('지탄역','1','1','1','1',36.242053, 127.676419);
-insert into station values('지평역','1','1','1','1',37.476683, 127.629627);
-insert into station values('진례역','1','1','1','1',35.266823, 128.763192);
-insert into station values('진상역','1','1','1','1',35.016808, 127.719759);
-insert into station values('진영역','1','1','1','1',35.303739, 128.728736);
-insert into station values('증평역','1','1','1','1',36.778383, 127.583177);
-insert into station values('창원역','1','1','1','1',35.257695, 128.606539);
-insert into station values('창원중앙역','1','1','1','1',35.242973, 128.701611);
-insert into station values('덕소역','1','1','1','1',37.586969, 127.208877);
-insert into station values('덕하역','1','1','1','1',35.495175, 129.305211);
-insert into station values('도계역','1','1','1','1',37.229530, 129.043814);
-insert into station values('도고온천역','1','1','1','1',36.749641, 126.889677);
-insert into station values('동백산역','1','1','1','1',37.155062, 129.034547);
-insert into station values('동화역','1','1','1','1',37.342153, 127.859819);
-insert into station values('득량역','1','1','1','1',34.761806, 127.170164);
-insert into station values('마산역','1','1','1','1',35.236271, 128.577383);
-insert into station values('매곡역','1','1','1','1',37.432904, 127.718848);
-insert into station values('명봉역','1','1','1','1',34.828032, 127.075462);
-insert into station values('몽탄역','1','1','1','1',34.930061, 126.503297);
-insert into station values('무안역','1','1','1','1',34.962852, 126.517021);
-insert into station values('묵호역','1','1','1','1',37.546926, 129.107672);
-insert into station values('물금역','1','1','1','1',35.307179, 128.985323);
-insert into station values('민둥산역','1','1','1','1',37.243887, 128.773650);
-insert into station values('반곡역','1','1','1','1',37.323213, 127.994290);
-insert into station values('반성역','1','1','1','1',35.175010, 128.258172);
-insert into station values('백양사역','1','1','1','1',35.431623, 126.808149);
-insert into station values('벌교역','1','1','1','1',34.842172, 127.345307);
-insert into station values('봉화역','1','1','1','1',36.891689, 128.726867);
-insert into station values('부강역','1','1','1','1',36.532387, 127.365474);
-insert into station values('북영천역','1','1','1','1',35.966000, 128.917591);
-insert into station values('북천역','1','1','1','1',35.113633, 127.893101);
-insert into station values('분천역','1','1','1','1',36.932739, 129.058398);
-insert into station values('불국사역','1','1','1','1',35.776643, 129.296769);
-insert into station values('사곡역','1','1','1','1',36.098351, 128.356230);
-insert into station values('각계역','1','1','1','1',36.208116, 127.725439);
-insert into station values('강경역','1','1','1','1',36.154430, 127.015598);
-insert into station values('강릉역','1','1','1','1',37.762555, 128.899634);
-insert into station values('개포역','1','1','1','1',37.489299, 127.066405);
-insert into station values('건천역','1','1','1','1',35.854376, 129.097307);
-insert into station values('경산역','1','1','1','1',35.819424, 128.727699);
-insert into station values('계룡역','1','1','1','1',36.273237, 127.265224);
-insert into station values('고한역','1','1','1','1',37.201037, 128.852937);
-insert into station values('곡성역','1','1','1','1',35.283805, 127.303615);
-insert into station values('광양역','1','1','1','1',34.969357, 127.589667);
-insert into station values('광주역','1','1','1','1',35.165509, 126.909211);
-insert into station values('광천역','1','1','1','1',36.501982, 126.622488);
-insert into station values('구례구역','1','1','1','1',35.163619, 127.452611);
-insert into station values('구미역','1','1','1','1',36.128499, 128.330929);
-insert into station values('구포역','1','1','1','1',35.205501, 128.997134);
-insert into station values('군북역','1','1','1','1',35.251911, 128.350691);
-insert into station values('극락강역','1','1','1','1',35.176132, 126.829992);
-insert into station values('기장역','1','1','1','1',35.243211, 129.218550);
-insert into station values('김제역','1','1','1','1',35.792582, 126.902896);
-insert into station values('남성현역','1','1','1','1',35.704844, 128.716302);
-insert into station values('남원역','1','1','1','1',35.411234, 127.361369);
-insert into station values('남창역','1','1','1','1',35.417630, 129.283260);
-insert into station values('논산역','1','1','1','1',36.207271, 127.092420);
-insert into station values('능주역','1','1','1','1',34.986771, 126.963996);
-insert into station values('다시역','1','1','1','1',35.016898, 126.641006);
-insert into station values('단양역','1','1','1','1',36.973343, 128.343597);
-insert into station values('대야역','1','1','1','1',35.943683, 126.810957);
-insert into station values('청도역','1','1','1','1',35.640227, 128.746495);
-insert into station values('청리역','1','1','1','1',36.339285, 128.128885);
-insert into station values('청소역','1','1','1','1',36.446176, 126.590878);
-insert into station values('청주공항역','1','1','1','1',36.722018, 127.489624);
-insert into station values('청주역','1','1','1','1',36.647289, 127.392467);
-insert into station values('추풍령역','1','1','1','1',36.213646, 127.996337);
-insert into station values('춘양역','1','1','1','1',36.938080, 128.919889);
-insert into station values('충주역','1','1','1','1',36.976115, 127.909055);
-insert into station values('탑리역','1','1','1','1',36.253172, 128.677317);
-insert into station values('태백역','1','1','1','1',37.176415, 128.984217);
-insert into station values('태화강역','1','1','1','1',35.539566, 129.353790);
-insert into station values('판교역','1','1','1','1',37.395088, 127.111146);
-insert into station values('평택역','1','1','1','1',36.990893, 127.085507);
-insert into station values('풍기역','1','1','1','1',36.874165, 128.524445);
-insert into station values('하동역','1','1','1','1',35.071397, 127.757960);
-insert into station values('하양역','1','1','1','1',35.909946, 128.817902);
-insert into station values('한림정역','1','1','1','1',35.322689, 128.803684);
-insert into station values('함안역','1','1','1','1',35.249669, 128.424854);
-insert into station values('함열역','1','1','1','1',36.080513, 126.957000);
-insert into station values('함창역','1','1','1','1',36.569845, 128.174896);
-insert into station values('함평역','1','1','1','1',35.024193, 126.539017);
-insert into station values('현동역','1','1','1','1',36.937037, 129.012069);
-insert into station values('호계역','1','1','1','1',35.622866, 129.354270);
-insert into station values('홍성역','1','1','1','1',36.599768, 126.680644);
-insert into station values('화명역','1','1','1','1',35.234564, 129.007597);
-insert into station values('화본역','1','1','1','1',36.127149, 128.694953);
-insert into station values('화순역','1','1','1','1',35.051829, 126.961654);
-insert into station values('황간역','1','1','1','1',36.224820, 127.911285);
-insert into station values('횡천역','1','1','1','1',35.103385, 127.808685);
-insert into station values('효천역','1','1','1','1',35.103119, 126.877586);
-insert into station values('희방사역','1','1','1','1',36.894758, 128.464987);
-insert into station values('안강역','1','1','1','1',35.989684, 129.230998);
-insert into station values('안양역','1','1','1','1',35.989684, 129.230998);
-insert into station values('약목역','1','1','1','1',36.041011, 128.362999);
-insert into station values('양동역','1','1','1','1',37.420599, 127.754494);
-insert into station values('양원역','1','1','1','1',36.963475, 129.091151);
-insert into station values('여천역','1','1','1','1',34.779417, 127.664153);
-insert into station values('연산역','1','1','1','1',36.212531, 127.200790);
-insert into station values('영월역','1','1','1','1',37.182664, 128.480735);
-insert into station values('예당역','1','1','1','1',34.778844, 127.202288);
-insert into station values('예미역','1','1','1','1',37.212640, 128.648191);
-insert into station values('예산역','1','1','1','1',36.687736, 126.828508);
-insert into station values('예천역','1','1','1','1',37.128293, 128.205321);
-insert into station values('오근장역','1','1','1','1',36.700369, 127.478543);
-insert into station values('오산역','1','1','1','1',37.151745, 127.067049);
-insert into station values('오수역','1','1','1','1',35.543111, 127.320569);
-insert into station values('옥산역','1','1','1','1',36.283189, 128.094464);
-insert into station values('옥천역','1','1','1','1',36.298328, 127.565550);
-insert into station values('완사역','1','1','1','1',35.134580, 127.977458);
-insert into station values('왜관역','1','1','1','1',35.992542, 128.400010);
-insert into station values('용궁역','1','1','1','1',36.607201, 128.273383);
-insert into station values('용문역','1','1','1','1',37.482323, 127.594187);
-insert into station values('웅천역','1','1','1','1',36.234591, 126.601897);
-insert into station values('원동역','1','1','1','1',35.363229, 128.920505);
-insert into station values('사북역','1','1','1','1', 37.226438,128.817023);
-insert into station values('사상역','1','1','1','1', 35.162536,128.985760);
-insert into station values('삼례역','1','1','1','1', 35.904472,127.066337);
-insert into station values('삼산역','1','1','1','1', 37.446335,127.768538);
-insert into station values('삼탄역','1','1','1','1', 37.073341,128.038593);
-insert into station values('삽교역','1','1','1','1', 36.680710,126.751399);
-insert into station values('상동역','1','1','1','1', 37.506066,126.753136);
-insert into station values('상주역','1','1','1','1', 36.410507,128.163871);
-insert into station values('서경주역','1','1','1','1', 35.868989,129.201153);
-insert into station values('서광주역','1','1','1','1', 35.125082,126.846881);
-insert into station values('서정리역','1','1','1','1', 37.056476,127.052855);
-insert into station values('서천역','1','1','1','1', 36.081596,126.708662);
-insert into station values('석불역','1','1','1','1', 37.460265,127.654872);
-insert into station values('석포역','1','1','1','1', 37.045499,129.061108);
-insert into station values('성환역','1','1','1','1', 36.915891,127.126964);
-insert into station values('센텀역','1','1','1','1', 35.169044,129.131616);
-insert into station values('소정리역','1','1','1','1', 37.056527,127.052876);
-insert into station values('승부역','1','1','1','1', 36.993645,129.083866);
-insert into station values('신기역','1','1','1','1', 37.438800,129.095816);
-insert into station values('신녕역','1','1','1','1', 36.034198,128.791131);
-insert into station values('신동역','1','1','1','1', 35.955732,128.486021);
-insert into station values('신례원역','1','1','1','1', 36.727327,126.849691);
-insert into station values('신림역','1','1','1','1', 37.217780,128.091346);
-insert into station values('신탄진역','1','1','1','1', 36.450164,127.428070);
-insert into station values('신태인역','1','1','1','1', 35.688090,126.884356);
-insert into station values('신해운대역','1','1','1','1', 35.181814,129.176728);
-insert into station values('심천역','1','1','1','1', 36.237790,127.720217);
-insert into station values('쌍룡역','1','1','1','1', 36.793934,127.121288);
-insert into station values('아산역','1','1','1','1', 36.794727,127.104397);
 
 delete from station;
+
+select count(*) from station
+
+select * from travel where id = 'java' and flag = 'true'
 
 select count(*) from review where member_id='asdf';
 select count(*) from station;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('용산역','1','1','1','1',37.530154, 126.964754);
 insert into station values('청량리역','1','1','1','1',37.580503, 127.046988);
@@ -758,6 +669,8 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('나주역','목�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('광주송정역','보성역',82);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('보성역','순천역',55);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','여수엑스포역',22);
+insert into STATION_CONNECT(depart,arrived,spent_time) values('전주역','익산역',20);
+insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','전주역',73);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('순천역','진주역',73);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('진주역','삼랑진역',88);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('영주역','철암역',104);
@@ -778,3 +691,31 @@ select name,detail,section,img,lat,lng,simple_detail as simpleDetail from statio
 select route from travel where id = 'java'
 
 select route from travel where id = 'java'
+
+insert into station values('서울역','하나의 특별시 대한민국의 중심','주소: 서울특별시 용산구 한강대로 405, 서울특별시 중구 한강대로 405','Capital','서울.jpg',37.554917, 126.970756);
+insert into place values(place_seq.nextval,'명동거리','서울역','Capital');
+insert into place values(place_seq.nextval,'서울역 고가 거리','서울역','Capital');
+
+insert into station values('양평역','생태 행복도시 희망의 양평','주소: 	경기도 양평군 양평읍 역전길 30','Capital','양평.jpg',37.492840, 127.491761);
+insert into place values(place_seq.nextval,'남한강 자전거길','양평역','Capital');
+insert into place values(place_seq.nextval,'양수리 두물머리 장소','양평역','Capital');
+
+insert into station values('용산역', '서울의 중심 세계의 중심','주소: 서울특별시 용산구 한강대로23길 55','Capital','용산.jpg',37.530077, 126.964689);
+insert into place values(place_seq.nextval,'이태원거리','용산역','Capital');
+insert into place values(place_seq.nextval,'국립중앙박물관','용산역','Capital');
+
+insert into station values('청량리역','동대문 패션 도시','주소: 서울특별시 동대문구 왕산로 214 (전농동)','Capital','동대문.jpg',37.580375, 127.046828);
+insert into place values(place_seq.nextval,'동대문거리','청량리역','Capital');
+insert into place values(place_seq.nextval,'흥인지문','청량리역','Capital');
+
+insert into station values('원주역','건강한 관광 문화 원주','주소: 강원도 원주시 평원로 158','Gwandong','원주.jpg',37.357086, 127.944841);
+insert into place values(place_seq.nextval,'치악산 등산로','원주역','Gwandong');
+insert into place values(place_seq.nextval,'연세대 원주 박물관','원주역','Gwandong');
+
+insert into station values('제천역','자연 치유 도시 제천','주소: 충청북도 제천시 의림대로','Chungcheong','제천.jpg',37.128250, 128.205257);
+insert into place values(place_seq.nextval,'충주호','제천역','Chungcheong');
+insert into place values(place_seq.nextval,'청풍 문화재 단지','제천역','Chungcheong');
+
+insert into station values('영주역','힐링 중심 행복 영주','주소: 경상북도 영주시 선비로 64','Youngnam','영주.jpg',36.811130, 128.625056);
+insert into place values(place_seq.nextval,'부석사','영주역','Youngnam');
+insert into place values(place_seq.nextval,'소수서원','영주역','Youngnam');

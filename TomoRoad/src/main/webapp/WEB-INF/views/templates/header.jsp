@@ -7,32 +7,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<%-- <c:if test="${sessionScope.mvo!=null}">
-<script type="text/javascript">
-function reqeustList(){
-	location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
-}
-$(document).ready(function(){
-	if("" != "${sessionScope.mvo.id}"){
-		setInterval(() => {
-			$.ajax({
-				type:"get",
-				url:"${pageContext.request.contextPath}/noauth_friend_RequestInfo.do",
-				success:function(data){
-					if(data != 0){
-						$("#bubble").empty(); 
-						$("#requestFriend").html("<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
-						$("#bubble").append("<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"+data+"</span>");
-						$("#bubble").append("<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png>");
-				 	}
-				}
-			})
-		},1000);
-	}
-});
-</script>
-</c:if> --%>
-
 <script type="text/javascript">
 	function reqeustList() {
 		location.href = "${pageContext.request.contextPath}/mypage/friend_RequestList.do";
@@ -49,7 +23,7 @@ $(document).ready(function(){
 										if (data != 0) {
 											$("#requestFriend")
 													.html(
-															"<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
+													"<input height = 35 width = 35 type = image src = ${pageContext.request.contextPath}/resources/images/99-1.png onclick = reqeustList()> ");
 											$("#bubble").append(
 													"<span id = requestCount style = 'position: absolute; top:5px; left:13px;'>"
 															+ data + "</span>");
@@ -64,17 +38,6 @@ $(document).ready(function(){
 <style>
 </style>
 <header id="header">
-	<%-- <div class="col-sm-12">
-		<div id="logo">
-			<h1>
-				<a href="${pageContext.request.contextPath}/home.do"><img
-					src="${pageContext.request.contextPath}/resources/images/logo.png" /></a>
-			</h1>
-		</div>
-	</div> --%>
-
-	<!-- Navigation
-    ================================================== -->
 
 	<div class="navbar navbar-default navbar-static-top">
 		<ul class="nav navbar-nav">
@@ -85,24 +48,26 @@ $(document).ready(function(){
 					style="height: 40px; margin-top: -10px;" />
 			</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">버킷리스트</a>
+				href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}">여행바구니</a>
 			</li>
 
 			<li><a
 				href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
-					BURNING </a></li>
+					번개시판 </a></li>
 
 			<li><a
 				href="${pageContext.request.contextPath}/review/noauth_showList.do">
-					REVIEW </a></li>
-
-			<li><a
-				href="${pageContext.request.contextPath}/mypage/mypage.do">
-					MYPAGE </a></li>
-
+					여행일기 </a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/station/getTourInfoData.do">
-					TourInfo </a></li>
+					여행정보 </a></li>
+			<c:choose>
+				<c:when test="${!empty sessionScope.mvo}">
+					<li><a
+						href="${pageContext.request.contextPath}/mypage/mypage.do">
+							MYPAGE </a></li>
+				</c:when>
+			</c:choose>
 
 			<li><c:choose>
 					<c:when test="${!empty sessionScope.mvo}">
@@ -124,21 +89,16 @@ $(document).ready(function(){
 
 			<c:if test="${sessionScope.mvo != null }">
 
-				<li> <jsp:include page="messagetap.jsp" /> </li>
+				<li><c:import url="messagetap.jsp"></c:import></li>
 				
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
-				<li> <span id="requestFriend"><img height=35 width=35
+				<li><span id="requestFriend"><img height=35 width=35
 						src=${pageContext.request.contextPath}/resources/images/99.png></span></li>
 				<div id="bubble"
 					style="position: absolute; top: -25px; left: 1060px;">
-					<!-- <span id = "requestCount" style = "position: absolute; top:8px; left:13px;">3</span> -->
-					<!-- 	<img height = 35 width = 35  src = ${pageContext.request.contextPath}/resources/images/bubble.png> -->
 				</div>
 			</c:if>
-			<%-- 				<li><a href="${pageContext.request.contextPath }/hotplace/noauth_hotplace.do">HotPlace</a> </li>
-				<li> </li>
- --%>
 		</ul>
 	</div>
 </header>

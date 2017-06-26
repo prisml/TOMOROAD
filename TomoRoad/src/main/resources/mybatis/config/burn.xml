@@ -15,7 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getBurnList" parameterType="pagingBean" resultType="burnVO" resultMap="burnRM">		
-		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
+		select A.* from(select row_number() over (order by b.no desc) as rnum
+		, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
 		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
 		where c.burn_no (+)= b.no) A
 		where rnum between #{startRowNumber} and #{endRowNumber}
@@ -24,7 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findBurnByNo" resultType="burnVO" resultMap="burnRM">
 		select A.* from 
 		(select b.no, b.title, b.station_name, b.member_id, b.content, b.hits,
-		to_char(b.posted_time,'YYYY/MM/DD HH24:MI') as posted_time, c.commentcount from burn_board b, (select burn_no, count(*) commentcount from burn_comment where state='comment' group by burn_no) c 
+		to_char(b.posted_time,'YYYY/MM/DD HH24:MI') as posted_time, c.commentcount from burn_board b, 
+		(select burn_no, count(*) commentcount from burn_comment where state='comment' group by burn_no) c 
 		where c.burn_no (+)= b.no ) A 
 		where no = #{value}
 	</select>
@@ -40,6 +42,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHits">
 		update burn_board set hits=hits+1 where no = #{value}
 	</update>
+	
+	<update id="updateBurn" parameterType="burnVO">
+		update burn_board
+		set	title = #{title}, content = #{content}, station_name = #{stationName}
+		where no=#{no}
+	</update>
+	
+	<delete id="deleteBurn">
+		delete from burn_board where no=#{value}
+	</delete>
+	
+	<select id="getTotalCountByStation" resultType="int">
+		select count(*) from burn_board where station_name = #{value}
+	</select>
+	
+	<select id="getBurnListByStation" parameterType="map" resultMap="burnRM" resultType="burnVO">		
+		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name
+		, b.member_id, b.posted_time, c.commentcount, b.hits 
+		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
+		where c.burn_no (+)= b.no and b.station_name = #{stationName}) A
+		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
+	</select>
+	
+	<select id="getStationNameList" resultType="string">
+		select distinct name from station order by name asc
+	</select>
+	
+	
 	<!-- 댓글 -->
 	<select id="findBurnCommentByNo" resultType="burnCommentVO">		
 		select c.no, c.content, c.posted_time, c.recomment, c.burn_no, c.member_id, c.state, m.profile 
@@ -57,37 +87,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into burn_comment (no,content,posted_time,burn_no,recomment,member_id) 
 		values(burn_comment_seq.nextval,#{content},sysdate,#{burn_no},#{recomment},#{member_id}) 
 	</insert>
+	
 	<update id="deleteComment" parameterType="burnCommentVO">
 		update burn_comment set state=#{state} where no=#{no} and member_id =#{member_id}
 	</update>
+	
 	<update id="updateComment" parameterType="burnCommentVO">
 		update burn_comment set content=#{content} where no=#{no} and member_id =#{member_id}
 	</update>
+	
 	<!-- 댓글끝 -->
-	<update id="updateBurn" parameterType="burnVO">
-		update burn_board
-		set	title = #{title}, content = #{content}, station_name = #{stationName}
-		where no=#{no}
-	</update>
-	
-	<delete id="deleteBurn">
-		delete from burn_board where no=#{value}
-	</delete>
-	
-	<select id="getTotalCountByStation" resultType="int">
-		select count(*) from burn_board where station_name = #{value}
-	</select>
-	
-	<select id="getBurnListByStation" parameterType="map" resultMap="burnRM" resultType="burnVO">		
-		select A.* from(select row_number() over (order by b.no desc) as rnum, b.no, b.title, b.station_name, b.member_id, b.posted_time, c.commentcount, b.hits 
-		from BURN_BOARD b, (select burn_no, count(*) as commentcount from burn_comment where state='comment' group by burn_no) c
-		where c.burn_no (+)= b.no and b.station_name = #{stationName}) A
-		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
-	</select>
-	
-	<select id="getStationNameList" resultType="string">
-		select distinct name from station order by name asc
-	</select>
 	
 	
 	
@@ -105,7 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findId" resultType="string">
-		select id from member where id like '%' || #{value} || '%'
+		select id from member where id like '%' || #{id} || '%' and id != #{searcher}
 	</select>	
 	
 	<select id="getMessageList" resultMap="messageRM" resultType="messageVO">
@@ -113,6 +122,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="sendMessage" parameterType="map">
-		insert into message(m_no, m_sender, m_receiver, m_time, m_content, m_checked) values(message_sequence.nextval,#{sender},#{receiver},sysdate,#{text},1)
+		insert into message(m_no, m_sender, m_receiver, m_time, m_content, m_checked) 
+		values(message_sequence.nextval,#{sender},#{receiver},sysdate,#{text},1)
 	</insert>
+		
+	<update id="updateCheck" parameterType="map">
+		update message set m_checked = 0 where m_checked=1 and m_sender=#{receiver} and m_receiver=#{sender}
+	</update>
+	
+	<select id="getFilteredMessage" resultMap="messageRM" resultType="messageVO">
+
+		select m_no,m_sender,m_receiver,m_time,m_content,m_checked from message 
+		where m_sender =#{value} or m_receiver = #{value} order by m_time desc
+	</select>
+	
+
 </mapper>
+
+
+

@@ -37,10 +37,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public void deleteMember(String id) {
 		template.delete("member.deleteMember",id);		
 	}
-	@Override
-	public MemberVO findId(MemberVO memberVO) {
-		return template.selectOne("member.findId", memberVO);
-	}
+
 
 	@Override
 	public void friend_Request(HashMap<String,String> friend) {
@@ -103,20 +100,25 @@ public class MemberDAOImpl implements MemberDAO{
 	public void profileReset(HashMap<String,String> profileInfo) {
 		template.update("profileReset",profileInfo);
 	}
-	@Override
-	public void findPw2(MemberVO vo) {
-		template.update("member.findPw2",vo);
-		
-	}
+
 	@Override
 	public MemberVO findMember(MemberVO vo) {
 		return template.selectOne("member.findMember", vo);
+	}
+	
+	@Override
+	public MemberVO findId(MemberVO memberVO) {
+		return template.selectOne("member.findId", memberVO);
 	}
 	@Override
 	public String findPw(MemberVO vo) {
 		return template.selectOne("member.findPw", vo);
 	}
-
+	@Override
+	public void updatePw(MemberVO vo) {
+		template.update("member.updatePw",vo);		
+	}
+	
 	public int friend_RequestInfo(String id) {
 		return template.selectOne("member.friend_RequestInfo", id);
 	}

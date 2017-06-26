@@ -3,22 +3,20 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-var key = "qwe";
-var input = "";
-	  $(document).keypress(function(e) {		  
-		 if (e.which !== 0) {
-		        input += String.fromCharCode(e.which);
-		        if(key.length == input.length && key == input)
-		        	location.href="/tomoroad/member/noauth_manager_login.do"; 
-		          else if(key.length == input.length && key != input)
-		        	key = "";   
-		        
+var key = "tomoroad";
+var input = ""; //input 초기화
+	  $(document).keypress(function(e) { //keypress 키보드를 눌렀을때 입력된 문자를 알려줍니다		  
+		 if (e.which !== 0) { //키보드를 누른 값이 있을때
+		        input += String.fromCharCode(e.which); //아스키코드 문자 반환String.fromCharCode()
+		        if(key.length == input.length && key == input) //키값과 input값이 같을시
+		        	location.href="/tomoroad/manager/noauth_manager_login.do"; //관리자 로그인 페이지로 이동
+		          else if(key.length == input.length && key != input) //키값과 input값이 같지 않을시
+		        	key = "";  //키값 초기화 	        
 		    }
 	  });
 	  $(document).ready(function(){
 		  $(".form-control").keypress(function(){
-			  input="";
-			  
+			  input="";	//input 초기화 인풋창에서 키를 누르려는 일반회원들과의 차이를 두기 위해서
 		  });
 	  });
 </script>
@@ -49,7 +47,7 @@ var input = "";
 	
                 
         <div class="dividerHeading">
-            <h4><span>로그인 해주세요</span></h4>
+            <h4><span>로그인</span></h4>
         </div>
         
 
@@ -84,9 +82,6 @@ var input = "";
         	<div class="form-group" align="center">
         	    <a  class="btn btn-default btn-lg button" href="/tomoroad/member/noauth_register_form.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">가입</a>
      	    </div>  	  
-<%-- 			<div class="form-group" align="center">
-      	  		<a  class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/member/noauth_weather.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;" value="">날씨를 알고 싶어요</a>
-      	    </div> --%>
       	    <div class="form-group" align="center">
             <a class="btn btn-default btn-lg button" href="${pageContext.request.contextPath}/home.do" style="width: 400px; height: 40px; margin: 0 auto; align:center;">시작화면</a>
         </div>

@@ -9,11 +9,13 @@ var map;
 var markers=new Array(${size});
 var infoList= new Array(${size});
 var windowNames = new Array(${size});
-var icons = [];
-var names = [];
+//미리 사이즈를 만들어 놓은 배열을 사용하기 위해 사이즈를 주었다.
+var icons = [];//각각의 아이콘들을 배열로관리.
+var zindex = 0;//zindex값을 동적으로 만들기위해 변수선언
 
 function buttonClick(id,marker,windowName){
 	$(document).on("click","#"+id,function(){
+		//jQuey on을 사용해, 모든 정보가 로딩된 뒤 작동을 하게 만든다.
 		$.ajax({
 			type:"GET",
 			url:"${pageContext.request.contextPath}/bucket/addBucket.do",
@@ -43,47 +45,59 @@ function initMap() {
 	  });
 	  var infoWindow = new google.maps.InfoWindow({map: map});
 	  	<c:forEach items = "${station}" var = "station" varStatus="status">
-		if(${station.member_id==null}){
+		if(${station.member_id==null}){//역에관한 아이디 존재여부를 체크하여, 마커를다르게준다.
 		 	icons[${status.index}] = "resources/img/marker/marker.png";
+		 	zindex=100;
 		}else{
 			icons[${status.index}] = "resources/img/marker/visited.png";
+			zindex=1000;
+			
 		}
 	  	markers[${status.index}] = new google.maps.Marker({
 			map: map,
 			animation: google.maps.Animation.DROP,
 			position: {lat: ${station.lat},lng: ${station.lng}},
 			title: "${station.name}",
-			icon : icons[${status.index}]
+			icon : icons[${status.index}], //다르게 생성된 마커이미지와
+			zIndex:zindex //zindex값을 마커생성시에 세팅해준다.
 		}); 
-		google.maps.event.addListener(markers[${status.index}],'click',function(){
+		google.maps.event.addListener(markers[${status.index}],'click',function(){ 
+			//생성된 마커를 클릭시 이벤트를 발생시킨다.
 			for(var z=0;z<windowNames.length;z++){
-				if(windowNames[z]!=null){
-					windowNames[z].close();
+				if(windowNames[z]!=null){//아직 인덱스 z번째에 세팅된 값이 없다면 넘어가고
+					windowNames[z].close();//있을시 close 시켜준다.
 				}
 			}
 			infoList[${status.index}] = "";
-			$.ajax({
+			$.ajax({//날씨정보를 생성하고, 정보창에 띄워줄 값을 세팅해주는 에이젝스통신.
 				type:"GET",
 				url:"noauth_weatherInfo.do",
 				data: "lat=${station.lat}&lng=${station.lng}&id=${mvo.id}&name=${station.name}",
 				success:function(data){
 					infoList[${status.index}] += '<div>';
-					infoList[${status.index}] += '<div id="siteNotice"></div>'
+					infoList[${status.index}] += '<div id="siteNotice"></div>';
+					infoList[${status.index}] += '<div class="iw-title">${station.name}</div>';
 					if(data.cityurl=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
-					infoList[${status.index}] +='<h1>${station.name}</h1>'+'This area does not provide weather information.';			
-					}else{//if
-					infoList[${status.index}] +='<h1>${station.name}<img src="'+data.cityurl+'">'+'</h1>';			
+					//날씨 url을 위한 조건문. 날씨 URL의 경우 날씨정보가 없는지역은 낮일때 첫번째 조건, 밤일때 두번쨰 조건에 있는 url을 제공한다.
+					//저 url을 그대로 쓰면 이미지가 안나오기때문에 조건문으로 걸러주어 이미지가 뜨지않는 것을 방지한다.
+					infoList[${status.index}] +='<div>'+'Sorry Tomoroader, This area does not provide weather information.'+'</div>';			
+					}else{//날씨를 제공할 경우 정상적인 날씨정보를 세팅
+					infoList[${status.index}] +='<div>'
+					infoList[${status.index}] +='<img src="'+data.cityurl+'">';
+					infoList[${status.index}] +='</div>'
 					}//else
 					infoList[${status.index}] +='<div>';
 					infoList[${status.index}] +='<br>';
-			     	if("${mvo.id}"==""){//if
+					infoList[${status.index}] +='<div>';
+			     	if("${mvo.id}"==""){//로그인했을 경우에만 보이는 정보들을 위한 조건문이다.
 			     	}else{
-				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보 보러가기</a><br>';
-				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>${station.name} 번개시판가기</a><br>';
+				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보</a><br>';
+				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>번개시판</a><br>';
 			  		if(data.result!=0){
-			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}"+'>버킷리스트 보러가기</a><br>';
-			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷리스트에서 삭제하기</a><br>';//버튼으로 수정하자 이거는.
+			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷에서 삭제</a><br>';
+			     	infoList[${status.index}] +='</div>';
 			  		}else{
+					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
 			  		}
 			     	}//else
@@ -91,17 +105,47 @@ function initMap() {
 					infoList[${status.index}] +='</div>';
 					windowNames[${status.index}] = new google.maps.InfoWindow({
 			       	content: infoList[${status.index}],
-			       	maxWidth:200
+			       	maxWidth:400
 					});//windowNames
-					//windowNames.close();
+					/*css*/
+					google.maps.event.addListener(windowNames[${status.index}], 'domready', function() {
+						// Reference to the DIV which receives the contents of the infowindow using jQuery
+						var iwOuter = $('.gm-style-iw');
+						/* The DIV we want to change is above the .gm-style-iw DIV.
+						* So, we use jQuery and create a iwBackground variable,
+						* and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+						*/
+						var iwBackground = iwOuter.prev();
+						// Remove the background shadow DIV
+						iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+						// Remove the white background DIV
+						iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+						// Moves the arrow 76px to the left margin 
+						iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(0, 0, 0, 1) 1px 1px 1px', 'z-index' : '1'});
+						var iwCloseBtn = iwOuter.next();
+
+						// Apply the desired effect to the close button
+						iwCloseBtn.css({
+						  opacity: '1', // by default the close button has an opacity of 0.7
+						  right: '38px', top: '3px', // button repositioning
+						  border: '7px solid #48b5e9', // increasing button border and new color
+						  'border-radius': '13px', // circular effect
+						  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+						  });
+
+						// The API automatically applies 0.7 opacity to the button after the mouseout event.
+						// This function reverses this event to the desired value.
+						iwCloseBtn.mouseout(function(){
+						  $(this).css({opacity: '1'});
+						});
+					});
+					/*css*/
 					windowNames[${status.index}].open(map,markers[${status.index}]);				
 				    buttonClick("${station.name}" , markers[${status.index}] ,windowNames[${status.index}]);
 				}//success
 			});//ajax
 				
 		});//marker click
-		
-		//doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
 	    </c:forEach>
 			
 	    if (navigator.geolocation) {
@@ -204,7 +248,6 @@ function initMap() {
 </div>
 -->
 </div>
-<div id="forecastInfo"></div>
 <!-- 지도 -->
 <div class='map' id='map' style="width: 100%; min-height: 600px; height:100%"></div>
 <!-- google map API KEY -->

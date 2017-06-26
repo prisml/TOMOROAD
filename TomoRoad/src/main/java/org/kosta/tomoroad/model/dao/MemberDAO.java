@@ -46,7 +46,7 @@ public interface MemberDAO {
 	
 	void profileReset(HashMap<String,String> profileInfo);
 
-	public void findPw2(MemberVO vo);
+	public void updatePw(MemberVO vo);
 
 	MemberVO findMember(MemberVO vo);
 
