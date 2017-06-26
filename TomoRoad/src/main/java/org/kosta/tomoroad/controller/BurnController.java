@@ -132,7 +132,7 @@ public class BurnController {
 	}
 	
 	// 메세지
-	@RequestMapping("isNewMsg.do")
+	@RequestMapping("{pathName}/isNewMsg.do")
 	@ResponseBody
 	public int isNewMsg(String receiver){		
 		return burnService.isNewMsg(receiver);
