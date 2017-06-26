@@ -58,6 +58,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="deletePlaceManager">
 		delete from place where no=#{no}	
 	</delete>
+			<insert id="insertStation" parameterType="stationVO">
+		insert into station(name,simple_detail,detail,section,img,lat,lng)
+		values(#{name}, #{simpleDetail}, #{detail}, #{section}, #{img}, #{lat}, #{lng})
+	</insert>
+		<delete id="deleteStation">
+		delete from station where name=#{name}	
+	</delete>
 </mapper>
 
 

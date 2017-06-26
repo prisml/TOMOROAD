@@ -77,6 +77,16 @@ public class ManagerServiceImpl implements ManagerService{
 		managerDAO.deletePlaceManager(no);	
 		
 	}
+	@Override
+	public void insertStation(StationVO vo) {
+		managerDAO.insertStation(vo);	
+		
+	}
+	@Override
+	public void deleteStation(String name) {
+		managerDAO.deleteStation(name);	
+		
+	}
 
 
 
