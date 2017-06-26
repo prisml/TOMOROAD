@@ -5,9 +5,9 @@
 	$(document).ready(function(){
 		var fileTarget = $('.filebox .upload-hidden'); 
 		fileTarget.on('change', function(){ // 값이 변경되면 
-			if(window.FileReader){ // modern browser 
+			if(window.FileReader){
 				var filename = $(this)[0].files[0].name; 
-			} else { // old IE 
+			} else {  
 				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
 			} // 추출한 파일명 삽입 
 			$(this).siblings('.upload-name').val(filename); 
@@ -101,18 +101,8 @@
 				</div>
 				<div class="col-lg-3 ">
 					<select id="placeNo" name="placeNo" class="review-selete-box">
-						<%-- <c:forEach items="${placeList}" var="pvo">
-							<option value="${pvo.name }">${pvo.name }</option>
-						</c:forEach> --%>
 					</select>
 				</div>
-				<%-- <div class="col-lg-6 ">
-					<select name="placeNo" class="from-control">
-						<c:forEach items="${dvo.placeList}" var="pvo">
-							<option value="${pvo.no }">${pvo.name }</option>
-						</c:forEach>
-					</select>
-				</div> --%>
 			</div>
 		</div>
 		<div class="row">

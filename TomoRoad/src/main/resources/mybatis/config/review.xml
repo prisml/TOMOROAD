@@ -4,17 +4,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-	<resultMap type="reviewVO" id="reviewRM">
-		<result property="postedTime" column="posted_time" />
-		<result property="place.no" column="place_no" />
-		<result property="member.id" column="member_id" />
-	</resultMap>
-	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
-		<result column="place_name" property="place.name" />
-		<result column="member_name" property="member.name" />
-		<result column="station_name" property="place.station_name" />
-	</resultMap>
-	
 	<select id="detail" resultMap="detailReviewRM">
 		select
 		r.no,r.title,r.content,to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time,
@@ -26,11 +15,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from
 		review
 	</select>
+	
+	<resultMap type="reviewVO" id="reviewRM">
+		<result property="postedTime" column="posted_time" />
+		<result property="place.no" column="place_no" />
+		<result property="member.id" column="member_id" />
+	</resultMap>
+	<resultMap type="reviewVO" id="detailReviewRM" extends="reviewRM">
+		<result column="place_name" property="place.name" />
+		<result column="member_name" property="member.name" />
+		<result column="station_name" property="place.station_name" />
+	</resultMap>
 	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
 		select A.*
-		from(select row_number() over(order by r.no
-		desc) rnum,
+		from(select row_number() over(order by r.no	desc) rnum,
 		r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
 		to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time, re.recommend
 		from review r, place p, member m, 
@@ -38,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.place_no = p.no and r.member_id=m.id and r.no=re.review_no(+)) A
 		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
+	
 	<insert id="register" parameterType="reviewVO">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 			select
@@ -100,21 +100,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from review where no=#{no}
 	</delete>
-	<insert id="recommend" parameterType="map">
-		insert into
-		review_recommend values(#{member_id},#{review_no})
-	</insert>
 
 	<select id="getRecommendByNo" resultType="int">
 		select count(*) from review_recommend where review_no = #{value}
 	</select>
 	
+	<insert id="recommend" parameterType="map">
+		insert into review_recommend 
+		values(#{member_id},#{review_no})
+	</insert>
+	
 	<select id="isRecommend" resultType="map" parameterType="map">
-		select member_id, review_no from review_recommend where member_id=#{member_id} and review_no=#{review_no}
+		select member_id, review_no 
+		from review_recommend 
+		where member_id=#{member_id} and review_no=#{review_no}
 	</select>
 	
 	<delete id="deleteRecommend" parameterType="map">
-		delete from review_recommend where member_id=#{member_id} and review_no=#{review_no}
+		delete from review_recommend 
+		where member_id=#{member_id} and review_no=#{review_no}
 	</delete>
 	
 	<!-- 특정 관광지에 해당하는 리뷰들을 모아서 보여준다.-->

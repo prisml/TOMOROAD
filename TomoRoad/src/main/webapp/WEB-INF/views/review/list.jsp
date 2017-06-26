@@ -16,13 +16,11 @@
 		<c:forEach items="${reviewList.list}" var="rlist">
 			<article class="post">
 				<div class="post_date">
-					<span class="day">${rlist.day }</span> <span class="month">${rlist.month }</span>
+					<span class="day">${rlist.day }</span> 
+					<span class="month">${rlist.month }</span>
 				</div>
 				<figure class="post_img">
 					<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
-					<%-- <img
-						src="${pageContext.request.contextPath}/resources/images/blog/blog_medium_1.png"
-						alt="blog post"> --%>
 						<img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;">
 					</a>
 				</figure>
@@ -43,18 +41,18 @@
 					<a class="btn btn-small btn-default"
 						href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">Read
 						More</a>
-
 				</div>
 			</article>
 		</c:forEach>
 	</div>
 	
 	<c:set var="pb" value="${reviewList.pagingBean}" />
-	<div class="col-lg-12 col-md-12 col-sm-12">
-		<ul class="pagination pull-left mrgt-0">
+	<div class="col-lg-12 col-md-12 col-sm-12  text-center">
+		<ul class="pagination">
 			<c:if test="${pb.previousPageGroup == true }">
 				<li><a
-					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.startPageOfPageGroup-1}">«</a></li>
+					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.startPageOfPageGroup-1}">
+					«</a></li>
 			</c:if>
 			<c:forEach begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}" var="i">
@@ -70,7 +68,8 @@
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup == true }">
 				<li><a
-					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.endPageOfPageGroup+1}">»</a></li>
+					href="${pageContext.request.contextPath}/review/noauth_showList.do?page=${pb.endPageOfPageGroup+1}">
+					»</a></li>
 			</c:if>
 		</ul>
 	</div>
