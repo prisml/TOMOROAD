@@ -159,7 +159,6 @@ create table review_recommend(
 	constraint fk_reivew_recommend_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
 );
-
 create sequence burn_board_seq nocache;
 
 create table burn_comment(
@@ -552,6 +551,47 @@ select count(*) from station;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('용산역','1','1','1','1',37.530154, 126.964754);
 insert into station values('청량리역','1','1','1','1',37.580503, 127.046988);
@@ -651,3 +691,31 @@ select name,detail,section,img,lat,lng,simple_detail as simpleDetail from statio
 select route from travel where id = 'java'
 
 select route from travel where id = 'java'
+
+insert into station values('서울역','하나의 특별시 대한민국의 중심','주소: 서울특별시 용산구 한강대로 405, 서울특별시 중구 한강대로 405','Capital','서울.jpg',37.554917, 126.970756);
+insert into place values(place_seq.nextval,'명동거리','서울역','Capital');
+insert into place values(place_seq.nextval,'서울역 고가 거리','서울역','Capital');
+
+insert into station values('양평역','생태 행복도시 희망의 양평','주소: 	경기도 양평군 양평읍 역전길 30','Capital','양평.jpg',37.492840, 127.491761);
+insert into place values(place_seq.nextval,'남한강 자전거길','양평역','Capital');
+insert into place values(place_seq.nextval,'양수리 두물머리 장소','양평역','Capital');
+
+insert into station values('용산역', '서울의 중심 세계의 중심','주소: 서울특별시 용산구 한강대로23길 55','Capital','용산.jpg',37.530077, 126.964689);
+insert into place values(place_seq.nextval,'이태원거리','용산역','Capital');
+insert into place values(place_seq.nextval,'국립중앙박물관','용산역','Capital');
+
+insert into station values('청량리역','동대문 패션 도시','주소: 서울특별시 동대문구 왕산로 214 (전농동)','Capital','동대문.jpg',37.580375, 127.046828);
+insert into place values(place_seq.nextval,'동대문거리','청량리역','Capital');
+insert into place values(place_seq.nextval,'흥인지문','청량리역','Capital');
+
+insert into station values('원주역','건강한 관광 문화 원주','주소: 강원도 원주시 평원로 158','Gwandong','원주.jpg',37.357086, 127.944841);
+insert into place values(place_seq.nextval,'치악산 등산로','원주역','Gwandong');
+insert into place values(place_seq.nextval,'연세대 원주 박물관','원주역','Gwandong');
+
+insert into station values('제천역','자연 치유 도시 제천','주소: 충청북도 제천시 의림대로','Chungcheong','제천.jpg',37.128250, 128.205257);
+insert into place values(place_seq.nextval,'충주호','제천역','Chungcheong');
+insert into place values(place_seq.nextval,'청풍 문화재 단지','제천역','Chungcheong');
+
+insert into station values('영주역','힐링 중심 행복 영주','주소: 경상북도 영주시 선비로 64','Youngnam','영주.jpg',36.811130, 128.625056);
+insert into place values(place_seq.nextval,'부석사','영주역','Youngnam');
+insert into place values(place_seq.nextval,'소수서원','영주역','Youngnam');

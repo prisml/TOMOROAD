@@ -15,12 +15,13 @@
              </div>  	 -->
     <div id="listStation" class="col-sm-4" >
     <select class="col-sm-4 form-control" name="station_name" id="station_name" required="required" >
-	<option value="all" required="required">전체보기</option>
+	<option value="all" >전체보기</option>
 	<c:forEach items="${station}" var="sname">
 	<option value="${sname.name}">${sname.name}</option>
 	</c:forEach>
 	</select>
              </div>
+             <label>원하시는 역을 선택 해주세요</label> 
          </div>
      </div>
      	 <div class="comment_form">
