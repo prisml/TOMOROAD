@@ -28,9 +28,11 @@ map css입니다.*/
 
 .iw-content {
 	padding: 0 5px 0 5px;
+	text-align: center;
 }
 
 .iw-content > a {
+	font-size: 15px;
 	display: inline-block;
 	color: white;
 	background-color: #ED4B4B;
@@ -42,6 +44,7 @@ map css입니다.*/
 }
 
 .iw-content > input[type=button] {
+	font-size: 15px;
 	display: inline-block;
 	color: white;
 	background-color: #ED4B4B;

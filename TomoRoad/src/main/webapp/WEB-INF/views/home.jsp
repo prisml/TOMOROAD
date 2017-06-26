@@ -115,7 +115,7 @@ function initMap() {
 					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
 			  		}
 			     	}//else
-			     	infoList[${status.index}] +='<a id="closeInfo" href="#.">닫기</a>';
+			     	infoList[${status.index}] +='<a id="closeInfo" href="javascript:closeInfo()">닫기</a>';
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';

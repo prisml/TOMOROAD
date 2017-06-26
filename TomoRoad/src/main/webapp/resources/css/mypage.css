@@ -29,19 +29,81 @@
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 }
-
-.bucketStation>input[type=checkbox]+label {
-	color: #ccc;
-	font-weight: bold;
+.bucketStation label {
+	padding: 13px;
+	margin: 8px;
+	border: 1px solid #ED4B4B;
+	border-radius: 15px;
 }
 
-.bucketStation>input[type=checkbox]:checked+label {
-	color: #white;
+.bucketStation input[type=checkbox]+label {
+	color: #ED4B4B;
+}
+
+.bucketStation input[type=checkbox]:checked+label {
+	color: white;
 	font-style: normal;
-	font-weight: bold;
+	background-color: #ED4B4B;
+	border-radius: 15px;
 }
 
-.bucketStation>input[type=checkbox] {
-	padding: 15px;
+.bucketStation input[type=checkbox] {
 	display: none;
+}
+
+.bucketStation {
+	font-size: 20px;
+	padding-left: 0px;
+	padding-right: 10px;
+	margin-left: -30px;
+}
+.bucketStation span {
+	font-size: 15px;
+}
+.bucketRight p {
+	margin: 12px;
+	float: left;
+}
+
+.bucketRight {
+	padding-left: 15px;
+	padding-top: 55px;
+	margin: 0px;
+}
+
+.review-selete-box {
+	width: 200px;
+}
+
+.bucketButton {
+	float: right;
+	margin-right: 50px;
+	text-align: center;
+}
+
+.bucketButton input[type=button] {
+	margin: 10px;
+}
+
+.bucketStationLabel {
+	text-align: center;
+}
+
+.bucketTitle {
+	margin-left: 40px;
+	color: #ED4B4B;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.bucketTitle span {
+	color: #555;
+}
+
+.mypageBtn {
+    color: #fff;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

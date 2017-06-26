@@ -164,20 +164,20 @@
 			<ul class="widget_info_contact">
 				<li><i class="fa fa-map-marker"></i>
 					<p>
-						<strong>Address</strong>: 오리역 3번출구
+						<strong>Address</strong>: 삼평동
 					</p></li>
 				<li><i class="fa fa-user"></i>
 					<p>
-						<strong>Phone</strong>:010-2369-4284
+						<strong>Phone</strong>:010-4712-1917
 					</p></li>
 				<li><i class="fa fa-envelope"></i>
 					<p>
-						<strong>Email</strong>: <a href="#">prisml091292@gmail.com</a>
+						<strong>Email</strong>: <a href="#">tico9922@naver.com</a>
 					</p></li>
 				<li><i class="fa fa-globe"></i>
 					<p>
 						<strong>Web</strong>: <a href="#" data-placement="bottom"
-							data-toggle="tooltip" title="www.example.com">www.example.com</a>
+							data-toggle="tooltip" title="www.example.com">cafe.naver.com/kosta145</a>
 					</p></li>
 			</ul>
 
