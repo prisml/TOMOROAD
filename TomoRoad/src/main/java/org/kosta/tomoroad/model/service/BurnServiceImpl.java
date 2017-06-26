@@ -164,18 +164,7 @@ public class BurnServiceImpl implements BurnService {
 				map.put(a, mvo);
 			}
 		}
-		
-		/*
-		for(MessageVO mvo : list){	
-			if((mvo.getSender()).equals(id)){
-				mvo.setSender(mvo.getReceiver());
-				mvo.setReceiver(id);				
-			}
-			if(map.containsKey(mvo.getSender())==false){
-				map.put(mvo.getSender(), mvo);
-			}		 
-		}	
-		*/
+	
 		list.clear();
 		Iterator<MessageVO> it = map.values().iterator();
 		while(it.hasNext()){
@@ -185,13 +174,6 @@ public class BurnServiceImpl implements BurnService {
 		
 	}
 	
-	@Override
-	public List<MessageVO> getUncheckedMessageCount(String receiver){
-		return burnDAO.getUncheckedMessageCount(receiver);		
-	}
-	
-	
-
 }
 
 

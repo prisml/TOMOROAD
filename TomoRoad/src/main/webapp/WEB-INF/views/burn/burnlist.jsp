@@ -54,15 +54,12 @@ $(document).ready(function(){
 		}); // ajax
 		}
 	});	// doVisit
-	
-	
+			
 	
 	$(document).on("click",".message",function(){		
 		openNav();
 	});
 	
-	
-	     
 	      
 });
 	
@@ -299,12 +296,21 @@ input {
   <c:forEach items="${lvo.list}" var="burn">
   	<tr align="center">
 	<td>${burn.no}</td>
-	<td style="word-break:break-all;"><a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">${burn.title} (${burn.commentCount})</a></td>
-	<td>${burn.stationName}</td>	
-	<td><a href="#." data-html="true" data-toggle="popover" data-trigger="focus" data-content="<ul><li><a href='#.' class='message'>메세지 보내기</a></li><li><a href='#.' class='doVisit'><input type='hidden' value='${burn.memberId}'> 페이지로 이동</a></li></ul>">${burn.memberId}</a>	
+	<td style="word-break:break-all;">
+		<a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">
+			${burn.title} (${burn.commentCount})
+		</a>
 	</td>
-	<td>${burn.postedTime}</td>
-	<td>${burn.hits}</td>
+	<td>${burn.stationName}</td>	
+	<td>
+		<a href="#." data-html="true" data-toggle="popover" data-trigger="focus" data-content="
+			<ul>
+				<li><a href='#.' class='message'>메세지 보내기</a></li>
+				<li><a href='#.' class='doVisit'><input type='hidden' value='${burn.memberId}'> 페이지로 이동</a></li>
+			</ul>">${burn.memberId}
+		</a>	
+	</td>
+	<td>${burn.postedTime}</td> <td>${burn.hits}</td>
 	</tr>
   </c:forEach>  
 </table>

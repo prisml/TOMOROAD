@@ -75,7 +75,6 @@ public class BurnController {
 	@RequestMapping("replyComment.do")
 	public String replyComment(BurnCommentVO vo){
 		burnService.replyComment(vo);
-		System.out.println(vo.getBurn_no());
 		return "redirect:showBurnDetail.do?no="+vo.getBurn_no();
 	}
 	//댓글끝
@@ -161,12 +160,6 @@ public class BurnController {
 	@ResponseBody
 	public Object getFilteredMessage(String id){
 		return burnService.getFilteredMessage(id);
-	}
-	
-	@RequestMapping("getUncheckedMessageCount.do")
-	@ResponseBody
-	public List<MessageVO> getUncheckedMessageCount(String receiver){
-		return burnService.getUncheckedMessageCount(receiver);
 	}
 	
 }

@@ -13,6 +13,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
+
 <script>
 	$(document).ready(function(){
 		 $(document).mousedown(function(e) {
@@ -28,8 +29,7 @@ function closeNav() {
 	               }
 	            }
 	         });
-	      });
-	      
+	      });	      
 	});
 </script>
 
@@ -160,16 +160,17 @@ body {font-family: "Lato", sans-serif;}
 			},5000);
 		}		
 		
-		$("#searchicon").click(function(){	// 사람 검색시
+		$("#searchicon").click(function(){	// 아이디 검색시
 			var mlist = "";
-			var target = $("#searchbox").val();
+			var target = $.trim($("#searchbox").val());			
 			$.ajax({
 				type :"get",
 				url : "burn/findId.do",
 				data:"id="+target+"&searcher=${sessionScope.mvo.id}",
 				success: function(data){
 					for(var i=0; i<data.length; i++){
-						mlist += "<a href='#.' class=mm style='color:white; font-size:18px; height:10px; padding-top: 0px; padding-bottom: 0px;'>"+data[i]+"</a><br>";
+						mlist += "<a href='#.' class=mm style='color:white; font-size:18px; height:10px; padding-top: 0px;";
+						mlist += "padding-bottom: 0px;'>"+data[i]+"</a><br>";
 					}
 					$("#mlist").html(mlist);					
 				}			

@@ -43,21 +43,21 @@ public class ManagerDAOImpl implements ManagerDAO{
 		return vo;
 	}
 
-	@Override
-	public void updateStation(StationVO vo) {
-		template.update("manager.updateStation",vo);
-	}
 
-	@Override
-	public StationVO getStationListManager(String name) {
-	//	System.out.println(template.selectOne("manager.getStationListManager",name).toString());
-		return template.selectOne("manager.getStationListManager",name);
-	}
 
 	@Override
 	public List<StationVO> getStationNameListManager() {
 		return template.selectList("manager.getStationNameListManager");
 	}
+	@Override
+	public StationVO getStationListManager(String name) {
+		return template.selectOne("manager.getStationListManager",name);
+	}
+	@Override
+	public void updateStation(StationVO vo) {
+		template.update("manager.updateStation",vo);
+	}
+
 
 	@Override
 	public List<PlaceVO> getPlaceList() {
@@ -85,6 +85,18 @@ public class ManagerDAOImpl implements ManagerDAO{
 	@Override
 	public void deletePlaceManager(int no) {
 		template.delete("manager.deletePlaceManager",no);	
+		
+	}
+
+	@Override
+	public void insertStation(StationVO vo) {
+		template.insert("manager.insertStation",vo);
+		
+	}
+
+	@Override
+	public void deleteStation(String name) {
+		template.delete("manager.deleteStation",name);	
 		
 	}
 }

@@ -14,6 +14,7 @@
  	$(document).ready(function(){
  		function doInfo(marker, windowName,windowNames) {
 	        google.maps.event.addListener(marker, 'click', function() {
+	        	//markerClick
 	        	for(var z=0;z<windowNames.length;z++){
 	        		windowNames[z].close();
 	        	}
@@ -21,26 +22,32 @@
 	        });
 	    }
  		<c:forEach items="${station}" var = "waypoint" varStatus="index">
- 			station.push("${waypoint}");//경유역	
+ 			station.push("${waypoint}");//경유역을 미리 생성한 리스트에 jstl을 이용하여 넣어주었다.	
  		</c:forEach>
  		<c:forEach items="${names}" var = "list" varStatus="status">
- 		names.push("${list.name}");
+ 		names.push("${list.name}");//모든역들을 미리 생성한 리스트에 담아준다.
 		if("${param.depart}" == "${list.name}" && "${param.destination}" == "${list.name}"){
+			//url에 있는 파라미터의 출발역과 도착역의 정보를 읽어 컨트롤러에서 받아오는 이름과 비교하여
+			//출발역과 도착역이 둘다 같은 마커의 아이콘을 변경하기위해 사용하는 조건문이다.
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/startend.png";
 			zindex=1000;
 		}else if("${param.destination}" == "${list.name}"){
+			//도착역과 현재받아오는 역을 비교하여 도착역 마커를 변경하기 위해 사용하는조건문이다.
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/destination.png";			
 			zindex=1000;
 		}else if("${param.depart}"=="${list.name}"){
+			//도착역과 현재받아오는 역을 비교하여 출발역 마커를 변경하기 위해 사용하는조건문이다.
 			icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/start.png";
 			zindex=1000;
 		}else{
 			for(var s=0;s<station.length;s++){
 				if("${list.name}"==station[s]){
+					//for문을 돌려면서 그안에서 조건을 걸어 경유지들의 아이콘을 변경해준다.
 					icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/waypoint.png";
 					zindex=1000;
 					break;
 				}else{
+					//기본아이콘들의 이미지는 마지막에 세팅해준다.
 					icons[${status.index}] = "${pageContext.request.contextPath}/resources/img/marker/marker.png";
 					zindex=100;
 				}					
@@ -60,14 +67,14 @@
 					infoList[${status.index}] +='<div class="bodyContent">';
 					infoList[${status.index}] +='<br>';
 					infoList[${status.index}] +='</div>';
-					infoList[${status.index}] +='</div>';
+					infoList[${status.index}] +='</div>'; 
 		            windowNames[${status.index}] = new google.maps.InfoWindow({
 		            	content: infoList[${status.index}]
 		            });	             
 		            doInfo(markers[${status.index}],windowNames[${status.index}],windowNames);
-		            paths.push({lat: ${list.lat},lng: ${list.lng}});
+		            paths.push({lat: ${list.lat},lng: ${list.lng}}); //path 좌표정보들을 리스트에 담는다.
 		</c:forEach>
-				 var flightPath = new google.maps.Polyline({
+				 var flightPath = new google.maps.Polyline({//path값들을 서로 이어준다.
 			          path: paths,
 			          geodesic: true,
 			          strokeColor: '#FF0000',
@@ -131,3 +138,4 @@ function initMap() {
 		<input type="button" value="여행시작하기" id="travel">
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
+ 

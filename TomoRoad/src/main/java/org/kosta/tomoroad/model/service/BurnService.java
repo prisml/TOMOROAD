@@ -51,6 +51,5 @@ public interface BurnService {
 	Object sendMessage(String sender, String receiver, String text);
 
 	Object getFilteredMessage(String id);
-
-	List<MessageVO> getUncheckedMessageCount(String receiver);
+	
 }
