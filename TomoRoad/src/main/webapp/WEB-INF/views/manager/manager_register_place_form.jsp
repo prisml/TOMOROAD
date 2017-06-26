@@ -21,6 +21,7 @@
 	</c:forEach>
 	</select>
              </div>
+             <label>원하시는 역을 선택 해주세요</label> 
          </div>
      </div>
      	 <div class="comment_form">
