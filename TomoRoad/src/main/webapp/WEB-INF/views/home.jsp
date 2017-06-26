@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<img src="resources/img/marker/visited.png"> 내가 리뷰한역
-<img src="resources/img/marker/marker.png"> 일반역들
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <!-- map -->
 <c:if test="${sessionScope.mvo != null }">
+<img src="resources/img/marker/visited.png"> 내가 리뷰한역
+<img src="resources/img/marker/marker.png"> 일반역들
 </c:if>
 <script>
 var map;
