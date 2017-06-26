@@ -59,6 +59,7 @@
 						TimeLine+="<div class='carousel-content>";
 						for(var j=0;j<result.list[i].imgCount;j++) //사진의 갯수만큼 돈다
 							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"'"+" style=display: block;>";
+							//TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역' style='display: block;'>";
 						
 						TimeLine+="</div>";	
 						//화살표
@@ -80,13 +81,7 @@
 				}//for문
 			}//success	
 		}); //ajax
-		
-	}//function getList
-	
-	});//ready		
-</script>
 
-<script type="text/javascript">		
 		$.fn.carousel = function(op) {
 			var op, ui = {};
 			op = $.extend({
@@ -186,7 +181,12 @@
 			});
 		});//each
 		
+	}//function getList
+});//ready		
 </script>
+
+
+		
 
 <section class="super_sub_content row">
 	<div class="dividerHeading text-center">
