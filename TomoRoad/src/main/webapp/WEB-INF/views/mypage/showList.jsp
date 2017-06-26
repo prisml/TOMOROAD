@@ -26,8 +26,6 @@
 			}
 		});//scroll
 		
-	});
-	
 	function getList(page){
 		$.ajax({
 			type : 'POST',
@@ -38,40 +36,34 @@
 			success : function(result){
 				
 				var TimeLine="";
-				/* 
-				var file[]="";
-				
-				if(${nameList2!=null}{
-					for(var j=0;j<${nameList2.length};j++){ //사진의 갯수만큼 돈다
-						file[]+="nameList2[j]";
-					}
-				} */
 				
 				for(var i=0;i<result.pagingBean.endRowNumber;i++){ //리스트의 길이만큼 데이터를 넣는다.
 					TimeLine="";
 					TimeLine+="<div class=timeline-block>";
-					TimeLine+="<div class='timeline-img tl-green'>";
-					TimeLine+="<i class='fa fa-picture-o'></i>";
+					
+					if(result.list[i].imgCount==0){
+						TimeLine+="<div class='timeline-img tl-blue'>";
+						TimeLine+="<i class='fa fa-pencil-square-o'></i>";
+					}else{
+						TimeLine+="<div class='timeline-img tl-pink'>";
+						TimeLine+="<i class='fa fa-camera'></i>";
+					}
+					
 					TimeLine+="</div>";
 					TimeLine+="<div class='timeline-content'>";
 					TimeLine+="<h2>"+result.list[i].title+"</h2>";
 					
+					//리뷰에 사진이 있다면 해당 글 번호에 해당하는 리뷰글 사진을 갖고옴
 					if(result.list[i].imgCount!=0){
 						//사진슬라이드 영역
 						TimeLine+="<div class='porDetCarousel'>";
 						//사진
-						TimeLine+="<div class='carousel-content>";
+						TimeLine+="<div class='carousel-content'>";
 						
-						/* 이미지가 없을 때는 upload 파일에 사진이 없어. 그러면 안뜨게 해야함.
-						이미지가 있으면 특정 리뷰 글번호에 해당하는 사진들을 다 가져와야함.*/
-
-						/* TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
-						TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-						TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>"; */
-						for(var j=0;j<result.list[i].imgCount;j++) //사진의 갯수만큼 돈다
-							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"'"+" style=display: block;>";
+						for(var j=0;j<result.list[i].imgCount;j++){ //사진의 갯수만큼 돈다
+							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"' style=display: block;>";
+						}
 						
-						//화살표
 						TimeLine+="</div>";	
 						TimeLine+="</div>";	
 					}//if
@@ -89,123 +81,111 @@
 					TimeLine+="</div>";
 					TimeLine+="</div>";
 					$("#timeline").append(TimeLine);
-				}	
+				}//for문	
 			}//success
 		}); //ajax
 		
-				$.fn.carousel = function(op) {
-					var op, ui = {};
-					op = $.extend({
-						speed: 500,
-						autoChange: false,
-						interval: 5000
-					}, op);
-					ui.carousel = this;
-					ui.items    = ui.carousel.find('.carousel-item');
-					ui.itemsLen = ui.items.length;
+		$.fn.carousel = function(op) {
+			var op, ui = {};
+			op = $.extend({
+				speed: 500,
+				autoChange: false,
+				interval: 5000
+			}, op);
+			ui.carousel = this;
+			ui.items    = ui.carousel.find('.carousel-item');
+			ui.itemsLen = ui.items.length;
 
-					// CREATE CONTROLS
-					ui.ctrl 	= $('<div />', {'class': 'carousel-control'});
-					ui.prev 	= $('<div />', {'class': 'carousel-prev'});
-					ui.next 	= $('<div />', {'class': 'carousel-next'});
-					ui.pagList  = $('<ul />', {'class': 'carousel-pagination'});
-					ui.pagItem  = $('<li></li>');
-					for (var i = 0; i < ui.itemsLen; i++) {
-						ui.pagItem.clone().appendTo(ui.pagList);
-					}
-					ui.prev.appendTo(ui.ctrl);
-					ui.next.appendTo(ui.ctrl);
-					ui.pagList.appendTo(ui.ctrl);
-					ui.ctrl.appendTo(ui.carousel);
-					ui.carousel.find('.carousel-pagination li').eq(0).addClass('active');
-					ui.carousel.find('.carousel-item').each(function() {
-						$(this).hide();
+			// CREATE CONTROLS
+			ui.ctrl 	= $('<div />', {'class': 'carousel-control'});
+			ui.prev 	= $('<div />', {'class': 'carousel-prev'});
+			ui.next 	= $('<div />', {'class': 'carousel-next'});
+			ui.pagList  = $('<ul />', {'class': 'carousel-pagination'});
+			ui.pagItem  = $('<li></li>');
+			for (var i = 0; i < ui.itemsLen; i++) {
+				ui.pagItem.clone().appendTo(ui.pagList);
+			}
+			ui.prev.appendTo(ui.ctrl);
+			ui.next.appendTo(ui.ctrl);
+			ui.pagList.appendTo(ui.ctrl);
+			ui.ctrl.appendTo(ui.carousel);
+			ui.carousel.find('.carousel-pagination li').eq(0).addClass('active');
+			ui.carousel.find('.carousel-item').each(function() {
+				$(this).hide();
+			});
+			ui.carousel.find('.carousel-item').eq(0).show().addClass('active');
+			
+			
+			// CHANGE ITEM
+			var changeImage = function(direction, context) {
+				var current = ui.carousel.find('.carousel-item.active');
+
+				if (direction == 'index') {
+					if(current.index() === context.index())
+						return false;
+
+					context.addClass('active').siblings().removeClass('active');
+
+					ui.items.eq(context.index()).addClass('current').fadeIn(op.speed, function() {
+						current.removeClass('active').hide();
+						$(this).addClass('active').removeClass('current');
 					});
-					ui.carousel.find('.carousel-item').eq(0).show().addClass('active');
-					
-					
-					// CHANGE ITEM
-					var changeImage = function(direction, context) {
-						var current = ui.carousel.find('.carousel-item.active');
+				} 
 
-						if (direction == 'index') {
-							if(current.index() === context.index())
-								return false;
-
-							context.addClass('active').siblings().removeClass('active');
-
-							ui.items.eq(context.index()).addClass('current').fadeIn(op.speed, function() {
-								current.removeClass('active').hide();
-								$(this).addClass('active').removeClass('current');
-							});
-						} 
-
-						if (direction == 'prev') {
-							if (current.index() == 0) {
-								ui.carousel.find('.carousel-item:last').addClass('current').fadeIn(op.speed, function() {
-									current.removeClass('active').hide();
-									$(this).addClass('active').removeClass('current');
-								});
-							}
-							else {
-								current.prev().addClass('current').fadeIn(op.speed, function() {
-									current.removeClass('active').hide();
-									$(this).addClass('active').removeClass('current');
-								});
-							}
-						}
-
-						if (direction == undefined) {
-							if (current.index() == ui.itemsLen - 1) {
-								ui.carousel.find('.carousel-item:first').addClass('current').fadeIn(300, function() {
-									current.removeClass('active').hide();
-									$(this).addClass('active').removeClass('current');
-								});
-							}
-							else {
-								current.next().addClass('current').fadeIn(300, function() {
-									current.removeClass('active').hide();
-									$(this).addClass('active').removeClass('current');
-								});
-							}
-						}
-						ui.carousel.find('.carousel-pagination li').eq( ui.carousel.find('.carousel-item.current').index() ).addClass('active').siblings().removeClass('active');
-					};
-
-					ui.carousel
-						.on('click', 'li', function() {
-							changeImage('index', $(this));
-						})
-						.on('click', '.carousel-prev', function() {
-							changeImage('prev');
-						})
-						.on('click', '.carousel-next', function() {
-							changeImage();
+				if (direction == 'prev') {
+					if (current.index() == 0) {
+						ui.carousel.find('.carousel-item:last').addClass('current').fadeIn(op.speed, function() {
+							current.removeClass('active').hide();
+							$(this).addClass('active').removeClass('current');
 						});
-					
-					// AUTO CHANGE
-					/*
-					if (op.autoChange) {
-						var changeInterval = setInterval(changeImage, op.interval);
-						ui.carousel
-							.on('mouseenter', function() {
-								clearInterval(changeInterval);
-							})
-							.on('mouseleave', function() {
-								changeInterval = setInterval(changeImage, op.interval);
-							});
 					}
-					*/
-					return this;
-				};
-				
-				$('.porDetCarousel').each(function() {
-					$(this).carousel({
-						autoChange: false
-					});
-				});
+					else {
+						current.prev().addClass('current').fadeIn(op.speed, function() {
+							current.removeClass('active').hide();
+							$(this).addClass('active').removeClass('current');
+						});
+					}
+				}
 
-	}//function
+				if (direction == undefined) {
+					if (current.index() == ui.itemsLen - 1) {
+						ui.carousel.find('.carousel-item:first').addClass('current').fadeIn(300, function() {
+							current.removeClass('active').hide();
+							$(this).addClass('active').removeClass('current');
+						});
+					}
+					else {
+						current.next().addClass('current').fadeIn(300, function() {
+							current.removeClass('active').hide();
+							$(this).addClass('active').removeClass('current');
+						});
+					}
+				}
+				ui.carousel.find('.carousel-pagination li').eq( ui.carousel.find('.carousel-item.current').index() ).addClass('active').siblings().removeClass('active');
+			};
+
+			ui.carousel
+				.on('click', 'li', function() {
+					changeImage('index', $(this));
+				})
+				.on('click', '.carousel-prev', function() {
+					changeImage('prev');
+				})
+				.on('click', '.carousel-next', function() {
+					changeImage();
+				});
+			
+			return this;
+		};
+		
+		$('.porDetCarousel').each(function() {
+			$(this).carousel({
+				autoChange: false
+			});
+		});//each
+
+	}//function getList
+});//ready
 </script>
 
 <section class="super_sub_content row">

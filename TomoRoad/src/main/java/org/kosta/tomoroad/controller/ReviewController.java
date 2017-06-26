@@ -79,6 +79,7 @@ public class ReviewController {
 				}
 			}
 		}
+		System.out.println("이미지크기랑 글번호"+nameList.size()+","+vo.getNo());
 		service.updateImgCount(nameList.size(),vo.getNo());//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
@@ -198,6 +199,7 @@ public class ReviewController {
 			page = "1";
 		
 		ListVO<ReviewVO> reviewList=service.getListByMemberInMemberPage(page,id);
+		System.out.println(reviewList);
 
 		return reviewList;
 	}

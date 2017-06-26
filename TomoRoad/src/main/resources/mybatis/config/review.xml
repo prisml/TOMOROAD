@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="place_name" property="place.name" />
 		<result column="member_name" property="member.name" />
 		<result column="station_name" property="place.station_name" />
+		<result column="img_count" property="imgCount" />
 	</resultMap>
 	<select id="getList" resultType="reviewVO" resultMap="detailReviewRM"
 		parameterType="pagingBean">
@@ -80,8 +81,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select A.*, re.recommend
 		from(select row_number() over(order by r.no
 			desc) rnum,
-			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, m.name member_name, p.name place_name,
-			to_char(posted_time,'YYYY/MM/DD HH24:MM') as posted_time
+			r.no, r.title, r.member_id, r.place_no, p.name, r.hits, r.content, r.img_count, m.name member_name, p.name place_name,
+			to_char(posted_time,'YYYY/MM/DD HH24:MI:SS') as posted_time
 			from review r, place p, member m where r.place_no = p.no and r.member_id=m.id and r.member_id=#{id}) A, 
 			(select count(*) recommend,review_no from REVIEW_RECOMMEND group by review_no) re
 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} and A.no=re.review_no(+)
@@ -157,12 +158,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	<resultMap type="reviewVO" id="timeLineReviewRM">
-		<result property="imgCount" column="img_count"/>
-	</resultMap>
-	<select id="updateImgCount" resultMap="timeLineReviewRM">
+	<update id="updateImgCount" parameterType="reviewVO">
 		update review set img_count=img_count+#{imgCount} where no=#{no}
-	</select>
+	</update>
 	
 	
 </mapper>
