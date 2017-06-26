@@ -159,7 +159,6 @@ create table review_recommend(
 	constraint fk_reivew_recommend_id foreign key(member_id) references member(id) ON DELETE CASCADE,
 	constraint fk_review_recommend_no foreign key(review_no) references review(no) ON DELETE CASCADE
 );
-
 create sequence burn_board_seq nocache;
 
 create table burn_comment(
@@ -549,6 +548,54 @@ select * from travel where id = 'java' and flag = 'true'
 
 select count(*) from review where member_id='asdf';
 select count(*) from station;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('용산역','1','1','1','1',37.530154, 126.964754);

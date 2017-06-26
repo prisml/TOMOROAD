@@ -37,6 +37,9 @@
 	</div>
 </div>
 
+				<br>
+				<br>
+				<br>
 <!-- 지도영역 -->
 <div id="map" style="width: 500px; height: 300px;"></div>
 
@@ -107,7 +110,7 @@
 						<a href="${pageContext.request.contextPath}/review/getReviewListByPlace.do?no=${vo.no}" class="fa fa-link"></a>
 					</div>
 					
-					<img src="${pageContext.request.contextPath}/resources/images/place/${vo.station_name}/${vo.no}.jpg" alt="">
+					<img src="${pageContext.request.contextPath}/resources/images/place/${vo.no}.jpg" alt="">
 					
 					<figcaption>
 						<h5>${vo.name}</h5>
