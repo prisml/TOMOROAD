@@ -45,7 +45,7 @@
 															comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
 															comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 															comments += "<div class='comment-container'>";
-															comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
+															comments += "<h4 class='comment-author'><a href = ${pageContext.request.contextPath}/memberpage.do?selectId="+data[z].member_id+">"+ data[z].member_id + "</a></h4>";
 															comments += "<div class='comment-meta'>"+ data[z].posted_time + "</div>";
 															comments += "<div class='comment-body'> <br> <p> "+ data[z].content + "</p> </div><br>";
 															comments += "<div id='buttons'>";
@@ -57,7 +57,7 @@
 														comments += "<li class='comment' id=re"+ data[z].no +" name="+data[z].no+">";
 														comments += "<div class='avatar'><img alt='' class='avatar' src="+data[z].profile+"></div>";
 														comments += "<div class='comment-container'>";
-														comments += "<h4 class='comment-author'>"+ data[z].member_id + "</h4>";
+														comments += "<h4 class='comment-author'><a href = ${pageContext.request.contextPath}/memberpage.do?selectId="+data[z].member_id+">"+ data[z].member_id + "</a></h4>";
 														comments += "<div class='comment-meta'>"+ data[z].posted_time	+ "</div>";
 														comments += "<div class='comment-body'> <p>"+ data[z].content + "</p> </div>";
 														comments += "<br>";
@@ -190,7 +190,7 @@
 					<h2>${bvo.title}</h2>
 					<div class="metaInfo">
 						<span><i class="fa fa-calendar"></i> <a href="#.">${bvo.postedTime} </a> </span> 
-						<span><i class="fa fa-user"></i> By <a href="#."> ${bvo.memberId} </a> </span> 
+						<span><i class="fa fa-user"></i> By <a href="${pageContext.request.contextPath}/memberpage.do?selectId=${bvo.memberId}"> ${bvo.memberId} </a> </span> 
 						<span><i class="fa fa-tag"></i>		<a href="#."> ${bvo.stationName} </a> </span>
 						<span><i class="fa fa-comments"></i> <a href="#."> ${bvo.commentCount} </a></span> 
 						<span><i class="fa fa-eye"></i> <a href="#."> ${bvo.hits} </a></span>

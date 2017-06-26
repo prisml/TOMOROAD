@@ -31,7 +31,7 @@
 								href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">${rlist.title }</a>
 						</h2>
 						<div class="metaInfo">
-							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
+							<span><i class="fa fa-user"></i> By <a href="${pageContext.request.contextPath}/memberpage.do?selectId=${rlist.member.id}">${rlist.member.name }</a>
 							</span> <span><i class="fa fa-map-marker"></i> <a href="#.">${rlist.place.name }</a></span>
 							<span><i class="fa fa-dot-circle-o"></i> <a href="#.">${rlist.hits } HITS</a></span>
 							<span><i class="fa fa-heart"></i>${rlist.recommend } Recommend</span>

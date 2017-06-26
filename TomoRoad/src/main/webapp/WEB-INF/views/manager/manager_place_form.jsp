@@ -35,9 +35,19 @@
     	     <div class="col-sm-4">
                	 관광지 이름<input class="col-lg-4 col-md-4 form-control" name="name" id="name" type="text" value="${place.name}" required="required" >
              </div>
+             <br>
               <div class="col-sm-4">
-               	지역<input class="col-lg-4 col-md-4 form-control" name="area" id="area" type="text" value="${place.area}" required="required" >
+               	<input class="col-lg-4 col-md-4 form-control" id="area" type="text" value="${place.area}" readonly>         
+    	
+   지역<select class="col-lg-4 col-md-4 form-control" name="area" required="required">
+    <option value="Capital">수도권</option>
+    <option value="Chungcheong">충청도</option>
+    <option value="Honam">전라도</option>
+    <option value="Youngnam">경상도</option>
+     <option value="Gwandong">강원도</option>
+  </select>
              </div>
+             
          </div>
      </div>
      <br>

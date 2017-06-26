@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.tomoroad.model.vo.MemberVO;
 
@@ -59,4 +60,5 @@ public interface MemberService {
 
 	int totalFriend(String id);
 
+	Map<String,String> getFriendInfo(String id,String selectId);
 }

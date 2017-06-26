@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.tomoroad.model.vo.MemberVO;
 
@@ -46,17 +47,19 @@ public interface MemberDAO {
 	
 	void profileReset(HashMap<String,String> profileInfo);
 
-	public void updatePw(MemberVO vo);
+	void updatePw(MemberVO vo);
 
 	MemberVO findMember(MemberVO vo);
 
-	public String findPw(MemberVO vo);
+	String findPw(MemberVO vo);
 	
 	int friend_RequestInfo(String id);
 
-	public int checkFriend(HashMap<String,String> friend);
+	int checkFriend(HashMap<String,String> friend);
 
-	public void updateMemberByManager(MemberVO vo);
+	void updateMemberByManager(MemberVO vo);
 
-	public int totalFrined(String id);
+	int totalFrined(String id);
+	
+	Map<String,String> getFriendInfo(HashMap<String,String> friend);
 }
