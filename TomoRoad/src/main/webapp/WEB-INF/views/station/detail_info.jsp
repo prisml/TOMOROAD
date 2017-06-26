@@ -37,6 +37,9 @@
 	</div>
 </div>
 
+				<br>
+				<br>
+				<br>
 <!-- 지도영역 -->
 <div id="map" style="width: 500px; height: 300px;"></div>
 
