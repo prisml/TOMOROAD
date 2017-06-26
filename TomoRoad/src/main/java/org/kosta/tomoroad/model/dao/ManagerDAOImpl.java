@@ -72,7 +72,8 @@ public class ManagerDAOImpl implements ManagerDAO{
 
 	@Override
 	public void updatePlaceManager(PlaceVO vo) {
-		template.update("manager.updatePlaceMember",vo);	
+	
+		template.update("manager.updatePlaceManager",vo);	
 		
 	}
 
