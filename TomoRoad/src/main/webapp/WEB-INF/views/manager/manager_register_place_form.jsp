@@ -6,7 +6,7 @@
   	$(document).ready(function(){
 		$("#registerForm").submit(function(){
 			var a = $("#st :selected").val();
-			if(a==""){
+			if(a=="all"){
 				alert("역을 선택해주세요")
 				return false;
 			}
