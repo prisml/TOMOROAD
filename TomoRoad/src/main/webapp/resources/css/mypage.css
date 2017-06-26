@@ -1,29 +1,47 @@
-#mypageLayout{
-		float : left;
-	}
-#mypageProfile{
-		padding: 5px;
-	}
-#mypageLeft{
-		padding: 5px;
-		height:500px;
-		width:200px;
-	}
-#mypageMain{
-		padding: 5px;
-		width:600px;
-		height: 500px;		
-		float: left; /* left로 부유위치를 지정해 left와 main이 수평 배치하도록 한다    */
-	}
+#mypageLayout {
+	float: left;
+}
 
-	
-.btn-default{
-    background:#ED4B4B;
-    color:#fff;
-    border:none;
-    transition:all 0.3s ease-in-out;
-    -webkit-transition:all 0.3s ease-in-out;
-    -moz-transition:all 0.3s ease-in-out;
-    -ms-transition:all 0.3s ease-in-out;
-    -o-transition:all 0.3s ease-in-out;
+#mypageProfile {
+	padding: 5px;
+}
+
+#mypageLeft {
+	padding: 5px;
+	height: 500px;
+	width: 200px;
+}
+
+#mypageMain {
+	padding: 5px;
+	width: 600px;
+	height: 500px;
+	float: left; /* left로 부유위치를 지정해 left와 main이 수평 배치하도록 한다    */
+}
+
+.btn-default {
+	background: #ED4B4B;
+	color: #fff;
+	border: none;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+}
+
+.bucketStation>input[type=checkbox]+label {
+	color: #ccc;
+	font-weight: bold;
+}
+
+.bucketStation>input[type=checkbox]:checked+label {
+	color: #white;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.bucketStation>input[type=checkbox] {
+	padding: 15px;
+	display: none;
 }
