@@ -7,7 +7,7 @@
 	<h4><span>다녀온 여행지</span></h4>
 </div><br>
 <c:forEach items="${travelRoute}" var="parent_list">
-	<div id = "myStationInfo">
+	<div style = "border: 1px solid orange; border-radius: 4em;" id = "myStationInfo">
 		<c:forEach items="${parent_list}" var="route" varStatus="index">
 			<span style = "position:relative;">
 				<c:choose>

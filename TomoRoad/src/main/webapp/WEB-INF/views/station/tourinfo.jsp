@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-역 정보 및 역 주변 관광지를 보여주는 페이지
-
 <script>
 $( function() {
 	//자동완성
@@ -33,17 +31,18 @@ function keywordSearch() {
 }
 </script>
 
-<form id="keywordSearchForm" action="${pageContext.request.contextPath}/station/getDetailInfo.do">
-	<div class="ui-widget">
-		<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
-		<input id="searchkeyword" name="name" type="text">
-		<!-- <input id="hiddenName" type="hidden" value=""> -->
-		<input type="submit" onsubmit="return keywordSearch()" style="display:none;">
-		<!-- <input type="submit" onsubmit="return keywordSearch()" value="검색"> -->
-	</div>
-</form>
 
 <div class="col-lg-12 isotope">
+	<form id="keywordSearchForm" action="${pageContext.request.contextPath}/station/getDetailInfo.do">
+		<div class="ui-widget">
+			<label for="searchkeyword"><img src="${pageContext.request.contextPath}/resources/images/SearchIcon.png" style="width:20px; height:20px;"></label>
+			<input id="searchkeyword" name="name" type="text">
+			<!-- <input id="hiddenName" type="hidden" value=""> -->
+			<input type="submit" onsubmit="return keywordSearch()" style="display:none;">
+			<!-- <input type="submit" onsubmit="return keywordSearch()" value="검색"> -->
+		</div>
+	</form>
+	
 	<!--검색 필터 -->
 	<ul id="filter">
 		<li data-filter="*" class="selected"><a href="#">All</a></li>

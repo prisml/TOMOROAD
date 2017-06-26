@@ -5,6 +5,9 @@
 	function friendRequest(id){
 		location.href = "${pageContext.request.contextPath}/friend_Request.do?senderId=${mvo.id}&receiverId="+id;
 	}
+	function friendUnBlock(id){
+		location.href = "${pageContext.request.contextPath}/friendUnBlock.do?unBlockId="+id;
+	}
 	
 	$(document).ready(function(){
 		$("#message").click(function(){
@@ -19,7 +22,7 @@
 <p align="center" style = "font-size:25px">${memberInfo.id}(${memberInfo.name})</p>
 <!-- 친구면 친구버튼, 아니면 친구신청 버튼 -->
 <c:choose>
-	<c:when test="${friend eq '수락'}">
+	<c:when test="${friend.STATE eq '수락'}">
 		<!-- <input style = color:white; class="btn btn-danger"  type = "text" value = "친구"> -->
 		<button style = color:white; class="btn btn-danger">
 			<i style = "width:165px" class = "fa fa-user">친구</i>
@@ -28,10 +31,19 @@
 			<i style = "width:165px" class = "fa fa-envelope-o">메세지 보내기</i>
 		</button>
 	</c:when>
-	<c:when test="${friend eq '차단' }">
-		<button style = color:white; class="btn btn-danger">
-			<i style = "width:165px" class = "fa fa-user">비활성화 계정</i>
-		</button>
+	<c:when test="${friend.STATE eq '차단' }">
+		<c:choose>
+			<c:when test="${friend.SENDER_ID eq sessionScope.mvo.id}">
+				<button style = color:white; class="btn btn-danger" onclick = "friendUnBlock('${memberInfo.id}')">
+					<i style = "width:165px" class = "fa fa-user">차단해제</i>
+				</button>
+			</c:when>
+			<c:otherwise>
+				<button style = color:white; class="btn btn-danger">
+					<i style = "width:165px" class = "fa fa-user">비활성화계정</i>
+				</button>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<button style = color:white; class = "btn btn-danger" onclick="friendRequest('${memberInfo.id}')">
