@@ -56,48 +56,26 @@
 					TimeLine+="<div class='timeline-content'>";
 					TimeLine+="<h2>"+result.list[i].title+"</h2>";
 					
-					//사진슬라이드 영역
-					TimeLine+="<div class='porDetCarousel'>";
+					if(result.list[i].imgCount!=0){
+						//사진슬라이드 영역
+						TimeLine+="<div class='porDetCarousel'>";
 						//사진
 						TimeLine+="<div class='carousel-content>";
 						
 						/* 이미지가 없을 때는 upload 파일에 사진이 없어. 그러면 안뜨게 해야함.
 						이미지가 있으면 특정 리뷰 글번호에 해당하는 사진들을 다 가져와야함.*/
+
+						/* TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
+						TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
+						TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>"; */
+						for(var j=0;j<result.list[i].imgCount;j++) //사진의 갯수만큼 돈다
+							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"'"+" style=display: block;>";
 						
-						/* if(file!=""){
-							for(var j=0;j<${nameList2.length};j++){ //사진의 갯수만큼 돈다
-								"file[j]"; 
-							TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
-							TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
-							TimeLine+="<img src=${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+i+" alt=''>";
-						} */
-							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/images/서울역.jpg' alt='' style='display: block;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역3.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-							TimeLine+="<img class='carousel-item' src='${pageContext.request.contextPath}/resources/images/서울역2.jpg' alt='' style='display: none;'>";
-						TimeLine+="</div>";	
 						//화살표
+						TimeLine+="</div>";	
+						TimeLine+="</div>";	
+					}//if
 						
-// 						if(count == 0 ){
-// 							count++;
-						
-// 							TimeLine+="<div class='carousel-control'>";
-// 								TimeLine+="<div class='carousel-prev'></div>";
-// 								TimeLine+="<div class='carousel-next'></div>";
-// 								TimeLine+="<ul class='carousel-pagination'>";
-// 									TimeLine+="<li class='active'></li>";
-// 									TimeLine+="<li class=''></li>";
-// 									TimeLine+="<li class=''></li>";
-// 								TimeLine+="</ul>";
-// 							TimeLine+="</div>";
-// 						}
-						
-					TimeLine+="</div>";	
 					
 					TimeLine+="<div class=metaInfo style='text-align: center; margin-bottom: -17px;'>";
 					TimeLine+="<span><i class='fa fa-map-marker'></i>&nbsp;<a href='#.'>"+result.list[i].place.name+"</a>";
@@ -112,7 +90,9 @@
 					TimeLine+="</div>";
 					$("#timeline").append(TimeLine);
 				}	
-				
+			}//success
+		}); //ajax
+		
 				$.fn.carousel = function(op) {
 					var op, ui = {};
 					op = $.extend({
@@ -224,8 +204,7 @@
 						autoChange: false
 					});
 				});
-			}//success
-		}); //ajax
+
 	}//function
 </script>
 
