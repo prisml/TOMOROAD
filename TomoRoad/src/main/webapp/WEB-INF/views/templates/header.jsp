@@ -89,7 +89,7 @@
 
 			<c:if test="${sessionScope.mvo != null }">
 
-				<li><c:import url="messagetap.jsp}"></c:import></li>
+				<li><c:import url="messagetap.jsp"></c:import></li>
 				
 				&nbsp;&nbsp;&nbsp;&nbsp;
 								
