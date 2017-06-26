@@ -45,8 +45,14 @@
     	     <div class="col-sm-4">
                	 관광지 이름<input class="col-lg-4 col-md-4 form-control" name="name" id="name" type="text" required="required" >
              </div>
-              <div class="col-sm-4">
-               	지역<input class="col-lg-4 col-md-4 form-control" name="area" id="area" type="text" required="required" >
+              <div class="col-sm-4">         	
+   지역<select class="col-lg-4 col-md-4 form-control" name="area" required="required">
+    <option value="수도권">Capital</option>
+    <option value="충청">Chungcheong</option>
+    <option value="전라도">Honam</option>
+    <option value="경상도">Youngnam</option>
+     <option value="강원도">Gwandong</option>
+  </select>
              </div>
          </div>
      </div>
