@@ -154,6 +154,8 @@ body {font-family: "Lato", sans-serif;}
 					success: function(data){						
 						if(data!=0){
 							$("#messageicon").css("color","red");
+						}else{
+							$("#messageicon").css("color","black");
 						}
 					}			
 				});
