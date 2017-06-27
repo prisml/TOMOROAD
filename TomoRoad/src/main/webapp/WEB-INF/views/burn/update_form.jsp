@@ -13,7 +13,7 @@
 		});
 		
 		$("#cancel").click(function() {
-			location.href = "${pageContext.request.contextPath}/showBurnDetail.do?no="+${bvo.no};
+			location.href = "${pageContext.request.contextPath}/burn/showBurnDetail.do?no="+${bvo.no};
 		});
 	});
 </script>
@@ -23,7 +23,7 @@
  <div class="dividerHeading">
  	<h4><span> 번 게시물 수정 </span></h4>
  </div>
- <form method="post" action="${pageContext.request.contextPath}/updateBurn.do" id="updateForm">
+ <form method="post" action="${pageContext.request.contextPath}/burn/updateBurn.do" id="updateForm">
  
 	 <div class="comment_form">
     	 <div class="row">

@@ -6,18 +6,18 @@
 <script>
 	$(document).ready(function() {  // 게시물 버튼 
 						$("#golist").click(function() {
-											location.href = "${pageContext.request.contextPath}/getBurnList.do";
+											location.href = "${pageContext.request.contextPath}/burn/getBurnList.do";
 										});
 
 						$("#update").click(function() {
 											if (confirm("게시물을 수정하시겠습니까?")){
-												location.href = "${pageContext.request.contextPath}/updateBurnView.do?no=${bvo.no}";
+												location.href = "${pageContext.request.contextPath}/burn/updateBurnView.do?no=${bvo.no}";
 											}
 										});
 
 						$("#delete").click(function() {
 											if (confirm("게시물을 삭제하시겠습니까?")){
-												location.href = "${pageContext.request.contextPath}/deleteBurn.do?no=${bvo.no}";
+												location.href = "${pageContext.request.contextPath}/burn/deleteBurn.do?no=${bvo.no}";
 											}
 										});
 					});
@@ -107,7 +107,7 @@
 									var no=$(this).attr("name");
 									var result = confirm("댓글을 삭제하시겠습니까?");
 									if(result){
-									location.href="${pageContext.request.contextPath}/deleteComment.do?no="+no+"&burn_no=${bvo.no}&member_id=${mvo.id}";
+									location.href="${pageContext.request.contextPath}/burn/deleteComment.do?no="+no+"&burn_no=${bvo.no}&member_id=${mvo.id}";
 									}
 								});// 댓글 삭제 버튼 클릭 시
 								
@@ -126,7 +126,7 @@
 									}else{
 										var result= confirm("댓글을 수정하시겠습니까?");
 									if(result){
-										location.href="${pageContext.request.contextPath}/updateComment.do?no="+no+"&burn_no=${bvo.no}&content="+content.val()+"&member_id=${mvo.id}";
+										location.href="${pageContext.request.contextPath}/burn/updateComment.do?no="+no+"&burn_no=${bvo.no}&content="+content.val()+"&member_id=${mvo.id}";
 									}
 									} 
 								});// 댓글 수정하기 버튼 클릭 시
@@ -149,7 +149,7 @@
 										content.focus();
 									}else{
 										var recontent="<strong>To. "+$(this).parent().parent().children(".comment-author").text()+"   </strong>"+content.val();
-										location.href="${pageContext.request.contextPath}/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="
+										location.href="${pageContext.request.contextPath}/burn/replyComment.do?recomment="+no+"&burn_no=${bvo.no}&content="
 												+recontent+"&member_id=${mvo.id}&profile=${mvo.profile}";
 									}
 								}); //답글달기-버튼 클릭 시 
@@ -167,7 +167,7 @@
 										alert("댓글 내용을 입력해주세요!");
 										content.focus();
 									}else{										
-										location.href="${pageContext.request.contextPath}/registeComment.do?content="+content.val()+
+										location.href="${pageContext.request.contextPath}/burn/registeComment.do?content="+content.val()+
 												"&member_id=${mvo.id}&burn_no=${bvo.no}&profile=${mvo.profile}";
 									}
 								}); // Post Comment 버튼 클릭 시

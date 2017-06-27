@@ -12,7 +12,7 @@
 				alert("로그인을 해주세요");
 				return false;
 			}			
-			location.href="${pageContext.request.contextPath}/writeBurnForm.do";
+			location.href="${pageContext.request.contextPath}/burn/writeBurnForm.do";
 		});
 }); // ready
 </script>
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		var myId = "${sessionScope.mvo.id}";			
 		if(selectId==myId){
 			if(confirm("마이페이지로 이동하시겠습니까?")){
-				location.href="memberpage.do?selectId="+selectId;
+				location.href="${pageContext.request.contextPath}/memberpage.do?selectId="+selectId;
 			}
 			return false;
 			
@@ -43,11 +43,11 @@ $(document).ready(function(){
 			success:function(data){
 				if(data!=""){
 					if(confirm("친구입니다! "+selectId+" 님 페이지로 이동하시겠습니까?")){
-						location.href="memberpage.do?selectId="+selectId;
+						location.href="${pageContext.request.contextPath}/memberpage.do?selectId="+selectId;
 					}	
 				}else{
 					if(confirm(selectId+" 님 페이지로 이동하시겠습니까?")){
-						location.href="memberpage.do?selectId="+selectId;
+						location.href="${pageContext.request.contextPath}/memberpage.do?selectId="+selectId;
 					}
 				}																	
 			} // success
@@ -297,7 +297,7 @@ input {
   	<tr align="center">
 	<td>${burn.no}</td>
 	<td style="word-break:break-all;">
-		<a href="${pageContext.request.contextPath}/showBurnDetail.do?no=${burn.no}">
+		<a href="${pageContext.request.contextPath}/burn/showBurnDetail.do?no=${burn.no}">
 			${burn.title} (${burn.commentCount})
 		</a>
 	</td>
@@ -322,14 +322,14 @@ input {
 
 <ul class="pagination">
 <c:if test="${pb.previousPageGroup}">
-	<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.startPageOfPageGroup-1}">
+	<li><a href="${pageContext.request.contextPath}/burn/getBurnList.do?pageNo=${pb.startPageOfPageGroup-1}">
 	◀
 	</a></li>
 </c:if>
 <c:forEach begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}" var="page">
 	<c:choose>
 		<c:when test="${pb.nowPage!=page}">
-			<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${page}">${page}</a></li> 
+			<li><a href="${pageContext.request.contextPath}/burn/getBurnList.do?pageNo=${page}">${page}</a></li> 
 		</c:when>
 		<c:otherwise>
 			<li class="active"><a href="#.">${page}</a></li>
@@ -337,7 +337,7 @@ input {
 	</c:choose>
 </c:forEach>
 <c:if test="${pb.nextPageGroup}">
-	<li><a href="${pageContext.request.contextPath}/getBurnList.do?pageNo=${pb.endPageOfPageGroup+1}">
+	<li><a href="${pageContext.request.contextPath}/burn/getBurnList.do?pageNo=${pb.endPageOfPageGroup+1}">
 	▶
 	</a></li>
 </c:if>

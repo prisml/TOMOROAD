@@ -4,7 +4,7 @@
 <script>
 	$(document).ready(function(){
 		$("#golist").click(function(){
-			location.href="${pageContext.request.contextPath}/getBurnList.do";
+			location.href="${pageContext.request.contextPath}/burn/getBurnList.do";
 		});
 	});
 

@@ -52,7 +52,7 @@
 			</li>
 
 			<li><a
-				href="${pageContext.request.contextPath}/getBurnListByStation.do?stationName=all">
+				href="${pageContext.request.contextPath}/burn/getBurnListByStation.do?stationName=all">
 					번개시판 </a></li>
 
 			<li><a

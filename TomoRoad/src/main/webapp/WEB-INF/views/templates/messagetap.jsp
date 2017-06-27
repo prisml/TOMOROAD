@@ -152,7 +152,7 @@ body {font-family: "Lato", sans-serif;}
 					url :"isNewMsg.do",
 					data:"receiver=${mvo.id}",
 					success: function(data){						
-						if(data != 0){
+						if(data != 0){							
 							$("#messageicon").css("color","red");
 						}else{
 							$("#messageicon").css("color","black");
@@ -167,7 +167,7 @@ body {font-family: "Lato", sans-serif;}
 			var target = $.trim($("#searchbox").val());			
 			$.ajax({
 				type :"get",
-				url : "burn/findId.do",
+				url : "findId.do",
 				data:"id="+target+"&searcher=${sessionScope.mvo.id}",
 				success: function(data){
 					for(var i=0; i<data.length; i++){

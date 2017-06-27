@@ -14,7 +14,7 @@
 		});
 		
 		$("#golist").click(function() {
-			location.href = "${pageContext.request.contextPath}/getBurnList.do";
+			location.href = "${pageContext.request.contextPath}/burn/getBurnList.do";
 		});
 	});
 </script>
@@ -24,7 +24,7 @@
  <div class="dividerHeading">
  	<h4><span> 번 게시물 작성 </span></h4>
  </div>
- <form method="post" action="${pageContext.request.contextPath}/writeBurn.do" id="registerForm">
+ <form method="post" action="${pageContext.request.contextPath}/burn/writeBurn.do" id="registerForm">
  
 	 <div class="comment_form">
     	 <div class="row">
