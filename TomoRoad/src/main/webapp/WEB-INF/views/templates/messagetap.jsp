@@ -148,11 +148,11 @@ body {font-family: "Lato", sans-serif;}
 		if(${!empty sessionScope.mvo}){ // 새 메세지 확인
 			setInterval(() => {	
 				$.ajax({
-					type:"get",
+					type:"post",
 					url :"isNewMsg.do",
 					data:"receiver=${mvo.id}",
 					success: function(data){						
-						if(data!=0){
+						if(data != 0){
 							$("#messageicon").css("color","red");
 						}else{
 							$("#messageicon").css("color","black");

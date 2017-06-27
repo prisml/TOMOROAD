@@ -130,7 +130,16 @@ public class BurnController {
 	}
 	
 	// 메세지
-	@RequestMapping("{pathName}/isNewMsg.do")
+	
+	@RequestMapping("isNesMsg.do")
+	@ResponseBody
+	public int isNewMsgDir(String receiver){	
+		System.out.println(burnService.isNewMsg(receiver));
+		return burnService.isNewMsg(receiver);
+	}
+	
+	
+	@RequestMapping("**/isNewMsg.do")
 	@ResponseBody
 	public int isNewMsg(String receiver){		
 		return burnService.isNewMsg(receiver);

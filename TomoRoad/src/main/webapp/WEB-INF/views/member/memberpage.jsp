@@ -3,6 +3,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#showTimeline").hide();
+		$("#emptyBox").hide();
+		
 		/*스크롤 페이징*/
 		var page=1;
 		var num="";
@@ -36,7 +39,10 @@
 					"id" : '${memberInfo.id}'
 					},
 			success : function(result){
-				
+				if(result.list.length!=0){
+					$("#emptyBox").hide();
+					$("#showTimeline").show();
+				}
 				var TimeLine="";
 				 
 				for(var i=0;i<result.pagingBean.endRowNumber;i++) { //리스트의 길이만큼 데이터를 넣는다.
@@ -192,81 +198,26 @@
 
 		
 
-<section class="super_sub_content row">
-	<div class="dividerHeading text-center">
-		<h4>
-			<span>친구의 타임라인</span>
-		</h4>	
+<section class="promo_box row" style="margin-right: 20px; padding: 20px 0; background: #fff7f7;">
+	<div class=" container-fluid">
+	    <div class="col-sm-12">
+	        <div class="promo_content">
+	            <h3 style="text-align: center;color: #e2736f;">${memberInfo.name}님의 타임라인</h3>
+	        </div>
+	    </div>
 	</div>
+</section>
 
+<section class="super_sub_content row" id="showTimeline">
 	<div class="col-md-12">
-		<section id="timeline" class="timeline-container">
-		
-<%-- 			<c:forEach items="${reviewList2}" var="Rlist" >			
-		 		<div class="timeline-block">
-					<div class="timeline-img tl-green"><!-- 초록색그림 -->
-						<i class="fa fa-picture-o"></i>
-					</div>
-				 	<div class="timeline-content">
-						<h2 class="page-title">${Rlist.list.title}</h2><!-- 글제목 -->
-						<p class="page-content">${Rlist.list.content}</p><!-- 글내용 -->
-						<a href="#" class="btn btn-default">더 읽기</a>
-						<span class="tl-post-date">${Rlist.list.postedTime}</span><!-- 게시날짜 -->
-					</div>
-				</div>
-			</c:forEach> --%>
-<!-- 
- 			<div class="timeline-block">
-				<div class="timeline-img tl-blue">
-					<i class="fa fa-video-camera"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
- 
-			<div class="timeline-block">
-				<div class="timeline-img tl-pink">
-					<i class="fa fa-globe"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
-
-			<div class="timeline-block">
-				<div class="timeline-img tl-orange">
-					<i class="fa fa-picture-o"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
-			
-			<div class="timeline-block">
-				<div class="timeline-img tl-orange">
-					<i class="fa fa-picture-o"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
- -->
-          
+		<section id="timeline" class="timeline-container">       
 		</section>
 	</div>
-	
 </section>
+
+<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px; background: #ff8e8e;" id="emptyBox">
+    <div class="service-content">
+	        <h3 style="text-align: center;color: #483535;">아직 등록된 리뷰가 없어요!</h3>
+    </div>
+</div>
 

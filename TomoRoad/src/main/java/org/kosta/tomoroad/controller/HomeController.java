@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {	
 	@Resource(name="stationServiceImpl")
 	private StationService service;
+	
+	
 	@RequestMapping("{viewName}.do")
 	public String showView(@PathVariable String viewName) {
 		//System.out.println("@PathVariable:" + viewName);
