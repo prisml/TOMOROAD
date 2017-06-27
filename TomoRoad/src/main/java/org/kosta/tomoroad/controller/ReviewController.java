@@ -63,7 +63,8 @@ public class ReviewController {
 		vo.setPlace(new PlaceVO(ruvo.getPlaceNo()));
 		service.register(vo);
 		List<MultipartFile> files = ruvo.getFiles();
-		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/"); // 배포용
+		// String uploadPath = "C:\\tomoroad\\image\\review\\"; // 테스트용
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (int i = 0; i < files.size(); i++) {
 			String fileName = files.get(i).getOriginalFilename();
@@ -79,6 +80,7 @@ public class ReviewController {
 				}
 			}
 		}
+		System.out.println("이미지크기랑 글번호"+nameList.size()+","+vo.getNo());
 		service.updateImgCount(nameList.size(),vo.getNo());//해당되는 글 번호에 등록된 리뷰 사진의 갯수를 입력시킴.
 		return new ModelAndView("redirect:noauth_detail.do?no=" + vo.getNo());
 	}
@@ -145,7 +147,7 @@ public class ReviewController {
 	@RequestMapping("review/delete.do")
 	public ModelAndView delete(String no, HttpServletRequest req) {
 		service.delete(no);
-		return new ModelAndView("redirect:review/noauth_showList.do");
+		return new ModelAndView("redirect:noauth_showList.do");
 	}
 
 	@RequestMapping("review/recommend")
@@ -198,6 +200,7 @@ public class ReviewController {
 			page = "1";
 		
 		ListVO<ReviewVO> reviewList=service.getListByMemberInMemberPage(page,id);
+		System.out.println(reviewList);
 
 		return reviewList;
 	}

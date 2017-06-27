@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<img src="${pageContext.request.contextPath}/resources/img/marker/start.png"> 출발역
+<img src="${pageContext.request.contextPath}/resources/img/marker/destination.png"> 도착역
+<img src="${pageContext.request.contextPath}/resources/img/marker/waypoint.png"> 경유역
+<img src="${pageContext.request.contextPath}/resources/img/marker/startend.png"> 출발/도착역
+<img src="${pageContext.request.contextPath}/resources/img/marker/marker.png"> 추천여행지
+
 <script>
+	var sysout="";
 	var station = [];
 	var map;
 	var paths=[];
@@ -62,9 +69,9 @@
 						zIndex:zindex
 					});
 					infoList[${status.index}] += '<div>';
-					infoList[${status.index}] += '<div id="siteNotice"></div>'
-					infoList[${status.index}] +='<h3 class="firstHeading">'+"${list.name}"+'</h3>';
-					infoList[${status.index}] +='<div class="bodyContent">';
+					infoList[${status.index}] += '<div></div>'
+					infoList[${status.index}] +='<h3>'+"${list.name}"+'</h3>';
+					infoList[${status.index}] +='<div>';
 					infoList[${status.index}] +='<br>';
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>'; 
@@ -87,7 +94,11 @@
 /*  alert("${param.destination}");
  alert("${param.depart}");
  alert("${param.station}"); */
- 	$("#result").html("<h4>추천경로:"+names+"</h4>")
+	for(var i=0;i<names.length-1;i++){
+		sysout +=names[i] + " - ";
+	}
+ 	sysout += names[names.length-1];
+ 	$("#result").html("<h4>"+"추천경로"+"</h4>"+sysout+"<hr>")
  }); 
 $(document).on('click',"#travel",function(){
 	if(confirm("이 경로로 여행을 시작하시겠습니까?")==true){
@@ -135,7 +146,7 @@ function initMap() {
 		<input type="hidden" name="destination" value="${param.destination}">
 		<input type="hidden" name="id" value="${mvo.id }">
 </form>
-		<input type="button" value="여행시작하기" id="travel">
+		<input type="button" class="btn btn-default btn-lg" value="여행시작하기" id="travel">
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpL8aL2d8fezUQNHEeiaIOaLo7yarXVk8&callback=initMap"
  async defer></script>
  

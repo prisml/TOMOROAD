@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -104,7 +105,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void unBlockFriend(String id, String unBlockId) {
 		HashMap<String,String> friend = new HashMap<String,String>();
-		System.out.println(id+" "+unBlockId);
 		friend.put("id", id);
 		friend.put("unBlockId",unBlockId);
 		memberDAO.unBlockFriend(friend);
@@ -152,6 +152,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int totalFriend(String id) {
 		return memberDAO.totalFrined(id);
+	}
+	@Override
+	public Map<String,String> getFriendInfo(String id, String selectId) {
+		HashMap<String,String> friend = new HashMap<String,String>();
+		friend.put("id", id);
+		friend.put("selectId",selectId);
+		return memberDAO.getFriendInfo(friend);
 	}
 
 }

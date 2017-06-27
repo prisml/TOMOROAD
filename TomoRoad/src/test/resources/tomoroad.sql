@@ -115,7 +115,9 @@ create table review(
 	constraint fk_member_id foreign key(member_id) references member(id) ON DELETE CASCADE
 );
 --추가해주세엿. 리뷰에 등록된 이미지 개수입니다
-alter table review add(img_count number(38) default 0);  
+alter table review add(img_count number default 0);
+alter table review drop column img_count;
+
 
 create sequence review_seq nocache;
 
@@ -593,7 +595,6 @@ select count(*) from station;
 
 
 
->>>>>>> branch 'master' of https://github.com/prisml/TOMOROAD.git
 insert into station values('서울역','1','1','1','1', 37.554908,126.970841);
 insert into station values('용산역','1','1','1','1',37.530154, 126.964754);
 insert into station values('청량리역','1','1','1','1',37.580503, 127.046988);
@@ -721,3 +722,5 @@ insert into place values(place_seq.nextval,'청풍 문화재 단지','제천역'
 insert into station values('영주역','힐링 중심 행복 영주','주소: 경상북도 영주시 선비로 64','Youngnam','영주.jpg',36.811130, 128.625056);
 insert into place values(place_seq.nextval,'부석사','영주역','Youngnam');
 insert into place values(place_seq.nextval,'소수서원','영주역','Youngnam');
+
+drop table  review;

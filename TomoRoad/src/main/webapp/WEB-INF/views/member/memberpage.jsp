@@ -39,29 +39,34 @@
 				
 				var TimeLine="";
 				 
-				var file="";
-				
-			
-				
 				for(var i=0;i<result.pagingBean.endRowNumber;i++) { //리스트의 길이만큼 데이터를 넣는다.
 					TimeLine="";
 					TimeLine+="<div class=timeline-block>";
-					TimeLine+="<div class='timeline-img tl-green'>";
-					TimeLine+="<i class='fa fa-picture-o'></i>";
+					
+					if(result.list[i].imgCount==0){
+						TimeLine+="<div class='timeline-img tl-blue'>";
+						TimeLine+="<i class='fa fa-pencil-square-o'></i>";
+					}else{
+						TimeLine+="<div class='timeline-img tl-pink'>";
+						TimeLine+="<i class='fa fa-camera'></i>";
+					}
+					
 					TimeLine+="</div>";
 					TimeLine+="<div class='timeline-content'>";
 					TimeLine+="<h2>"+result.list[i].title+"</h2>";
 					
+					//리뷰에 사진이 있다면 해당 글 번호에 해당하는 리뷰글 사진을 갖고옴
 					if(result.list[i].imgCount!=0){
 						//사진슬라이드 영역
 						TimeLine+="<div class='porDetCarousel'>";
 						//사진
-						TimeLine+="<div class='carousel-content>";
-						for(var j=0;j<result.list[i].imgCount;j++) //사진의 갯수만큼 돈다
-							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"'"+" style=display: block;>";
+						TimeLine+="<div class='carousel-content'>";
+						
+						for(var j=0;j<result.list[i].imgCount;j++){ //사진의 갯수만큼 돈다
+							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"' style=display: block;>";
+						}
 						
 						TimeLine+="</div>";	
-						//화살표
 						TimeLine+="</div>";	
 					}//if
 					
@@ -80,13 +85,7 @@
 				}//for문
 			}//success	
 		}); //ajax
-		
-	}//function getList
-	
-	});//ready		
-</script>
 
-<script type="text/javascript">		
 		$.fn.carousel = function(op) {
 			var op, ui = {};
 			op = $.extend({
@@ -186,7 +185,12 @@
 			});
 		});//each
 		
+	}//function getList
+});//ready		
 </script>
+
+
+		
 
 <section class="super_sub_content row">
 	<div class="dividerHeading text-center">

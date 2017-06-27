@@ -38,6 +38,7 @@ public class BucketController {
 	public String bucketList(String id,Model model){
 		//버캣리스트를 받아오는 메서드
 		model.addAttribute("bvo",service.selectBucketList(id));
+		model.addAttribute("svo",service.getStationList());
 		return "bucket/bucketPage.tiles";
 	}
 	@RequestMapping("bucket/deletechecked.do")

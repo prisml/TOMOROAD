@@ -84,6 +84,7 @@ create table review(
 	constraint fk_place_no foreign key(place_no) references place(no) on delete cascade,
 	constraint fk_member_id foreign key(member_id) references member(id) on delete cascade
 );
+alter table review add(img_count number(38) default 0);  
 
 create sequence review_seq nocache;
 
@@ -417,6 +418,6 @@ insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','조�
 insert into STATION_CONNECT(depart,arrived,spent_time) values('오송역','제천역',95);
 insert into STATION_CONNECT(depart,arrived,spent_time) values('김천역','영주역',134);
 
-insert into MEMBER values('java','1234','아이유','여','01012341234','${pageContext.request.contextPath}/resources/images/profile/kakao.jpg');
+insert into MEMBER values('java','1234','아이유','여','01012341234','/tomoroad/resources/img/profiles/kakao.jpg');
 
 insert into manager values('tomo',1234);

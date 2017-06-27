@@ -19,11 +19,15 @@
 					<span class="day">${rlist.day }</span> 
 					<span class="month">${rlist.month }</span>
 				</div>
-				<figure class="post_img">
-					<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
-						<img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;">
-					</a>
-				</figure>
+				
+				<c:if test="${rlist.imgCount!=0}">
+					<figure class="post_img">
+						<a href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}"> 
+							<img src="${pageContext.request.contextPath}/resources/upload/review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;"><!-- 배표용 -->
+							<%-- <img src="C:tomoroad\image\review\review${rlist.no}_0" alt="blog post" style="width:212px; height:212px;"> --%> <!-- 테스트용 -->
+						</a>
+					</figure>
+				</c:if>
 				<div class="post_content">
 					<div class="post_meta">
 						<h2>
@@ -31,7 +35,7 @@
 								href="${pageContext.request.contextPath}/review/noauth_detailHit.do?no=${rlist.no}">${rlist.title }</a>
 						</h2>
 						<div class="metaInfo">
-							<span><i class="fa fa-user"></i> By <a href="#">${rlist.member.name }</a>
+							<span><i class="fa fa-user"></i> By <a href="${pageContext.request.contextPath}/memberpage.do?selectId=${rlist.member.id}">${rlist.member.name }</a>
 							</span> <span><i class="fa fa-map-marker"></i> <a href="#.">${rlist.place.name }</a></span>
 							<span><i class="fa fa-dot-circle-o"></i> <a href="#.">${rlist.hits } HITS</a></span>
 							<span><i class="fa fa-heart"></i>${rlist.recommend } Recommend</span>

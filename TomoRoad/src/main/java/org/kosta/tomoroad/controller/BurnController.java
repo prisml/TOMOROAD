@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
 import org.kosta.tomoroad.model.vo.BurnVO;
-import org.kosta.tomoroad.model.vo.MemberVO;
-import org.kosta.tomoroad.model.vo.MessageVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

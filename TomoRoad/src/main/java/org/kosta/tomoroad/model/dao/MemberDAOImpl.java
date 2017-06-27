@@ -2,6 +2,7 @@ package org.kosta.tomoroad.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -135,6 +136,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public int totalFrined(String id) {
 		template.selectOne("member.totalFriend",id);
 		return template.selectOne("member.totalFriend",id);
+	}
+	@Override
+	public Map<String,String> getFriendInfo(HashMap<String, String> friend) {
+		return template.selectOne("member.getFriendInfo", friend);
 	}
 
 }
