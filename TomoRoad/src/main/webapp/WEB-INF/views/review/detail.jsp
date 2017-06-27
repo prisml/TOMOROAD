@@ -43,9 +43,12 @@
 						<span><i class="fa fa-heart"></i> <a href="#">${dvo.rvo.recommend }</a></span>
 					</div>
 				</div>
-				<figure class="post_img">
-					<img src="${pageContext.request.contextPath}/resources/upload/review${dvo.rvo.no}_0" alt="blog post">
-				</figure>
+				<c:if test="${dvo.rvo.imgCount!=0}">
+					<figure class="post_img">
+						<img src="${pageContext.request.contextPath}/resources/upload/review${dvo.rvo.no}_0" alt="blog post"><%-- 배포용  --%>
+						<%-- <img src="C:tomoroad\image\review\review${dvo.rvo.no}_0" alt="blog post"> --%><!-- 배포용 -->
+					</figure>
+				</c:if>
 				<p>${dvo.rvo.content }</p>
 				<c:if test="${mvo!=null}">
 					<div class="serviceBox_2 red">

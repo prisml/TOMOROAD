@@ -63,7 +63,8 @@ public class ReviewController {
 		vo.setPlace(new PlaceVO(ruvo.getPlaceNo()));
 		service.register(vo);
 		List<MultipartFile> files = ruvo.getFiles();
-		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/"); // 배포용
+		// String uploadPath = "C:\\tomoroad\\image\\review\\"; // 테스트용
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (int i = 0; i < files.size(); i++) {
 			String fileName = files.get(i).getOriginalFilename();
