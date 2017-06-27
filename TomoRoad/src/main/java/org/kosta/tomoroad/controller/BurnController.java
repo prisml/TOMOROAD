@@ -141,8 +141,7 @@ public class BurnController {
 	
 	@RequestMapping("**/isNewMsg.do")
 	@ResponseBody
-	public int isNewMsg(String receiver){	
-		System.out.println(burnService.isNewMsg(receiver));
+	public int isNewMsg(String receiver){		
 		return burnService.isNewMsg(receiver);
 	}
 	
