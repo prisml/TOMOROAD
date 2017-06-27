@@ -3,8 +3,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#emptyBox").show();
 		$("#showTimeline").hide();
-		$("#emptyBox").hide();
 		
 		/*스크롤 페이징*/
 		var page=1;
@@ -201,11 +201,10 @@
 	</div>
 </section>
 
-<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px; background: #ff8e8e;" id="emptyBox">
+<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px; background: #FFFFFF;" id="emptyBox">
     <div class="service-content">
-	        <h3 style="text-align: center;color: #483535;">아직 등록된 리뷰가 없어요!</h3>
-	        <span class="line" style="border: 1px dashed;width: 100%;"></span>
-	        <p style="font-family: initial;text-align: center;font-size: 20px;color: #483535;">얼른 리뷰를 등록해서 TomoRoader들과 여행의 기쁨을 나눠주세요^-^</p>
+	        <h3 style="text-align: center;color: #191919;">아직 등록된 리뷰가 없어요!</h3>
+	        <p style="font-family: initial;text-align: center;font-size: 20px;color: #191919;">얼른 리뷰를 등록해서 TomoRoader들과 여행의 기쁨을 나눠주세요^-^</p>
     </div>
 </div>
 
