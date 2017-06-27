@@ -3,6 +3,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#showTimeline").hide();
+		$("#emptyBox").hide();
+		
 		/*스크롤 페이징*/
 		var page=1;
 		var num="";
@@ -34,54 +37,57 @@
 					"id" : '${sessionScope.mvo.id}'
 					},
 			success : function(result){
-				
-				var TimeLine="";
-				
-				for(var i=0;i<result.pagingBean.endRowNumber;i++){ //리스트의 길이만큼 데이터를 넣는다.
-					TimeLine="";
-					TimeLine+="<div class=timeline-block>";
+				if(result.list.length!=0){
+					$("#emptyBox").hide();
+					$("#showTimeline").show();
+				}
+					var TimeLine="";
 					
-					if(result.list[i].imgCount==0){
-						TimeLine+="<div class='timeline-img tl-blue'>";
-						TimeLine+="<i class='fa fa-pencil-square-o'></i>";
-					}else{
-						TimeLine+="<div class='timeline-img tl-pink'>";
-						TimeLine+="<i class='fa fa-camera'></i>";
-					}
-					
-					TimeLine+="</div>";
-					TimeLine+="<div class='timeline-content'>";
-					TimeLine+="<h2>"+result.list[i].title+"</h2>";
-					
-					//리뷰에 사진이 있다면 해당 글 번호에 해당하는 리뷰글 사진을 갖고옴
-					if(result.list[i].imgCount!=0){
-						//사진슬라이드 영역
-						TimeLine+="<div class='porDetCarousel'>";
-						//사진
-						TimeLine+="<div class='carousel-content'>";
+					for(var i=0;i<result.pagingBean.endRowNumber;i++){ //리스트의 길이만큼 데이터를 넣는다.
+						TimeLine="";
+						TimeLine+="<div class=timeline-block>";
 						
-						for(var j=0;j<result.list[i].imgCount;j++){ //사진의 갯수만큼 돈다
-							TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"' style=display: block;>";
+						if(result.list[i].imgCount==0){
+							TimeLine+="<div class='timeline-img tl-blue'>";
+							TimeLine+="<i class='fa fa-pencil-square-o'></i>";
+						}else{
+							TimeLine+="<div class='timeline-img tl-pink'>";
+							TimeLine+="<i class='fa fa-camera'></i>";
 						}
 						
-						TimeLine+="</div>";	
-						TimeLine+="</div>";	
-					}//if
+						TimeLine+="</div>";
+						TimeLine+="<div class='timeline-content'>";
+						TimeLine+="<h2>"+result.list[i].title+"</h2>";
 						
-					
-					TimeLine+="<div class=metaInfo style='text-align: center; margin-bottom: -17px;'>";
-					TimeLine+="<span><i class='fa fa-map-marker'></i>&nbsp;<a href='#.'>"+result.list[i].place.name+"</a>";
-					TimeLine+="&nbsp;&nbsp;<i class='fa fa-eye'></i><a href='#.'>"+result.list[i].hits+"&nbsp;</a>";
-					TimeLine+="&nbsp;<i class='fa fa-heart'></i>"+result.list[i].recommend+"</span>";
-					TimeLine+="</div>";
-					
-					TimeLine+="<p>"+result.list[i].subContent+"</p>";
-					TimeLine+="<a href='${pageContext.request.contextPath}/review/noauth_detailHit.do?no="+result.list[i].no+"' class='btn btn-default'>더 읽기</a>";
-					TimeLine+="<span class='tl-post-date'>&nbsp;"+result.list[i].postedTime+"&nbsp;</span>";
-					TimeLine+="</div>";
-					TimeLine+="</div>";
-					$("#timeline").append(TimeLine);
-				}//for문	
+						//리뷰에 사진이 있다면 해당 글 번호에 해당하는 리뷰글 사진을 갖고옴
+						if(result.list[i].imgCount!=0){
+							//사진슬라이드 영역
+							TimeLine+="<div class='porDetCarousel'>";
+							//사진
+							TimeLine+="<div class='carousel-content'>";
+							
+							for(var j=0;j<result.list[i].imgCount;j++){ //사진의 갯수만큼 돈다
+								TimeLine+="<img class='carousel-item active' src='${pageContext.request.contextPath}/resources/upload/review"+result.list[i].no+"_"+j+"' style=display: block;>";
+							}
+							
+							TimeLine+="</div>";	
+							TimeLine+="</div>";	
+						}//if
+							
+						
+						TimeLine+="<div class=metaInfo style='text-align: center; margin-bottom: -17px;'>";
+						TimeLine+="<span><i class='fa fa-map-marker'></i>&nbsp;<a href='#.'>"+result.list[i].place.name+"</a>";
+						TimeLine+="&nbsp;&nbsp;<i class='fa fa-eye'></i><a href='#.'>"+result.list[i].hits+"&nbsp;</a>";
+						TimeLine+="&nbsp;<i class='fa fa-heart'></i>"+result.list[i].recommend+"</span>";
+						TimeLine+="</div>";
+						
+						TimeLine+="<p>"+result.list[i].subContent+"</p>";
+						TimeLine+="<a href='${pageContext.request.contextPath}/review/noauth_detailHit.do?no="+result.list[i].no+"' class='btn btn-default'>더 읽기</a>";
+						TimeLine+="<span class='tl-post-date'>&nbsp;"+result.list[i].postedTime+"&nbsp;</span>";
+						TimeLine+="</div>";
+						TimeLine+="</div>";
+						$("#timeline").append(TimeLine);
+					}//for문	
 			}//success
 		}); //ajax
 		
@@ -188,82 +194,20 @@
 });//ready
 </script>
 
-<section class="super_sub_content row">
-
-	<div class="dividerHeading text-center">
-		<h4>
-			<span>친구의 타임라인</span>
-		</h4>	
-	</div>
-
+<section class="super_sub_content row" id="showTimeline">
 	<div class="col-md-12">
-		<section id="timeline" class="timeline-container">
-		
-<%-- 			<c:forEach items="${reviewList2}" var="Rlist" >			
-		 		<div class="timeline-block">
-					<div class="timeline-img tl-green"><!-- 초록색그림 -->
-						<i class="fa fa-picture-o"></i>
-					</div>
-				 	<div class="timeline-content">
-						<h2 class="page-title">${Rlist.list.title}</h2><!-- 글제목 -->
-						<p class="page-content">${Rlist.list.content}</p><!-- 글내용 -->
-						<a href="#" class="btn btn-default">더 읽기</a>
-						<span class="tl-post-date">${Rlist.list.postedTime}</span><!-- 게시날짜 -->
-					</div>
-				</div>
-			</c:forEach> --%>
-<!-- 
- 			<div class="timeline-block">
-				<div class="timeline-img tl-blue">
-					<i class="fa fa-video-camera"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
- 
-			<div class="timeline-block">
-				<div class="timeline-img tl-pink">
-					<i class="fa fa-globe"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
-
-			<div class="timeline-block">
-				<div class="timeline-img tl-orange">
-					<i class="fa fa-picture-o"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
-			
-			<div class="timeline-block">
-				<div class="timeline-img tl-orange">
-					<i class="fa fa-picture-o"></i>
-				</div>
-				<div class="timeline-content">
-					<h2 class="page-title"></h2><!-- 글제목 --
-					<p class="page-content"></p><!-- 글내용 --
-					<a href="#" class="btn btn-default">더 읽기</a>
-					<span class="tl-post-date"></span><!-- 게시날짜 --
-				</div>
-			</div>
- -->
-          
+		<section class='timeline-container' id="timeline">
 		</section>
 	</div>
-	
 </section>
+
+<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px; background: #ff8e8e;" id="emptyBox">
+    <div class="service-content">
+	        <h3 style="text-align: center;color: #483535;">아직 등록된 리뷰가 없어요!</h3>
+	        <span class="line" style="border: 1px dashed;width: 100%;"></span>
+	        <p style="font-family: initial;text-align: center;font-size: 20px;color: #483535;">얼른 리뷰를 등록해서 TomoRoader들과 여행의 기쁨을 나눠주세요^-^</p>
+    </div>
+</div>
+
+
 

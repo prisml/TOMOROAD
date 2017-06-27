@@ -29,7 +29,25 @@
 	}
 </script>
 
+
 <div class="col-md-12">
+	<div class="serviceBox_4">
+	    <div class="service-icon">
+	        <a href="#">
+	            <span style="left: 300px;"><i class="fa fa-subway"></i></span>
+	        </a>
+	    </div>
+	    <div class="service-content">
+	        <span id="stationName"><h1 style="text-align: center;font-size: 60px;">${detailInfoVO.name}</h1></span>
+	        <p style="text-align: center;">
+	            ${detailInfoVO.detail}
+	        </p>
+	    </div>
+	</div>
+</div>
+
+
+<%-- <div class="col-md-12">
 	<div class="dividerHeading">
 		<h4>
 			<span id="stationName">${detailInfoVO.name}</span>
@@ -39,9 +57,17 @@
 
 				<br>
 				<br>
-				<br>
+				<br> --%>
 <!-- 지도영역 -->
-<div id="map" style="width: 500px; height: 300px;"></div>
+<br>
+<div class="serviceBox_6 same-height"style="height: 450px;width: 650px;margin-left: 140px;background: #dededc;">
+    <div class="service-content">
+        <span class="line" style="border: 1px dashed;width: 105%;"></span>
+			<div id="map" style="width: 500px; height: 300px;"></div>
+        <span class="line" style="border: 1px dashed;width: 105%;"></span>
+    </div>
+</div>
+
 
 <%-- 
 	<!-- 사진영역 -->
@@ -70,23 +96,23 @@
 	</div>
   --%>
   
-<!-- 게시판 설명 시작(가로전체)-->
+<!-- 게시판 설명 시작(가로전체)--
 <div class="row sub_content">
-	<!-- 게시판 글만 딱 써있는 부분 -->
+	<!-- 게시판 글만 딱 써있는 부분 --
 	<div class="col-lg-8 col-md-8 col-sm-8">
 		<div class="project_description">
-			<div class="widget_title"><!-- 제목 -->
+			<div class="widget_title"><!-- 제목 --
 				<h2>
 					<span>${detailInfoVO.name}</span>
 				</h2>
 			</div>
 			
-			<!-- 설명 -->
+			<!-- 설명 --
 			<p>${detailInfoVO.detail}</p>		
 		</div>
 	</div>
 </div>
-<!-- 끝 -->
+-- 끝 -->
 
 
 <!-- 주변 관광지-->
