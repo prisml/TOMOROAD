@@ -16,7 +16,7 @@ drop sequence message_sequence
 insert into message values(message_sequence.nextval,'goni','java',sysdate,'ddf',1);
 insert into message values(message_sequence.nextval,'santa','java',sysdate,'즐',1);
 
-select count(*) from message where m_receiver='java' and m_sender='goni' and m_checked =1
+select count(*) from message where m_receiver='goni' and m_checked =1
 
 
 select * from message where m_sender in('java','santa') and m_receiver in ('java','santa') and m_checked=1 order by m_time asc
