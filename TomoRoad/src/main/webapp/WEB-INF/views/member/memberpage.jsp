@@ -3,8 +3,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#emptyBox").show();
 		$("#showTimeline").hide();
-		$("#emptyBox").hide();
 		
 		/*스크롤 페이징*/
 		var page=1;
@@ -198,7 +198,7 @@
 
 		
 
-<section class="promo_box row" style="margin-right: 20px; padding: 20px 0; background: #fff7f7;">
+<section class="promo_box row" style="margin-right: 20px;padding: 20px 0;background: #fff7f7;margin-left: 150px;">
 	<div class=" container-fluid">
 	    <div class="col-sm-12">
 	        <div class="promo_content">
@@ -215,7 +215,7 @@
 	</div>
 </section>
 
-<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px; background: #ff8e8e;" id="emptyBox">
+<div class="serviceBox_6 same-height"style="height: 300px;margin-left: 90px;background: #ffffff;" id="emptyBox">
     <div class="service-content">
 	        <h3 style="text-align: center;color: #483535;">아직 등록된 리뷰가 없어요!</h3>
     </div>
