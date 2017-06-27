@@ -28,11 +28,11 @@
 	</select>
 	
 	<select id="getAllStationInfo" resultType="stationVO">
-		select * from station
+		select * from station order by name
 	</select>
 	
 	<select id="getList" resultType="stationVO">
-		select name from station
+		select name from station order by name
 	</select>
 	
 	<select id="getConnectionList" resultType="connectionVO" resultMap="connectionRM">

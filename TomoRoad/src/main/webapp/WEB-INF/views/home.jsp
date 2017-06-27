@@ -17,6 +17,21 @@ var windowNames = new Array(${size});
 var icons = [];//각각의 아이콘들을 배열로관리.
 var zindex = 0;//zindex값을 동적으로 만들기위해 변수선언
 
+
+function closeInfo(){
+	for(var z=0;z<windowNames.length;z++){
+		if(windowNames[z]!=null){//아직 인덱스 z번째에 세팅된 값이 없다면 넘어가고
+			windowNames[z].close();//있을시 close 시켜준다.
+		}
+	}
+}
+
+$(document).ready(function(){
+	$("#closeInfo").click(function(){
+		closeInfo();
+	});
+});
+
 function buttonClick(id,marker,windowName){
 	$(document).on("click","#"+id,function(){
 		//jQuey on을 사용해, 모든 정보가 로딩된 뒤 작동을 하게 만든다.
@@ -28,8 +43,7 @@ function buttonClick(id,marker,windowName){
 				if(data=="fail"){
 					alert(id+" 이미 버킷리스트에 추가한 역입니다");
 				}else{
-					alert(id+" 추가완료!");
-					if(confirm("장바구니 목록으로 이동하시겠습니까?")==true)
+					if(confirm(id+" 추가완료!\n"+"장바구니 목록으로 이동하시겠습니까?")==true)
 					location.href="${pageContext.request.contextPath}/bucket/bucketList.do?id=${mvo.id}";
 				}
 				windowName.close(map,marker);
@@ -37,7 +51,6 @@ function buttonClick(id,marker,windowName){
 		});
 		
 	});
-	
 }
 
 function initMap() {
@@ -80,31 +93,30 @@ function initMap() {
 				success:function(data){
 					infoList[${status.index}] += '<div>';
 					infoList[${status.index}] += '<div id="siteNotice"></div>';
-					infoList[${status.index}] += '<div class="iw-title">${station.name}</div>';
+					infoList[${status.index}] += '<div class="iw-title"><p>${station.name}</p></div>';
 					if(data.cityurl=="http://icons.wxug.com/i/c/k/.gif" || data.cityurl =="http://icons.wxug.com/i/c/k/nt_.gif"){
 					//날씨 url을 위한 조건문. 날씨 URL의 경우 날씨정보가 없는지역은 낮일때 첫번째 조건, 밤일때 두번쨰 조건에 있는 url을 제공한다.
 					//저 url을 그대로 쓰면 이미지가 안나오기때문에 조건문으로 걸러주어 이미지가 뜨지않는 것을 방지한다.
 					infoList[${status.index}] +='<div>'+'Sorry Tomoroader, This area does not provide weather information.'+'</div>';			
 					}else{//날씨를 제공할 경우 정상적인 날씨정보를 세팅
-					infoList[${status.index}] +='<div>'
+					infoList[${status.index}] +='<div class="iw-body"><p>현재 날씨</p>'
 					infoList[${status.index}] +='<img src="'+data.cityurl+'">';
 					infoList[${status.index}] +='</div>'
 					}//else
 					infoList[${status.index}] +='<div>';
-					infoList[${status.index}] +='<br>';
-					infoList[${status.index}] +='<div>';
+					infoList[${status.index}] +='<div class="iw-content">';
 			     	if("${mvo.id}"==""){//로그인했을 경우에만 보이는 정보들을 위한 조건문이다.
 			     	}else{
-				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>${station.name}정보</a><br>';
-				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>번개시판</a><br>';
+				    infoList[${status.index}] +='<a href='+'"${pageContext.request.contextPath}/station/getDetailInfo.do?name=${station.name}"'+'>역정보</a>';
+				    infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/getBurnListByStation.do?pageNo=1&stationName=${station.name}"+'>번개시판</a>';
 			  		if(data.result!=0){
-			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>버킷에서 삭제</a><br>';
-			     	infoList[${status.index}] +='</div>';
+			  		infoList[${status.index}] +='<a href='+"${pageContext.request.contextPath}/bucket/deleteBucket.do?id=${mvo.id}&name=${station.name}"+'>담기취소</a>';
 			  		}else{
-					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='<input type="button" value="담기" id="${station.name}">';			  			
 			  		}
 			     	}//else
+			     	infoList[${status.index}] +='<a id="closeInfo" href="javascript:closeInfo()">닫기</a>';
+					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';
 					infoList[${status.index}] +='</div>';
 					windowNames[${status.index}] = new google.maps.InfoWindow({
@@ -132,9 +144,9 @@ function initMap() {
 						iwCloseBtn.css({
 						  opacity: '1', // by default the close button has an opacity of 0.7
 						  right: '38px', top: '3px', // button repositioning
-						  border: '7px solid #48b5e9', // increasing button border and new color
+						  border: '7px solid #ED4B4B', // increasing button border and new color
 						  'border-radius': '13px', // circular effect
-						  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+						  //'box-shadow': '0 0 5px #ED4B4B' // 3D effect to highlight the button
 						  });
 
 						// The API automatically applies 0.7 opacity to the button after the mouseout event.

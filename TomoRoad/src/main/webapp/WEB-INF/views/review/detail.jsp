@@ -37,15 +37,18 @@
 					</h2>
 					<div class="metaInfo">
 						<span><i class="fa fa-calendar"></i> <a href="#">${dvo.rvo.postedTime }</a>
-						</span> <span><i class="fa fa-user"></i> By <a href="#">${dvo.rvo.member.name }</a>
+						</span> <span><i class="fa fa-user"></i> By <a href="${pageContext.request.contextPath}/memberpage.do?selectId=${dvo.rvo.member.id}">${dvo.rvo.member.name }</a>
 						</span> <span><i class="fa fa-tag"></i> <a href="#">${dvo.rvo.place.name }</a>
 						</span> <span><i class="fa fa-star"></i> <a href="#">${dvo.rvo.star }</a></span>
 						<span><i class="fa fa-heart"></i> <a href="#">${dvo.rvo.recommend }</a></span>
 					</div>
 				</div>
-				<figure class="post_img">
-					<img src="${pageContext.request.contextPath}/resources/upload/review${dvo.rvo.no}_0" alt="blog post">
-				</figure>
+				<c:if test="${dvo.rvo.imgCount!=0}">
+					<figure class="post_img">
+						<img src="${pageContext.request.contextPath}/resources/upload/review${dvo.rvo.no}_0" alt="blog post"><%-- 배포용  --%>
+						<%-- <img src="C:tomoroad\image\review\review${dvo.rvo.no}_0" alt="blog post"> --%><!-- 배포용 -->
+					</figure>
+				</c:if>
 				<p>${dvo.rvo.content }</p>
 				<c:if test="${mvo!=null}">
 					<div class="serviceBox_2 red">
@@ -93,7 +96,7 @@
 					temp += '<img alt="" src="${cvo.member.profile}"' ;
 					temp += 'class="avatar"></div>';
 					temp += '<div class="comment-container"><h4 class="comment-author">'	
-							+'<a href="#">${cvo.member.name}</a></h4>';
+							+'<a href="${pageContext.request.contextPath}/memberpage.do?selectId=${cvo.member.id}">${cvo.member.name}</a></h4>';
 					temp += '<div class="comment-meta"> <a href="#"' 
 							+'class="comment-date link-style1">${cvo.postedTime}</a>';
 					temp += '<div name="${cvo.no}" class="comment-reply-link">'
