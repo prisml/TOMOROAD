@@ -1,6 +1,6 @@
 package org.kosta.tomoroad.controller;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.StationService;
 import org.springframework.stereotype.Controller;

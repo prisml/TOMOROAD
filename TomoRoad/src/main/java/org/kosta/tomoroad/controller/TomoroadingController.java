@@ -3,7 +3,7 @@ package org.kosta.tomoroad.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.TomoroadingService;
 import org.kosta.tomoroad.model.vo.StationVO;

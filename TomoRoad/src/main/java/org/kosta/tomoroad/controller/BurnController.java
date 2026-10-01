@@ -2,8 +2,8 @@ package org.kosta.tomoroad.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.BurnService;
 import org.kosta.tomoroad.model.vo.BurnCommentVO;
