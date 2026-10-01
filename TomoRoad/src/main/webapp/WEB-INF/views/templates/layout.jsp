@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -36,16 +35,16 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
 </script>
 	
-<title><tiles:insertAttribute name="title" ignore="true" /></title>
+<title><c:out value="${layout.title}" /></title>
 </head>
 <body>
 	<section class="wrapper container">
-		<tiles:insertAttribute name="header" />
+		<jsp:include page="${layout.header}" />
 		<section id="page_head" class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="page_title">
 					<h2>
-						<tiles:insertAttribute name="subtitle" ignore="true" />
+						<c:out value="${layout.subtitle}" />
 					</h2>
 					<span class="sub_heading">TOMOROAD always support your trip.</span>
 				</div>
@@ -55,12 +54,12 @@
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-					<tiles:insertAttribute name="main" />
+					<jsp:include page="${layout.main}" />
 				</div>
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 			</div>
 		</section>
-		<tiles:insertAttribute name="footer" />
+		<jsp:include page="${layout.footer}" />
 	</section>
 	<!--start footer-->
 	<script type="text/javascript">

@@ -2,7 +2,7 @@ package org.kosta.tomoroad.model.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.PlaceDAO;
 import org.kosta.tomoroad.model.vo.PlaceVO;

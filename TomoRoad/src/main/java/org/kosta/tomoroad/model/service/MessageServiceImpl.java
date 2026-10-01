@@ -1,6 +1,6 @@
 package org.kosta.tomoroad.model.service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.MessageDAO;
 import org.springframework.stereotype.Service;

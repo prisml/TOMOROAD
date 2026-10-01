@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.MapDAO;
 import org.kosta.tomoroad.model.vo.MapVO;
