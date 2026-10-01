@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.dao.TomoroadingDAO;
 import org.kosta.tomoroad.model.vo.ConnectionVO;

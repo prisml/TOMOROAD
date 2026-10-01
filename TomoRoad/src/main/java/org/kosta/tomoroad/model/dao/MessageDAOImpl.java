@@ -1,6 +1,6 @@
 package org.kosta.tomoroad.model.dao;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

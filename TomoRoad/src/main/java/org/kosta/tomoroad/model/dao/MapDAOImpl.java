@@ -2,7 +2,7 @@ package org.kosta.tomoroad.model.dao;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.vo.MapVO;
 import org.mybatis.spring.SqlSessionTemplate;

@@ -2,7 +2,7 @@ package org.kosta.tomoroad.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.BucketService;
 import org.kosta.tomoroad.model.vo.BucketVO;

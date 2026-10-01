@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.BucketService;
 import org.kosta.tomoroad.model.service.MapService;

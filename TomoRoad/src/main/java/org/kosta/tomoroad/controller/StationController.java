@@ -2,7 +2,7 @@ package org.kosta.tomoroad.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.kosta.tomoroad.model.service.PlaceService;
 import org.kosta.tomoroad.model.service.StationService;

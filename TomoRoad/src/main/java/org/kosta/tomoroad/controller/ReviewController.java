@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.kosta.tomoroad.model.service.ReviewService;
 import org.kosta.tomoroad.model.vo.ListVO;
@@ -150,7 +150,7 @@ public class ReviewController {
 		return new ModelAndView("redirect:noauth_showList.do");
 	}
 
-	@RequestMapping("review/recommend")
+	@RequestMapping("review/recommend.do")
 	public String recommend(String id, int no) {
 		service.recommend(id, no);
 		return "redirect:noauth_detail.do?no=" + no;

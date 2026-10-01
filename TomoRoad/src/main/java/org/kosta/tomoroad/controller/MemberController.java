@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.kosta.tomoroad.model.service.MemberService;
 import org.kosta.tomoroad.model.service.ReviewService;
